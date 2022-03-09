@@ -4,9 +4,9 @@
       class="buttonColor mb-5"
       color="primary"
       type="relief"
-      icon="badge"
+      icon="group_add"
       @click="openModal()"
-      >Crear Cargo</vs-button
+      >Crear División</vs-button
     >
     <vs-row vs-justify="center" class="mt-5">
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
@@ -19,14 +19,12 @@
               <template slot="header"> </template>
               <template slot="thead">
                 <vs-th> Nombre </vs-th>
-                <vs-th> Division </vs-th>
                 <vs-th> Acción </vs-th>
               </template>
 
               <template>
-                <vs-tr :key="index" v-for="(item, index) in charges">
+                <vs-tr :key="index" v-for="(item, index) in branchDivisions">
                   <vs-td> {{ item.name }} </vs-td>
-                  <vs-td> {{ item.nameDivision }} </vs-td>
                   <vs-td>
                     <vs-row>
                       <vs-col
@@ -44,6 +42,14 @@
                             icon="edit"
                           ></vs-button>
                         </router-link>
+                        <vs-button
+                          class="mr-1 ml-1"
+                          radius
+                          color="danger"
+                          type="border"
+                          icon="delete_outline"
+                          @click="deleteDivision(item.id)"
+                        ></vs-button>
                       </vs-col>
                     </vs-row>
                   </vs-td>
@@ -55,7 +61,7 @@
       </vs-col>
     </vs-row>
     <vs-prompt
-      :title="'Nombre Del Cargo'"
+      :title="'Nombre De La División'"
       accept-text="Aceptar"
       cancel-text="Cancelar"
       @cancel="val = ''"
@@ -76,23 +82,8 @@
                 class="ml-1 mr-1"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Nombre"
-                v-model="formCharge.name"
+                v-model="formDivision.name"
               />
-            </div>
-            <div class="centerx colors-example">
-              <vs-select
-                class="mt-0 mb-1 mr-1 ml-1"
-                label="División"
-                v-model="formCharge.division_id"
-              >
-                <vs-select-item :value="''" :text="'Seleccione'" />
-                <vs-select-item
-                  :key="index"
-                  :value="item.id"
-                  :text="item.name"
-                  v-for="(item, index) in branchDivisions"
-                />
-              </vs-select>
             </div>
           </vs-col>
         </vs-row>
@@ -106,32 +97,28 @@ export default {
   data() {
     return {
       activePrompt: false,
-      branchDivisions: {},
-      formCharge: {
+      formDivision: {
         name: "",
-        division_id: "",
       },
-      charges: {},
+      branchDivisions: {},
     };
   },
   created() {
     this.showDivision();
-    this.showcharges();
   },
   methods: {
     openModal() {
       this.activePrompt = true;
     },
     acceptAlert(color) {
-      let url = dominio.url + "/api/crear-cargo";
+      let url = dominio.url + "/api/crear-division";
       axios
-        .post(url, this.formCharge)
+        .post(url, this.formDivision)
         .then((res) => {
           if (res.data.code == 200) {
             toastr.success(res.data.message);
-            this.formCharge.name = "";
-            this.formCharge.division_id = "";
-            this.showcharges();
+            this.formDivision.name = "";
+            this.showDivision();
             this.$vs.notify({
               color: "success",
               title: "Dialogo",
@@ -159,11 +146,22 @@ export default {
         this.branchDivisions = res.data.branchDivisions;
       });
     },
-    showcharges() {
-      let url = dominio.url + "/api/mostrar-cargos";
-      axios.get(url).then((res) => {
-        this.charges = res.data.charges;
-      });
+    deleteDivision(id) {
+      let url = dominio.url + "/api/eliminar-division/" + id;
+      axios
+        .post(url)
+        .then((res) => {
+          if (res.data.code == 200) {
+            toastr.success(res.data.message);
+            this.showDivision();
+          }
+          if (res.data.code == 500) {
+            toastr.error(res.data.message);
+          }
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };

@@ -746,7 +746,7 @@ export default {
         .then((res) => {
           if (res.data.code == 200) {
             toastr.success(res.data.message);
-            this.$router.push("/panel/show-ro");
+            this.showRoId();
           }
           if (res.data.code == 500) {
             toastr.error(res.data.message);

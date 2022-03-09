@@ -184,6 +184,30 @@ const router = new Router({
 						module: 'charge'
 					}
         },
+        {
+          path: 'update-charge//:id',
+          name: 'update-charge',
+          component: () => import('./views/UpdateCharge.vue'),
+          meta: {
+						module: 'update-charge'
+					}
+        },
+        {
+          path: 'division',
+          name: 'division',
+          component: () => import('./views/Division.vue'),
+          meta: {
+						module: 'division'
+					}
+        },
+        {
+          path: 'reports',
+          name: 'reports',
+          component: () => import('./views/Reports.vue'),
+          meta: {
+						module: 'reports'
+					}
+        },
       ],
       meta: {
 				requiresAuth: true,

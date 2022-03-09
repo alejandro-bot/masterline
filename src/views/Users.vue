@@ -132,7 +132,7 @@
       @close="close"
       :active.sync="activePrompt"
     >
-      <div class="con-exemple-prompt">
+      <div class="con-exemple-prompt mt-5">
         <vs-row>
           <vs-col
             vs-type="flex"

@@ -18,6 +18,18 @@ export default [
     icon: "UserIcon",
   },
   {
+    url: "/panel/reports",
+    name: "Reportes",
+    slug: "reportes",
+    icon: "MapIcon",
+  },
+  {
+    url: "/panel/division",
+    name: "División",
+    slug: "division",
+    icon: "KeyIcon",
+  },
+  {
     url: "/panel/charge",
     name: "Cargo",
     slug: "cargo",

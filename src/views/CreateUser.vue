@@ -10,7 +10,7 @@
     >
     <vs-row vs-justify="center">
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
-        <vs-card  class="con-vs-cards">
+        <vs-card class="con-vs-cards">
           <vs-row
             vs-align="flex-start"
             vs-type="flex"
@@ -90,7 +90,31 @@
                 </div>
               </div>
             </vs-col>
-
+            <vs-col
+              class="mt-3"
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="3"
+            >
+              <div class="centerx colors-example">
+                <vs-select
+                  class="selectExample"
+                  label="Divisón"
+                  v-model="formUser.branch_division_id"
+                >
+                  <vs-select-item
+                    :key="index"
+                    :value="item.id"
+                    :text="item.name"
+                    v-for="(item, index) in branchDivisions"
+                  />
+                </vs-select>
+                <div class="mt-2" v-if="errors.branch_division_id">
+                  <span class="errors">{{ errors.branch_division_id[0] }}</span>
+                </div>
+              </div>
+            </vs-col>
             <vs-col
               class="mt-3"
               vs-type="flex"
@@ -274,7 +298,7 @@
                   class="selectExample"
                   label="Estado"
                   v-model="formUser.status_id"
-                   @change="errors.status_id = ''"
+                  @change="errors.status_id = ''"
                 >
                   <vs-select-item
                     :key="index"
@@ -283,7 +307,7 @@
                     v-for="(item, index) in status"
                   />
                 </vs-select>
-                 <div class="mt-2" v-if="errors.status_id">
+                <div class="mt-2" v-if="errors.status_id">
                   <span class="errors">{{ errors.status_id[0] }}</span>
                 </div>
               </div>
@@ -300,7 +324,7 @@
                   class="selectExample"
                   label="Nombre jefe"
                   v-model="formUser.supervisor_id"
-                   @change="errors.supervisor_id = ''"
+                  @change="errors.supervisor_id = ''"
                 >
                   <vs-select-item />
                 </vs-select>
@@ -321,7 +345,7 @@
                   class="selectExample"
                   label="Operación"
                   v-model="formUser.operation_id"
-                   @change="errors.operation_id = ''"
+                  @change="errors.operation_id = ''"
                 >
                   <vs-select-item
                     :key="index"
@@ -373,7 +397,7 @@
                   class="selectExample"
                   label="Perfil"
                   v-model="formUser.rol_id"
-                   @change="errors.rol_id = ''"
+                  @change="errors.rol_id = ''"
                 >
                   <vs-select-item
                     :key="index"
@@ -382,37 +406,12 @@
                     v-for="(item, index) in roles"
                   />
                 </vs-select>
-                 <div class="mt-2" v-if="errors.rol_id">
+                <div class="mt-2" v-if="errors.rol_id">
                   <span class="errors">{{ errors.rol_id[0] }}</span>
                 </div>
               </div>
             </vs-col>
-            <vs-col
-              class="mt-3"
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="3"
-            >
-              <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample"
-                  label="Divisón"
-                  v-model="formUser.branch_division_id"
-                   @change="errors.branch_division_id = ''"
-                >
-                  <vs-select-item
-                    :key="index"
-                    :value="item.id"
-                    :text="item.name"
-                    v-for="(item, index) in branchDivisions"
-                  />
-                </vs-select>
-                <div class="mt-2" v-if="errors.branch_division_id">
-                  <span class="errors">{{ errors.branch_division_id[0] }}</span>
-                </div>
-              </div>
-            </vs-col>
+
             <vs-col
               class="mt-3"
               vs-type="flex"
@@ -550,20 +549,19 @@ export default {
   color: red;
   text-align: right;
 }
-.buttonColor
-{
+.buttonColor {
   background: #ff5000 !important;
 }
 .con-vs-cards {
-    width: 100%;
-    height: auto;
-    background: transparent !important;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    display: block;
-    -webkit-box-shadow: 0 4px 25px 0 rgb(0 0 0 / 10%);
-    box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
-    -webkit-transition: all .3s ease;
-    transition: all .3s ease;
+  width: 100%;
+  height: auto;
+  background: transparent !important;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: block;
+  -webkit-box-shadow: 0 4px 25px 0 rgb(0 0 0 / 10%);
+  box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 </style>
