@@ -1,7 +1,9 @@
+import { dominio } from "../dominio.js";
+
 const actions = {
   retrieveToken(context, credentials) {
     return new Promise((resolve, reject) => {
-      axios.post('http://backend-masterline.test/api/login', {
+      axios.post(dominio.url + '/api/login', {
         email: credentials.email,
         password: credentials.password
       }).then(response => {
@@ -22,7 +24,7 @@ const actions = {
   destroyToken(context) {
     if (context.getters.loggedIn) {
       return new Promise((resolve, reject) => {
-        axios.post('http://backend-masterline.test/api/logout').then(response => {
+        axios.post(dominio.url + '/api/logout').then(response => {
           localStorage.removeItem('access_token');
           localStorage.removeItem('user');
           context.commit('destroyToken');

@@ -1,19 +1,9 @@
-<!-- =========================================================================================
-    File Name: Main.vue
-    Description: Main layout
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-    Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
-
 <template>
   <div class="layout--main" :class="[layoutTypeClass, navbarClasses, footerClasses, {'no-scroll': isAppPage}]">
 
     <v-nav-menu
       :navMenuItems = "navMenuItems"
-      title         = "Vuexy"
+      title         = "Masterline"
       parent        = ".layout--main" />
 
     <div id="content-area" :class="[contentAreaClass, {'show-overlay': bodyOverlay}]">
@@ -98,7 +88,7 @@
             <div class="content-area__content">
 
               <back-to-top bottom="5%" :right="$vs.rtl ? 'calc(100% - 2.2rem - 38px)' : '30px'" visibleoffset="500" v-if="!hideScrollToTop">
-                <vs-button icon-pack="feather" icon="icon-arrow-up" class="shadow-lg btn-back-to-top" />
+                <vs-button icon-pack="feather" icon="icon-arrow-up" color="#ff6600" class="shadow-lg btn-back-to-top" />
               </back-to-top>
 
               <transition :name="routerTransition" mode="out-in">

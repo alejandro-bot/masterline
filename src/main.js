@@ -1,13 +1,3 @@
-/*=========================================================================================
-  File Name: main.js
-  Description: main vue(js) file
-  ----------------------------------------------------------------------------------------
-  Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-  Author: Pixinvent
-  Author URL: http://www.themeforest.net/user/pixinvent
-==========================================================================================*/
-
-
 import Vue from 'vue'
 import App from './App.vue'
 
@@ -61,7 +51,7 @@ Vue.use(VueHammer)
 import 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'
 
-
+import '@ckeditor/ckeditor5-build-classic'
 // Feather font icon
 require('./assets/css/iconfont.css')
 
@@ -74,4 +64,5 @@ new Vue({
     render: h => h(App)
 }).$mount('#app')
 
-
+import CKEditor from '@ckeditor/ckeditor5-vue2';
+Vue.use( CKEditor );

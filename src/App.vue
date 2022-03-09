@@ -3,7 +3,6 @@
 		<router-view @setAppClasses="setAppClasses" />
 	</div>
 </template>
-
 <script>
 import themeConfig from '@/../themeConfig.js'
 

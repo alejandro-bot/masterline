@@ -1,0 +1,416 @@
+<template>
+  <div>
+    <vs-row>
+      <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+        <vs-col vs-type="flex" vs-justify="left" vs-align="left" vs-w="12">
+          <vs-button
+            class="buttonColor"
+            @click="createUser()"
+            color="primary"
+            type="relief"
+            icon="person_add"
+            >Crear Usuario</vs-button
+          >
+        </vs-col>
+        <vs-col vs-type="flex" vs-justify="right" vs-align="right" vs-w="12">
+          <vs-button
+            class="buttonColor"
+            @click="userActive()"
+            color="primary"
+            type="relief"
+            icon="person_add"
+            >Usuarios Activos</vs-button
+          >
+        </vs-col>
+      </vs-col>
+    </vs-row>
+
+    <vs-row vs-justify="center">
+      <vs-col
+        type="flex"
+        vs-justify="center"
+        vs-align="center"
+        vs-w="12"
+        class="mt-5"
+      >
+        <vs-card class="con-vs-cards">
+          <div slot="header" class=""></div>
+          <vs-table
+            max-items="3"
+            search
+            pagination
+            :data="users"
+            description
+            :description-items="descriptionItems"
+            description-title="Registries"
+            description-connector="of"
+            description-body="Pages"
+          >
+            <template slot="header">
+              <h3 class="mb-5">Usuarios</h3>
+            </template>
+            <template slot="thead">
+              <vs-th> Cedula </vs-th>
+              <vs-th> Nombre Completo </vs-th>
+              <vs-th> Cargo </vs-th>
+              <vs-th> Area </vs-th>
+              <vs-th> Acciones </vs-th>
+            </template>
+            <template>
+              <vs-tr :key="index" v-for="(item, index) in users">
+                <vs-td :data="item.id">
+                  {{ item.identification }}
+                </vs-td>
+                <vs-td :data="item.id">
+                  {{ item.first_name }} {{ item.last_name }}
+                </vs-td>
+                <vs-td :data="item.id">
+                  {{ item.chargeName }}
+                </vs-td>
+                <vs-td :data="item.id">
+                  {{ item.operationName }}
+                </vs-td>
+                <vs-td :data="item.id">
+                  <vs-row>
+                    <vs-col
+                      vs-type="flex"
+                      vs-justify="center"
+                      vs-align="center"
+                      vs-w="12"
+                    >
+                      <vs-button
+                        class="mr-1 ml-1"
+                        radius
+                        color="warning"
+                        type="border"
+                        icon="lock_open"
+                        v-if="item.status_id == 1"
+                        @click="inactiveUser(item.id)"
+                      ></vs-button>
+                      <vs-button
+                        class="mr-1 ml-1"
+                        radius
+                        color="danger"
+                        type="gradient"
+                        icon="lock"
+                        v-if="item.status_id == 2"
+                        @click="activeUser(item.id)"
+                      ></vs-button>
+                      <router-link :to="'/panel/edit-user/' + item.id">
+                        <vs-button
+                          class="mr-1 ml-1"
+                          radius
+                          color="success"
+                          type="border"
+                          icon="edit"
+                        ></vs-button>
+                      </router-link>
+                      <vs-button
+                        class="mr-1 ml-1"
+                        @click="openModal(item)"
+                        radius
+                        color="primary"
+                        type="border"
+                        icon="visibility"
+                      ></vs-button>
+                    </vs-col>
+                  </vs-row>
+                </vs-td>
+              </vs-tr>
+            </template>
+          </vs-table>
+        </vs-card>
+      </vs-col>
+    </vs-row>
+    <!-- campos del modal ver usuarios -->
+    <vs-prompt
+      :title="'Nombre de usuario' + ' ' + data.full_name"
+      accept-text="Aceptar"
+      cancel-text="Cancelar"
+      @cancel="val = ''"
+      @accept="acceptAlert"
+      @close="close"
+      :active.sync="activePrompt"
+    >
+      <div class="con-exemple-prompt">
+        <vs-row>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Nombres"
+              :value="data.first_name"
+              disabled
+            />
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Apellidos"
+              v-model="data.last_name"
+              disabled
+            />
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Nombre Completo"
+              v-model="data.full_name"
+              disabled
+            />
+          </vs-col>
+        </vs-row>
+        <vs-row>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Cedula"
+              v-model="data.identification"
+              disabled
+            />
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Cargo"
+              v-model="data.chargeName"
+              disabled
+            />
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Correo Electronico"
+              v-model="data.email"
+              disabled
+            />
+          </vs-col>
+        </vs-row>
+        <vs-row>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Genero"
+              v-model="data.genderName"
+              disabled
+            />
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Fecha De Nacimiento"
+              v-model="data.date_of_birth"
+              disabled
+            />
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Celular De Contacto"
+              v-model="data.contact_cell_phone"
+              disabled
+            />
+          </vs-col>
+        </vs-row>
+        <vs-row>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Contraseña Usuario"
+              v-model="data.password"
+              disabled
+            />
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Contraseña Email"
+              v-model="data.email_password"
+              disabled
+            />
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Url Vcard"
+              v-model="data.url_vcard"
+              disabled
+            />
+          </vs-col>
+        </vs-row>
+        <vs-row>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Estado"
+              v-model="data.statusName"
+              disabled
+            />
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Nombre Jefe"
+              v-model="data.supervisor_id"
+              disabled
+            />
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Operación"
+              v-model="data.operationName"
+              disabled
+            />
+          </vs-col>
+        </vs-row>
+        <vs-row>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Sucursal"
+              v-model="data.branchOfficeName"
+              disabled
+            />
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Perfil"
+              v-model="data.rolName"
+              disabled
+            />
+            <vs-input
+              class="ml-2 mr-2 mb-5 mt-5"
+              color="rgb(213, 14, 151)"
+              label-placeholder="Division"
+              v-model="data.branchDivisionName"
+              disabled
+            />
+          </vs-col>
+        </vs-row>
+      </div>
+    </vs-prompt>
+    <!-- campos del modal ver usuarios -->
+  </div>
+</template>
+<script>
+import { dominio } from "../dominio.js";
+export default {
+
+  data() {
+    return {
+      descriptionItems: [3, 5, 15],
+      users: {},
+      data: {},
+      formInactive: {
+        status_id: 2,
+      },
+      activePrompt: false,
+    };
+  },
+  created() {
+    this.showUser();
+  },
+  methods: {
+    openModal(objeto) {
+      this.activePrompt = true;
+      this.data = objeto;
+    },
+    createUser() {
+      this.$router.push("/panel/create-user");
+    },
+    showUser() {
+      let url = dominio.url + "/api/mostrar-usuarios";
+      axios.get(url).then((res) => {
+        this.users = res.data.users;
+      });
+    },
+    activeUser(id) {
+      let url = dominio.url + "/api/activar-usuario/" + id;
+      axios.post(url, this.formActive).then((res) => {
+        if (res.data.code == 200) {
+          toastr.success(res.data.message);
+          this.showUser();
+        }
+        if (res.data.code == 500) {
+          toastr.error(res.data.message);
+        }
+      });
+    },
+    inactiveUser(id) {
+      let url = dominio.url + "/api/inactivar-usuario/" + id;
+      axios.post(url, this.formInactive).then((res) => {
+        if (res.data.code == 200) {
+          toastr.success(res.data.message);
+          this.showUser();
+        }
+        if (res.data.code == 500) {
+          toastr.error(res.data.message);
+        }
+      });
+    },
+    userActive() {
+      this.$router.push("/panel/active-user");
+    },
+    acceptAlert(color) {
+      this.$vs.notify({
+        color: "success",
+        title: "Dialogo",
+        text: "Cerrado",
+      });
+    },
+    close() {
+      this.$vs.notify({
+        color: "danger",
+        title: "Dialogo",
+        text: "Cerrado",
+      });
+    },
+  },
+};
+</script>
+<style>
+.vs-dialog {
+  max-width: 850px !important;
+}
+.buttonColor {
+  background: #ff5000 !important;
+}
+.con-vs-cards {
+    width: 100%;
+    height: auto;
+    background: transparent !important;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: block;
+    -webkit-box-shadow: 0 4px 25px 0 rgb(0 0 0 / 10%);
+    box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+</style>

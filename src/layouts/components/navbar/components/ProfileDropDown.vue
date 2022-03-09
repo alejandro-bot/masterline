@@ -19,7 +19,7 @@
       </div>
 
       <vs-dropdown-menu class="vx-navbar-dropdown">
-        <ul style="min-width: 9rem">
+        <ul style="min-width: 11rem">
           <li
             class="
               flex
@@ -98,7 +98,7 @@
             @click="logout"
           >
             <feather-icon icon="LogOutIcon" svgClasses="w-4 h-4" />
-            <span class="ml-2">Logout</span>
+            <span class="ml-2">Cerrar Sesión</span>
           </li>
         </ul>
       </vs-dropdown-menu>
