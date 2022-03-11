@@ -11,6 +11,11 @@
     <vs-row vs-justify="center">
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
+          <div slot="header" class="mt-3">
+            <strong>
+              <h1 class="text-center">CREACIÓN DE USUARIO</h1>
+            </strong>
+          </div>
           <vs-row
             vs-align="flex-start"
             vs-type="flex"
@@ -326,7 +331,12 @@
                   v-model="formUser.supervisor_id"
                   @change="errors.supervisor_id = ''"
                 >
-                  <vs-select-item />
+                  <vs-select-item
+                    :key="index"
+                    :value="item.id"
+                    :text="item.full_name"
+                    v-for="(item, index) in user"
+                  />
                 </vs-select>
                 <div class="mt-2" v-if="errors.supervisor_id">
                   <span class="errors">{{ errors.supervisor_id[0] }}</span>
@@ -371,7 +381,10 @@
                   class="selectExample"
                   label="Sucursal"
                   v-model="formUser.branch_office_id"
-                  @change="errors.branch_office_id = ''"
+                  @change="
+                    errors.branch_office_id = '';
+                    supervisor();
+                  "
                 >
                   <vs-select-item
                     :key="index"
@@ -425,7 +438,7 @@
                   color="#ff5000"
                   type="relief"
                   icon="person_add"
-                  >Crear</vs-button
+                  >Crear Usuario</vs-button
                 >
               </vs-row>
             </vs-col>
@@ -467,6 +480,7 @@ export default {
         name: "",
         branch_division_id: "",
       },
+      user: {},
     };
   },
   created() {
@@ -501,6 +515,20 @@ export default {
       axios.get(url).then((res) => {
         this.genders = res.data.genders;
       });
+    },
+    showBoss() {
+      let url = dominio.url + "/api/consultar-supervisor";
+      axios
+        .get(url, {
+          params: {
+            branch_division_id: this.formUser.branch_division_id,
+            position_id: this.formUser.position_id,
+            branch_office_id: this.formUser.branch_office_id
+          },
+        })
+        .then((res) => {
+          this.user = res.data.user;
+        });
     },
     showCharges() {
       let url = dominio.url + "/api/mostrar-cargos";
@@ -540,6 +568,17 @@ export default {
     },
     backUsers() {
       this.$router.push("/panel/users");
+    },
+    supervisor() {
+      if (
+        this.formUser.branch_division_id &&
+        this.formUser.position_id &&
+        this.formUser.branch_office_id
+      ) {
+        this.showBoss();
+      } else {
+        toastr.error("Debe Escoger División, Cargo y Sucursal");
+      }
     },
   },
 };

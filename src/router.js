@@ -208,6 +208,38 @@ const router = new Router({
 						module: 'reports'
 					}
         },
+        {
+          path: 'update-division//:id',
+          name: 'update-division',
+          component: () => import('./views/UpdateDivision.vue'),
+          meta: {
+						module: 'update-division'
+					}
+        },
+        {
+          path: 'job-dependencies',
+          name: 'job-dependencies',
+          component: () => import('./views/JobDependencies.vue'),
+          meta: {
+						module: 'job-dependencies'
+					}
+        },
+        {
+          path: 'update-dependency//:id',
+          name: 'update-dependency',
+          component: () => import('./views/UpdateDependency.vue'),
+          meta: {
+						module: 'update-dependency'
+					}
+        },
+        {
+          path: 'profile',
+          name: 'profile',
+          component: () => import('./views/Profile.vue'),
+          meta: {
+						module: 'profile'
+					}
+        },
       ],
       meta: {
 				requiresAuth: true,

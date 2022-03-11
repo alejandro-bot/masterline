@@ -4,33 +4,32 @@
       class="buttonColor mb-5"
       color="primary"
       type="relief"
-      icon="badge"
+      icon="people"
       @click="openModal()"
-      >Crear Cargo</vs-button
+      >Crear Dependencia</vs-button
     >
     <vs-row vs-justify="center" class="mt-5">
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
           <div slot="header">
-            <h6 class="card-title text-center">Cargos</h6>
+            <h6 class="card-title text-center">Dependencia</h6>
           </div>
           <div>
             <vs-table>
               <template slot="header"> </template>
               <template slot="thead">
-                <vs-th> Nombre </vs-th>
-                <vs-th> Division </vs-th>
-                <vs-th> Linea </vs-th>
-                <vs-th> Acción </vs-th>
+                <vs-th> Sucursal </vs-th>
+                <vs-th> División </vs-th>
+                <vs-th> Cargo </vs-th>
+                <vs-th> Cargo Supervisor</vs-th>
+                <vs-th> Acciones </vs-th>
               </template>
-
               <template>
-                <vs-tr :key="index" v-for="(item, index) in charges">
-                  <vs-td> {{ item.name }} </vs-td>
-                  <vs-td> {{ item.nameDivision }} </vs-td>
-                  <vs-td v-if="item.line == 1"> Primera Linea </vs-td>
-                  <vs-td v-if="item.line == 2"> Segunda Linea </vs-td>
-                  <vs-td v-if="item.line == 3"> Tercera Linea </vs-td>
+                <vs-tr :key="index" v-for="(item, index) in showDependencies">
+                  <vs-td> {{ item.nameBranchOffices[0].name }} </vs-td>
+                  <vs-td> {{ item.nameBranchDivision[0].name }} </vs-td>
+                  <vs-td> {{ item.nameCharge[0].name }} </vs-td>
+                  <vs-td> {{ item.nameChargeDepency[0].name }} </vs-td>
                   <vs-td>
                     <vs-row>
                       <vs-col
@@ -39,7 +38,7 @@
                         vs-align="left"
                         vs-w="12"
                       >
-                        <router-link :to="'/panel/update-charge/' + item.id">
+                        <router-link :to="'/panel/update-dependency/' + item.id">
                           <vs-button
                             class="mr-1 ml-1"
                             radius
@@ -48,14 +47,6 @@
                             icon="edit"
                           ></vs-button>
                         </router-link>
-                        <vs-button
-                          class="mr-1 ml-1"
-                          radius
-                          color="danger"
-                          type="border"
-                          icon="delete_outline"
-                          @click="deleteCharge(item.id)"
-                        ></vs-button>
                       </vs-col>
                     </vs-row>
                   </vs-td>
@@ -67,7 +58,7 @@
       </vs-col>
     </vs-row>
     <vs-prompt
-      :title="'Nombre Del Cargo'"
+      :title="'Nombre De La Dependencia'"
       accept-text="Aceptar"
       cancel-text="Cancelar"
       @cancel="val = ''"
@@ -84,22 +75,19 @@
             vs-w="12"
           >
             <div class="centerx colors-example">
-              <vs-input
-                class="ml-1 mr-1"
-                color="rgb(213, 14, 151)"
-                label-placeholder="Nombre"
-                v-model="formCharge.name"
-              />
+              <vs-select
+                class="mt-0 mb-1 mr-1 ml-1"
+                label="Sucursal"
+                v-model="formCharge.branch_id"
+              >
+                <vs-select-item
+                  :key="index"
+                  :value="item.id"
+                  :text="item.name"
+                  v-for="(item, index) in branchOffices"
+                />
+              </vs-select>
             </div>
-          </vs-col>
-        </vs-row>
-        <vs-row>
-          <vs-col
-            vs-type="flex"
-            vs-justify="center"
-            vs-align="center"
-            vs-w="12"
-          >
             <div class="centerx colors-example">
               <vs-select
                 class="mt-0 mb-1 mr-1 ml-1"
@@ -126,13 +114,29 @@
             <div class="centerx colors-example">
               <vs-select
                 class="mt-0 mb-1 mr-1 ml-1"
-                label="Linea"
-                v-model="formCharge.line"
+                label="Cargo"
+                v-model="formCharge.charge_id"
               >
-                <vs-select-item :value="''" :text="'Seleccione'" />
-                <vs-select-item :value="'1'" :text="'Primera Linea'" />
-                <vs-select-item :value="'2'" :text="'Segunda Linea'" />
-                <vs-select-item :value="'3'" :text="'Tercera Linea'" />
+                <vs-select-item
+                  :key="index"
+                  :value="item.id"
+                  :text="item.name"
+                  v-for="(item, index) in charges"
+                />
+              </vs-select>
+            </div>
+            <div class="centerx colors-example">
+              <vs-select
+                class="mt-0 mb-1 mr-1 ml-1"
+                label="Cargo Supervisor"
+                v-model="formCharge.charge_dependence_id"
+              >
+                <vs-select-item
+                  :key="index"
+                  :value="item.id"
+                  :text="item.name"
+                  v-for="(item, index) in charges"
+                />
               </vs-select>
             </div>
           </vs-col>
@@ -147,32 +151,36 @@ export default {
   data() {
     return {
       activePrompt: false,
-      branchDivisions: {},
       formCharge: {
-        name: "",
+        branch_id: "",
         division_id: "",
-        line: "",
+        charge_id: "",
+        charge_dependence_id: "",
       },
+      branchDivisions: {},
+      branchOffices: {},
       charges: {},
+      showDependencies: {}
     };
   },
   created() {
-    this.showDivision();
-    this.showcharges();
+    this.showBranchDivisions();
+    this.showBranchOffices();
+    this.showCharges();
+    this.showDependency();
   },
   methods: {
     openModal() {
       this.activePrompt = true;
     },
     acceptAlert(color) {
-      let url = dominio.url + "/api/crear-cargo";
+      let url = dominio.url + "/api/crear-dependencia";
       axios
         .post(url, this.formCharge)
         .then((res) => {
           if (res.data.code == 200) {
             toastr.success(res.data.message);
-            this.formCharge.name = "";
-            this.formCharge.division_id = "";
+            this.showDependency();
             this.showcharges();
             this.$vs.notify({
               color: "success",
@@ -195,34 +203,29 @@ export default {
         text: "Cerrado",
       });
     },
-    showDivision() {
+    showBranchDivisions() {
       let url = dominio.url + "/api/mostrar-divisiones";
       axios.get(url).then((res) => {
         this.branchDivisions = res.data.branchDivisions;
       });
     },
-    showcharges() {
+    showDependency() {
+      let url = dominio.url + "/api/list-dependencias";
+      axios.get(url).then((res) => {
+        this.showDependencies = res.data.showDependencies;
+      });
+    },
+     showBranchOffices() {
+      let url = dominio.url + "/api/mostrar-sucursales";
+      axios.get(url).then((res) => {
+        this.branchOffices = res.data.branchOffices;
+      });
+    },
+    showCharges() {
       let url = dominio.url + "/api/mostrar-cargos";
       axios.get(url).then((res) => {
         this.charges = res.data.charges;
       });
-    },
-    deleteCharge(id) {
-      let url = dominio.url + "/api/eliminar-cargo/" + id;
-      axios
-        .post(url)
-        .then((res) => {
-          if (res.data.code == 200) {
-            toastr.success(res.data.message);
-            this.showcharges();
-          }
-          if (res.data.code == 500) {
-            toastr.error(res.data.message);
-          }
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-        });
     },
   },
 };
@@ -256,9 +259,5 @@ export default {
 }
 .vs-dialog {
   max-width: 450px !important;
-}
-.vs-button-primary.vs-button-filled
-{
-  background: #ff5000 !important;
 }
 </style>

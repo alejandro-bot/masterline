@@ -45,6 +45,7 @@
               <vs-th> Ultima Tipificación </vs-th>
               <vs-th> Origen </vs-th>
               <vs-th> Destino </vs-th>
+              <vs-th> Proceso </vs-th>
               <vs-th class="justify-content-center"> Acciones </vs-th>
             </template>
             <template>
@@ -63,6 +64,9 @@
                 </vs-td>
                 <vs-td :data="item.destination_place">
                   {{ item.destination_place }}
+                </vs-td>
+                <vs-td :data="item.destination_place">
+                  {{ item.process[0].process_name }}
                 </vs-td>
                 <vs-td :data="item.id">
                   <vs-row>

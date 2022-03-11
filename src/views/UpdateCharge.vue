@@ -27,7 +27,7 @@
                     vs-type="flex"
                     vs-justify="right"
                     vs-align="center"
-                    vs-w="6"
+                    vs-w="4"
                   >
                     <vs-input
                       class="ml-5 mb-3"
@@ -38,12 +38,12 @@
                   </vs-col>
                   <vs-col
                     vs-type="flex"
-                    vs-justify="left"
+                    vs-justify="center"
                     vs-align="center"
-                    vs-w="6"
+                    vs-w="4"
                   >
                     <vs-select
-                      class="ml-5 mb-3"
+                      class="mb-3"
                       label="División"
                       v-model="showChargeId.division_id"
                     >
@@ -54,6 +54,23 @@
                         :text="item.name"
                         v-for="(item, index) in branchDivisions"
                       />
+                    </vs-select>
+                  </vs-col>
+                  <vs-col
+                    vs-type="flex"
+                    vs-justify="left"
+                    vs-align="center"
+                    vs-w="4"
+                  >
+                    <vs-select
+                      class="mr-5 mb-3"
+                      label="División"
+                      v-model="showChargeId.line"
+                    >
+                      <vs-select-item :value="''" :text="'Seleccione'" />
+                      <vs-select-item :value="'1'" :text="'Primera Linea'" />
+                      <vs-select-item :value="'2'" :text="'Segunda Linea'" />
+                      <vs-select-item :value="'3'" :text="'Tercera Linea'" />
                     </vs-select>
                   </vs-col>
                 </vs-row>
@@ -93,6 +110,7 @@ export default {
         id: this.$route.params && this.$route.params.id,
         name: "",
         division_id: "",
+        line: "",
       },
       branchDivisions: {},
     };

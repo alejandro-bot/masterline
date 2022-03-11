@@ -1,119 +1,15 @@
 <template>
   <div>
     <vs-row>
-      <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="waves"
-            >Maritimo Seguimiento</vs-button
-          >
-        </vs-col>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="email"
-            >Maritimo Emails</vs-button
-          >
-        </vs-col>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="local_shipping"
-            >Terrestre Seguimiento</vs-button
-          >
-        </vs-col>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="email"
-            >Terrestre Emails</vs-button
-          >
-        </vs-col>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="local_airport"
-            >Aereo Seguimiento</vs-button
-          >
-        </vs-col>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="email"
-            >Aereo Emails</vs-button
-          >
-        </vs-col>
-      </vs-col>
-    </vs-row>
-    <vs-row class="mt-5">
-      <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="home"
-            >Maritimo Seguimiento</vs-button
-          >
-        </vs-col>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="home"
-            >Maritimo Emails</vs-button
-          >
-        </vs-col>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="home"
-            >Terrestre Seguimiento</vs-button
-          >
-        </vs-col>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="home"
-            >Terrestre Emails</vs-button
-          >
-        </vs-col>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="home"
-            >Aereo Seguimiento</vs-button
-          >
-        </vs-col>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="home"
-            >Aereo Emails</vs-button
-          >
-        </vs-col>
+      <vs-col vs-type="flex" vs-justify="left" vs-align="center" vs-w="12">
+        <vs-button
+          class="buttonColor"
+          color="primary"
+          type="relief"
+          icon="home"
+          @click="returnHome()"
+          >Incio</vs-button
+        >
       </vs-col>
     </vs-row>
     <vs-row class="mt-5" vs-justify="center">
@@ -122,9 +18,7 @@
           <div slot="header">
             <h6 class="card-title text-center">Reportes</h6>
           </div>
-          <div>
-
-          </div>
+          <div></div>
         </vs-card>
       </vs-col>
     </vs-row>
@@ -166,5 +60,4 @@ export default {
   font-size: 17px;
   font-weight: 700;
 }
-
 </style>

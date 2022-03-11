@@ -33,7 +33,7 @@
                         vs-align="left"
                         vs-w="12"
                       >
-                        <router-link :to="'/panel/update-charge/' + item.id">
+                        <router-link :to="'/panel/update-division/' + item.id">
                           <vs-button
                             class="mr-1 ml-1"
                             radius

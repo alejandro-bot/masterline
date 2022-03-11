@@ -1,8 +1,8 @@
 <template>
   <div class="the-navbar__user-meta flex items-center">
     <div class="text-right leading-tight hidden sm:block">
-      <p class="font-semibold">John Doe</p>
-      <small>Available</small>
+      <p class="font-semibold" v-text="showUserAuth[0].full_name"></p>
+      <small>Conectado</small>
     </div>
 
     <vs-dropdown vs-custom-content vs-trigger-click class="cursor-pointer">
@@ -28,9 +28,10 @@
               cursor-pointer
               hover:bg-primary hover:text-white
             "
+            @click="showProfile()"
           >
             <feather-icon icon="UserIcon" svgClasses="w-4 h-4" />
-            <span class="ml-2">Profile</span>
+            <span class="ml-2">Perfil</span>
           </li>
 
           <li
@@ -107,11 +108,16 @@
 </template>
 
 <script>
+import { dominio } from "/src/dominio.js";
 export default {
   data() {
     return {
+      showUserAuth: {},
       foto: require("@/assets/images/portrait/small/avatar-s-11.jpg"),
     };
+  },
+  created() {
+    this.showUser();
   },
   computed: {
     activeUserInfo() {
@@ -124,6 +130,15 @@ export default {
         this.$router.push("/");
       });
     },
+     showUser() {
+      let url = dominio.url + "/api/mostar-usuario-autentificado";
+      axios.get(url).then((res) => {
+        this.showUserAuth = res.data.showUserAuth;
+      });
+    },
+    showProfile() {
+      this.$router.push('/panel/profile');
+    }
   },
 };
 </script>

@@ -36,6 +36,12 @@ export default [
     icon: "CheckIcon",
   },
   {
+    url: "/panel/job-dependencies",
+    name: "Depencia",
+    slug: "dependencia",
+    icon: "UsersIcon",
+  },
+  {
     url: "/panel/resume-team",
     name: "Resumen De Equipo",
     slug: "resumen-equipo",
