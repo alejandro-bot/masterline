@@ -19,14 +19,14 @@
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="6"
+              vs-w="12"
             >
               <vs-card actionable class="con-vs-cards-1 ml-2 mr-1 cardx">
                 <div slot="header">
                   <h6 class="text-center">
                     <vs-avatar
                       size="150px"
-                      src="https://avatars2.githubusercontent.com/u/31676496?s=460&v=4"
+                      src=" showUserAuth[0].profile_picture"
                       style="border: 2px solid #ff5000"
                     />
                   </h6>
@@ -117,7 +117,6 @@
             >
               <vs-card actionable class="con-vs-cards-1 ml-2 mr-1 cardx">
                 <div slot="header">
-                  <h3 class="card-title text-center">Hello world !</h3>
                 </div>
                 <div>
                    <div class="centerx icons-example">
@@ -125,7 +124,7 @@
                       class="mt-2 mb-1"
                       icon="account_circle"
                       style="width: 100%"
-                      :value="'Cedula' + ': ' + showUserAuth[0].identification"
+                      :value="'Division' + ': ' + showUserAuth[0].nameDivision"
                       disabled
                     />
 
@@ -133,7 +132,7 @@
                       class="mt-2 mb-2"
                       icon="email"
                       style="width: 100%"
-                      :value="'Correo' + ': ' + showUserAuth[0].email"
+                      :value="'Sucursal' + ': ' + showUserAuth[0].nameBranchOffice"
                       disabled
                     />
 
@@ -141,7 +140,7 @@
                       class="mt-2"
                       icon="badge"
                       style="width: 100%"
-                      :value="'Cargo' + ': ' + showUserAuth[0].nameCharge"
+                      :value="'Genero' + ': ' + showUserAuth[0].nameGender"
                       disabled
                     />
 
@@ -149,7 +148,7 @@
                       class="mt-2"
                       icon="wc"
                       style="width: 100%"
-                      :value="'Sexo' + ': ' + showUserAuth[0].nameGender"
+                      :value="'Operación' + ': ' + showUserAuth[0].nameOperation"
                       disabled
                     />
 
@@ -157,7 +156,7 @@
                       class="mt-2"
                       icon="supervised_user_circle"
                       style="width: 100%"
-                      :value="'Perfil' + ': ' + showUserAuth[0].nameRol"
+                      :value="'Estado' + ': ' + showUserAuth[0].nameStatus"
                       disabled
                     />
 
@@ -165,7 +164,7 @@
                       class="mt-2"
                       icon="supervised_user_circle"
                       style="width: 100%; margin-top:-10px; !important"
-                      :value="'Perfil' + ': ' + showUserAuth[0].nameOperation"
+                      :value="'Perfil' + ': ' + showUserAuth[0].nameRol"
                       disabled
                     />
                   </div>
@@ -180,7 +179,6 @@
             >
               <vs-card actionable class="con-vs-cards-1 ml-2 mr-1 cardx">
                 <div slot="header">
-                  <h3 class="card-title text-center">Hello world !</h3>
                 </div>
                 <div>
                    <div class="centerx icons-example">
@@ -188,7 +186,7 @@
                       class="mt-2 mb-1"
                       icon="account_circle"
                       style="width: 100%"
-                      :value="'Cedula' + ': ' + showUserAuth[0].identification"
+                      :value="'Cargo' + ': ' + showUserAuth[0].nameCharge"
                       disabled
                     />
 
@@ -196,7 +194,7 @@
                       class="mt-2 mb-2"
                       icon="email"
                       style="width: 100%"
-                      :value="'Correo' + ': ' + showUserAuth[0].email"
+                      :value="'Nombres' + ': ' + showUserAuth[0].first_name"
                       disabled
                     />
 
@@ -204,7 +202,7 @@
                       class="mt-2"
                       icon="badge"
                       style="width: 100%"
-                      :value="'Cargo' + ': ' + showUserAuth[0].nameCharge"
+                      :value="'Apellidos' + ': ' + showUserAuth[0].last_name"
                       disabled
                     />
 
@@ -212,7 +210,7 @@
                       class="mt-2"
                       icon="wc"
                       style="width: 100%"
-                      :value="'Sexo' + ': ' + showUserAuth[0].nameGender"
+                      :value="'Nombre Completo' + ': ' + showUserAuth[0].full_name"
                       disabled
                     />
 
@@ -220,7 +218,7 @@
                       class="mt-2"
                       icon="supervised_user_circle"
                       style="width: 100%"
-                      :value="'Perfil' + ': ' + showUserAuth[0].nameRol"
+                      :value="'Identificación' + ': ' + showUserAuth[0].identification"
                       disabled
                     />
 
@@ -228,7 +226,71 @@
                       class="mt-2"
                       icon="supervised_user_circle"
                       style="width: 100%; margin-top:-10px; !important"
-                      :value="'Perfil' + ': ' + showUserAuth[0].nameOperation"
+                      :value="'Correo Electronico' + ': ' + showUserAuth[0].email"
+                      disabled
+                    />
+                  </div>
+                </div>
+              </vs-card>
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="6"
+            >
+              <vs-card actionable class="con-vs-cards-1 ml-2 mr-1 cardx">
+                <div slot="header">
+                </div>
+                <div>
+                   <div class="centerx icons-example">
+                    <vs-input
+                      class="mt-2 mb-1"
+                      icon="account_circle"
+                      style="width: 100%"
+                      :value="'Dia De Nacimiento' + ': ' + showUserAuth[0].date_of_birth"
+                      disabled
+                    />
+
+                    <vs-input
+                      class="mt-2 mb-2"
+                      icon="email"
+                      style="width: 100%"
+                      :value="'Numero De Contacto' + ': ' + showUserAuth[0].contact_cell_phone"
+                      disabled
+                    />
+
+                    <vs-input
+                      class="mt-2"
+                      icon="badge"
+                      style="width: 100%"
+                      :value="'Contraseña' + ': ' + showUserAuth[0].password"
+                      disabled
+                      type="password"
+                    />
+
+                    <vs-input
+                      class="mt-2"
+                      icon="wc"
+                      style="width: 100%"
+                      :value="'Contraseña Correo' + ': ' + showUserAuth[0].email_password"
+                      disabled
+                      type="password"
+                    />
+
+                    <vs-input
+                      class="mt-2"
+                      icon="supervised_user_circle"
+                      style="width: 100%"
+                      :value="'Id House' + ': ' + showUserAuth[0].id_house_bl_person"
+                      disabled
+                    />
+
+                    <vs-input
+                      class="mt-2"
+                      icon="supervised_user_circle"
+                      style="width: 100%; margin-top:-10px; !important"
+                      :value="'Url Vcard' + ': ' + showUserAuth[0].url_vcard"
                       disabled
                     />
                   </div>

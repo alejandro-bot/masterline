@@ -1,13 +1,31 @@
 <template>
   <div>
-    <vs-button
-      class="buttonColor"
-      @click="createRol()"
-      color="primary"
-      type="relief"
-      icon="person_add"
-      >Crear Rol</vs-button
-    >
+    <!-- v-if="$page.props.user.can['admin.mostrar.roles']" -->
+    <vs-row>
+      <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+        <vs-col vs-type="flex" vs-justify="left" vs-align="left" vs-w="12">
+          <vs-button
+            class="buttonColor"
+            @click="createRol()"
+            color="primary"
+            type="relief"
+            icon="person_add"
+            >Crear Rol</vs-button
+          >
+        </vs-col>
+        <vs-col vs-type="flex" vs-justify="right" vs-align="right" vs-w="12">
+          <vs-button
+            class="buttonColor"
+            @click="createPermission(openModalPermission())"
+            color="primary"
+            type="relief"
+            icon="person_add"
+            >Crear Permisos</vs-button
+          >
+        </vs-col>
+      </vs-col>
+    </vs-row>
+
     <vs-row vs-justify="center" class="mt-5">
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
@@ -29,7 +47,7 @@
                   </vs-td>
                   <vs-td>
                     <vs-button
-                      @click="openModal()"
+                      @click="openModal(item.id)"
                       radius
                       color="success"
                       type="border"
@@ -55,13 +73,54 @@
       <div class="con-exemple-prompt">
         <vs-row>
           <vs-col vs-type="flex" vs-justify="left" vs-align="center" vs-w="12">
-            <ul class="centerx">
-              <li>
-                <vs-checkbox color="success" v-model="checkBox1"
-                  >Aqui el nombrel premiso</vs-checkbox
+            <ul class="centerx mt-3 mb-3">
+              <li :key="index" v-for="(item, index) in showPermissions">
+                <vs-checkbox
+                  class="mt-2 mb-2"
+                  color="success"
+                  :id="'check' + index"
+                  v-model="item.estado"
+                  >{{ item.name }}</vs-checkbox
                 >
               </li>
             </ul>
+          </vs-col>
+        </vs-row>
+      </div>
+    </vs-prompt>
+    <vs-prompt
+      :title="'Crear Permiso'"
+      accept-text="Aceptar"
+      cancel-text="Cancelar"
+      @cancel="val = ''"
+      @accept="acceptAlertPermission"
+      @close="close"
+      :active.sync="activePromptPermission"
+    >
+      <div class="con-exemple-prompt">
+        <vs-row>
+          <vs-col vs-type="flex" vs-justify="left" vs-align="center" vs-w="12">
+            <vs-row>
+              <vs-col
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="12"
+              >
+                <vs-col
+                  vs-type="flex"
+                  vs-justify="center"
+                  vs-align="center"
+                  vs-w="12"
+                >
+                  <vs-input
+                    color="rgb(213, 14, 151)"
+                    label-placeholder="Nombre"
+                    v-model="formPermission.name"
+                  />
+                </vs-col>
+              </vs-col>
+            </vs-row>
           </vs-col>
         </vs-row>
       </div>
@@ -73,9 +132,18 @@ import { dominio } from "../dominio.js";
 export default {
   data() {
     return {
+      activePromptPermission: false,
       activePrompt: false,
       roles: {},
       checkBox1: true,
+      showPermissions: [],
+      form: {
+        datos: [],
+        rol: "",
+      },
+      formPermission: {
+        name: ''
+      },
     };
   },
   created() {
@@ -89,17 +157,44 @@ export default {
       let url = dominio.url + "/api/mostrar-roles";
       axios.get(url).then((res) => {
         this.roles = res.data.roles;
+        this.showPermissions = res.data.showPermissions;
       });
     },
-    openModal() {
+    openModal(id) {
+      this.form.rol = id;
       this.activePrompt = true;
     },
+    openModalPermission() {
+      this.activePromptPermission = true;
+    },
     acceptAlert(color) {
-      this.$vs.notify({
-        color: "success",
-        title: "Dialogo",
-        text: "Cerrado",
-      });
+      this.form.datos = [];
+      for (let index = 0; index < this.showPermissions.length; index++) {
+        if (this.showPermissions[index].estado == true) {
+          this.form.datos.push(this.showPermissions[index].id);
+        }
+      }
+      let url = dominio.url + "/api/asignar-roles-permisos";
+      axios
+        .post(url, this.form)
+        .then((res) => {
+          if (res.data.code == 200) {
+            toastr.success(res.data.message);
+            this.showDependency();
+            this.showcharges();
+            this.$vs.notify({
+              color: "success",
+              title: "Dialogo",
+              text: "Cerrado",
+            });
+          }
+          if (res.data.code == 500) {
+            toastr.error(res.data.message);
+          }
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
     close() {
       this.$vs.notify({
@@ -107,6 +202,29 @@ export default {
         title: "Dialogo",
         text: "Cerrado",
       });
+    },
+    acceptAlertPermission() {
+      let url = dominio.url + "/api/crear-permiso";
+      axios
+        .post(url, this.formPermission)
+        .then((res) => {
+          if (res.data.code == 200) {
+            toastr.success(res.data.message);
+           this.showRoles();
+           this.formPermission.name = '';
+            this.$vs.notify({
+              color: "success",
+              title: "Dialogo",
+              text: "Cerrado",
+            });
+          }
+          if (res.data.code == 500) {
+            toastr.error(res.data.message);
+          }
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };

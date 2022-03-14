@@ -1,6 +1,6 @@
 <template>
   <div>
-     <vs-row>
+    <vs-row>
       <vs-col vs-type="flex" vs-justify="left" vs-align="center" vs-w="12">
         <vs-button
           class="buttonColor mb-5"
@@ -422,6 +422,35 @@
           </vs-row>
         </vs-card>
         <vs-card class="con-vs-cards">
+          <h6 class="card-title text-center">MENSAJE PERSONALIZADO</h6>
+          <vs-row>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <wysiwyg
+                v-model="formRo.imageHtml"
+                style="background: white; color: black; height: 400px"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vs-upload
+                multiple
+                text="Upload Multiple"
+                @on-success="createRo()"
+                v-model="formRo.image"
+              />
+            </vs-col>
+          </vs-row>
+        </vs-card>
+        <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">PRIMERA INTERACCIÓN</h6>
           <vs-row>
             <vs-col
@@ -430,7 +459,7 @@
               vs-align="center"
               vs-w="12"
             >
-               <vs-input
+              <vs-input
                 class="mr-5 ml-5 mt-5 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Proceso Actual"
@@ -497,6 +526,7 @@
   </div>
 </template>
 <script>
+import "vue-wysiwyg/dist/vueWysiwyg.css";
 import { dominio } from "../dominio.js";
 export default {
   data() {
@@ -535,18 +565,20 @@ export default {
         commercial: "",
         client_emails_id: "",
         customer_tracking_code: "",
-        process_name: 'ASIGNACIÓN DE LA OPERACIÓN',
+        process_name: "ASIGNACIÓN DE LA OPERACIÓN",
         subjet: "",
         message: "",
         type_of_transport_id: "",
-        groupEmails: ''
+        groupEmails: "",
+        imageHtml: "",
+        image: ""
       },
       counterDanger: false,
       emails: [],
       listProces: {
         name_process: "",
       },
-      listNameGroups: {}
+      listNameGroups: {},
     };
   },
   created() {
@@ -560,7 +592,7 @@ export default {
     this.showMails();
   },
   methods: {
-    backRo(){
+    backRo() {
       this.$router.push("/panel/show-ro");
     },
     addEmail() {
@@ -655,6 +687,13 @@ export default {
       let url = dominio.url + "/api/listar-grupo-correos";
       axios.get(url).then((res) => {
         this.listNameGroups = res.data.listNameGroups;
+      });
+    },
+    successUpload() {
+      this.$vs.notify({
+        color: "success",
+        title: "Upload Success",
+        text: "Lorem ipsum dolor sit amet, consectetur",
       });
     },
   },
