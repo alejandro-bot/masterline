@@ -67,3 +67,7 @@ new Vue({
 import wysiwyg from "vue-wysiwyg";
 
 Vue.use(wysiwyg, {});
+
+import VueLazyload from 'vue-lazyload'
+
+Vue.use(VueLazyload);

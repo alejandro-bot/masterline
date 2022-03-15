@@ -432,21 +432,44 @@
             >
               <wysiwyg
                 v-model="formRo.imageHtml"
-                style="background: white; color: black; height: 400px"
+                style="background: white; color: black; height: auto"
               />
             </vs-col>
-            <vs-col
+             <vs-col
+              class="mt-5 mb-5"
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
               vs-w="12"
             >
-              <vs-upload
-                multiple
-                text="Upload Multiple"
-                @on-success="createRo()"
-                v-model="formRo.image"
-              />
+              <h2 class="card-title text-center">Adjuntar Imagen(es)</h2>
+            </vs-col>
+            <vs-col
+              class="mt-0 mb-5"
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vue-upload-multiple-image
+                @upload-success="uploadImageSuccess"
+                @edit-image="editImage"
+                @mark-is-primary="markIsPrimary"
+                @limit-exceeded="limitExceeded"
+                @before-remove="beforeRemove"
+                id-upload="myIdUpload"
+                id-edit="myIdEdit"
+                :max-image=20
+                primary-text="Imagen"
+                browse-text="Seleccione sus Imagenes"
+                drag-text="Subir Imagenes"
+                mark-is-primary-text="Imagen Adjunta"
+                popup-text="Esta imagen se mostrará por defecto"
+                :multiple="true"
+                :show-edit="true"
+                :show-delete="true"
+                :show-add="true"
+              ></vue-upload-multiple-image>
             </vs-col>
           </vs-row>
         </vs-card>
@@ -527,8 +550,12 @@
 </template>
 <script>
 import "vue-wysiwyg/dist/vueWysiwyg.css";
+import VueUploadMultipleImage from "vue-upload-multiple-image";
 import { dominio } from "../dominio.js";
 export default {
+  components: {
+    VueUploadMultipleImage,
+  },
   data() {
     return {
       errors: {},
@@ -561,7 +588,6 @@ export default {
         weight: "",
         volume: "",
         branch_office_id: "",
-        rol_id: "",
         commercial: "",
         client_emails_id: "",
         customer_tracking_code: "",
@@ -571,7 +597,6 @@ export default {
         type_of_transport_id: "",
         groupEmails: "",
         imageHtml: "",
-        image: ""
       },
       counterDanger: false,
       emails: [],
@@ -579,6 +604,7 @@ export default {
         name_process: "",
       },
       listNameGroups: {},
+      activePrompt: false,
     };
   },
   created() {
@@ -592,6 +618,36 @@ export default {
     this.showMails();
   },
   methods: {
+    uploadImageSuccess(formData, index, fileList) {
+      let url = dominio.url + "/api/imagenes-adjuntas-ro";
+      axios
+        .post(url, formData)
+        .then((res) => {
+          if (res.data.code == 200) {
+            toastr.success(res.data.message);
+          }
+          if (res.data.code == 500) {
+            toastr.error(res.data.message);
+          }
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
+    beforeRemove(index, removeCallBack) {
+      toastr.error('Imagen Eliminada Con Éxito');
+      removeCallBack();
+    },
+    editImage(formData, index, fileList) {
+      toastr.success('Imagen Editada Con Éxito');
+    },
+    markIsPrimary(index, fileList) {
+      console.log("markIs Primary", index, fileList);
+    },
+    limitExceeded(amount) {
+      toastr.error('Excede El Limite De Imagenes');
+      console.log("limitExeeded data", amount);
+    },
     backRo() {
       this.$router.push("/panel/show-ro");
     },
@@ -689,17 +745,9 @@ export default {
         this.listNameGroups = res.data.listNameGroups;
       });
     },
-    successUpload() {
-      this.$vs.notify({
-        color: "success",
-        title: "Upload Success",
-        text: "Lorem ipsum dolor sit amet, consectetur",
-      });
-    },
   },
 };
 </script>
-
 <style>
 .card-title {
   margin-bottom: 15px;

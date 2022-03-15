@@ -48,6 +48,12 @@ export default [
     icon: "ClockIcon",
   },
   {
+    url: "/panel/resume-area",
+    name: "Resumen De Areas",
+    slug: "resume-area",
+    icon: "PlayIcon",
+  },
+  {
     url: "/panel/show-ro",
     name: "R.O",
     slug: "ro",

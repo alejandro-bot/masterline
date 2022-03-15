@@ -240,6 +240,14 @@ const router = new Router({
 						module: 'profile'
 					}
         },
+        {
+          path: 'resume-area',
+          name: 'resume-area',
+          component: () => import('./views/ResumeArea.vue'),
+          meta: {
+						module: 'resume-area'
+					}
+        },
       ],
       meta: {
 				requiresAuth: true,
