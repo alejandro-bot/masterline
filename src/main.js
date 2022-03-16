@@ -71,3 +71,8 @@ Vue.use(wysiwyg, {});
 import VueLazyload from 'vue-lazyload'
 
 Vue.use(VueLazyload);
+
+import VueApexCharts from 'vue-apexcharts'
+Vue.use(VueApexCharts)
+
+Vue.component('apexchart', VueApexCharts)

@@ -60,7 +60,7 @@
                             margin-left: 150px !important;
                             font-size: 20px;
                           "
-                          >90</span
+                          >{{ user }}</span
                         >
                       </div>
                     </vs-card>
@@ -82,7 +82,7 @@
                   >
                     <vs-card class="con-vs-cards">
                       <div slot="header">
-                        <h6 class="card-title text-center">R.O. Abiertos</h6>
+                        <h6 class="card-title text-center">R.O. Abiertos Hoy</h6>
                       </div>
                       <div>
                         <span
@@ -103,7 +103,7 @@
                             margin-left: 150px !important;
                             font-size: 20px;
                           "
-                          >90</span
+                          >{{ ro }}</span
                         >
                       </div>
                     </vs-card>
@@ -208,33 +208,82 @@
             <vs-tabs :color="colorx">
               <vs-tab label="Primera Linea">
                 <div class="con-tab-ejemplo">
-                  <vs-table :data="users">
-                    <template slot="header">
-                    </template>
+                  <vs-table :data="userFirstLine">
+                    <template slot="header"> </template>
                     <template slot="thead">
-                      <vs-th> Email </vs-th>
-                      <vs-th> Name </vs-th>
-                      <vs-th> Website </vs-th>
-                      <vs-th> Nro </vs-th>
+                      <vs-th> # </vs-th>
+                      <vs-th> División </vs-th>
+                      <vs-th> Sucursal </vs-th>
+                      <vs-th> Genero </vs-th>
+                      <vs-th> Estado </vs-th>
+                      <vs-th> Perfil </vs-th>
+                      <vs-th> Cargo </vs-th>
+                      <vs-th> Nombres </vs-th>
+                      <vs-th> Apellidos </vs-th>
+                      <vs-th> Nombre COmpleto </vs-th>
+                      <vs-th> Identidficación </vs-th>
+                      <vs-th> Correo </vs-th>
+                      <vs-th> Fecha Nacimiento </vs-th>
+                      <vs-th> Numero De Contacto </vs-th>
+                      <vs-th> Id House </vs-th>
+                      <vs-th> Operación </vs-th>
+                      <vs-th>Acciones</vs-th>
                     </template>
 
                     <template slot-scope="{ data }">
-                      <vs-tr :key="indextr" v-for="(tr, indextr) in data">
-                        <vs-td :data="data[indextr].email">
-                          {{ data[indextr].email }}
-                        </vs-td>
-
-                        <vs-td :data="data[indextr].username">
-                          {{ data[indextr].name }}
-                        </vs-td>
-
+                      <vs-tr
+                        :key="indextr"
+                        v-for="(tr, indextr) in userFirstLine"
+                      >
                         <vs-td :data="data[indextr].id">
                           {{ data[indextr].id }}
                         </vs-td>
-
-                        <vs-td :data="data[indextr].id">
-                          {{ data[indextr].website }}
+                        <vs-td :data="data[indextr].nameDivision">
+                          {{ data[indextr].nameDivision }}
                         </vs-td>
+                        <vs-td :data="data[indextr].nameBranchOffice">
+                          {{ data[indextr].nameBranchOffice }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameGender">
+                          {{ data[indextr].nameGender }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameStatus">
+                          {{ data[indextr].nameStatus }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameRol">
+                          {{ data[indextr].nameRol }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameCharge">
+                          {{ data[indextr].nameCharge }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].first_name">
+                          {{ data[indextr].first_name }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].last_name">
+                          {{ data[indextr].last_name }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].full_name">
+                          {{ data[indextr].full_name }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].identification">
+                          {{ data[indextr].identification }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].email">
+                          {{ data[indextr].email }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].date_of_birth">
+                          {{ data[indextr].date_of_birth }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].contact_cell_phone">
+                          {{ data[indextr].contact_cell_phone }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].id_house_bl_person">
+                          {{ data[indextr].id_house_bl_person }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameOperation">
+                          {{ data[indextr].nameOperation }}
+                        </vs-td>
+                        <vs-td> botonbes </vs-td>
                       </vs-tr>
                     </template>
                   </vs-table>
@@ -242,33 +291,82 @@
               </vs-tab>
               <vs-tab label="Segunda Linea">
                 <div class="con-tab-ejemplo">
-                  <vs-table :data="users">
-                    <template slot="header">
-                    </template>
+                  <vs-table :data="userSecondLine">
+                    <template slot="header"> </template>
                     <template slot="thead">
-                      <vs-th> Email </vs-th>
-                      <vs-th> Name </vs-th>
-                      <vs-th> Website </vs-th>
-                      <vs-th> Nro </vs-th>
+                      <vs-th> # </vs-th>
+                      <vs-th> División </vs-th>
+                      <vs-th> Sucursal </vs-th>
+                      <vs-th> Genero </vs-th>
+                      <vs-th> Estado </vs-th>
+                      <vs-th> Perfil </vs-th>
+                      <vs-th> Cargo </vs-th>
+                      <vs-th> Nombres </vs-th>
+                      <vs-th> Apellidos </vs-th>
+                      <vs-th> Nombre COmpleto </vs-th>
+                      <vs-th> Identidficación </vs-th>
+                      <vs-th> Correo </vs-th>
+                      <vs-th> Fecha Nacimiento </vs-th>
+                      <vs-th> Numero De Contacto </vs-th>
+                      <vs-th> Id House </vs-th>
+                      <vs-th> Operación </vs-th>
+                      <vs-th>Acciones</vs-th>
                     </template>
 
                     <template slot-scope="{ data }">
-                      <vs-tr :key="indextr" v-for="(tr, indextr) in data">
-                        <vs-td :data="data[indextr].email">
-                          {{ data[indextr].email }}
-                        </vs-td>
-
-                        <vs-td :data="data[indextr].username">
-                          {{ data[indextr].name }}
-                        </vs-td>
-
+                      <vs-tr
+                        :key="indextr"
+                        v-for="(tr, indextr) in userSecondLine"
+                      >
                         <vs-td :data="data[indextr].id">
                           {{ data[indextr].id }}
                         </vs-td>
-
-                        <vs-td :data="data[indextr].id">
-                          {{ data[indextr].website }}
+                        <vs-td :data="data[indextr].nameDivision">
+                          {{ data[indextr].nameDivision }}
                         </vs-td>
+                        <vs-td :data="data[indextr].nameBranchOffice">
+                          {{ data[indextr].nameBranchOffice }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameGender">
+                          {{ data[indextr].nameGender }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameStatus">
+                          {{ data[indextr].nameStatus }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameRol">
+                          {{ data[indextr].nameRol }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameCharge">
+                          {{ data[indextr].nameCharge }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].first_name">
+                          {{ data[indextr].first_name }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].last_name">
+                          {{ data[indextr].last_name }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].full_name">
+                          {{ data[indextr].full_name }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].identification">
+                          {{ data[indextr].identification }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].email">
+                          {{ data[indextr].email }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].date_of_birth">
+                          {{ data[indextr].date_of_birth }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].contact_cell_phone">
+                          {{ data[indextr].contact_cell_phone }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].id_house_bl_person">
+                          {{ data[indextr].id_house_bl_person }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameOperation">
+                          {{ data[indextr].nameOperation }}
+                        </vs-td>
+                        <vs-td> botonbes </vs-td>
                       </vs-tr>
                     </template>
                   </vs-table>
@@ -276,33 +374,82 @@
               </vs-tab>
               <vs-tab label="Tercera Linea">
                 <div class="con-tab-ejemplo">
-                  <vs-table :data="users">
-                    <template slot="header">
-                    </template>
+                  <vs-table :data="userThirdLine">
+                    <template slot="header"> </template>
                     <template slot="thead">
-                      <vs-th> Email </vs-th>
-                      <vs-th> Name </vs-th>
-                      <vs-th> Website </vs-th>
-                      <vs-th> Nro </vs-th>
+                      <vs-th> # </vs-th>
+                      <vs-th> División </vs-th>
+                      <vs-th> Sucursal </vs-th>
+                      <vs-th> Genero </vs-th>
+                      <vs-th> Estado </vs-th>
+                      <vs-th> Perfil </vs-th>
+                      <vs-th> Cargo </vs-th>
+                      <vs-th> Nombres </vs-th>
+                      <vs-th> Apellidos </vs-th>
+                      <vs-th> Nombre COmpleto </vs-th>
+                      <vs-th> Identidficación </vs-th>
+                      <vs-th> Correo </vs-th>
+                      <vs-th> Fecha Nacimiento </vs-th>
+                      <vs-th> Numero De Contacto </vs-th>
+                      <vs-th> Id House </vs-th>
+                      <vs-th> Operación </vs-th>
+                      <vs-th>Acciones</vs-th>
                     </template>
 
                     <template slot-scope="{ data }">
-                      <vs-tr :key="indextr" v-for="(tr, indextr) in data">
-                        <vs-td :data="data[indextr].email">
-                          {{ data[indextr].email }}
-                        </vs-td>
-
-                        <vs-td :data="data[indextr].username">
-                          {{ data[indextr].name }}
-                        </vs-td>
-
+                      <vs-tr
+                        :key="indextr"
+                        v-for="(tr, indextr) in userThirdLine"
+                      >
                         <vs-td :data="data[indextr].id">
                           {{ data[indextr].id }}
                         </vs-td>
-
-                        <vs-td :data="data[indextr].id">
-                          {{ data[indextr].website }}
+                        <vs-td :data="data[indextr].nameDivision">
+                          {{ data[indextr].nameDivision }}
                         </vs-td>
+                        <vs-td :data="data[indextr].nameBranchOffice">
+                          {{ data[indextr].nameBranchOffice }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameGender">
+                          {{ data[indextr].nameGender }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameStatus">
+                          {{ data[indextr].nameStatus }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameRol">
+                          {{ data[indextr].nameRol }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameCharge">
+                          {{ data[indextr].nameCharge }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].first_name">
+                          {{ data[indextr].first_name }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].last_name">
+                          {{ data[indextr].last_name }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].full_name">
+                          {{ data[indextr].full_name }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].identification">
+                          {{ data[indextr].identification }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].email">
+                          {{ data[indextr].email }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].date_of_birth">
+                          {{ data[indextr].date_of_birth }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].contact_cell_phone">
+                          {{ data[indextr].contact_cell_phone }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].id_house_bl_person">
+                          {{ data[indextr].id_house_bl_person }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameOperation">
+                          {{ data[indextr].nameOperation }}
+                        </vs-td>
+                        <vs-td> botonbes </vs-td>
                       </vs-tr>
                     </template>
                   </vs-table>
@@ -316,88 +463,33 @@
   </div>
 </template>
 <script>
+import { dominio } from "../dominio.js";
 export default {
+  created() {
+    this.showLineUsers();
+  },
   data() {
     return {
       colorx: "#ff5000",
-      users: [
-        {
-          id: 1,
-          name: "Leanne Graham",
-          username: "Bret",
-          email: "Sincere@april.biz",
-          website: "hildegard.org",
-        },
-        {
-          id: 2,
-          name: "Ervin Howell",
-          username: "Antonette",
-          email: "Shanna@melissa.tv",
-          website: "anastasia.net",
-        },
-        {
-          id: 3,
-          name: "Clementine Bauch",
-          username: "Samantha",
-          email: "Nathan@yesenia.net",
-          website: "ramiro.info",
-        },
-        {
-          id: 4,
-          name: "Patricia Lebsack",
-          username: "Karianne",
-          email: "Julianne.OConner@kory.org",
-          website: "kale.biz",
-        },
-        {
-          id: 5,
-          name: "Chelsey Dietrich",
-          username: "Kamren",
-          email: "Lucio_Hettinger@annie.ca",
-          website: "demarco.info",
-        },
-        {
-          id: 6,
-          name: "Mrs. Dennis Schulist",
-          username: "Leopoldo_Corkery",
-          email: "Karley_Dach@jasper.info",
-          website: "ola.org",
-        },
-        {
-          id: 7,
-          name: "Kurtis Weissnat",
-          username: "Elwyn.Skiles",
-          email: "Telly.Hoeger@billy.biz",
-          website: "elvis.io",
-        },
-        {
-          id: 8,
-          name: "Nicholas Runolfsdottir V",
-          username: "Maxime_Nienow",
-          email: "Sherwood@rosamond.me",
-          website: "jacynthe.com",
-        },
-        {
-          id: 9,
-          name: "Glenna Reichert",
-          username: "Delphine",
-          email: "Chaim_McDermott@dana.io",
-          website: "conrad.com",
-        },
-        {
-          id: 10,
-          name: "Clementina DuBuque",
-          username: "Moriah.Stanton",
-          email: "Rey.Padberg@karina.biz",
-          website: "ambrose.net",
-        },
-      ],
+      userFirstLine: {},
+      userSecondLine: {},
+      userThirdLine: {},
     };
   },
   methods: {
     deatilOperation() {
-       this.$router.push("/panel/show-detail-operation");
-    }
+      this.$router.push("/panel/show-detail-operation");
+    },
+    showLineUsers() {
+      let url = dominio.url + "/api/mostrar-usuarios-lineas";
+      axios.get(url).then((res) => {
+        this.userFirstLine = res.data.userFirstLine;
+        this.userSecondLine = res.data.userSecondLine;
+        this.userThirdLine = res.data.userThirdLine;
+        this.user = res.data.user;
+        this.ro = res.data.ro;
+      });
+    },
   },
 };
 </script>
