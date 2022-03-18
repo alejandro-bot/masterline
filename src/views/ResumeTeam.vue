@@ -2,14 +2,22 @@
   <div>
     <vs-row>
       <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-        <vs-col vs-type="flex" vs-justify="right" vs-align="right" vs-w="12">
-          <vs-button
+        <vs-col vs-type="flex" vs-justify="left" vs-align="right" vs-w="12">
+          <!-- <vs-button
             class="buttonColor"
             color="primary"
             type="relief"
             icon="zoom_out"
             @click="deatilOperation()"
             >Detalle</vs-button
+          > pendiente realiozar filtro -->
+          <vs-button
+            class="buttonColor"
+            color="primary"
+            type="relief"
+            icon="home"
+            @click="returnHome()"
+            >Volver Inicio</vs-button
           >
         </vs-col>
       </vs-col>
@@ -43,7 +51,7 @@
                       </div>
                       <div>
                         <span
-                          class="material-icons"
+                          class="material-icons mb-0 mt-5"
                           style="
                             font-size: 70px;
                             color: #ff5000;
@@ -53,7 +61,7 @@
                           people</span
                         >
                         <span
-                          class="ml-5"
+                          class="ml-5 mb-3"
                           style="
                             margin-top: -50px !important;
                             display: block;
@@ -86,7 +94,7 @@
                       </div>
                       <div>
                         <span
-                          class="material-icons"
+                          class="material-icons mt-5"
                           style="
                             font-size: 70px;
                             color: #ff5000;
@@ -96,7 +104,7 @@
                           inventory
                         </span>
                         <span
-                          class="ml-5"
+                          class="ml-5 mt-5 mb-3"
                           style="
                             margin-top: -50px !important;
                             display: block;
@@ -125,11 +133,11 @@
                   >
                     <vs-card class="con-vs-cards">
                       <div slot="header">
-                        <h6 class="card-title text-center">R.O. Pendientes</h6>
+                        <h6 class="card-title text-center">R.O. Pendientes Hoy</h6>
                       </div>
                       <div>
                         <span
-                          class="material-icons"
+                          class="material-icons mt-5"
                           style="
                             font-size: 70px;
                             color: #ff5000;
@@ -139,14 +147,14 @@
                           watch_later
                         </span>
                         <span
-                          class="ml-5"
+                          class="ml-5 mb-3"
                           style="
                             margin-top: -50px !important;
                             display: block;
                             margin-left: 150px !important;
                             font-size: 20px;
                           "
-                          >90</span
+                          >{{ roPending }}</span
                         >
                       </div>
                     </vs-card>
@@ -168,11 +176,11 @@
                   >
                     <vs-card class="con-vs-cards">
                       <div slot="header">
-                        <h6 class="card-title text-center">R.O. Cerrados</h6>
+                        <h6 class="card-title text-center">R.O. Cerrados Hoy</h6>
                       </div>
                       <div>
                         <span
-                          class="material-icons"
+                          class="material-icons mt-5"
                           style="
                             font-size: 70px;
                             color: #ff5000;
@@ -182,14 +190,14 @@
                           archive
                         </span>
                         <span
-                          class="ml-5"
+                          class="ml-5 mb-3"
                           style="
                             margin-top: -50px !important;
                             display: block;
                             margin-left: 150px !important;
                             font-size: 20px;
                           "
-                          >90</span
+                          >{{ roClose }}</span
                         >
                       </div>
                     </vs-card>
@@ -480,6 +488,9 @@ export default {
     deatilOperation() {
       this.$router.push("/panel/show-detail-operation");
     },
+    returnHome() {
+      this.$router.push("/panel");
+    },
     showLineUsers() {
       let url = dominio.url + "/api/mostrar-usuarios-lineas";
       axios.get(url).then((res) => {
@@ -488,6 +499,8 @@ export default {
         this.userThirdLine = res.data.userThirdLine;
         this.user = res.data.user;
         this.ro = res.data.ro;
+        this.roPending = res.data.roPending;
+        this.roClose = res.data.roClose;
       });
     },
   },

@@ -319,6 +319,7 @@
                   class="ml-5 mr-2 mt-2 mb-0"
                   color="rgb(213, 14, 151)"
                   label="Nombre Usuario"
+                  v-model="showRoDisabled.user.full_name"
                   disabled
                 />
               </div>
@@ -348,11 +349,16 @@
                 <vs-select
                   class="ml-0 mr-4 mt-1 mb-4"
                   label="Comercial"
-                  v-model="showRoDisabled.commercial"
+                  v-model="showRoDisabled.user.id"
                   @change="errors.commercial = ''"
                 >
                   <vs-select-item :value="''" :text="'Seleccione'" />
-                  <vs-select-item />
+                  <vs-select-item
+                    :key="index"
+                    :value="item.id"
+                    :text="item.full_name"
+                    v-for="(item, index) in users"
+                  />
                 </vs-select>
                 <div class="mt-1 ml-1 text-left" v-if="errors.commercial">
                   <span class="errors">{{ errors.commercial[0] }}</span>
@@ -384,6 +390,98 @@
             </vs-col>
           </vs-row>
         </vs-card>
+        <vs-card class="con-vs-cards">
+          <h6 class="card-title text-center">MENSAJE PERSONALIZADO</h6>
+          <vs-row>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <wysiwyg
+                v-model="showRoDisabled.imageHtml"
+                style="background: white; color: black; height: auto"
+              />
+            </vs-col>
+            <vs-col
+              class="mt-5 mb-5"
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <h2 class="card-title text-center">Adjuntar Imagen(es)</h2>
+            </vs-col>
+            <vs-col
+              class="mt-0 mb-5"
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vue-upload-multiple-image
+                @upload-success="uploadImageSuccess"
+                @edit-image="editImage"
+                @mark-is-primary="markIsPrimary"
+                @limit-exceeded="limitExceeded"
+                @before-remove="beforeRemove"
+                id-upload="myIdUpload"
+                id-edit="myIdEdit"
+                :max-image="20"
+                primary-text="Imagen"
+                browse-text="Seleccione sus Imagenes"
+                drag-text="Subir Imagenes"
+                mark-is-primary-text="Imagen Adjunta"
+                popup-text="Esta imagen se mostrará por defecto"
+                :multiple="true"
+                :show-edit="true"
+                :show-delete="true"
+                :show-add="true"
+              ></vue-upload-multiple-image>
+            </vs-col>
+          </vs-row>
+        </vs-card>
+
+        <vs-card class="con-vs-cards">
+          <h6 class="card-title text-center">Historico De Imagenes</h6>
+          <vs-row>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vs-images>
+                <vs-image
+                class="images"
+                  :key="index"
+                  :src="`https://picsum.photos/400/400?image=2${index}`"
+                  v-for="(image, index) in showImagesAttachedId"
+                />
+              </vs-images>
+            </vs-col>
+          </vs-row>
+          <h6 class="card-title text-center">Historico De Recortes</h6>
+          <vs-row>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vs-images>
+                <vs-image
+                class="images"
+                  :key="index"
+                  :src="`https://picsum.photos/400/400?image=2${index}`"
+                  v-for="(image, index) in showCutImage"
+                />
+              </vs-images>
+            </vs-col>
+          </vs-row>
+        </vs-card>
+
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">GRUPO DE CORREOS</h6>
           <vs-row>
@@ -451,6 +549,7 @@
                 class="selectExample ml-5 mr-5 mt-0 mb-3"
                 label="Proceso Actual"
                 style="width: 50%"
+                :value="showRoDisabled.processes_ro_pivot[0].procesess_id"
                 v-model="showRoDisabled.procesess_id"
                 @change="addArrayTemplate()"
               >
@@ -528,10 +627,15 @@
                     <vs-th> Seguimiento </vs-th>
                   </template>
                   <template>
-                    <vs-tr :key="index" v-for="(item, index) in showRoDisabled.processes_ro_pivot">
-                      <vs-td> {{ item.created_at }} </vs-td>
-                      <vs-td> {{ item.procesess_id }} </vs-td>
-                      <vs-td style="width: 50%"> {{ item.tracing }} </vs-td>
+                    <vs-tr
+                      :key="index"
+                      v-for="(item, index) in showRoDisabled.processes_ro_pivot"
+                    >
+                      <vs-td> {{ item.procesess.create_date }} </vs-td>
+                      <vs-td> {{ item.procesess.process_name }} </vs-td>
+                      <vs-td style="width: 50%">
+                        {{ item.procesess.tracing }}
+                      </vs-td>
                     </vs-tr>
                   </template>
                 </vs-table>
@@ -545,8 +649,13 @@
   </div>
 </template>
 <script>
+import "vue-wysiwyg/dist/vueWysiwyg.css";
+import VueUploadMultipleImage from "vue-upload-multiple-image";
 import { dominio } from "../dominio.js";
 export default {
+  components: {
+    VueUploadMultipleImage,
+  },
   data() {
     return {
       errors: {},
@@ -557,6 +666,7 @@ export default {
       roles: {},
       userName: {},
       showTypeOfLoad: {},
+      users: {},
       formTracking: {
         procesess_id: "",
         subjet: "",
@@ -594,7 +704,8 @@ export default {
         procesess_id: "",
         subjet: "",
         tracing: "",
-        groupEmails: ""
+        groupEmails: "",
+        imageHtml: "",
       },
       id: this.$route.params && this.$route.params.id,
       formRo: {
@@ -621,7 +732,7 @@ export default {
         commercial: "",
         client_emails_id: "",
         customer_tracking_code: "",
-        process_id: 1,
+        process_id: "",
         subjet: "",
         message: "",
         type_of_transport_id: "",
@@ -634,7 +745,9 @@ export default {
       counterDanger: false,
       emails: [],
       listProces: {},
-      listNameGroups: {}
+      listNameGroups: {},
+      showImagesAttachedId: {},
+      showCutImage: {}
     };
   },
   created() {
@@ -646,22 +759,22 @@ export default {
     this.showIssue();
     this.listProcess();
     this.showMails();
+    this.showUser();
+    this.showAttachedImages();
+    this.showCutImages();
   },
   methods: {
-    backRo() {
-      this.$router.push("/panel/show-ro");
-    },
-    successUpload() {
-      this.$vs.notify({
-        color: "success",
-        title: "Upload Success",
-        text: "Lorem ipsum dolor sit amet, consectetur",
+    showUser() {
+      let url = dominio.url + "/api/mostrar-usuarios";
+      axios.get(url).then((res) => {
+        this.users = res.data.users;
+        this.userName = res.data.userName;
       });
     },
-    successUpload() {
-      let url = dominio.url + "/api/subir-image";
+    uploadImageSuccess(formData, index, fileList) {
+      let url = dominio.url + "/api/imagenes-adjuntas-ro/" + this.id;
       axios
-        .post(url)
+        .post(url, formData)
         .then((res) => {
           if (res.data.code == 200) {
             toastr.success(res.data.message);
@@ -673,6 +786,30 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    beforeRemove(index, removeCallBack) {
+      toastr.error("Imagen Eliminada Con Éxito");
+      removeCallBack();
+    },
+    editImage(formData, index, fileList) {
+      toastr.success("Imagen Editada Con Éxito");
+    },
+    markIsPrimary(index, fileList) {
+      console.log("markIs Primary", index, fileList);
+    },
+    limitExceeded(amount) {
+      toastr.error("Excede El Limite De Imagenes");
+      console.log("limitExeeded data", amount);
+    },
+    backRo() {
+      this.$router.push("/panel/show-ro");
+    },
+    successUpload() {
+      this.$vs.notify({
+        color: "success",
+        title: "Upload Success",
+        text: "Lorem ipsum dolor sit amet, consectetur",
+      });
     },
     addEmail() {
       let url = dominio.url + "/api/crear-correo-ro-seguimiento";
@@ -790,6 +927,7 @@ export default {
       let url = dominio.url + "/api/mostrar-ro/" + this.id;
       axios.get(url).then((res) => {
         this.showRoDisabled = res.data.showRoDisabled;
+        this.showRoDisabled.procesess_id = res.data.showRoDisabled.procesess_id;
       });
     },
     addArrayTemplate() {
@@ -805,6 +943,18 @@ export default {
       let url = dominio.url + "/api/listar-grupo-correos";
       axios.get(url).then((res) => {
         this.listNameGroups = res.data.listNameGroups;
+      });
+    },
+    showAttachedImages() {
+      let url = dominio.url + "/api/mostrar-imagenes-adjuntas/" + this.id;
+      axios.get(url).then((res) => {
+        this.showImagesAttachedId = res.data.showImagesAttachedId;
+      });
+    },
+    showCutImages() {
+      let url = dominio.url + "/api/mostrar-imagenes-recortes/" + this.id;
+      axios.get(url).then((res) => {
+        this.showCutImage = res.data.showCutImage;
       });
     },
   },
@@ -838,5 +988,14 @@ export default {
 .errors {
   color: red;
   text-align: right;
+}
+.buttonColor {
+  background: #ff5000 !important;
+}
+
+.images {
+  max-height: auto;
+  overflow: auto;
+  width:100px;
 }
 </style>

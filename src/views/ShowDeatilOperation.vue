@@ -26,25 +26,39 @@
                   <vs-select
                     class="selectExample ml-0 mr-4 mt-0 mb-3"
                     label="Tipo de Reporte"
+                    v-model="formPersonal.type_report"
                   >
-                    <vs-select-item :value="''" :text="'Seleccione'" disabled />
-                    <vs-select-item />
+                    <vs-select-item :value="''" :text="'Seleccione'" />
+                    <vs-select-item
+                      :value="'Registros Pendientes'"
+                      :text="'Registros Pendientes'"
+                    />
+                    <vs-select-item
+                      :value="'Registros Abiertos'"
+                      :text="'Registros Abiertos'"
+                    />
+                    <vs-select-item
+                      :value="'Registros Cerrados'"
+                      :text="'Registros Cerrados'"
+                    />
                   </vs-select>
                 </div>
                 <div class="centerx colors-example">
                   <vs-select
                     class="selectExample ml-0 mr-5 mt-0 mb-3"
                     label="Línea Grupo"
+                    v-model="formPersonal.line"
                   >
-                    <vs-select-item :value="''" :text="'Primera Linea'" />
-                    <vs-select-item :value="''" :text="'Segunda Linea'" />
-                    <vs-select-item :value="''" :text="'Tercera Linea'" />
+                    <vs-select-item :value="'Primera Linea'" :text="'Primera Linea'" />
+                    <vs-select-item :value="'Segunda Linea'" :text="'Segunda Linea'" />
+                    <vs-select-item :value="'Tercera Linea'" :text="'Tercera Linea'" />
                   </vs-select>
                 </div>
                 <div class="centerx colors-example">
                   <vs-select
                     class="selectExample ml-0 mr-5 mt-0 mb-3"
                     label="Operación"
+                    v-model="formPersonal.type_of_transport_id"
                   >
                     <vs-select-item
                       :key="index"
@@ -67,7 +81,7 @@
                     color="primary"
                     type="relief"
                     icon="search"
-                    @click="returnTeamResume()"
+                    @click="searchPersonal()"
                     >Buscar</vs-button
                   >
                 </div>
@@ -125,6 +139,11 @@ import { dominio } from "../dominio.js";
 export default {
   data() {
     return {
+      formPersonal: {
+        type_report: "",
+        line: "",
+        type_of_transport_id: "",
+      },
       typeOfTransport: {},
     };
   },
@@ -139,6 +158,17 @@ export default {
       let url = dominio.url + "/api/mostrar-tipo-transporte";
       axios.get(url).then((res) => {
         this.typeOfTransport = res.data.typeOfTransport;
+      });
+    },
+    searchPersonal() {
+      let url = dominio.url + "/api/buscar-personal-a-cargo";
+      axios.post(url, this.formPersonal).then((res) => {
+        if (res.data.code == 200) {
+          toastr.success(res.data.message);
+        }
+        if (res.data.code == 500) {
+          toastr.error(res.data.message);
+        }
       });
     },
   },

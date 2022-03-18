@@ -40,6 +40,7 @@
               <h3 class="mb-5">R.O Creados Por:</h3>
             </template>
             <template slot="thead">
+              <vs-th v-if="showRo[0].is_parent == 0">  </vs-th>
               <vs-th> # </vs-th>
               <vs-th> R.O </vs-th>
               <vs-th> Ultima Tipificación </vs-th>
@@ -50,7 +51,11 @@
             </template>
             <template>
               <vs-tr :key="index" v-for="(item, index) in showRo">
-                <vs-td :data="item.id">
+                <vs-td v-if="item.is_parent == 1">
+                  {{ item.id }}
+                </vs-td>
+                <vs-td v-if="item.is_parent != 1"> </vs-td>
+                <vs-td v-if="item.is_parent != 1">
                   {{ item.id }}
                 </vs-td>
                 <vs-td :data="item.ro">
@@ -105,6 +110,54 @@
                     </vs-col>
                   </vs-row>
                 </vs-td>
+                <template
+                  class="expand-showRo"
+                  slot="expand"
+                  v-if="item.is_parent == 1"
+                >
+                  <div class="con-expand-showRo">
+                    <vs-tr :key="index" v-for="(item, index) in showRo">
+                      <vs-td> 1 </vs-td>
+                      <vs-td> xczxczx </vs-td>
+                      <vs-td> 17-03-2022 03:03 pm </vs-td>
+                      <vs-td> zxcz </vs-td>
+                      <vs-td> xczxc </vs-td>
+                      <vs-td> Finalizacion de lo que sea</vs-td>
+                      <vs-td :data="item.id">
+                        <vs-row>
+                          <vs-col
+                            vs-type="flex"
+                            vs-justify="center"
+                            vs-align="center"
+                            vs-w="12"
+                          >
+                            <vs-button
+                              class="mr-1 ml-1"
+                              radius
+                              color="primary"
+                              type="border"
+                              icon="visibility"
+                            ></vs-button>
+                            <vs-button
+                              class="mr-1 ml-1"
+                              radius
+                              color="success"
+                              type="border"
+                              icon="edit"
+                            ></vs-button>
+                            <vs-button
+                              class="mr-1 ml-1"
+                              radius
+                              color="danger"
+                              type="border"
+                              icon="delete_outline"
+                            ></vs-button>
+                          </vs-col>
+                        </vs-row>
+                      </vs-td>
+                    </vs-tr>
+                  </div>
+                </template>
               </vs-tr>
             </template>
           </vs-table>
@@ -149,8 +202,8 @@ export default {
       });
     },
     showRoDelete() {
-       this.$router.push("/panel/deletes-ro");
-    }
+      this.$router.push("/panel/deletes-ro");
+    },
   },
 };
 </script>

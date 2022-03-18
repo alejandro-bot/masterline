@@ -145,7 +145,6 @@
             >
               <div class="centerx colors-example">
                 <vs-select
-                  :color="select2"
                   class="selectExample"
                   label="Genero"
                   v-model="formUser.gender_id"
@@ -305,9 +304,9 @@
                 >
                   <vs-select-item
                     :key="index"
-                    :value="item.value"
-                    :text="item.text"
-                    v-for="(item, index) in options1"
+                    :value="item.id"
+                    :text="item.full_name"
+                    v-for="(item, index) in user"
                   />
                 </vs-select>
                 <div class="mt-2" v-if="errors.supervisor_id">
@@ -452,7 +451,11 @@ export default {
       charges: {},
       status: {},
       errors: {},
+      user: {},
+      operations: {},
       branchDivisions: {},
+      branchOffices: {},
+      roles: {},
       id: this.$route.params && this.$route.params.id,
       formUser: {
         first_name: "",
