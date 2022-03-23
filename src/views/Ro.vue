@@ -353,7 +353,7 @@
                   <vs-select-item
                     :key="index"
                     :value="item.id"
-                    :text="item.full_name"
+                    :text="item.first_name + ' ' + item.last_name"
                     v-for="(item, index) in users"
                   />
                 </vs-select>

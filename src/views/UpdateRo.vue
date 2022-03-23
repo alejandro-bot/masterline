@@ -301,6 +301,7 @@
                   label="Sucursal"
                   v-model="showRoDisabled.branch_office_id"
                   @change="errors.branch_office_id = ''"
+                  disabled
                 >
                   <vs-select-item :value="''" :text="'Seleccione'" />
                   <vs-select-item
@@ -319,7 +320,11 @@
                   class="ml-5 mr-2 mt-2 mb-0"
                   color="rgb(213, 14, 151)"
                   label="Nombre Usuario"
-                  v-model="showRoDisabled.user.full_name"
+                  :value="
+                    showRoDisabled.user.first_name +
+                    ' ' +
+                    showRoDisabled.user.last_name
+                  "
                   disabled
                 />
               </div>
@@ -351,12 +356,13 @@
                   label="Comercial"
                   v-model="showRoDisabled.user.id"
                   @change="errors.commercial = ''"
+                  disabled
                 >
                   <vs-select-item :value="''" :text="'Seleccione'" />
                   <vs-select-item
                     :key="index"
                     :value="item.id"
-                    :text="item.full_name"
+                    :text="item.first_name + ' ' + item.last_name"
                     v-for="(item, index) in users"
                   />
                 </vs-select>
@@ -391,98 +397,6 @@
           </vs-row>
         </vs-card>
         <vs-card class="con-vs-cards">
-          <h6 class="card-title text-center">MENSAJE PERSONALIZADO</h6>
-          <vs-row>
-            <vs-col
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="12"
-            >
-              <wysiwyg
-                v-model="showRoDisabled.imageHtml"
-                style="background: white; color: black; height: auto"
-              />
-            </vs-col>
-            <vs-col
-              class="mt-5 mb-5"
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="12"
-            >
-              <h2 class="card-title text-center">Adjuntar Imagen(es)</h2>
-            </vs-col>
-            <vs-col
-              class="mt-0 mb-5"
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="12"
-            >
-              <vue-upload-multiple-image
-                @upload-success="uploadImageSuccess"
-                @edit-image="editImage"
-                @mark-is-primary="markIsPrimary"
-                @limit-exceeded="limitExceeded"
-                @before-remove="beforeRemove"
-                id-upload="myIdUpload"
-                id-edit="myIdEdit"
-                :max-image="20"
-                primary-text="Imagen"
-                browse-text="Seleccione sus Imagenes"
-                drag-text="Subir Imagenes"
-                mark-is-primary-text="Imagen Adjunta"
-                popup-text="Esta imagen se mostrará por defecto"
-                :multiple="true"
-                :show-edit="true"
-                :show-delete="true"
-                :show-add="true"
-              ></vue-upload-multiple-image>
-            </vs-col>
-          </vs-row>
-        </vs-card>
-
-        <vs-card class="con-vs-cards">
-          <h6 class="card-title text-center">Historico De Imagenes</h6>
-          <vs-row>
-            <vs-col
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="12"
-            >
-              <vs-images>
-                <vs-image
-                class="images"
-                  :key="index"
-                  :src="`https://picsum.photos/400/400?image=2${index}`"
-                  v-for="(image, index) in showImagesAttachedId"
-                />
-              </vs-images>
-            </vs-col>
-          </vs-row>
-          <h6 class="card-title text-center">Historico De Recortes</h6>
-          <vs-row>
-            <vs-col
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="12"
-            >
-              <vs-images>
-                <vs-image
-                class="images"
-                  :key="index"
-                  :src="`https://picsum.photos/400/400?image=2${index}`"
-                  v-for="(image, index) in showCutImage"
-                />
-              </vs-images>
-            </vs-col>
-          </vs-row>
-        </vs-card>
-
-        <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">GRUPO DE CORREOS</h6>
           <vs-row>
             <vs-col
@@ -502,7 +416,7 @@
                     :key="index"
                   >
                     <vs-td :data="item">
-                      {{ item.name }}
+                      {{ item.email }}
                     </vs-td>
                     <vs-td :data="item">
                       <vs-button
@@ -590,7 +504,7 @@
             >
               <vs-textarea
                 class="mt-3 mb-5"
-                counter="100"
+                counter="10000"
                 width="1140px"
                 :counter-danger.sync="counterDanger"
                 v-model="showRoDisabled.tracing"
@@ -641,6 +555,92 @@
                 </vs-table>
               </vs-col>
             </vs-row>
+          </vs-row>
+        </vs-card>
+        <vs-card class="con-vs-cards">
+          <h6 class="card-title text-center">MENSAJE PERSONALIZADO</h6>
+          <vs-row>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <wysiwyg
+                v-model="showRoDisabled.imageHtml"
+                style="background: white; color: black; height: auto"
+              />
+            </vs-col>
+            <vs-col
+              class="mt-5 mb-5"
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <h2 class="card-title text-center">Adjuntar Imagen(es)</h2>
+            </vs-col>
+            <vs-col
+              class="mt-0 mb-5"
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vue-upload-multiple-image
+                @upload-success="uploadImageSuccess"
+                @edit-image="editImage"
+                @mark-is-primary="markIsPrimary"
+                @limit-exceeded="limitExceeded"
+                @before-remove="beforeRemove"
+                id-upload="myIdUpload"
+                id-edit="myIdEdit"
+                :max-image="20"
+                primary-text="Imagen"
+                browse-text="Seleccione sus Imagenes"
+                drag-text="Subir Imagenes"
+                mark-is-primary-text="Imagen Adjunta"
+                popup-text="Esta imagen se mostrará por defecto"
+                :multiple="true"
+                :show-edit="true"
+                :show-delete="true"
+                :show-add="true"
+              ></vue-upload-multiple-image>
+            </vs-col>
+          </vs-row>
+        </vs-card>
+
+        <vs-card class="con-vs-cards">
+          <h6 class="card-title text-center">Historico De Imagenes</h6>
+          <vs-row>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vs-images>
+                <vs-image
+                  class="images"
+                  :key="index"
+                  :src="image.images"
+                  v-for="(image, index) in showImagesAttachedId"
+                />
+              </vs-images>
+            </vs-col>
+          </vs-row>
+          <h6 class="card-title text-center">Historico De Recortes</h6>
+          <vs-row>
+            <vs-col
+              v-for="(image, index) in showCutImage"
+              :key="index"
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <html class="" v-html="image.cut_images_ros"></html>
+            </vs-col>
           </vs-row>
         </vs-card>
       </vs-col>
@@ -747,7 +747,7 @@ export default {
       listProces: {},
       listNameGroups: {},
       showImagesAttachedId: {},
-      showCutImage: {}
+      showCutImage: {},
     };
   },
   created() {
@@ -996,6 +996,6 @@ export default {
 .images {
   max-height: auto;
   overflow: auto;
-  width:100px;
+  width: 120px;
 }
 </style>

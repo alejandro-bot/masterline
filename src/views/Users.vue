@@ -35,17 +35,7 @@
       >
         <vs-card class="con-vs-cards">
           <div slot="header" class=""></div>
-          <vs-table
-            max-items="3"
-            search
-            pagination
-            :data="users"
-            description
-            :description-items="descriptionItems"
-            description-title="Registries"
-            description-connector="of"
-            description-body="Pages"
-          >
+          <vs-table>
             <template slot="header">
               <h3 class="mb-5">Usuarios</h3>
             </template>
@@ -124,7 +114,9 @@
     </vs-row>
     <!-- campos del modal ver usuarios -->
     <vs-prompt
-      :title="'Nombre de usuario' + ' ' + data.full_name"
+      :title="
+        'Nombre de usuario' + ' ' + data.first_name + ' ' + data.last_name
+      "
       accept-text="Aceptar"
       cancel-text="Cancelar"
       @cancel="val = ''"
@@ -152,13 +144,6 @@
               color="rgb(213, 14, 151)"
               label-placeholder="Apellidos"
               v-model="data.last_name"
-              disabled
-            />
-            <vs-input
-              class="ml-2 mr-2 mb-5 mt-5"
-              color="rgb(213, 14, 151)"
-              label-placeholder="Nombre Completo"
-              v-model="data.full_name"
               disabled
             />
           </vs-col>
@@ -321,7 +306,6 @@
 <script>
 import { dominio } from "../dominio.js";
 export default {
-
   data() {
     return {
       descriptionItems: [3, 5, 15],
@@ -402,15 +386,16 @@ export default {
   background: #ff5000 !important;
 }
 .con-vs-cards {
-    width: 100%;
-    height: auto;
-    background: transparent !important;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    display: block;
-    -webkit-box-shadow: 0 4px 25px 0 rgb(0 0 0 / 10%);
-    box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
-    -webkit-transition: all .3s ease;
-    transition: all .3s ease;
+  width: 100%;
+  height: auto;
+  background: transparent !important;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: block;
+  -webkit-box-shadow: 0 4px 25px 0 rgb(0 0 0 / 10%);
+  box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border: #ff5000;
 }
 </style>

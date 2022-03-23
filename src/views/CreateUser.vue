@@ -67,12 +67,12 @@
               <div class="centerx colors-example">
                 <vs-input
                   color="rgb(213, 14, 151)"
-                  label-placeholder="Nombre Completo"
-                  v-model="formUser.full_name"
-                  @keypress="errors.full_name = ''"
+                  label-placeholder="Correo Electronico"
+                  v-model="formUser.email"
+                  @keypress="errors.email = ''"
                 />
-                <div class="mt-2" v-if="errors.full_name">
-                  <span class="errors">{{ errors.full_name[0] }}</span>
+                <div class="mt-0" v-if="errors.email">
+                  <span class="errors">{{ errors.email[0] }}</span>
                 </div>
               </div>
             </vs-col>
@@ -154,14 +154,50 @@
               vs-w="3"
             >
               <div class="centerx colors-example">
-                <vs-input
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Correo Electronico"
-                  v-model="formUser.email"
-                  @keypress="errors.email = ''"
-                />
-                <div class="mt-2" v-if="errors.email">
-                  <span class="errors">{{ errors.email[0] }}</span>
+                <vs-select
+                  class="selectExample"
+                  label="Sucursal"
+                  v-model="formUser.branch_office_id"
+                  @change="
+                    errors.branch_office_id = '';
+                    supervisor();
+                  "
+                >
+                  <vs-select-item
+                    :key="index"
+                    :value="item.id"
+                    :text="item.name"
+                    v-for="(item, index) in branchOffices"
+                  />
+                </vs-select>
+                <div class="mt-2" v-if="errors.branch_office_id">
+                  <span class="errors">{{ errors.branch_office_id[0] }}</span>
+                </div>
+              </div>
+            </vs-col>
+            <vs-col
+              class="mt-3"
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="3"
+            >
+              <div class="centerx colors-example">
+                <vs-select
+                  class="selectExample"
+                  label="Nombre jefe"
+                  v-model="formUser.supervisor_id"
+                  @change="errors.supervisor_id = ''"
+                >
+                  <vs-select-item
+                    :key="index"
+                    :value="item.id"
+                    :text="item.first_name + ' ' + item.last_name"
+                    v-for="(item, index) in user"
+                  />
+                </vs-select>
+                <div class="mt-2" v-if="errors.supervisor_id">
+                  <span class="errors">{{ errors.supervisor_id[0] }}</span>
                 </div>
               </div>
             </vs-col>
@@ -327,32 +363,6 @@
               <div class="centerx colors-example">
                 <vs-select
                   class="selectExample"
-                  label="Nombre jefe"
-                  v-model="formUser.supervisor_id"
-                  @change="errors.supervisor_id = ''"
-                >
-                  <vs-select-item
-                    :key="index"
-                    :value="item.id"
-                    :text="item.full_name"
-                    v-for="(item, index) in user"
-                  />
-                </vs-select>
-                <div class="mt-2" v-if="errors.supervisor_id">
-                  <span class="errors">{{ errors.supervisor_id[0] }}</span>
-                </div>
-              </div>
-            </vs-col>
-            <vs-col
-              class="mt-3"
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="3"
-            >
-              <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample"
                   label="Operación"
                   v-model="formUser.operation_id"
                   @change="errors.operation_id = ''"
@@ -369,62 +379,6 @@
                 </div>
               </div>
             </vs-col>
-            <vs-col
-              class="mt-3"
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="3"
-            >
-              <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample"
-                  label="Sucursal"
-                  v-model="formUser.branch_office_id"
-                  @change="
-                    errors.branch_office_id = '';
-                    supervisor();
-                  "
-                >
-                  <vs-select-item
-                    :key="index"
-                    :value="item.id"
-                    :text="item.name"
-                    v-for="(item, index) in branchOffices"
-                  />
-                </vs-select>
-                <div class="mt-2" v-if="errors.branch_office_id">
-                  <span class="errors">{{ errors.branch_office_id[0] }}</span>
-                </div>
-              </div>
-            </vs-col>
-            <vs-col
-              class="mt-3"
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="3"
-            >
-              <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample"
-                  label="Perfil"
-                  v-model="formUser.rol_id"
-                  @change="errors.rol_id = ''"
-                >
-                  <vs-select-item
-                    :key="index"
-                    :value="item.id"
-                    :text="item.name"
-                    v-for="(item, index) in roles"
-                  />
-                </vs-select>
-                <div class="mt-2" v-if="errors.rol_id">
-                  <span class="errors">{{ errors.rol_id[0] }}</span>
-                </div>
-              </div>
-            </vs-col>
-
             <vs-col
               class="mt-3"
               vs-type="flex"
@@ -464,7 +418,6 @@ export default {
       formUser: {
         first_name: "",
         last_name: "",
-        full_name: "",
         identification: "",
         position_id: "",
         email: "",
@@ -523,7 +476,7 @@ export default {
           params: {
             branch_division_id: this.formUser.branch_division_id,
             position_id: this.formUser.position_id,
-            branch_office_id: this.formUser.branch_office_id
+            branch_office_id: this.formUser.branch_office_id,
           },
         })
         .then((res) => {

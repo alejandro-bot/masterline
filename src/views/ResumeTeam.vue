@@ -225,10 +225,8 @@
                       <vs-th> Genero </vs-th>
                       <vs-th> Estado </vs-th>
                       <vs-th> Perfil </vs-th>
-                      <vs-th> Cargo </vs-th>
                       <vs-th> Nombres </vs-th>
                       <vs-th> Apellidos </vs-th>
-                      <vs-th> Nombre COmpleto </vs-th>
                       <vs-th> Identidficación </vs-th>
                       <vs-th> Correo </vs-th>
                       <vs-th> Fecha Nacimiento </vs-th>
@@ -261,17 +259,11 @@
                         <vs-td :data="data[indextr].nameRol">
                           {{ data[indextr].nameRol }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameCharge">
-                          {{ data[indextr].nameCharge }}
-                        </vs-td>
                         <vs-td :data="data[indextr].first_name">
                           {{ data[indextr].first_name }}
                         </vs-td>
                         <vs-td :data="data[indextr].last_name">
                           {{ data[indextr].last_name }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].full_name">
-                          {{ data[indextr].full_name }}
                         </vs-td>
                         <vs-td :data="data[indextr].identification">
                           {{ data[indextr].identification }}

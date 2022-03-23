@@ -29,7 +29,6 @@
                   label="Modo De Transporte"
                   v-model="listProcesId.type_of_transport_id"
                 >
-
                   <vs-select-item
                     :key="index"
                     :value="item.id"
@@ -71,12 +70,10 @@
               vs-sm="12"
               vs-xs="12"
             >
-              <vs-textarea
-                class="mt-3 ml-5 mr-5"
-                counter="20"
-                label="Seguimiento"
-                :counter-danger.sync="counterDanger"
+              <wysiwyg
+                class="mt-5 mb-5 ml-5 mr-5"
                 v-model="listProcesId.tracing"
+                style="background: white; color: black; height: auto"
               />
             </vs-col>
           </vs-row>
@@ -105,6 +102,7 @@
 </template>
 <script>
 import { dominio } from "../dominio.js";
+import "vue-wysiwyg/dist/vueWysiwyg.css";
 export default {
   data() {
     return {

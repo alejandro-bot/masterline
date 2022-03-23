@@ -20,7 +20,6 @@
               <template slot="thead">
                 <vs-th> Nombre </vs-th>
                 <vs-th> Division </vs-th>
-                <vs-th> Linea </vs-th>
                 <vs-th> Acción </vs-th>
               </template>
 
@@ -28,9 +27,6 @@
                 <vs-tr :key="index" v-for="(item, index) in charges">
                   <vs-td> {{ item.name }} </vs-td>
                   <vs-td> {{ item.nameDivision }} </vs-td>
-                  <vs-td v-if="item.line == 1"> Primera Linea </vs-td>
-                  <vs-td v-if="item.line == 2"> Segunda Linea </vs-td>
-                  <vs-td v-if="item.line == 3"> Tercera Linea </vs-td>
                   <vs-td>
                     <vs-row>
                       <vs-col
@@ -116,27 +112,6 @@
             </div>
           </vs-col>
         </vs-row>
-        <vs-row>
-          <vs-col
-            vs-type="flex"
-            vs-justify="center"
-            vs-align="center"
-            vs-w="12"
-          >
-            <div class="centerx colors-example">
-              <vs-select
-                class="mt-0 mb-1 mr-1 ml-1"
-                label="Linea"
-                v-model="formCharge.line"
-              >
-                <vs-select-item :value="''" :text="'Seleccione'" />
-                <vs-select-item :value="'1'" :text="'Primera Linea'" />
-                <vs-select-item :value="'2'" :text="'Segunda Linea'" />
-                <vs-select-item :value="'3'" :text="'Tercera Linea'" />
-              </vs-select>
-            </div>
-          </vs-col>
-        </vs-row>
       </div>
     </vs-prompt>
   </div>
@@ -151,7 +126,6 @@ export default {
       formCharge: {
         name: "",
         division_id: "",
-        line: "",
       },
       charges: {},
     };

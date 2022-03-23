@@ -40,7 +40,7 @@
               <h3 class="mb-5">R.O Creados Por:</h3>
             </template>
             <template slot="thead">
-              <vs-th v-if="showRo[0].is_parent == 0">  </vs-th>
+              <vs-th v-if="showRo.is_parent == 1">  </vs-th>
               <vs-th> # </vs-th>
               <vs-th> R.O </vs-th>
               <vs-th> Ultima Tipificación </vs-th>
@@ -113,7 +113,7 @@
                 <template
                   class="expand-showRo"
                   slot="expand"
-                  v-if="item.is_parent == 1"
+
                 >
                   <div class="con-expand-showRo">
                     <vs-tr :key="index" v-for="(item, index) in showRo">

@@ -1,7 +1,7 @@
 <template>
   <div class="the-navbar__user-meta flex items-center">
     <div class="text-right leading-tight hidden sm:block">
-      <p class="font-semibold" v-text="showUserAuth[0].full_name"></p>
+      <p class="font-semibold" v-text="showUserAuth[0].first_name + ' ' + showUserAuth[0].last_name"></p>
       <small>Conectado</small>
     </div>
 
@@ -10,7 +10,7 @@
         <img
           v-if="foto"
           key="onlineImg"
-          :src="foto"
+          :src="showUserAuth[0].url_vcard"
           alt="user-img"
           width="40"
           height="40"

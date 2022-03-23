@@ -26,11 +26,47 @@
                   <h6 class="text-center">
                     <vs-avatar
                       size="150px"
-                      src=" showUserAuth[0].profile_picture"
+                      :src="showUserAuth[0].url_vcard"
                       style="border: 2px solid #ff5000"
                     />
                   </h6>
                 </div>
+                <vs-col
+                  class="mt-5 mb-5"
+                  vs-type="flex"
+                  vs-justify="center"
+                  vs-align="center"
+                  vs-w="12"
+                >
+                  <h2 class="card-title text-center">Adjuntar Imagen(es)</h2>
+                </vs-col>
+                <vs-col
+                  class="mt-0 mb-5"
+                  vs-type="flex"
+                  vs-justify="center"
+                  vs-align="center"
+                  vs-w="12"
+                >
+                  <vue-upload-multiple-image
+                    @upload-success="uploadImageSuccess"
+                    @edit-image="editImage"
+                    @mark-is-primary="markIsPrimary"
+                    @limit-exceeded="limitExceeded"
+                    @before-remove="beforeRemove"
+                    id-upload="myIdUpload"
+                    id-edit="myIdEdit"
+                    :max-image="1"
+                    primary-text="Imagen"
+                    browse-text="Seleccione su Imagen"
+                    drag-text="Subir Imagen De Perfil"
+                    mark-is-primary-text="Imagen Adjunta"
+                    popup-text="Esta imagen se mostrará por defecto"
+                    :multiple="false"
+                    :show-edit="true"
+                    :show-delete="true"
+                    :show-add="true"
+                  ></vue-upload-multiple-image>
+                </vs-col>
                 <div class="mb-3 mt-0">
                   <h4 class="text-center" style="font-size: 15px">
                     {{ showUserAuth[0].first_name }}
@@ -116,10 +152,9 @@
               vs-w="6"
             >
               <vs-card actionable class="con-vs-cards-1 ml-2 mr-1 cardx">
-                <div slot="header">
-                </div>
+                <div slot="header"></div>
                 <div>
-                   <div class="centerx icons-example">
+                  <div class="centerx icons-example">
                     <vs-input
                       class="mt-2 mb-1"
                       icon="account_circle"
@@ -132,7 +167,9 @@
                       class="mt-2 mb-2"
                       icon="email"
                       style="width: 100%"
-                      :value="'Sucursal' + ': ' + showUserAuth[0].nameBranchOffice"
+                      :value="
+                        'Sucursal' + ': ' + showUserAuth[0].nameBranchOffice
+                      "
                       disabled
                     />
 
@@ -148,7 +185,9 @@
                       class="mt-2"
                       icon="wc"
                       style="width: 100%"
-                      :value="'Operación' + ': ' + showUserAuth[0].nameOperation"
+                      :value="
+                        'Operación' + ': ' + showUserAuth[0].nameOperation
+                      "
                       disabled
                     />
 
@@ -178,10 +217,9 @@
               vs-w="6"
             >
               <vs-card actionable class="con-vs-cards-1 ml-2 mr-1 cardx">
-                <div slot="header">
-                </div>
+                <div slot="header"></div>
                 <div>
-                   <div class="centerx icons-example">
+                  <div class="centerx icons-example">
                     <vs-input
                       class="mt-2 mb-1"
                       icon="account_circle"
@@ -210,7 +248,9 @@
                       class="mt-2"
                       icon="wc"
                       style="width: 100%"
-                      :value="'Nombre Completo' + ': ' + showUserAuth[0].full_name"
+                      :value="
+                        'Nombre Completo' + ': ' + showUserAuth[0].full_name
+                      "
                       disabled
                     />
 
@@ -218,7 +258,9 @@
                       class="mt-2"
                       icon="supervised_user_circle"
                       style="width: 100%"
-                      :value="'Identificación' + ': ' + showUserAuth[0].identification"
+                      :value="
+                        'Identificación' + ': ' + showUserAuth[0].identification
+                      "
                       disabled
                     />
 
@@ -226,7 +268,9 @@
                       class="mt-2"
                       icon="supervised_user_circle"
                       style="width: 100%; margin-top:-10px; !important"
-                      :value="'Correo Electronico' + ': ' + showUserAuth[0].email"
+                      :value="
+                        'Correo Electronico' + ': ' + showUserAuth[0].email
+                      "
                       disabled
                     />
                   </div>
@@ -240,15 +284,18 @@
               vs-w="6"
             >
               <vs-card actionable class="con-vs-cards-1 ml-2 mr-1 cardx">
-                <div slot="header">
-                </div>
+                <div slot="header"></div>
                 <div>
-                   <div class="centerx icons-example">
+                  <div class="centerx icons-example">
                     <vs-input
                       class="mt-2 mb-1"
                       icon="account_circle"
                       style="width: 100%"
-                      :value="'Dia De Nacimiento' + ': ' + showUserAuth[0].date_of_birth"
+                      :value="
+                        'Dia De Nacimiento' +
+                        ': ' +
+                        showUserAuth[0].date_of_birth
+                      "
                       disabled
                     />
 
@@ -256,7 +303,11 @@
                       class="mt-2 mb-2"
                       icon="email"
                       style="width: 100%"
-                      :value="'Numero De Contacto' + ': ' + showUserAuth[0].contact_cell_phone"
+                      :value="
+                        'Numero De Contacto' +
+                        ': ' +
+                        showUserAuth[0].contact_cell_phone
+                      "
                       disabled
                     />
 
@@ -273,7 +324,11 @@
                       class="mt-2"
                       icon="wc"
                       style="width: 100%"
-                      :value="'Contraseña Correo' + ': ' + showUserAuth[0].email_password"
+                      :value="
+                        'Contraseña Correo' +
+                        ': ' +
+                        showUserAuth[0].email_password
+                      "
                       disabled
                       type="password"
                     />
@@ -282,7 +337,9 @@
                       class="mt-2"
                       icon="supervised_user_circle"
                       style="width: 100%"
-                      :value="'Id House' + ': ' + showUserAuth[0].id_house_bl_person"
+                      :value="
+                        'Id House' + ': ' + showUserAuth[0].id_house_bl_person
+                      "
                       disabled
                     />
 
@@ -305,10 +362,15 @@
 </template>
 <script>
 import { dominio } from "/src/dominio.js";
+import VueUploadMultipleImage from "vue-upload-multiple-image";
 export default {
+   components: {
+    VueUploadMultipleImage,
+  },
   data() {
     return {
       showUserAuth: {},
+      id: this.$route.params && this.$route.params.id,
     };
   },
   created() {
@@ -323,6 +385,38 @@ export default {
     },
     returnHome() {
       this.$router.push("/panel");
+    },
+    uploadImageSuccess(formData, index, fileList) {
+      let url = dominio.url + "/api/subir-imagen-de-perfil";
+      axios
+        .post(url, formData)
+        .then((res) => {
+          if (res.data.code == 200) {
+            toastr.success(res.data.message);
+            this.showUser();
+          }
+          if (res.data.code == 500) {
+            toastr.error(res.data.message);
+          }
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
+    beforeRemove(index, removeCallBack) {
+      toastr.error("Imagen Eliminada Con Éxito");
+      removeCallBack();
+    },
+    editImage(formData, index, fileList) {
+      toastr.success("Imagen Editada Con Éxito");
+      this. uploadImageSuccess(formData, index, fileList);
+    },
+    markIsPrimary(index, fileList) {
+      console.log("markIs Primary", index, fileList);
+    },
+    limitExceeded(amount) {
+      toastr.error("Excede El Limite De Imagenes");
+      console.log("limitExeeded data", amount);
     },
   },
 };

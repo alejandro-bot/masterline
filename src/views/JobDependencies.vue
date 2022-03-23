@@ -38,7 +38,9 @@
                         vs-align="left"
                         vs-w="12"
                       >
-                        <router-link :to="'/panel/update-dependency/' + item.id">
+                        <router-link
+                          :to="'/panel/update-dependency/' + item.id"
+                        >
                           <vs-button
                             class="mr-1 ml-1"
                             radius
@@ -47,6 +49,14 @@
                             icon="edit"
                           ></vs-button>
                         </router-link>
+                        <vs-button
+                          class="mr-1 ml-1"
+                          radius
+                          color="danger"
+                          type="border"
+                          icon="delete_outline"
+                          @click="deleteDependency(item.id)"
+                        ></vs-button>
                       </vs-col>
                     </vs-row>
                   </vs-td>
@@ -160,7 +170,7 @@ export default {
       branchDivisions: {},
       branchOffices: {},
       charges: {},
-      showDependencies: {}
+      showDependencies: {},
     };
   },
   created() {
@@ -215,7 +225,7 @@ export default {
         this.showDependencies = res.data.showDependencies;
       });
     },
-     showBranchOffices() {
+    showBranchOffices() {
       let url = dominio.url + "/api/mostrar-sucursales";
       axios.get(url).then((res) => {
         this.branchOffices = res.data.branchOffices;
@@ -226,6 +236,23 @@ export default {
       axios.get(url).then((res) => {
         this.charges = res.data.charges;
       });
+    },
+    deleteDependency(id) {
+      let url = dominio.url + "/api/eliminar-dependencia/" + id;
+      axios
+        .post(url)
+        .then((res) => {
+          if (res.data.code == 200) {
+            toastr.success(res.data.message);
+            this.showDependency();
+          }
+          if (res.data.code == 500) {
+            toastr.error(res.data.message);
+          }
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };

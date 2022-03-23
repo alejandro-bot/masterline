@@ -22,7 +22,6 @@
             </template>
             <template slot="thead">
               <vs-th> Proceso </vs-th>
-              <vs-th> Seguimiento </vs-th>
               <vs-th> Operación </vs-th>
               <vs-th> Tipo </vs-th>
               <vs-th> Acciones </vs-th>
@@ -30,7 +29,6 @@
             <template>
               <vs-tr :key="index" v-for="(item, index) in listProces">
                 <vs-td> {{ item.process_name }} </vs-td>
-                <vs-td> {{ item.tracing }} </vs-td>
                 <vs-td> {{ item.type_of_transport.name }} </vs-td>
                 <vs-td> {{ item.type_of_load.name }} </vs-td>
                 <vs-td>

@@ -10,7 +10,7 @@
     >
     <vs-row vs-justify="center">
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
-        <vs-card actionable class="cardx con-vs-cards">
+        <vs-card class="con-vs-cards">
           <vs-row
             vs-align="flex-start"
             vs-type="flex"
@@ -50,24 +50,6 @@
                 />
                 <div class="mt-2" v-if="errors.last_name">
                   <span class="errors">{{ errors.last_name[0] }}</span>
-                </div>
-              </div>
-            </vs-col>
-            <vs-col
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="3"
-            >
-              <div class="centerx colors-example">
-                <vs-input
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Nombre Completo"
-                  v-model="formUser.full_name"
-                  @keypress="errors.full_name = ''"
-                />
-                <div class="mt-2" v-if="errors.full_name">
-                  <span class="errors">{{ errors.full_name[0] }}</span>
                 </div>
               </div>
             </vs-col>
@@ -305,7 +287,7 @@
                   <vs-select-item
                     :key="index"
                     :value="item.id"
-                    :text="item.full_name"
+                    :text="item.first_name + ' ' + item.last_name"
                     v-for="(item, index) in user"
                   />
                 </vs-select>
@@ -460,7 +442,6 @@ export default {
       formUser: {
         first_name: "",
         last_name: "",
-        full_name: "",
         identification: "",
         position_id: "",
         email: "",
@@ -554,7 +535,6 @@ export default {
         this.getUser = res.data.getUser;
         this.formUser.first_name = this.getUser.first_name;
         this.formUser.last_name = this.getUser.last_name;
-        this.formUser.full_name = this.getUser.full_name;
         this.formUser.identification = this.getUser.identification;
         this.formUser.position_id = this.getUser.position_id;
         this.formUser.email = this.getUser.email;
@@ -587,16 +567,17 @@ export default {
   text-align: right;
 }
 .con-vs-cards {
-    width: 100%;
-    height: auto;
-    background: transparent !important;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    display: block;
-    -webkit-box-shadow: 0 4px 25px 0 rgb(0 0 0 / 10%);
-    box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
-    -webkit-transition: all .3s ease;
-    transition: all .3s ease;
+  width: 100%;
+  height: auto;
+  background: transparent !important;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: block;
+  -webkit-box-shadow: 0 4px 25px 0 rgb(0 0 0 / 10%);
+  box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border: #ff5000;
 }
 .buttonColor {
   background: #ff5000 !important;
