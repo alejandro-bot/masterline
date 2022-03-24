@@ -639,7 +639,7 @@
               vs-align="center"
               vs-w="12"
             >
-              <html class="" v-html="image.cut_images_ros"></html>
+              <html class="mt-3 mb-3 ml-5 mr-5" v-html="image.cut_images_ros"></html>
             </vs-col>
           </vs-row>
         </vs-card>
@@ -931,12 +931,12 @@ export default {
       });
     },
     addArrayTemplate() {
-      this.formTracking.tracing = "";
-      if (this.formTracking.procesess_id) {
+      this.showRoDisabled.tracing = "";
+      if (this.showRoDisabled.procesess_id) {
         var data = this.listProces.find(
-          (ele) => ele.id == this.formTracking.procesess_id
+          (ele) => ele.id == this.showRoDisabled.procesess_id
         );
-        this.formTracking.tracing = data.tracing;
+        this.showRoDisabled.tracing = data.tracing;
       }
     },
     showMails() {
@@ -997,5 +997,9 @@ export default {
   max-height: auto;
   overflow: auto;
   width: 120px;
+}
+[dir] body {
+    background: transparent;
+    -webkit-transition: background-color .3s ease;
 }
 </style>
