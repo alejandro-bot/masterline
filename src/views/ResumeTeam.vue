@@ -90,7 +90,9 @@
                   >
                     <vs-card class="con-vs-cards">
                       <div slot="header">
-                        <h6 class="card-title text-center">R.O. Abiertos Hoy</h6>
+                        <h6 class="card-title text-center">
+                          R.O. Abiertos Hoy
+                        </h6>
                       </div>
                       <div>
                         <span
@@ -133,7 +135,9 @@
                   >
                     <vs-card class="con-vs-cards">
                       <div slot="header">
-                        <h6 class="card-title text-center">R.O. Pendientes Hoy</h6>
+                        <h6 class="card-title text-center">
+                          R.O. Pendientes Hoy
+                        </h6>
                       </div>
                       <div>
                         <span
@@ -176,7 +180,9 @@
                   >
                     <vs-card class="con-vs-cards">
                       <div slot="header">
-                        <h6 class="card-title text-center">R.O. Cerrados Hoy</h6>
+                        <h6 class="card-title text-center">
+                          R.O. Cerrados Hoy
+                        </h6>
                       </div>
                       <div>
                         <span
@@ -283,7 +289,16 @@
                         <vs-td :data="data[indextr].nameOperation">
                           {{ data[indextr].nameOperation }}
                         </vs-td>
-                        <vs-td> botonbes </vs-td>
+                        <vs-td :data="data[indextr].id">
+                          <vs-button
+                            class="mr-1 ml-1"
+                            @click="openModal(data[indextr].id)"
+                            radius
+                            color="primary"
+                            type="border"
+                            icon="visibility"
+                          ></vs-button
+                        ></vs-td>
                       </vs-tr>
                     </template>
                   </vs-table>
@@ -366,7 +381,16 @@
                         <vs-td :data="data[indextr].nameOperation">
                           {{ data[indextr].nameOperation }}
                         </vs-td>
-                        <vs-td> botonbes </vs-td>
+                        <vs-td>
+                          <vs-button
+                            class="mr-1 ml-1"
+
+                            radius
+                            color="primary"
+                            type="border"
+                            icon="visibility"
+                          ></vs-button>
+                        </vs-td>
                       </vs-tr>
                     </template>
                   </vs-table>
@@ -449,7 +473,16 @@
                         <vs-td :data="data[indextr].nameOperation">
                           {{ data[indextr].nameOperation }}
                         </vs-td>
-                        <vs-td> botonbes </vs-td>
+                        <vs-td>
+                          <vs-button
+                            class="mr-1 ml-1"
+
+                            radius
+                            color="primary"
+                            type="border"
+                            icon="visibility"
+                          ></vs-button>
+                        </vs-td>
                       </vs-tr>
                     </template>
                   </vs-table>
@@ -460,6 +493,145 @@
         </vs-card>
       </vs-col>
     </vs-row>
+    <vs-prompt
+      :title="'Actividad del usuario Hoy'"
+      accept-text="Aceptar"
+      cancel-text="Cancelar"
+      @cancel="val = ''"
+      @accept="acceptAlert"
+      @close="close"
+      :active.sync="activePrompt"
+    >
+      <div class="con-exemple-prompt mt-5">
+        <vs-row>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="3"
+            >
+              <vs-row vs-justify="center">
+                <vs-col
+                  type="flex"
+                  vs-justify="center"
+                  vs-align="center"
+                  vs-w="11"
+                >
+                  <span>abiertos</span>
+                  <div>
+                    <span
+                      class="material-icons mt-5"
+                      style="
+                        font-size: 70px;
+                        color: #ff5000;
+                        border-radius: 10px;
+                      "
+                    >
+                      inventory
+                    </span>
+                    <span
+                      class="ml-5 mt-5 mb-3"
+                      style="
+                        margin-top: -50px !important;
+                        display: block;
+                        margin-left: 150px !important;
+                        font-size: 20px;
+                      "
+                      >{{ rosUserId }}</span
+                    >
+                  </div>
+                </vs-col>
+              </vs-row>
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="3"
+            >
+              <vs-row vs-justify="center">
+                <vs-col
+                  type="flex"
+                  vs-justify="center"
+                  vs-align="center"
+                  vs-w="11"
+                >
+                <span>Pendientes</span>
+                  <div>
+                    <span
+                      class="material-icons mt-5"
+                      style="
+                        font-size: 70px;
+                        color: #ff5000;
+                        border-radius: 10px;
+                      "
+                    >
+                      watch_later
+                    </span>
+                    <span
+                      class="ml-5 mb-3"
+                      style="
+                        margin-top: -50px !important;
+                        display: block;
+                        margin-left: 150px !important;
+                        font-size: 20px;
+                      "
+                      >{{ roPendingUserId }}</span
+                    >
+                  </div>
+                </vs-col>
+              </vs-row>
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="3"
+            >
+              <vs-row vs-justify="center">
+                <vs-col
+                  type="flex"
+                  vs-justify="center"
+                  vs-align="center"
+                  vs-w="11"
+                >
+                <span>Cerrados</span>
+
+                  <div>
+                    <span
+                      class="material-icons mt-5"
+                      style="
+                        font-size: 70px;
+                        color: #ff5000;
+                        border-radius: 10px;
+                      "
+                    >
+                      archive
+                    </span>
+                    <span
+                      class="ml-5 mb-3"
+                      style="
+                        margin-top: -50px !important;
+                        display: block;
+                        margin-left: 150px !important;
+                        font-size: 20px;
+                      "
+                      >{{ roCloseUserId }}</span
+                    >
+                  </div>
+                </vs-col>
+              </vs-row>
+            </vs-col>
+          </vs-col>
+        </vs-row>
+      </div>
+    </vs-prompt>
   </div>
 </template>
 <script>
@@ -474,9 +646,19 @@ export default {
       userFirstLine: {},
       userSecondLine: {},
       userThirdLine: {},
+      activePrompt: false,
+      roPending: {},
+      roClose: {},
+      user: {},
+      ro: {},
+      rosUserId: {}
     };
   },
   methods: {
+    openModal(id) {
+      this.activePrompt = true;
+      this.data = id;
+    },
     deatilOperation() {
       this.$router.push("/panel/show-detail-operation");
     },
@@ -493,6 +675,23 @@ export default {
         this.ro = res.data.ro;
         this.roPending = res.data.roPending;
         this.roClose = res.data.roClose;
+        this.rosUserId = res.data.rosUserId;
+        this.roPendingUserId = res.data.roPendingUserId;
+        this.roCloseUserId = res.data.roCloseUserId;
+      });
+    },
+    acceptAlert(color) {
+      this.$vs.notify({
+        color: "success",
+        title: "Dialogo",
+        text: "Cerrado",
+      });
+    },
+    close() {
+      this.$vs.notify({
+        color: "danger",
+        title: "Dialogo",
+        text: "Cerrado",
       });
     },
   },

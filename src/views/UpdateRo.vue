@@ -463,9 +463,7 @@
                 class="selectExample ml-5 mr-5 mt-0 mb-3"
                 label="Proceso Actual"
                 style="width: 50%"
-                :value="showRoDisabled.processes_ro_pivot[0].procesess_id"
-                v-model="showRoDisabled.procesess_id"
-                @change="addArrayTemplate()"
+                v-model="test_procesess_id"
               >
                 <vs-select-item
                   :key="index"
@@ -502,12 +500,11 @@
               vs-align="center"
               vs-w="12"
             >
-              <vs-textarea
-                class="mt-3 mb-5"
-                counter="10000"
-                width="1140px"
-                :counter-danger.sync="counterDanger"
+            <!-- Esto de abajo es el texarea? si -->
+            <wysiwyg
+                class="mt-3 mb-3 ml-4 mr-1"
                 v-model="showRoDisabled.tracing"
+                style="background: white; color: black; height: auto"
               />
             </vs-col>
             <vs-col
@@ -545,10 +542,10 @@
                       :key="index"
                       v-for="(item, index) in showRoDisabled.processes_ro_pivot"
                     >
-                      <vs-td> {{ item.procesess.create_date }} </vs-td>
+                      <vs-td> {{ item.created_at }} </vs-td>
                       <vs-td> {{ item.procesess.process_name }} </vs-td>
                       <vs-td style="width: 50%">
-                        {{ item.procesess.tracing }}
+                         <html class="mt-3 mb-3 ml-5 mr-5" v-html="item.tracing"></html>
                       </vs-td>
                     </vs-tr>
                   </template>
@@ -658,6 +655,7 @@ export default {
   },
   data() {
     return {
+      test_procesess_id:null,
       errors: {},
       showTypeSends: {},
       showIssues: {},
@@ -701,7 +699,7 @@ export default {
         subjet: "",
         tracing: "",
         type_of_transport_id: "",
-        procesess_id: "",
+        procesess_id: null, // no use "" use null luego los "" traen problemas
         subjet: "",
         tracing: "",
         groupEmails: "",
@@ -762,6 +760,11 @@ export default {
     this.showUser();
     this.showAttachedImages();
     this.showCutImages();
+  },
+  watch: {
+    'test_procesess_id'(val){
+      this.addArrayTemplate();
+    }
   },
   methods: {
     showUser() {
@@ -878,6 +881,7 @@ export default {
     },
     updateTemplate(id) {
       let url = dominio.url + "/api/actualizar-seguimiento/" + id;
+      this.showRoDisabled.procesess_id = this.test_procesess_id;
       axios
         .post(url, this.showRoDisabled)
         .then((res) => {
@@ -932,11 +936,11 @@ export default {
     },
     addArrayTemplate() {
       this.showRoDisabled.tracing = "";
-      if (this.showRoDisabled.procesess_id) {
+      if (this.test_procesess_id) {
         var data = this.listProces.find(
-          (ele) => ele.id == this.showRoDisabled.procesess_id
+          (ele) => ele.id == this.test_procesess_id
         );
-        this.showRoDisabled.tracing = data.tracing;
+        this.showRoDisabled.tracing = data.tracing; // si quiere hagamos un change normal no tengo lio
       }
     },
     showMails() {

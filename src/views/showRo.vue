@@ -40,7 +40,6 @@
               <h3 class="mb-5">R.O Creados Por:</h3>
             </template>
             <template slot="thead">
-              <vs-th v-if="showRo.is_parent == 1">  </vs-th>
               <vs-th> # </vs-th>
               <vs-th> R.O </vs-th>
               <vs-th> Ultima Tipificación </vs-th>
@@ -51,13 +50,12 @@
             </template>
             <template>
               <vs-tr :key="index" v-for="(item, index) in showRo">
-                <vs-td v-if="item.is_parent == 1">
+                <vs-td :data="item.ro" v-if="item.is_parent == 0"></vs-td>
+                <vs-td :data="item.ro" v-if="item.is_parent == 1">
                   {{ item.id }}
                 </vs-td>
-                <vs-td v-if="item.is_parent != 1"> </vs-td>
-                <vs-td v-if="item.is_parent != 1">
-                  {{ item.id }}
-                </vs-td>
+                <vs-td :data="item.ro" v-if="item.is_parent == 0">{{ item.id }}</vs-td>
+                <vs-td :data="item.ro" v-if="item.is_parent == 1">{{ item.id }}</vs-td>
                 <vs-td :data="item.ro">
                   {{ item.ro }}
                 </vs-td>
@@ -110,11 +108,7 @@
                     </vs-col>
                   </vs-row>
                 </vs-td>
-                <template
-                  class="expand-showRo"
-                  slot="expand"
-
-                >
+                <template class="expand-showRo" slot="expand" v-if="item.is_parent == 1">
                   <div class="con-expand-showRo">
                     <vs-tr :key="index" v-for="(item, index) in showRo">
                       <vs-td> 1 </vs-td>
@@ -225,6 +219,6 @@ export default {
   box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  border: #ff5000;
+  border: 1px solid #ff5000;
 }
 </style>

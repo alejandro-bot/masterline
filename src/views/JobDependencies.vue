@@ -191,7 +191,7 @@ export default {
           if (res.data.code == 200) {
             toastr.success(res.data.message);
             this.showDependency();
-            this.showcharges();
+            this.formCharge = '';
             this.$vs.notify({
               color: "success",
               title: "Dialogo",
