@@ -13,7 +13,7 @@
         <vs-card class="con-vs-cards">
           <div slot="header" class="mt-3">
             <strong>
-              <h1 class="text-center">CREACIÓN DE USUARIO</h1>
+              <h1 class="text-center mt-5">CREACIÓN DE USUARIO</h1>
             </strong>
           </div>
           <vs-row

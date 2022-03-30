@@ -500,8 +500,8 @@
               vs-align="center"
               vs-w="12"
             >
-            <!-- Esto de abajo es el texarea? si -->
-            <wysiwyg
+              <!-- Esto de abajo es el texarea? si -->
+              <wysiwyg
                 class="mt-3 mb-3 ml-4 mr-1"
                 v-model="showRoDisabled.tracing"
                 style="background: white; color: black; height: auto"
@@ -542,10 +542,13 @@
                       :key="index"
                       v-for="(item, index) in showRoDisabled.processes_ro_pivot"
                     >
-                      <vs-td> {{ item.created_at }} </vs-td>
+                      <vs-td> {{ item.procesess.create_date }} </vs-td>
                       <vs-td> {{ item.procesess.process_name }} </vs-td>
                       <vs-td style="width: 50%">
-                         <html class="mt-3 mb-3 ml-5 mr-5" v-html="item.tracing"></html>
+                        <html
+                          class="mt-3 mb-3 ml-5 mr-5"
+                          v-html="item.tracing"
+                        ></html>
                       </vs-td>
                     </vs-tr>
                   </template>
@@ -636,7 +639,10 @@
               vs-align="center"
               vs-w="12"
             >
-              <html class="mt-3 mb-3 ml-5 mr-5" v-html="image.cut_images_ros"></html>
+              <html
+                class="mt-3 mb-3 ml-5 mr-5"
+                v-html="image.cut_images_ros"
+              ></html>
             </vs-col>
           </vs-row>
         </vs-card>
@@ -655,7 +661,7 @@ export default {
   },
   data() {
     return {
-      test_procesess_id:null,
+      test_procesess_id: null,
       errors: {},
       showTypeSends: {},
       showIssues: {},
@@ -762,9 +768,9 @@ export default {
     this.showCutImages();
   },
   watch: {
-    'test_procesess_id'(val){
+    test_procesess_id(val) {
       this.addArrayTemplate();
-    }
+    },
   },
   methods: {
     showUser() {
@@ -1003,7 +1009,8 @@ export default {
   width: 120px;
 }
 [dir] body {
-    background: transparent;
-    -webkit-transition: background-color .3s ease;
+  background: transparent;
+  color: white;
+  -webkit-transition: background-color 0.3s ease;
 }
 </style>

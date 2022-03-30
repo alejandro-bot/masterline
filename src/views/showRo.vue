@@ -50,7 +50,7 @@
             </template>
             <template>
               <vs-tr :key="index" v-for="(item, index) in showRo">
-                <vs-td :data="item.ro" v-if="item.is_parent == 0"></vs-td>
+
                 <vs-td :data="item.ro" v-if="item.is_parent == 1">
                   {{ item.id }}
                 </vs-td>
@@ -60,7 +60,7 @@
                   {{ item.ro }}
                 </vs-td>
                 <vs-td :data="item.process">
-                  {{ item.created_at }}
+                  {{ item.process[0].create_date }}
                 </vs-td>
                 <vs-td :data="item.starting_place">
                   {{ item.starting_place }}
@@ -167,6 +167,7 @@ export default {
     return {
       showRo: {},
       total: 0,
+      roClosed: []
     };
   },
   created() {
@@ -178,6 +179,7 @@ export default {
       axios.get(url).then((res) => {
         this.showRo = res.data.showRo;
         this.total = res.data.total;
+        this.roClosed = res.data.roClosed;
       });
     },
     createRo() {

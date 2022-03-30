@@ -17,7 +17,7 @@
         <vs-card class="con-vs-cards">
           <div slot="header">
             <strong>
-              <h1 class="text-center">CREACION DE R.O</h1>
+              <h1 class="text-center mt-5">CREACION DE R.O</h1>
             </strong>
           </div>
           <h6 class="card-title text-center">R.O. NÚMERO Y TIPO DE ENVÍO</h6>
@@ -467,10 +467,11 @@
               <vs-textarea
                 class="mt-3 mb-3"
                 counter="100"
-                label="¡Gracias por tu confianza!¡Esta nueva asignación es importante para nosotros!"
+                label="¡Hola!... ¡Es un gusto saludarte! Iniciamos el seguimiento de tu nuevo embarque... Estamos muy contentos de tenerte como cliente, te comparto mis datos para que puedas contactarme cuando lo necesites. ¡Muchas gracias por trabajar con Masterline!"
                 width="1140px"
                 :counter-danger.sync="counterDanger"
                 v-model="formRo.message"
+                disabled
               />
             </vs-col>
             <vs-col
@@ -539,7 +540,7 @@ export default {
         message: "",
         type_of_transport_id: "",
         groupEmails: "",
-        is_partent: 1
+        is_partent: 1,
       },
       counterDanger: false,
       emails: [],
