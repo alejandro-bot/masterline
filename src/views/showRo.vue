@@ -14,6 +14,13 @@
         </vs-col>
         <vs-col vs-type="flex" vs-justify="right" vs-align="right" vs-w="12">
           <vs-button
+            v-if="
+              showUserAuth[0].rol_id == 1 ||
+              showUserAuth[0].rol_id == 9 ||
+              showUserAuth[0].rol_id == 10 ||
+              showUserAuth[0].rol_id == 2 ||
+              showUserAuth[0].rol_id == 3
+            "
             class="buttonColor"
             color="primary"
             type="relief"
@@ -40,7 +47,6 @@
               <h3 class="mb-5">R.O Creados Por:</h3>
             </template>
             <template slot="thead">
-              <vs-th> # </vs-th>
               <vs-th> R.O </vs-th>
               <vs-th> Ultima Tipificación </vs-th>
               <vs-th> Origen </vs-th>
@@ -50,28 +56,52 @@
             </template>
             <template>
               <vs-tr :key="index" v-for="(item, index) in showRo">
-
-                <vs-td :data="item.ro" v-if="item.is_parent == 1">
-                  {{ item.id }}
-                </vs-td>
-                <vs-td :data="item.ro" v-if="item.is_parent == 0">{{ item.id }}</vs-td>
-                <vs-td :data="item.ro" v-if="item.is_parent == 1">{{ item.id }}</vs-td>
-                <vs-td :data="item.ro">
+                <vs-td
+                  :data="item.ro"
+                  v-if="
+                    item.process[0].process_name != 'CIERRE DE LA OPERACION'
+                  "
+                >
                   {{ item.ro }}
                 </vs-td>
-                <vs-td :data="item.process">
+                <vs-td
+                  :data="item.process"
+                  v-if="
+                    item.process[0].process_name != 'CIERRE DE LA OPERACION'
+                  "
+                >
                   {{ item.process[0].create_date }}
                 </vs-td>
-                <vs-td :data="item.starting_place">
+                <vs-td
+                  :data="item.starting_place"
+                  v-if="
+                    item.process[0].process_name != 'CIERRE DE LA OPERACION'
+                  "
+                >
                   {{ item.starting_place }}
                 </vs-td>
-                <vs-td :data="item.destination_place">
+                <vs-td
+                  :data="item.destination_place"
+                  v-if="
+                    item.process[0].process_name != 'CIERRE DE LA OPERACION'
+                  "
+                >
                   {{ item.destination_place }}
                 </vs-td>
-                <vs-td :data="item.destination_place">
+                <vs-td
+                  :data="item.destination_place"
+                  v-if="
+                    item.process[0].process_name != 'CIERRE DE LA OPERACION'
+                  "
+                >
                   {{ item.process[0].process_name }}
                 </vs-td>
-                <vs-td :data="item.id">
+                <vs-td
+                  :data="item.id"
+                  v-if="
+                    item.process[0].process_name != 'CIERRE DE LA OPERACION'
+                  "
+                >
                   <vs-row>
                     <vs-col
                       vs-type="flex"
@@ -97,7 +127,29 @@
                           icon="edit"
                         ></vs-button>
                       </router-link>
+                      <router-link :to="'/panel/assign-ro/' + item.id">
+                        <vs-button
+                          v-if="
+                            showUserAuth[0].rol_id == 9 ||
+                            showUserAuth[0].rol_id == 2 ||
+                            showUserAuth[0].rol_id == 3 ||
+                            showUserAuth[0].rol_id == 1
+                          "
+                          class="mr-1 ml-1"
+                          radius
+                          color="warning"
+                          type="border"
+                          icon="person"
+                        ></vs-button>
+                      </router-link>
                       <vs-button
+                        v-if="
+                          showUserAuth[0].rol_id == 1 ||
+                          showUserAuth[0].rol_id == 9 ||
+                          showUserAuth[0].rol_id == 10 ||
+                          showUserAuth[0].rol_id == 2 ||
+                          showUserAuth[0].rol_id == 3
+                        "
                         class="mr-1 ml-1"
                         radius
                         color="danger"
@@ -108,7 +160,11 @@
                     </vs-col>
                   </vs-row>
                 </vs-td>
-                <template class="expand-showRo" slot="expand" v-if="item.is_parent == 1">
+                <template
+                  class="expand-showRo"
+                  slot="expand"
+                  v-if="item.is_parent == 1"
+                >
                   <div class="con-expand-showRo">
                     <vs-tr :key="index" v-for="(item, index) in showRo">
                       <vs-td> 1 </vs-td>
@@ -167,11 +223,13 @@ export default {
     return {
       showRo: {},
       total: 0,
-      roClosed: []
+      roClosed: [],
+      showUserAuth: [],
     };
   },
   created() {
     this.showRos();
+    this.showUser();
   },
   methods: {
     showRos() {
@@ -180,6 +238,12 @@ export default {
         this.showRo = res.data.showRo;
         this.total = res.data.total;
         this.roClosed = res.data.roClosed;
+      });
+    },
+    showUser() {
+      let url = dominio.url + "/api/mostar-usuario-autentificado";
+      axios.get(url).then((res) => {
+        this.showUserAuth = res.data.showUserAuth;
       });
     },
     createRo() {

@@ -36,6 +36,7 @@
                   @change="
                     showIssue(showRoDisabled.type_of_transport_id);
                     showTypeOfLoads(showRoDisabled.type_of_transport_id);
+                    showTypeSend(showRoDisabled.type_of_transport_id);
                     errors.type_of_transport_id = '';
                   "
                 >
@@ -162,7 +163,7 @@
               <div class="centerx colors-example">
                 <vs-select
                   class="selectExample ml-0 mr-4 mt-0 mb-3"
-                  label="Emisión"
+                  label="Emisión HBL"
                   v-model="showRoDisabled.issue_id"
                   @change="errors.issue_id = ''"
                 >
@@ -332,7 +333,7 @@
                 <vs-select
                   class="ml-5 mr-4 mt-2 mb-0"
                   label="Grupo De Correos"
-                  v-model="listNameGroups.id"
+                  v-model="showRoDisabled.groupEmails"
                 >
                   <vs-select-item
                     :key="index"
@@ -351,21 +352,12 @@
               vs-w="12"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="ml-0 mr-4 mt-1 mb-4"
-                  label="Comercial"
-                  v-model="showRoDisabled.user.id"
-                  @change="errors.commercial = ''"
+                <vs-input
+                  class="ml-0 mr-4 mt-5 mb-4"
+                  color="rgb(213, 14, 151)"
+                  :value="userCommercial.first_name + ' ' + userCommercial.last_name"
                   disabled
-                >
-                  <vs-select-item :value="''" :text="'Seleccione'" />
-                  <vs-select-item
-                    :key="index"
-                    :value="item.id"
-                    :text="item.first_name + ' ' + item.last_name"
-                    v-for="(item, index) in users"
-                  />
-                </vs-select>
+                />
                 <div class="mt-1 ml-1 text-left" v-if="errors.commercial">
                   <span class="errors">{{ errors.commercial[0] }}</span>
                 </div>
@@ -430,23 +422,6 @@
                   </vs-tr>
                 </template>
               </vs-table>
-            </vs-col>
-            <vs-col
-              class="mt-3"
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="12"
-            >
-              <vs-row vs-justify="center" class="mt-0 mb-5">
-                <vs-button
-                  @click="updateRo(showRoDisabled.id)"
-                  color="#ff5000"
-                  type="relief"
-                  icon="add"
-                  >Actualizar R.O</vs-button
-                >
-              </vs-row>
             </vs-col>
           </vs-row>
         </vs-card>
@@ -644,6 +619,23 @@
                 v-html="image.cut_images_ros"
               ></html>
             </vs-col>
+            <vs-col
+              class="mt-3"
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vs-row vs-justify="center" class="mt-0 mb-5">
+                <vs-button
+                  @click="updateRo(showRoDisabled.id)"
+                  color="#ff5000"
+                  type="relief"
+                  icon="add"
+                  >Actualizar R.O</vs-button
+                >
+              </vs-row>
+            </vs-col>
           </vs-row>
         </vs-card>
       </vs-col>
@@ -708,8 +700,8 @@ export default {
         procesess_id: null, // no use "" use null luego los "" traen problemas
         subjet: "",
         tracing: "",
-        groupEmails: "",
         imageHtml: "",
+        groupEmails: [],
       },
       id: this.$route.params && this.$route.params.id,
       formRo: {
@@ -752,6 +744,7 @@ export default {
       listNameGroups: {},
       showImagesAttachedId: {},
       showCutImage: {},
+      userCommercial: {}
     };
   },
   created() {
@@ -839,7 +832,7 @@ export default {
         });
     },
     listProcess() {
-      let url = dominio.url + "/api/mostrar-procesos";
+      let url = dominio.url + "/api/mostrar-procesos/" + this.id;
       axios.get(url).then((res) => {
         this.listProces = res.data.listProces;
       });
@@ -903,8 +896,8 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
-    showTypeSend() {
-      let url = dominio.url + "/api/mostrar-tipos-envio";
+    showTypeSend(id) {
+      let url = dominio.url + "/api/mostrar-tipos-envio/" + id;
       axios.get(url).then((res) => {
         this.showTypeSends = res.data.showTypeSends;
       });
@@ -937,6 +930,7 @@ export default {
       let url = dominio.url + "/api/mostrar-ro/" + this.id;
       axios.get(url).then((res) => {
         this.showRoDisabled = res.data.showRoDisabled;
+        this.userCommercial = res.data.userCommercial;
         this.showRoDisabled.procesess_id = res.data.showRoDisabled.procesess_id;
       });
     },

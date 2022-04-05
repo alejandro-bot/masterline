@@ -31,11 +31,12 @@
               <div class="centerx colors-example">
                 <vs-select
                   class="selectExample ml-0 mr-5 mt-0 mb-3"
-                  label="Modo De Transporte"
+                  label="Modo De Transporte*"
                   v-model="formRo.type_of_transport_id"
                   @change="
                     showIssue(formRo.type_of_transport_id);
                     showTypeOfLoads(formRo.type_of_transport_id);
+                    showTypeSend(formRo.type_of_transport_id);
                     errors.type_of_transport_id = '';
                   "
                 >
@@ -57,7 +58,7 @@
                 <vs-input
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
-                  label-placeholder="RO-AAAA-/00-0000"
+                  label-placeholder="RO-AAAA-/00-0000 *"
                   v-model="formRo.ro"
                   @keypress="errors.ro = ''"
                 />
@@ -68,7 +69,7 @@
               <div class="centerx colors-example">
                 <vs-select
                   class="selectExample ml-0 mr-4 mt-0 mb-3"
-                  label="Tipo De Embarque"
+                  label="Tipo De Embarque *"
                   v-model="formRo.type_id"
                   @change="errors.type_id = ''"
                 >
@@ -136,7 +137,7 @@
                 <vs-input
                   class="selectExample ml-0 mr-5 mt-3 mb-0"
                   color="rgb(213, 14, 151)"
-                  label-placeholder="Puerto De Origen"
+                  label-placeholder="Puerto De Origen *"
                   v-model="formRo.starting_place"
                   @keypress="errors.starting_place = ''"
                 />
@@ -148,7 +149,7 @@
                 <vs-input
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
-                  label-placeholder="Puerto De Destino"
+                  label-placeholder="Puerto De Destino *"
                   v-model="formRo.destination_place"
                   @keypress="errors.destination_place = ''"
                 />
@@ -159,7 +160,7 @@
               <div class="centerx colors-example">
                 <vs-select
                   class="selectExample ml-0 mr-4 mt-0 mb-3"
-                  label="Emisión"
+                  label="Emisión HBL *"
                   v-model="formRo.issue_id"
                   @change="errors.issue_id = ''"
                 >
@@ -295,7 +296,7 @@
               <div class="centerx colors-example">
                 <vs-select
                   class="ml-2 mr-5 mt-2 mb-0"
-                  label="Sucursal"
+                  label="Sucursal *"
                   v-model="formRo.branch_office_id"
                   @change="errors.branch_office_id = ''"
                 >
@@ -345,7 +346,7 @@
               <div class="centerx colors-example">
                 <vs-select
                   class="ml-0 mr-4 mt-1 mb-4"
-                  label="Comercial"
+                  label="Comercial *"
                   v-model="formRo.commercial"
                   @change="errors.commercial = ''"
                 >
@@ -442,10 +443,11 @@
               <vs-input
                 class="mr-5 ml-5 mt-5 mb-3"
                 color="rgb(213, 14, 151)"
-                label-placeholder="Asunto Correo"
+                label-placeholder="Asunto Correo *"
                 v-model="formRo.subjet"
                 style="width: 50%"
                 @keypress="errors.subjet = ''"
+                disabled
               />
             </vs-col>
             <vs-col
@@ -544,21 +546,16 @@ export default {
       },
       counterDanger: false,
       emails: [],
-      listProces: {
-        name_process: "",
-      },
       listNameGroups: {},
       activePrompt: false,
     };
   },
   created() {
     this.showRo();
-    this.showTypeSend();
     this.showBranchOffices();
     this.showRoles();
     this.showUser();
     this.showTypeOfTransport();
-    this.showTemplates();
     this.showMails();
   },
   methods: {
@@ -602,16 +599,8 @@ export default {
         this.showRos = res.data.showRos;
       });
     },
-
-    showTemplates() {
-      let url = dominio.url + "/api/mostrar-procesos";
-      axios.get(url).then((res) => {
-        this.listProces = res.data.listProces;
-      });
-    },
-
-    showTypeSend() {
-      let url = dominio.url + "/api/mostrar-tipos-envio";
+    showTypeSend(id) {
+      let url = dominio.url + "/api/mostrar-tipos-envio/" + id;
       axios.get(url).then((res) => {
         this.showTypeSends = res.data.showTypeSends;
       });
@@ -641,7 +630,7 @@ export default {
       });
     },
     showUser() {
-      let url = dominio.url + "/api/mostrar-usuarios";
+      let url = dominio.url + "/api/mostrar-usuarios-comerciales";
       axios.get(url).then((res) => {
         this.users = res.data.users;
         this.userName = res.data.userName;

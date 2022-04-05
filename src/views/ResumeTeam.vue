@@ -90,9 +90,7 @@
                   >
                     <vs-card class="con-vs-cards">
                       <div slot="header">
-                        <h6 class="card-title text-center">
-                          R.O. Abiertos Hoy
-                        </h6>
+                        <h6 class="card-title text-center">R.O. Abiertos</h6>
                       </div>
                       <div>
                         <span
@@ -106,6 +104,7 @@
                           inventory
                         </span>
                         <span
+                          v-if="showUserAuth[0].rol_id == 2"
                           class="ml-5 mt-5 mb-3"
                           style="
                             margin-top: -50px !important;
@@ -113,7 +112,32 @@
                             margin-left: 150px !important;
                             font-size: 20px;
                           "
-                          >{{ ro }}</span
+                          >{{ roOpenMaritimeAndInlad }}</span
+                        >
+                        <span
+                          v-if="
+                            showUserAuth[0].rol_id == 1 ||
+                            showUserAuth[0].rol_id == 9
+                          "
+                          class="ml-5 mt-5 mb-3"
+                          style="
+                            margin-top: -50px !important;
+                            display: block;
+                            margin-left: 150px !important;
+                            font-size: 20px;
+                          "
+                          >{{ countRoAdmin }}</span
+                        >
+                        <span
+                          v-if="showUserAuth[0].rol_id == 3"
+                          class="ml-5 mt-5 mb-3"
+                          style="
+                            margin-top: -50px !important;
+                            display: block;
+                            margin-left: 150px !important;
+                            font-size: 20px;
+                          "
+                          >{{ roOpenAir }}</span
                         >
                       </div>
                     </vs-card>
@@ -151,6 +175,10 @@
                           watch_later
                         </span>
                         <span
+                          v-if="
+                            showUserAuth[0].rol_id == 1 ||
+                            showUserAuth[0].rol_id == 9
+                          "
                           class="ml-5 mb-3"
                           style="
                             margin-top: -50px !important;
@@ -158,7 +186,29 @@
                             margin-left: 150px !important;
                             font-size: 20px;
                           "
-                          >{{ roPending }}</span
+                          >{{ roPendingAdmin }}</span
+                        >
+                        <span
+                          v-if="showUserAuth[0].rol_id == 2"
+                          class="ml-5 mb-3"
+                          style="
+                            margin-top: -50px !important;
+                            display: block;
+                            margin-left: 150px !important;
+                            font-size: 20px;
+                          "
+                          >{{ roPendingMaritimeAndInlad }}</span
+                        >
+                        <span
+                          v-if="showUserAuth[0].rol_id == 3"
+                          class="ml-5 mb-3"
+                          style="
+                            margin-top: -50px !important;
+                            display: block;
+                            margin-left: 150px !important;
+                            font-size: 20px;
+                          "
+                          >{{ roPendingAir }}</span
                         >
                       </div>
                     </vs-card>
@@ -180,9 +230,7 @@
                   >
                     <vs-card class="con-vs-cards">
                       <div slot="header">
-                        <h6 class="card-title text-center">
-                          R.O. Cerrados Hoy
-                        </h6>
+                        <h6 class="card-title text-center">R.O. Cerrados</h6>
                       </div>
                       <div>
                         <span
@@ -196,6 +244,10 @@
                           archive
                         </span>
                         <span
+                          v-if="
+                            showUserAuth[0].rol_id == 1 ||
+                            showUserAuth[0].rol_id == 9
+                          "
                           class="ml-5 mb-3"
                           style="
                             margin-top: -50px !important;
@@ -203,7 +255,29 @@
                             margin-left: 150px !important;
                             font-size: 20px;
                           "
-                          >{{ roClose }}</span
+                          >{{ roCloseAdmin }}</span
+                        >
+                        <span
+                          v-if="showUserAuth[0].rol_id == 2"
+                          class="ml-5 mb-3"
+                          style="
+                            margin-top: -50px !important;
+                            display: block;
+                            margin-left: 150px !important;
+                            font-size: 20px;
+                          "
+                          >{{ roClosedMaritimeAndInlad }}</span
+                        >
+                        <span
+                          v-if="showUserAuth[0].rol_id == 3"
+                          class="ml-5 mb-3"
+                          style="
+                            margin-top: -50px !important;
+                            display: block;
+                            margin-left: 150px !important;
+                            font-size: 20px;
+                          "
+                          >{{ roClosedAir }}</span
                         >
                       </div>
                     </vs-card>
@@ -228,20 +302,15 @@
                       <vs-th> # </vs-th>
                       <vs-th> División </vs-th>
                       <vs-th> Sucursal </vs-th>
-                      <vs-th> Genero </vs-th>
                       <vs-th> Estado </vs-th>
                       <vs-th> Perfil </vs-th>
                       <vs-th> Nombres </vs-th>
                       <vs-th> Apellidos </vs-th>
-                      <vs-th> Identidficación </vs-th>
                       <vs-th> Correo </vs-th>
-                      <vs-th> Fecha Nacimiento </vs-th>
-                      <vs-th> Numero De Contacto </vs-th>
-                      <vs-th> Id House </vs-th>
                       <vs-th> Operación </vs-th>
-                      <vs-th>Acciones</vs-th>
+                      <vs-th> R.O Abiertos </vs-th>
+                      <vs-th> R.O Cerrados </vs-th>
                     </template>
-
                     <template slot-scope="{ data }">
                       <vs-tr
                         :key="indextr"
@@ -256,9 +325,6 @@
                         <vs-td :data="data[indextr].nameBranchOffice">
                           {{ data[indextr].nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameGender">
-                          {{ data[indextr].nameGender }}
-                        </vs-td>
                         <vs-td :data="data[indextr].nameStatus">
                           {{ data[indextr].nameStatus }}
                         </vs-td>
@@ -271,34 +337,18 @@
                         <vs-td :data="data[indextr].last_name">
                           {{ data[indextr].last_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].identification">
-                          {{ data[indextr].identification }}
-                        </vs-td>
                         <vs-td :data="data[indextr].email">
                           {{ data[indextr].email }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].date_of_birth">
-                          {{ data[indextr].date_of_birth }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].contact_cell_phone">
-                          {{ data[indextr].contact_cell_phone }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].id_house_bl_person">
-                          {{ data[indextr].id_house_bl_person }}
                         </vs-td>
                         <vs-td :data="data[indextr].nameOperation">
                           {{ data[indextr].nameOperation }}
                         </vs-td>
-                        <vs-td :data="data[indextr].id">
-                          <vs-button
-                            class="mr-1 ml-1"
-                            @click="openModal(data[indextr].id)"
-                            radius
-                            color="primary"
-                            type="border"
-                            icon="visibility"
-                          ></vs-button
-                        ></vs-td>
+                        <vs-td>
+                          {{ data[indextr].ro }}
+                        </vs-td>
+                        <vs-td>
+                          {{ data[indextr].roClose }}
+                        </vs-td>
                       </vs-tr>
                     </template>
                   </vs-table>
@@ -320,21 +370,15 @@
                       <vs-th> # </vs-th>
                       <vs-th> División </vs-th>
                       <vs-th> Sucursal </vs-th>
-                      <vs-th> Genero </vs-th>
                       <vs-th> Estado </vs-th>
                       <vs-th> Perfil </vs-th>
-                      <vs-th> Cargo </vs-th>
                       <vs-th> Nombres </vs-th>
                       <vs-th> Apellidos </vs-th>
-                      <vs-th> Identidficación </vs-th>
                       <vs-th> Correo </vs-th>
-                      <vs-th> Fecha Nacimiento </vs-th>
-                      <vs-th> Numero De Contacto </vs-th>
-                      <vs-th> Id House </vs-th>
                       <vs-th> Operación </vs-th>
-                      <vs-th>Acciones</vs-th>
+                      <vs-th> R.O Abiertos </vs-th>
+                      <vs-th> R.O Cerrados </vs-th>
                     </template>
-
                     <template
                       slot-scope="{ data }"
                       v-if="showUserAuth[0].rol_id == 1"
@@ -352,17 +396,11 @@
                         <vs-td :data="data[indextr].nameBranchOffice">
                           {{ data[indextr].nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameGender">
-                          {{ data[indextr].nameGender }}
-                        </vs-td>
                         <vs-td :data="data[indextr].nameStatus">
                           {{ data[indextr].nameStatus }}
                         </vs-td>
                         <vs-td :data="data[indextr].nameRol">
                           {{ data[indextr].nameRol }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].nameCharge">
-                          {{ data[indextr].nameCharge }}
                         </vs-td>
                         <vs-td :data="data[indextr].first_name">
                           {{ data[indextr].first_name }}
@@ -370,32 +408,17 @@
                         <vs-td :data="data[indextr].last_name">
                           {{ data[indextr].last_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].identification">
-                          {{ data[indextr].identification }}
-                        </vs-td>
                         <vs-td :data="data[indextr].email">
                           {{ data[indextr].email }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].date_of_birth">
-                          {{ data[indextr].date_of_birth }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].contact_cell_phone">
-                          {{ data[indextr].contact_cell_phone }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].id_house_bl_person">
-                          {{ data[indextr].id_house_bl_person }}
                         </vs-td>
                         <vs-td :data="data[indextr].nameOperation">
                           {{ data[indextr].nameOperation }}
                         </vs-td>
+                       <vs-td>
+                          {{ data[indextr].ro }}
+                        </vs-td>
                         <vs-td>
-                          <vs-button
-                            class="mr-1 ml-1"
-                            radius
-                            color="primary"
-                            type="border"
-                            icon="visibility"
-                          ></vs-button>
+                          {{ data[indextr].roClose }}
                         </vs-td>
                       </vs-tr>
                     </template>
@@ -409,19 +432,14 @@
                       <vs-th> # </vs-th>
                       <vs-th> División </vs-th>
                       <vs-th> Sucursal </vs-th>
-                      <vs-th> Genero </vs-th>
                       <vs-th> Estado </vs-th>
                       <vs-th> Perfil </vs-th>
-                      <vs-th> Cargo </vs-th>
                       <vs-th> Nombres </vs-th>
                       <vs-th> Apellidos </vs-th>
-                      <vs-th> Identidficación </vs-th>
                       <vs-th> Correo </vs-th>
-                      <vs-th> Fecha Nacimiento </vs-th>
-                      <vs-th> Numero De Contacto </vs-th>
-                      <vs-th> Id House </vs-th>
                       <vs-th> Operación </vs-th>
-                      <vs-th>Acciones</vs-th>
+                      <vs-th> R.O Abiertos </vs-th>
+                      <vs-th> R.O Cerrados </vs-th>
                     </template>
 
                     <template
@@ -441,17 +459,11 @@
                         <vs-td :data="data[indextr].nameBranchOffice">
                           {{ data[indextr].nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameGender">
-                          {{ data[indextr].nameGender }}
-                        </vs-td>
                         <vs-td :data="data[indextr].nameStatus">
                           {{ data[indextr].nameStatus }}
                         </vs-td>
                         <vs-td :data="data[indextr].nameRol">
                           {{ data[indextr].nameRol }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].nameCharge">
-                          {{ data[indextr].nameCharge }}
                         </vs-td>
                         <vs-td :data="data[indextr].first_name">
                           {{ data[indextr].first_name }}
@@ -459,32 +471,17 @@
                         <vs-td :data="data[indextr].last_name">
                           {{ data[indextr].last_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].identification">
-                          {{ data[indextr].identification }}
-                        </vs-td>
                         <vs-td :data="data[indextr].email">
                           {{ data[indextr].email }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].date_of_birth">
-                          {{ data[indextr].date_of_birth }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].contact_cell_phone">
-                          {{ data[indextr].contact_cell_phone }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].id_house_bl_person">
-                          {{ data[indextr].id_house_bl_person }}
                         </vs-td>
                         <vs-td :data="data[indextr].nameOperation">
                           {{ data[indextr].nameOperation }}
                         </vs-td>
                         <vs-td>
-                          <vs-button
-                            class="mr-1 ml-1"
-                            radius
-                            color="primary"
-                            type="border"
-                            icon="visibility"
-                          ></vs-button>
+                          {{ data[indextr].ro }}
+                        </vs-td>
+                        <vs-td>
+                          {{ data[indextr].roClose }}
                         </vs-td>
                       </vs-tr>
                     </template>
@@ -499,21 +496,15 @@
                       <vs-th> # </vs-th>
                       <vs-th> División </vs-th>
                       <vs-th> Sucursal </vs-th>
-                      <vs-th> Genero </vs-th>
                       <vs-th> Estado </vs-th>
                       <vs-th> Perfil </vs-th>
-                      <vs-th> Cargo </vs-th>
                       <vs-th> Nombres </vs-th>
                       <vs-th> Apellidos </vs-th>
-                      <vs-th> Identidficación </vs-th>
                       <vs-th> Correo </vs-th>
-                      <vs-th> Fecha Nacimiento </vs-th>
-                      <vs-th> Numero De Contacto </vs-th>
-                      <vs-th> Id House </vs-th>
                       <vs-th> Operación </vs-th>
-                      <vs-th>Acciones</vs-th>
+                      <vs-th> R.O Abiertos </vs-th>
+                      <vs-th> R.O Cerrados </vs-th>
                     </template>
-
                     <template slot-scope="{ data }">
                       <vs-tr
                         :key="indextr"
@@ -528,17 +519,11 @@
                         <vs-td :data="data[indextr].nameBranchOffice">
                           {{ data[indextr].nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameGender">
-                          {{ data[indextr].nameGender }}
-                        </vs-td>
                         <vs-td :data="data[indextr].nameStatus">
                           {{ data[indextr].nameStatus }}
                         </vs-td>
                         <vs-td :data="data[indextr].nameRol">
                           {{ data[indextr].nameRol }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].nameCharge">
-                          {{ data[indextr].nameCharge }}
                         </vs-td>
                         <vs-td :data="data[indextr].first_name">
                           {{ data[indextr].first_name }}
@@ -546,32 +531,17 @@
                         <vs-td :data="data[indextr].last_name">
                           {{ data[indextr].last_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].identification">
-                          {{ data[indextr].identification }}
-                        </vs-td>
                         <vs-td :data="data[indextr].email">
                           {{ data[indextr].email }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].date_of_birth">
-                          {{ data[indextr].date_of_birth }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].contact_cell_phone">
-                          {{ data[indextr].contact_cell_phone }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].id_house_bl_person">
-                          {{ data[indextr].id_house_bl_person }}
                         </vs-td>
                         <vs-td :data="data[indextr].nameOperation">
                           {{ data[indextr].nameOperation }}
                         </vs-td>
+                       <vs-td>
+                          {{ data[indextr].ro }}
+                        </vs-td>
                         <vs-td>
-                          <vs-button
-                            class="mr-1 ml-1"
-                            radius
-                            color="primary"
-                            type="border"
-                            icon="visibility"
-                          ></vs-button>
+                          {{ data[indextr].roClose }}
                         </vs-td>
                       </vs-tr>
                     </template>
@@ -586,21 +556,15 @@
                       <vs-th> # </vs-th>
                       <vs-th> División </vs-th>
                       <vs-th> Sucursal </vs-th>
-                      <vs-th> Genero </vs-th>
                       <vs-th> Estado </vs-th>
                       <vs-th> Perfil </vs-th>
-                      <vs-th> Cargo </vs-th>
                       <vs-th> Nombres </vs-th>
                       <vs-th> Apellidos </vs-th>
-                      <vs-th> Identidficación </vs-th>
                       <vs-th> Correo </vs-th>
-                      <vs-th> Fecha Nacimiento </vs-th>
-                      <vs-th> Numero De Contacto </vs-th>
-                      <vs-th> Id House </vs-th>
                       <vs-th> Operación </vs-th>
-                      <vs-th>Acciones</vs-th>
+                      <vs-th> R.O Abiertos </vs-th>
+                      <vs-th> R.O Cerrados </vs-th>
                     </template>
-
                     <template slot-scope="{ data }">
                       <vs-tr
                         :key="indextr"
@@ -615,17 +579,11 @@
                         <vs-td :data="data[indextr].nameBranchOffice">
                           {{ data[indextr].nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameGender">
-                          {{ data[indextr].nameGender }}
-                        </vs-td>
                         <vs-td :data="data[indextr].nameStatus">
                           {{ data[indextr].nameStatus }}
                         </vs-td>
                         <vs-td :data="data[indextr].nameRol">
                           {{ data[indextr].nameRol }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].nameCharge">
-                          {{ data[indextr].nameCharge }}
                         </vs-td>
                         <vs-td :data="data[indextr].first_name">
                           {{ data[indextr].first_name }}
@@ -633,45 +591,23 @@
                         <vs-td :data="data[indextr].last_name">
                           {{ data[indextr].last_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].identification">
-                          {{ data[indextr].identification }}
-                        </vs-td>
                         <vs-td :data="data[indextr].email">
                           {{ data[indextr].email }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].date_of_birth">
-                          {{ data[indextr].date_of_birth }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].contact_cell_phone">
-                          {{ data[indextr].contact_cell_phone }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].id_house_bl_person">
-                          {{ data[indextr].id_house_bl_person }}
                         </vs-td>
                         <vs-td :data="data[indextr].nameOperation">
                           {{ data[indextr].nameOperation }}
                         </vs-td>
                         <vs-td>
-                          <vs-button
-                            class="mr-1 ml-1"
-                            radius
-                            color="primary"
-                            type="border"
-                            icon="visibility"
-                          ></vs-button>
+                          {{ data[indextr].ro }}
+                        </vs-td>
+                        <vs-td>
+                          {{ data[indextr].roClose }}
                         </vs-td>
                       </vs-tr>
                     </template>
                   </vs-table>
                 </div>
               </vs-tab>
-
-
-
-
-
-
-
               <vs-tab label="Tercera Linea" v-if="showUserAuth[0].rol_id == 2">
                 <div class="con-tab-ejemplo">
                   <vs-table :data="userThirdLinesAreaMaritime">
@@ -680,21 +616,15 @@
                       <vs-th> # </vs-th>
                       <vs-th> División </vs-th>
                       <vs-th> Sucursal </vs-th>
-                      <vs-th> Genero </vs-th>
                       <vs-th> Estado </vs-th>
                       <vs-th> Perfil </vs-th>
-                      <vs-th> Cargo </vs-th>
                       <vs-th> Nombres </vs-th>
                       <vs-th> Apellidos </vs-th>
-                      <vs-th> Identidficación </vs-th>
                       <vs-th> Correo </vs-th>
-                      <vs-th> Fecha Nacimiento </vs-th>
-                      <vs-th> Numero De Contacto </vs-th>
-                      <vs-th> Id House </vs-th>
                       <vs-th> Operación </vs-th>
-                      <vs-th>Acciones</vs-th>
+                      <vs-th> R.O Abiertos </vs-th>
+                      <vs-th> R.O Cerrados </vs-th>
                     </template>
-
                     <template slot-scope="{ data }">
                       <vs-tr
                         :key="indextr"
@@ -709,17 +639,11 @@
                         <vs-td :data="data[indextr].nameBranchOffice">
                           {{ data[indextr].nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameGender">
-                          {{ data[indextr].nameGender }}
-                        </vs-td>
                         <vs-td :data="data[indextr].nameStatus">
                           {{ data[indextr].nameStatus }}
                         </vs-td>
                         <vs-td :data="data[indextr].nameRol">
                           {{ data[indextr].nameRol }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].nameCharge">
-                          {{ data[indextr].nameCharge }}
                         </vs-td>
                         <vs-td :data="data[indextr].first_name">
                           {{ data[indextr].first_name }}
@@ -727,32 +651,79 @@
                         <vs-td :data="data[indextr].last_name">
                           {{ data[indextr].last_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].identification">
-                          {{ data[indextr].identification }}
-                        </vs-td>
                         <vs-td :data="data[indextr].email">
                           {{ data[indextr].email }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].date_of_birth">
-                          {{ data[indextr].date_of_birth }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].contact_cell_phone">
-                          {{ data[indextr].contact_cell_phone }}
-                        </vs-td>
-                        <vs-td :data="data[indextr].id_house_bl_person">
-                          {{ data[indextr].id_house_bl_person }}
                         </vs-td>
                         <vs-td :data="data[indextr].nameOperation">
                           {{ data[indextr].nameOperation }}
                         </vs-td>
                         <vs-td>
-                          <vs-button
-                            class="mr-1 ml-1"
-                            radius
-                            color="primary"
-                            type="border"
-                            icon="visibility"
-                          ></vs-button>
+                          {{ data[indextr].ro }}
+                        </vs-td>
+                        <vs-td>
+                          {{ data[indextr].roClose }}
+                        </vs-td>
+                      </vs-tr>
+                    </template>
+                  </vs-table>
+                </div>
+              </vs-tab>
+              <vs-tab label="Tercera Linea" v-if="showUserAuth[0].rol_id == 3">
+                <div class="con-tab-ejemplo">
+                  <vs-table :data="userThirdLinesAreaAir">
+                    <template slot="header"> </template>
+                    <template slot="thead">
+                      <vs-th> # </vs-th>
+                      <vs-th> División </vs-th>
+                      <vs-th> Sucursal </vs-th>
+                      <vs-th> Estado </vs-th>
+                      <vs-th> Perfil </vs-th>
+                      <vs-th> Nombres </vs-th>
+                      <vs-th> Apellidos </vs-th>
+                      <vs-th> Correo </vs-th>
+                      <vs-th> Operación </vs-th>
+                      <vs-th> R.O Abiertos </vs-th>
+                      <vs-th> R.O Cerrados </vs-th>
+                    </template>
+                    <template slot-scope="{ data }">
+                      <vs-tr
+                        :key="indextr"
+                        v-for="(tr, indextr) in userThirdLinesAreaAir"
+                      >
+                        <vs-td :data="data[indextr].id">
+                          {{ data[indextr].id }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameDivision">
+                          {{ data[indextr].nameDivision }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameBranchOffice">
+                          {{ data[indextr].nameBranchOffice }}
+                        </vs-td>
+
+                        <vs-td :data="data[indextr].nameStatus">
+                          {{ data[indextr].nameStatus }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].nameRol">
+                          {{ data[indextr].nameRol }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].first_name">
+                          {{ data[indextr].first_name }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].last_name">
+                          {{ data[indextr].last_name }}
+                        </vs-td>
+                        <vs-td :data="data[indextr].email">
+                          {{ data[indextr].email }}
+                        </vs-td>
+
+                        <vs-td :data="data[indextr].nameOperation">
+                          {{ data[indextr].nameOperation }}
+                        </vs-td>
+                        <vs-td>
+                          {{ data[indextr].ro }}
+                        </vs-td>
+                        <vs-td>
+                          {{ data[indextr].roClose }}
                         </vs-td>
                       </vs-tr>
                     </template>
@@ -764,145 +735,6 @@
         </vs-card>
       </vs-col>
     </vs-row>
-    <vs-prompt
-      :title="'Actividad del usuario Hoy'"
-      accept-text="Aceptar"
-      cancel-text="Cancelar"
-      @cancel="val = ''"
-      @accept="acceptAlert"
-      @close="close"
-      :active.sync="activePrompt"
-    >
-      <div class="con-exemple-prompt mt-5">
-        <vs-row>
-          <vs-col
-            vs-type="flex"
-            vs-justify="center"
-            vs-align="center"
-            vs-w="12"
-          >
-            <vs-col
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="3"
-            >
-              <vs-row vs-justify="center">
-                <vs-col
-                  type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="11"
-                >
-                  <span>abiertos</span>
-                  <div>
-                    <span
-                      class="material-icons mt-5"
-                      style="
-                        font-size: 70px;
-                        color: #ff5000;
-                        border-radius: 10px;
-                      "
-                    >
-                      inventory
-                    </span>
-                    <span
-                      class="ml-5 mt-5 mb-3"
-                      style="
-                        margin-top: -50px !important;
-                        display: block;
-                        margin-left: 150px !important;
-                        font-size: 20px;
-                      "
-                      >{{ rosUserId }}</span
-                    >
-                  </div>
-                </vs-col>
-              </vs-row>
-            </vs-col>
-            <vs-col
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="3"
-            >
-              <vs-row vs-justify="center">
-                <vs-col
-                  type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="11"
-                >
-                  <span>Pendientes</span>
-                  <div>
-                    <span
-                      class="material-icons mt-5"
-                      style="
-                        font-size: 70px;
-                        color: #ff5000;
-                        border-radius: 10px;
-                      "
-                    >
-                      watch_later
-                    </span>
-                    <span
-                      class="ml-5 mb-3"
-                      style="
-                        margin-top: -50px !important;
-                        display: block;
-                        margin-left: 150px !important;
-                        font-size: 20px;
-                      "
-                      >{{ roPendingUserId }}</span
-                    >
-                  </div>
-                </vs-col>
-              </vs-row>
-            </vs-col>
-            <vs-col
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="3"
-            >
-              <vs-row vs-justify="center">
-                <vs-col
-                  type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="11"
-                >
-                  <span>Cerrados</span>
-
-                  <div>
-                    <span
-                      class="material-icons mt-5"
-                      style="
-                        font-size: 70px;
-                        color: #ff5000;
-                        border-radius: 10px;
-                      "
-                    >
-                      archive
-                    </span>
-                    <span
-                      class="ml-5 mb-3"
-                      style="
-                        margin-top: -50px !important;
-                        display: block;
-                        margin-left: 150px !important;
-                        font-size: 20px;
-                      "
-                      >{{ roCloseUserId }}</span
-                    >
-                  </div>
-                </vs-col>
-              </vs-row>
-            </vs-col>
-          </vs-col>
-        </vs-row>
-      </div>
-    </vs-prompt>
   </div>
 </template>
 <script>
@@ -921,20 +753,44 @@ export default {
       userThirdLines: {},
       userThirdLine: {},
       userThirdLinesAreaMaritime: {},
+      userThirdLinesAreaAir: {},
       activePrompt: false,
-      roPending: {},
-      roClose: {},
+      roPendingAdmin: {},
+      roCloseAdmin: {},
       user: {},
-      ro: {},
+      countRoAdmin: {},
       rosUserId: {},
       showUserAuth: [],
+      roOpenMaritimeAndInlad: [],
+      roPendingMaritimeAndInlad: [],
+      roClosedMaritimeAndInlad: [],
+      roOpenAir: [],
+      roPendingAir: [],
+      roClosedAir: [],
+      OpenRoDirector: [],
+      OpenRoBossOperations: [],
+      OpenRoMaritime: [],
+      OpenRoAir: [],
+      OpenRoSalesM: [],
+      OpenRoInland: [],
+      openRoAirOperation: [],
+      openRoMaritimeOperation: [],
+      openRoSalesEx: [],
+      openRoSalesM: [],
+      closeRoDirector: [],
+      closeRoBossOperations: [],
+      closeRoMaritime: [],
+      closeRoAir: [],
+      closeRoSales: [],
+      closeRoSalesMm: [],
+      closeRoInland: [],
+      closeRoAirOperation: [],
+      closeRoMaritimeOperation: [],
+      closeRoSalesEx: [],
+      closeRoSalesM: [],
     };
   },
   methods: {
-    openModal(id) {
-      this.activePrompt = true;
-      this.data = id;
-    },
     deatilOperation() {
       this.$router.push("/panel/show-detail-operation");
     },
@@ -948,35 +804,49 @@ export default {
         this.userSecondLine = res.data.userSecondLine;
         this.userThirdLine = res.data.userThirdLine;
         this.user = res.data.user;
-        this.ro = res.data.ro;
-        this.roPending = res.data.roPending;
-        this.roClose = res.data.roClose;
+        this.countRoAdmin = res.data.countRoAdmin;
+        this.roPendingAdmin = res.data.roPendingAdmin;
+        this.roCloseAdmin = res.data.roCloseAdmin;
         this.rosUserId = res.data.rosUserId;
         this.roPendingUserId = res.data.roPendingUserId;
         this.roCloseUserId = res.data.roCloseUserId;
         this.userSecondLines = res.data.userSecondLines;
         this.userThirdLines = res.data.userThirdLines;
         this.userThirdLinesAreaMaritime = res.data.userThirdLinesAreaMaritime;
+        this.userThirdLinesAreaAir = res.data.userThirdLinesAreaAir;
+        this.roOpenMaritimeAndInlad = res.data.roOpenMaritimeAndInlad;
+        this.roPendingMaritimeAndInlad = res.data.roPendingMaritimeAndInlad;
+        this.roClosedMaritimeAndInlad = res.data.roClosedMaritimeAndInlad;
+        this.roOpenAir = res.data.roOpenAir;
+        this.roPendingAir = res.data.roPendingAir;
+        this.roClosedAir = res.data.roClosedAir;
+        this.OpenRoDirector = res.data.OpenRoDirector;
+        this.OpenRoBossOperations = res.data.OpenRoBossOperations;
+        this.OpenRoMaritime = res.data.OpenRoMaritime;
+        this.OpenRoAir = res.data.OpenRoAir;
+        this.OpenRoSalesM = res.data.OpenRoSalesM;
+        this.OpenRoInland = res.data.OpenRoInland;
+        this.openRoAirOperation = res.data.openRoAirOperation;
+        this.openRoMaritimeOperation = res.data.openRoMaritimeOperation;
+        this.openRoSalesEx = res.data.openRoSalesEx;
+        this.openRoSalesM = res.data.openRoSalesM;
+        this.closeRoDirector = res.data.closeRoDirector;
+        this.closeRoBossOperations = res.data.closeRoBossOperations;
+        this.closeRoMaritime = res.data.closeRoMaritime;
+        this.closeRoAir = res.data.closeRoAir;
+        this.closeRoSales = res.data.closeRoSales;
+        this.closeRoSalesMm = res.data.closeRoSalesMm;
+        this.closeRoInland = res.data.closeRoInland;
+        this.closeRoAirOperation = res.data.closeRoAirOperation;
+        this.closeRoMaritimeOperation = res.data.closeRoMaritimeOperation;
+        this.closeRoSalesEx = res.data.closeRoSalesEx;
+        this.closeRoSalesM = res.data.closeRoSalesM;
       });
     },
     showUser() {
       let url = dominio.url + "/api/mostar-usuario-autentificado";
       axios.get(url).then((res) => {
         this.showUserAuth = res.data.showUserAuth;
-      });
-    },
-    acceptAlert(color) {
-      this.$vs.notify({
-        color: "success",
-        title: "Dialogo",
-        text: "Cerrado",
-      });
-    },
-    close() {
-      this.$vs.notify({
-        color: "danger",
-        title: "Dialogo",
-        text: "Cerrado",
       });
     },
   },

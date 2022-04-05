@@ -143,7 +143,7 @@
                 <vs-input
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
-                  label-placeholder="Emisión"
+                  label-placeholder="Emisión HBL"
                   v-model="showRoDisabled.issue.name"
                   disabled
                 />

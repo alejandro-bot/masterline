@@ -105,6 +105,14 @@ const router = new Router({
 					}
         },
         {
+          path: 'assign-ro//:id',
+          name: 'assign-ro',
+          component: () => import('./views/AssignRo.vue'),
+          meta: {
+						module: 'assign-ro'
+					}
+        },
+        {
           path: 'typing-template',
           name: 'typing-template',
           component: () => import('./views/TypingTemplate.vue'),
