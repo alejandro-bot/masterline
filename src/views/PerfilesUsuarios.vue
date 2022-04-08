@@ -10,6 +10,7 @@
             color="primary"
             type="relief"
             icon="person_add"
+            v-if="this.$store.state.user.permissions.includes('BOTON CREAR ROL')"
             >Crear Rol</vs-button
           >
         </vs-col>
@@ -20,6 +21,7 @@
             color="primary"
             type="relief"
             icon="person_add"
+            v-if="this.$store.state.user.permissions.includes('BOTON CREAR PERMISO')"
             >Crear Permisos</vs-button
           >
         </vs-col>
@@ -46,13 +48,31 @@
                     {{ item.name }}
                   </vs-td>
                   <vs-td>
-                    <vs-button
-                      @click="openModal(item.id)"
-                      radius
-                      color="success"
-                      type="border"
-                      icon="list"
-                    ></vs-button>
+                    <vs-col
+                      vs-type="flex"
+                      vs-justify="left"
+                      vs-align="center"
+                      vs-w="12"
+                    >
+                      <router-link :to="'/panel/edit-permissions-rol/' + item.id" v-if="this.$store.state.user.permissions.includes('BOTON VER PERMISOS')">
+                        <vs-button
+                          class="mr-3"
+                          radius
+                          color="success"
+                          type="border"
+                          icon="visibility"
+                        ></vs-button>
+                      </router-link>
+                      <router-link :to="'/panel/permissions-user/' + item.id" v-if="this.$store.state.user.permissions.includes('BOTON ASGINAR PERMISOS')">
+                        <vs-button
+                          class="ml-1"
+                          radius
+                          color="primary"
+                          type="border"
+                          icon="add"
+                        ></vs-button>
+                      </router-link>
+                    </vs-col>
                   </vs-td>
                 </vs-tr>
               </template>
@@ -61,33 +81,6 @@
         </vs-card>
       </vs-col>
     </vs-row>
-    <vs-prompt
-      :title="'Permisos De este Usuario'"
-      accept-text="Aceptar"
-      cancel-text="Cancelar"
-      @cancel="val = ''"
-      @accept="acceptAlert"
-      @close="close"
-      :active.sync="activePrompt"
-    >
-      <div class="con-exemple-prompt">
-        <vs-row>
-          <vs-col vs-type="flex" vs-justify="left" vs-align="center" vs-w="12">
-            <ul class="centerx mt-3 mb-3">
-              <li :key="index" v-for="(item, index) in showPermissions">
-                <vs-checkbox
-                  class="mt-2 mb-2"
-                  color="success"
-                  :id="'check' + index"
-                  v-model="item.estado"
-                  >{{ item.name }}</vs-checkbox
-                >
-              </li>
-            </ul>
-          </vs-col>
-        </vs-row>
-      </div>
-    </vs-prompt>
     <vs-prompt
       :title="'Crear Permiso'"
       accept-text="Aceptar"
@@ -137,12 +130,13 @@ export default {
       roles: {},
       checkBox1: true,
       showPermissions: [],
+      userPermissions: [],
       form: {
         datos: [],
         rol: "",
       },
       formPermission: {
-        name: ''
+        name: "",
       },
     };
   },
@@ -158,6 +152,7 @@ export default {
       axios.get(url).then((res) => {
         this.roles = res.data.roles;
         this.showPermissions = res.data.showPermissions;
+        this.userPermissions = res.data.userPermissions;
       });
     },
     openModal(id) {
@@ -210,8 +205,8 @@ export default {
         .then((res) => {
           if (res.data.code == 200) {
             toastr.success(res.data.message);
-           this.showRoles();
-           this.formPermission.name = '';
+            this.showRoles();
+            this.formPermission.name = "";
             this.$vs.notify({
               color: "success",
               title: "Dialogo",
@@ -246,5 +241,6 @@ export default {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
+
 </style>
 

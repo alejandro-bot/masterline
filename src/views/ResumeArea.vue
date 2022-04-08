@@ -9,7 +9,16 @@
       >Volver a Inicio</vs-button
     >
     <vs-tabs :color="colorx">
-      <vs-tab @click="colorx = 'white'" icon="directions_boat" label="">
+      <vs-tab
+        @click="colorx = 'white'"
+        icon="directions_boat"
+        label=""
+        v-if="
+          this.$store.state.user.permissions.includes(
+            'VER RESUMEN AREA MARITIMO'
+          )
+        "
+      >
         <div class="con-tab-ejemplo">
           <vs-row vs-justify="center" class="mt-5">
             <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
@@ -321,12 +330,22 @@
                           vs-align="center"
                           vs-w="12"
                         >
-                          <apexchart
+                          <graphic
+                            class="mt-5 mb-3"
+                            titulo="Tipos De Envio"
+                            :arrayData="TypeSendArray"
+                            :labels="TypeSendLabel"
+                            type="bar"
+                            :key="1"
+                            style="width: 500px"
+                          >
+                          </graphic>
+                          <!-- <apexchart
                             width="500"
                             type="donut"
                             :options="options1"
                             :series="nose"
-                          ></apexchart>
+                          ></apexchart> -->
                         </vs-col>
                       </vs-row>
                     </div>
@@ -462,13 +481,10 @@
               vs-w="12"
             >
               <vs-card class="con-vs-cards">
-                <div slot="header">
-                </div>
+                <div slot="header"></div>
                 <div>
                   <vs-table :data="users">
-                    <template slot="header">
-
-                    </template>
+                    <template slot="header"> </template>
                     <template slot="thead">
                       <vs-th> Email </vs-th>
                       <vs-th> Name </vs-th>
@@ -502,7 +518,16 @@
           </vs-row>
         </div>
       </vs-tab>
-      <vs-tab @click="colorx = 'white'" icon="local_shipping" label="">
+      <vs-tab
+        @click="colorx = 'white'"
+        icon="local_shipping"
+        label=""
+        v-if="
+          this.$store.state.user.permissions.includes(
+            'VER RESUMEN AREA TERRESTRE'
+          )
+        "
+      >
         <div class="con-tab-ejemplo">
           <vs-row vs-justify="center" class="mt-5">
             <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
@@ -823,7 +848,11 @@
           </vs-row>
         </div>
       </vs-tab>
-      <vs-tab @click="colorx = 'white'" icon="flight_takeoff" label="">
+      <vs-tab @click="colorx = 'white'" icon="flight_takeoff" label=""  v-if="
+          this.$store.state.user.permissions.includes(
+            'VER RESUMEN AREA AEREO'
+          )
+        ">
         <div class="con-tab-ejemplo">
           <vs-row vs-justify="center" class="mt-5">
             <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
@@ -1148,9 +1177,14 @@
   </div>
 </template>
 <script>
+import Graphic from "./Graphic.vue";
+import { dominio } from "../dominio.js";
 export default {
+  components: { Graphic },
   data() {
     return {
+      TypeSendArray: [],
+      TypeSendLabel: [],
       colorx: "white",
       options: {
         chart: {
@@ -1480,9 +1514,36 @@ export default {
       ],
     };
   },
+  created() {
+    this.graphifTypeSend();
+  },
   methods: {
     returnHome() {
       this.$router.push("/panel");
+    },
+    graphifTypeSend() {
+      let url = dominio.url + "/api/consultar-tipos-envio-grafica";
+      axios.get(url).then((res) => {
+        var TypeSendArray = res.data.TypeSendArray;
+        var TypeSendLabel = res.data.TypeSendLabel;
+        TypeSendLabel.forEach((element) => {
+          this.TypeSendLabel.push(element);
+        });
+        var x = Object.values(TypeSendArray);
+        x.forEach((element) => {
+          console.log("element", element);
+          this.TypeSendArray.push(
+            {
+              data: [element.EXPORTACIÓN],
+            },
+            {
+              data: [element.IMPORTACIÓN],
+            }
+          );
+        });
+        console.log("this.TypeSendArray", this.TypeSendArray);
+        console.log("this.TypeSendLabel", this.TypeSendLabel);
+      });
     },
   },
 };

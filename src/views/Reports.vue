@@ -75,8 +75,8 @@
                   color="primary"
                   type="relief"
                   icon="search"
-                  v-if="formTypeTransport.type_of_transport_id && formTypeTransport.ro"
-                  @click="showReportRos()"
+                  v-if="formTypeTransport.type_of_transport_id && formTypeTransport.ro && item.status_id == 1 && this.$store.state.user.permissions.includes('BOTON GENERAR REPORTE')"
+                  @click="downloadRo()"
                 ></vs-button>
               </vs-col>
             </vs-row>
@@ -112,6 +112,22 @@ export default {
       axios.get(url).then((res) => {
         this.typeOfTransport = res.data.typeOfTransport;
       });
+    },
+     downloadRo() {
+      let url = dominio.url + "/api/descargar-excel-ro";
+      axios
+        .get(url)
+        .then((res) => {
+          if (res.data.code == 200) {
+            toastr.success(res.data.message);
+          }
+          if (res.data.code == 500) {
+            toastr.error(res.data.message);
+          }
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };

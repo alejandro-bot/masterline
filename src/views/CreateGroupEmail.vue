@@ -6,6 +6,7 @@
       type="relief"
       icon="email"
       @click="openModal()"
+      v-if="showUserAuth[0].permissions[12].name == 'CREAR GRUPO DE CORREOS'"
       >Crear Grupo De Correos</vs-button
     >
     <vs-row class="mt-5" vs-justify="center">
@@ -34,7 +35,10 @@
                       vs-w="12"
                     >
                     </vs-col>
-                    <router-link :to="'/panel/store-group-email/' + item.id">
+                    <router-link
+                      :to="'/panel/store-group-email/' + item.id"
+                      v-if="showUserAuth[0].permissions[13].name == 'BOTON AGREGAR CORREOS'"
+                    >
                       <vs-button
                         class="mr-1 ml-1"
                         radius
@@ -43,7 +47,10 @@
                         icon="add"
                       ></vs-button>
                     </router-link>
-                    <router-link :to="'/panel/show-group-email/' + item.id">
+                    <router-link
+                      :to="'/panel/show-group-email/' + item.id"
+                      v-if="showUserAuth[0].permissions[14].name == 'BOTON VER CORREOS'"
+                    >
                       <vs-button
                         class="mr-1 ml-1"
                         radius
@@ -58,6 +65,8 @@
                       color="danger"
                       type="border"
                       icon="delete_outline"
+                      v-if="
+                        showUserAuth[0].permissions[15].name == 'BOTON ELIMINAR CORREOS'"
                       @click="deleteGroupEmail(item.id)"
                     ></vs-button>
                   </vs-row>
@@ -107,10 +116,12 @@ export default {
         name: "",
       },
       listNameGroups: {},
+      showUserAuth: [],
     };
   },
   created() {
     this.showMails();
+    this.showUser();
   },
   methods: {
     openModal(objeto) {
@@ -122,7 +133,7 @@ export default {
       axios.post(url, this.formCreateGroupEmail).then((res) => {
         if (res.data.code == 200) {
           toastr.success(res.data.message);
-          this.formCreateGroupEmail.name = '';
+          this.formCreateGroupEmail.name = "";
           this.close();
           this.showMails();
         }
@@ -155,6 +166,12 @@ export default {
         if (res.data.code == 500) {
           toastr.error(res.data.message);
         }
+      });
+    },
+    showUser() {
+      let url = dominio.url + "/api/mostar-usuario-autentificado";
+      axios.get(url).then((res) => {
+        this.showUserAuth = res.data.showUserAuth;
       });
     },
   },

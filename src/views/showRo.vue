@@ -4,6 +4,7 @@
       <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-col vs-type="flex" vs-justify="left" vs-align="left" vs-w="12">
           <vs-button
+            v-if="showUserAuth[0].permissions[6].name == 'CREAR RO'"
             class="buttonColor"
             color="primary"
             type="relief"
@@ -14,13 +15,7 @@
         </vs-col>
         <vs-col vs-type="flex" vs-justify="right" vs-align="right" vs-w="12">
           <vs-button
-            v-if="
-              showUserAuth[0].rol_id == 1 ||
-              showUserAuth[0].rol_id == 9 ||
-              showUserAuth[0].rol_id == 10 ||
-              showUserAuth[0].rol_id == 2 ||
-              showUserAuth[0].rol_id == 3
-            "
+            v-if="showUserAuth[0].permissions[7].name == 'VER RO ELIMINADOS'"
             class="buttonColor"
             color="primary"
             type="relief"
@@ -44,7 +39,7 @@
           <div slot="header" class=""></div>
           <vs-table max-items="12" pagination :data="total">
             <template slot="header">
-              <h3 class="mb-5">R.O Creados Por:</h3>
+              <h3 class="mb-5">R.O Creados Por: {{ showUserAuth[0].first_name }} {{ showUserAuth[0].last_name }}</h3>
             </template>
             <template slot="thead">
               <vs-th> R.O </vs-th>
@@ -109,7 +104,7 @@
                       vs-align="center"
                       vs-w="12"
                     >
-                      <router-link :to="'/panel/show-ro/' + item.id">
+                      <router-link :to="'/panel/show-ro/' + item.id" v-if="showUserAuth[0].permissions[8].name == 'BOTON VER RO'">
                         <vs-button
                           class="mr-1 ml-1"
                           radius
@@ -118,7 +113,7 @@
                           icon="visibility"
                         ></vs-button>
                       </router-link>
-                      <router-link :to="'/panel/update-ro/' + item.id">
+                      <router-link :to="'/panel/update-ro/' + item.id" v-if="showUserAuth[0].permissions[9].name == 'BOTON EDITAR RO'">
                         <vs-button
                           class="mr-1 ml-1"
                           radius
@@ -127,14 +122,8 @@
                           icon="edit"
                         ></vs-button>
                       </router-link>
-                      <router-link :to="'/panel/assign-ro/' + item.id">
+                      <router-link :to="'/panel/assign-ro/' + item.id" v-if="showUserAuth[0].permissions[10].name == 'BOTON ASIGNAR RO'">
                         <vs-button
-                          v-if="
-                            showUserAuth[0].rol_id == 9 ||
-                            showUserAuth[0].rol_id == 2 ||
-                            showUserAuth[0].rol_id == 3 ||
-                            showUserAuth[0].rol_id == 1
-                          "
                           class="mr-1 ml-1"
                           radius
                           color="warning"
@@ -143,13 +132,7 @@
                         ></vs-button>
                       </router-link>
                       <vs-button
-                        v-if="
-                          showUserAuth[0].rol_id == 1 ||
-                          showUserAuth[0].rol_id == 9 ||
-                          showUserAuth[0].rol_id == 10 ||
-                          showUserAuth[0].rol_id == 2 ||
-                          showUserAuth[0].rol_id == 3
-                        "
+                        v-if="showUserAuth[0].permissions[11].name == 'BOTON ELIMINAR RO'"
                         class="mr-1 ml-1"
                         radius
                         color="danger"
@@ -217,6 +200,7 @@
   </div>
 </template>
 <script>
+
 import { dominio } from "../dominio.js";
 export default {
   data() {
@@ -227,6 +211,7 @@ export default {
       showUserAuth: [],
     };
   },
+
   created() {
     this.showRos();
     this.showUser();

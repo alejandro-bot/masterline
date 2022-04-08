@@ -6,14 +6,7 @@ import colors from "@/../themeConfig.js"
 // /////////////////////////////////////////////
 // Variables
 // /////////////////////////////////////////////
-const userDefaults = {
-	id: 0,
-	name: null,
-	email: null,
-  email_verified_at: null,
-  created_at: null,
-  updated_at: null
-}
+const userDefaults = { id: null }
 
 
 // /////////////////////////////////////////////

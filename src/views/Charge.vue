@@ -6,6 +6,7 @@
       type="relief"
       icon="badge"
       @click="openModal()"
+      v-if="this.$store.state.user.permissions.includes('BOTON CREAR CARGOS')"
       >Crear Cargo</vs-button
     >
     <vs-row vs-justify="center" class="mt-5">
@@ -35,7 +36,14 @@
                         vs-align="left"
                         vs-w="12"
                       >
-                        <router-link :to="'/panel/update-charge/' + item.id">
+                        <router-link
+                          :to="'/panel/update-charge/' + item.id"
+                          v-if="
+                            this.$store.state.user.permissions.includes(
+                              'BOTON EDITAR CARGOS'
+                            )
+                          "
+                        >
                           <vs-button
                             class="mr-1 ml-1"
                             radius
@@ -50,6 +58,11 @@
                           color="danger"
                           type="border"
                           icon="delete_outline"
+                          v-if="
+                            this.$store.state.user.permissions.includes(
+                              'BOTON ELIMINAR CARGOS'
+                            )
+                          "
                           @click="deleteCharge(item.id)"
                         ></vs-button>
                       </vs-col>
@@ -231,8 +244,7 @@ export default {
 .vs-dialog {
   max-width: 450px !important;
 }
-.vs-button-primary.vs-button-filled
-{
+.vs-button-primary.vs-button-filled {
   background: #ff5000 !important;
 }
 </style>

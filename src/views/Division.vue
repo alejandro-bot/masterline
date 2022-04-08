@@ -6,6 +6,7 @@
       type="relief"
       icon="group_add"
       @click="openModal()"
+      v-if="this.$store.state.user.permissions.includes('BOTON CREAR DIVISION')"
       >Crear División</vs-button
     >
     <vs-row vs-justify="center" class="mt-5">
@@ -33,7 +34,7 @@
                         vs-align="left"
                         vs-w="12"
                       >
-                        <router-link :to="'/panel/update-division/' + item.id">
+                        <router-link :to="'/panel/update-division/' + item.id" v-if="this.$store.state.user.permissions.includes('BOTON EDITAR DIVISION')">
                           <vs-button
                             class="mr-1 ml-1"
                             radius
@@ -48,6 +49,7 @@
                           color="danger"
                           type="border"
                           icon="delete_outline"
+                          v-if="this.$store.state.user.permissions.includes('BOTON ELIMINAR DIVISION')"
                           @click="deleteDivision(item.id)"
                         ></vs-button>
                       </vs-col>

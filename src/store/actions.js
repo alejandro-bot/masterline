@@ -12,7 +12,7 @@ const actions = {
           const token = response.data.data.token;
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
           localStorage.setItem('access_token', token);
-          localStorage.setItem('user', JSON.stringify(response.data.data.user));
+          localStorage.setItem('user', JSON.stringify(response.data.showUserAuth[0]));
           context.commit('retrieveToken', token);
         }
         resolve(response);

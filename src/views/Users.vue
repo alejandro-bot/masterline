@@ -9,6 +9,7 @@
             color="primary"
             type="relief"
             icon="person_add"
+            v-if="this.$store.state.user.permissions.includes('BOTON CREAR USUARIO')"
             >Crear Usuario</vs-button
           >
         </vs-col>
@@ -19,6 +20,7 @@
             color="primary"
             type="relief"
             icon="person_add"
+            v-if="this.$store.state.user.permissions.includes('BOTON USUARIOS ACTIVOS')"
             >Usuarios Activos</vs-button
           >
         </vs-col>
@@ -74,7 +76,7 @@
                         color="warning"
                         type="border"
                         icon="lock_open"
-                        v-if="item.status_id == 1"
+                        v-if="item.status_id == 1 && this.$store.state.user.permissions.includes('BOTON INACTIVAR USUARIO')"
                         @click="inactiveUser(item.id)"
                       ></vs-button>
                       <vs-button
@@ -83,10 +85,10 @@
                         color="danger"
                         type="gradient"
                         icon="lock"
-                        v-if="item.status_id == 2"
+                        v-if="item.status_id == 2 && this.$store.state.user.permissions.includes('BOTON INACTIVAR USUARIO')"
                         @click="activeUser(item.id)"
                       ></vs-button>
-                      <router-link :to="'/panel/edit-user/' + item.id">
+                      <router-link :to="'/panel/edit-user/' + item.id"  v-if="this.$store.state.user.permissions.includes('BOTON EDITAR USUARIO')">
                         <vs-button
                           class="mr-1 ml-1"
                           radius
@@ -96,6 +98,7 @@
                         ></vs-button>
                       </router-link>
                       <vs-button
+                        v-if="this.$store.state.user.permissions.includes('BOTON VER USUARIO')"
                         class="mr-1 ml-1"
                         @click="openModal(item)"
                         radius
@@ -319,6 +322,7 @@ export default {
   },
   created() {
     this.showUser();
+    console.log('holas', this.$store.state.user.permissions.includes("BOTON VER USUARIO"));
   },
   methods: {
     openModal(objeto) {

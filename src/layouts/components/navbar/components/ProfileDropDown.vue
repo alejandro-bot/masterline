@@ -134,6 +134,7 @@ export default {
       let url = dominio.url + "/api/mostar-usuario-autentificado";
       axios.get(url).then((res) => {
         this.showUserAuth = res.data.showUserAuth;
+        localStorage.setItem('user', JSON.stringify(res.data.showUserAuth[0]));
       });
     },
     showProfile() {

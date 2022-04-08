@@ -1,6 +1,7 @@
 <template>
   <div>
     <vs-button
+      v-if="this.$store.state.user.permissions.includes('BOTON CREAR PLANTILLA')"
       class="buttonColor"
       color="primary"
       type="relief"
@@ -8,6 +9,7 @@
       @click="createTemplate()"
       >Crear Plantilla</vs-button
     >
+
     <vs-row vs-justify="center" class="mt-5">
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
@@ -39,7 +41,10 @@
                       vs-align="left"
                       vs-w="12"
                     >
-                      <router-link :to="'/panel/update-template/' + item.id">
+                      <router-link
+                        :to="'/panel/update-template/' + item.id"
+                        v-if="this.$store.state.user.permissions.includes('BOTON EDITAR PLANTILLA')"
+                      >
                         <vs-button
                           class="mr-1 ml-1"
                           radius
@@ -49,6 +54,7 @@
                         ></vs-button>
                       </router-link>
                       <vs-button
+                        v-if="this.$store.state.user.permissions.includes('BOTON ELIMINAR PLANTILLAS')"
                         class="mr-1 ml-1"
                         radius
                         color="danger"

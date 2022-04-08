@@ -6,6 +6,9 @@
       type="relief"
       icon="people"
       @click="openModal()"
+      v-if="
+        this.$store.state.user.permissions.includes('BOTON CREAR DEPENDENCIA')
+      "
       >Crear Dependencia</vs-button
     >
     <vs-row vs-justify="center" class="mt-5">
@@ -40,6 +43,11 @@
                       >
                         <router-link
                           :to="'/panel/update-dependency/' + item.id"
+                          v-if="
+                            this.$store.state.user.permissions.includes(
+                              'BOTON EDITAR DEPENDENCIA'
+                            )
+                          "
                         >
                           <vs-button
                             class="mr-1 ml-1"
@@ -55,6 +63,10 @@
                           color="danger"
                           type="border"
                           icon="delete_outline"
+                          v-if="
+                            this.$store.state.user.permissions.includes(
+                              'BOTON ELIMINAR DEPENDENCIA'
+                            )"
                           @click="deleteDependency(item.id)"
                         ></vs-button>
                       </vs-col>
@@ -191,7 +203,7 @@ export default {
           if (res.data.code == 200) {
             toastr.success(res.data.message);
             this.showDependency();
-            this.formCharge = '';
+            this.formCharge = "";
             this.$vs.notify({
               color: "success",
               title: "Dialogo",

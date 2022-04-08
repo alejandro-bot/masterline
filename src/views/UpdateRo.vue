@@ -355,7 +355,9 @@
                 <vs-input
                   class="ml-0 mr-4 mt-5 mb-4"
                   color="rgb(213, 14, 151)"
-                  :value="userCommercial.first_name + ' ' + userCommercial.last_name"
+                  :value="
+                    userCommercial.first_name + ' ' + userCommercial.last_name
+                  "
                   disabled
                 />
                 <div class="mt-1 ml-1 text-left" v-if="errors.commercial">
@@ -744,7 +746,7 @@ export default {
       listNameGroups: {},
       showImagesAttachedId: {},
       showCutImage: {},
-      userCommercial: {}
+      userCommercial: {},
     };
   },
   created() {
@@ -862,10 +864,12 @@ export default {
       });
     },
     updateRo(id) {
+      $("#loading-bg").css("display", "block");
       let url = dominio.url + "/api/actualizar-ro/" + id;
       axios
         .post(url, this.showRoDisabled)
         .then((res) => {
+          $("#loading-bg").fadeOut("slow");
           if (res.data.code == 200) {
             toastr.success(res.data.message);
             this.$router.push("/panel/show-ro");
