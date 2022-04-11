@@ -6,7 +6,7 @@
       type="relief"
       icon="badge"
       @click="openModal()"
-      v-if="this.$store.state.user.permissions.includes('BOTON CREAR CARGOS')"
+      v-if="showUserAuth[0].permissions[30].name == 'BOTON CREAR CARGOS'"
       >Crear Cargo</vs-button
     >
     <vs-row vs-justify="center" class="mt-5">
@@ -38,12 +38,7 @@
                       >
                         <router-link
                           :to="'/panel/update-charge/' + item.id"
-                          v-if="
-                            this.$store.state.user.permissions.includes(
-                              'BOTON EDITAR CARGOS'
-                            )
-                          "
-                        >
+                          v-if="showUserAuth[0].permissions[31].name == 'BOTON EDITAR CARGOS'">
                           <vs-button
                             class="mr-1 ml-1"
                             radius
@@ -59,10 +54,7 @@
                           type="border"
                           icon="delete_outline"
                           v-if="
-                            this.$store.state.user.permissions.includes(
-                              'BOTON ELIMINAR CARGOS'
-                            )
-                          "
+                            showUserAuth[0].permissions[32].name == 'BOTON ELIMINAR CARGOS'"
                           @click="deleteCharge(item.id)"
                         ></vs-button>
                       </vs-col>
@@ -141,11 +133,13 @@ export default {
         division_id: "",
       },
       charges: {},
+      showUserAuth: [],
     };
   },
   created() {
     this.showDivision();
     this.showcharges();
+    this.showUserAuthentificated();
   },
   methods: {
     openModal() {
@@ -210,6 +204,12 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    showUserAuthentificated() {
+      let url = dominio.url + "/api/mostar-usuario-autentificado";
+      axios.get(url).then((res) => {
+        this.showUserAuth = res.data.showUserAuth;
+      });
     },
   },
 };

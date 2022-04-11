@@ -1,7 +1,7 @@
 <template>
   <div>
     <vs-button
-      v-if="this.$store.state.user.permissions.includes('BOTON CREAR PLANTILLA')"
+      v-if="showUserAuth[0].permissions[43].name == 'BOTON CREAR PLANTILLA'"
       class="buttonColor"
       color="primary"
       type="relief"
@@ -43,7 +43,7 @@
                     >
                       <router-link
                         :to="'/panel/update-template/' + item.id"
-                        v-if="this.$store.state.user.permissions.includes('BOTON EDITAR PLANTILLA')"
+                        v-if="showUserAuth[0].permissions[44].name == 'BOTON EDITAR PLANTILLA'"
                       >
                         <vs-button
                           class="mr-1 ml-1"
@@ -54,7 +54,7 @@
                         ></vs-button>
                       </router-link>
                       <vs-button
-                        v-if="this.$store.state.user.permissions.includes('BOTON ELIMINAR PLANTILLAS')"
+                        v-if="showUserAuth[0].permissions[45].name == 'BOTON ELIMINAR PLANTILLAS'"
                         class="mr-1 ml-1"
                         radius
                         color="danger"
@@ -79,10 +79,12 @@ export default {
   data() {
     return {
       listProces: {},
+      showUserAuth: [],
     };
   },
   created() {
     this.listProcess();
+    this.showUserAuthentificated();
   },
   methods: {
     createTemplate() {
@@ -110,6 +112,12 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    showUserAuthentificated() {
+      let url = dominio.url + "/api/mostar-usuario-autentificado";
+      axios.get(url).then((res) => {
+        this.showUserAuth = res.data.showUserAuth;
+      });
     },
   },
 };

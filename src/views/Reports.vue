@@ -25,7 +25,7 @@
                 vs-type="flex"
                 vs-justify="right"
                 vs-align="center"
-                vs-w="4"
+                vs-w="6"
               >
                 <vs-select
                   class="selectExample ml-0 mr-5 mt-0 mb-3"
@@ -44,26 +44,9 @@
               <vs-col
                 class="mt-3"
                 vs-type="flex"
-                vs-justify="center"
-                vs-align="center"
-                vs-w="4"
-              >
-                 <vs-select
-                  class="selectExample ml-0 mr-5 mt-0 mb-3"
-                  label="Tipo De Documento"
-                  v-model="formTypeTransport.type_document"
-                >
-                  <vs-select-item :value="''" :text="'Seleccione'" />
-                  <vs-select-item :value="'Excel'" :text="'Excel'" />
-                  <vs-select-item :value="'Pdf'" :text="'Pdf'" />
-                </vs-select>
-              </vs-col>
-              <vs-col
-                class="mt-3"
-                vs-type="flex"
                 vs-justify="left"
                 vs-align="left"
-                vs-w="4"
+                vs-w="6"
               >
                 <vs-input
                   color="rgb(213, 14, 151)"
@@ -75,7 +58,7 @@
                   color="primary"
                   type="relief"
                   icon="search"
-                  v-if="formTypeTransport.type_of_transport_id && formTypeTransport.ro && item.status_id == 1 && this.$store.state.user.permissions.includes('BOTON GENERAR REPORTE')"
+                  v-if="formTypeTransport.type_of_transport_id && formTypeTransport.ro && showUserAuth[0].permissions[52].name == 'BOTON GENERAR REPORTE'"
                   @click="downloadRo()"
                 ></vs-button>
               </vs-col>
@@ -94,14 +77,15 @@ export default {
       formTypeTransport: {
         type_of_transport_id: "",
         ro: "",
-        type_document: ""
       },
+      showUserAuth: [],
       typeOfTransport: {},
       popupActivo4: false,
     };
   },
   created() {
     this.showTypeOfTransport();
+    this.showUser();
   },
   methods: {
     returnHome() {
@@ -128,6 +112,12 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    showUser() {
+      let url = dominio.url + "/api/mostar-usuario-autentificado";
+      axios.get(url).then((res) => {
+        this.showUserAuth = res.data.showUserAuth;
+      });
     },
   },
 };

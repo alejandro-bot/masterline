@@ -6,7 +6,7 @@
       type="relief"
       icon="group_add"
       @click="openModal()"
-      v-if="this.$store.state.user.permissions.includes('BOTON CREAR DIVISION')"
+      v-if="showUserAuth[0].permissions[26].name == 'BOTON CREAR DIVISION'"
       >Crear División</vs-button
     >
     <vs-row vs-justify="center" class="mt-5">
@@ -34,7 +34,7 @@
                         vs-align="left"
                         vs-w="12"
                       >
-                        <router-link :to="'/panel/update-division/' + item.id" v-if="this.$store.state.user.permissions.includes('BOTON EDITAR DIVISION')">
+                        <router-link :to="'/panel/update-division/' + item.id" v-if="showUserAuth[0].permissions[27].name == 'BOTON EDITAR DIVISION'">
                           <vs-button
                             class="mr-1 ml-1"
                             radius
@@ -49,7 +49,7 @@
                           color="danger"
                           type="border"
                           icon="delete_outline"
-                          v-if="this.$store.state.user.permissions.includes('BOTON ELIMINAR DIVISION')"
+                          v-if="showUserAuth[0].permissions[28].name == 'BOTON ELIMINAR DIVISION'"
                           @click="deleteDivision(item.id)"
                         ></vs-button>
                       </vs-col>
@@ -103,10 +103,12 @@ export default {
         name: "",
       },
       branchDivisions: {},
+      showUserAuth: [],
     };
   },
   created() {
     this.showDivision();
+    this.showUserAuthentificated();
   },
   methods: {
     openModal() {
@@ -164,6 +166,12 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    showUserAuthentificated() {
+      let url = dominio.url + "/api/mostar-usuario-autentificado";
+      axios.get(url).then((res) => {
+        this.showUserAuth = res.data.showUserAuth;
+      });
     },
   },
 };

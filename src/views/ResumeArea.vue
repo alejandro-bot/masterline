@@ -14,9 +14,7 @@
         icon="directions_boat"
         label=""
         v-if="
-          this.$store.state.user.permissions.includes(
-            'VER RESUMEN AREA MARITIMO'
-          )
+          showUserAuth[0].permissions[39].name == 'VER RESUMEN AREA MARITIMO'
         "
       >
         <div class="con-tab-ejemplo">
@@ -523,9 +521,7 @@
         icon="local_shipping"
         label=""
         v-if="
-          this.$store.state.user.permissions.includes(
-            'VER RESUMEN AREA TERRESTRE'
-          )
+          showUserAuth[0].permissions[40].name == 'VER RESUMEN AREA TERRESTRE'
         "
       >
         <div class="con-tab-ejemplo">
@@ -848,11 +844,12 @@
           </vs-row>
         </div>
       </vs-tab>
-      <vs-tab @click="colorx = 'white'" icon="flight_takeoff" label=""  v-if="
-          this.$store.state.user.permissions.includes(
-            'VER RESUMEN AREA AEREO'
-          )
-        ">
+      <vs-tab
+        @click="colorx = 'white'"
+        icon="flight_takeoff"
+        label=""
+        v-if="showUserAuth[0].permissions[41].name == 'VER RESUMEN AREA AEREO'"
+      >
         <div class="con-tab-ejemplo">
           <vs-row vs-justify="center" class="mt-5">
             <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
@@ -1183,6 +1180,7 @@ export default {
   components: { Graphic },
   data() {
     return {
+      showUserAuth: [],
       TypeSendArray: [],
       TypeSendLabel: [],
       colorx: "white",
@@ -1516,6 +1514,7 @@ export default {
   },
   created() {
     this.graphifTypeSend();
+    this.showUserAuthentificated();
   },
   methods: {
     returnHome() {
@@ -1541,8 +1540,12 @@ export default {
             }
           );
         });
-        console.log("this.TypeSendArray", this.TypeSendArray);
-        console.log("this.TypeSendLabel", this.TypeSendLabel);
+      });
+    },
+    showUserAuthentificated() {
+      let url = dominio.url + "/api/mostar-usuario-autentificado";
+      axios.get(url).then((res) => {
+        this.showUserAuth = res.data.showUserAuth;
       });
     },
   },

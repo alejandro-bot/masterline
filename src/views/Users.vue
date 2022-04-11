@@ -9,7 +9,7 @@
             color="primary"
             type="relief"
             icon="person_add"
-            v-if="this.$store.state.user.permissions.includes('BOTON CREAR USUARIO')"
+            v-if="showUserAuth[0].permissions[19].name == 'BOTON CREAR USUARIO'"
             >Crear Usuario</vs-button
           >
         </vs-col>
@@ -20,7 +20,7 @@
             color="primary"
             type="relief"
             icon="person_add"
-            v-if="this.$store.state.user.permissions.includes('BOTON USUARIOS ACTIVOS')"
+            v-if="showUserAuth[0].permissions[20].name == 'BOTON USUARIOS ACTIVOS'"
             >Usuarios Activos</vs-button
           >
         </vs-col>
@@ -76,7 +76,7 @@
                         color="warning"
                         type="border"
                         icon="lock_open"
-                        v-if="item.status_id == 1 && this.$store.state.user.permissions.includes('BOTON INACTIVAR USUARIO')"
+                        v-if="item.status_id == 1 && showUserAuth[0].permissions[21].name == 'BOTON INACTIVAR USUARIO'"
                         @click="inactiveUser(item.id)"
                       ></vs-button>
                       <vs-button
@@ -85,10 +85,10 @@
                         color="danger"
                         type="gradient"
                         icon="lock"
-                        v-if="item.status_id == 2 && this.$store.state.user.permissions.includes('BOTON INACTIVAR USUARIO')"
+                        v-if="item.status_id == 2 && showUserAuth[0].permissions[21].name == 'BOTON INACTIVAR USUARIO'"
                         @click="activeUser(item.id)"
                       ></vs-button>
-                      <router-link :to="'/panel/edit-user/' + item.id"  v-if="this.$store.state.user.permissions.includes('BOTON EDITAR USUARIO')">
+                      <router-link :to="'/panel/edit-user/' + item.id"  v-if="showUserAuth[0].permissions[22].name == 'BOTON EDITAR USUARIO'">
                         <vs-button
                           class="mr-1 ml-1"
                           radius
@@ -98,7 +98,7 @@
                         ></vs-button>
                       </router-link>
                       <vs-button
-                        v-if="this.$store.state.user.permissions.includes('BOTON VER USUARIO')"
+                        v-if="showUserAuth[0].permissions[23].name == 'BOTON VER USUARIO'"
                         class="mr-1 ml-1"
                         @click="openModal(item)"
                         radius
@@ -318,11 +318,12 @@ export default {
         status_id: 2,
       },
       activePrompt: false,
+      showUserAuth: [],
     };
   },
   created() {
     this.showUser();
-    console.log('holas', this.$store.state.user.permissions.includes("BOTON VER USUARIO"));
+    this.showUserAuthentificated();
   },
   methods: {
     openModal(objeto) {
@@ -377,6 +378,12 @@ export default {
         color: "danger",
         title: "Dialogo",
         text: "Cerrado",
+      });
+    },
+     showUserAuthentificated() {
+      let url = dominio.url + "/api/mostar-usuario-autentificado";
+      axios.get(url).then((res) => {
+        this.showUserAuth = res.data.showUserAuth;
       });
     },
   },

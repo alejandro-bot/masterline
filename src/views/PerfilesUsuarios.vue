@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- v-if="$page.props.user.can['admin.mostrar.roles']" -->
     <vs-row>
       <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-col vs-type="flex" vs-justify="left" vs-align="left" vs-w="12">
@@ -10,7 +9,7 @@
             color="primary"
             type="relief"
             icon="person_add"
-            v-if="this.$store.state.user.permissions.includes('BOTON CREAR ROL')"
+            v-if="showUserAuth[0].permissions[17].name == 'BOTON CREAR ROL'"
             >Crear Rol</vs-button
           >
         </vs-col>
@@ -21,7 +20,7 @@
             color="primary"
             type="relief"
             icon="person_add"
-            v-if="this.$store.state.user.permissions.includes('BOTON CREAR PERMISO')"
+            v-if="showUserAuth[0].permissions[49].name == 'BOTON CREAR PERMISO'"
             >Crear Permisos</vs-button
           >
         </vs-col>
@@ -54,7 +53,7 @@
                       vs-align="center"
                       vs-w="12"
                     >
-                      <router-link :to="'/panel/edit-permissions-rol/' + item.id" v-if="this.$store.state.user.permissions.includes('BOTON VER PERMISOS')">
+                      <router-link :to="'/panel/edit-permissions-rol/' + item.id" v-if="showUserAuth[0].permissions[50].name == 'BOTON VER PERMISOS'">
                         <vs-button
                           class="mr-3"
                           radius
@@ -63,7 +62,7 @@
                           icon="visibility"
                         ></vs-button>
                       </router-link>
-                      <router-link :to="'/panel/permissions-user/' + item.id" v-if="this.$store.state.user.permissions.includes('BOTON ASGINAR PERMISOS')">
+                      <router-link :to="'/panel/permissions-user/' + item.id" v-if="showUserAuth[0].permissions[51].name == 'BOTON ASGINAR PERMISOS'">
                         <vs-button
                           class="ml-1"
                           radius
@@ -138,10 +137,12 @@ export default {
       formPermission: {
         name: "",
       },
+      showUserAuth: [],
     };
   },
   created() {
     this.showRoles();
+    this.showUser();
   },
   methods: {
     createRol() {
@@ -220,6 +221,12 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    showUser() {
+      let url = dominio.url + "/api/mostar-usuario-autentificado";
+      axios.get(url).then((res) => {
+        this.showUserAuth = res.data.showUserAuth;
+      });
     },
   },
 };

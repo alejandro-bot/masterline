@@ -127,7 +127,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("destroyToken").then((response) => {
-        this.$router.push("/");
+       window.location.href = '/';
       });
     },
      showUser() {

@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <vs-row>
       <vs-col
         class="mt-5 mb-3 ml-3 mr-1"
@@ -10,7 +9,7 @@
         vs-w="12"
       >
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
-          <vs-card class="con-vs-cards mr-5" style="height: 350px !important" v-if="showUserAuth[0].permissions[0].name  == 'VER GESTION DIARIA'">
+          <vs-card class="con-vs-cards mr-5" style="height: 350px !important" v-if="showUserAuth[0].permissions[0].name == 'VER GESTIÓN DIARIA '">
             <div slot="header">
               <vs-images>
                 <vs-image
@@ -115,7 +114,7 @@
           </vs-card>
         </vs-col>
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
-          <vs-card class="con-vs-cards mr-2" style="height: 350px !important"  v-if="showUserAuth[0].permissions[1].name == 'VER RESUMEN GENERAL'">
+          <vs-card class="con-vs-cards mr-2" style="height: 350px !important" v-if="showUserAuth[0].permissions[1].name == 'VER RESUMEN GENERAL'">
             <div slot="header">
               <vs-images>
                 <vs-image
@@ -220,7 +219,7 @@
           </vs-card>
         </vs-col>
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
-          <vs-card class="con-vs-cards" style="height: 350px !important"  v-if="showUserAuth[0].permissions[2].name == 'VER SIN SEGUIMIENTO'">
+          <vs-card class="con-vs-cards" style="height: 350px !important" v-if="showUserAuth[0].permissions[2].name == 'VER SIN SEGUIMIENTO'">
             <div slot="header">
               <vs-images>
                 <vs-image
@@ -337,6 +336,13 @@
                 vs-w="12"
               >
                 <vs-col
+                  v-if="
+                    showUserAuth[0].rol_id == 6 ||
+                    showUserAuth[0].rol_id == 5 ||
+                    showUserAuth[0].rol_id == 2 ||
+                    showUserAuth[0].rol_id == 4 ||
+                    showUserAuth[0].rol_id == 3
+                  "
                   vs-type="flex"
                   vs-justify="center"
                   vs-align="center"
@@ -355,6 +361,13 @@
                   <span class="material-icons"> directions_boat_filled </span>
                 </vs-col>
                 <vs-col
+                  v-if="
+                    showUserAuth[0].rol_id == 6 ||
+                    showUserAuth[0].rol_id == 5 ||
+                    showUserAuth[0].rol_id == 2 ||
+                    showUserAuth[0].rol_id == 4 ||
+                    showUserAuth[0].rol_id == 3
+                  "
                   vs-type="flex"
                   vs-justify="center"
                   vs-align="center"
@@ -363,6 +376,7 @@
                   Importación
                 </vs-col>
                 <vs-col
+                  v-if="showUserAuth[0].rol_id == 9"
                   vs-type="flex"
                   vs-justify="center"
                   vs-align="center"
@@ -371,6 +385,13 @@
                   Maritimo
                 </vs-col>
                 <vs-col
+                  v-if="
+                    showUserAuth[0].rol_id == 6 ||
+                    showUserAuth[0].rol_id == 5 ||
+                    showUserAuth[0].rol_id == 2 ||
+                    showUserAuth[0].rol_id == 4 ||
+                    showUserAuth[0].rol_id == 3
+                  "
                   vs-type="flex"
                   vs-justify="center"
                   vs-align="center"
@@ -397,6 +418,13 @@
                 vs-w="12"
               >
                 <vs-col
+                  v-if="
+                    showUserAuth[0].rol_id == 6 ||
+                    showUserAuth[0].rol_id == 5 ||
+                    showUserAuth[0].rol_id == 2 ||
+                    showUserAuth[0].rol_id == 4 ||
+                    showUserAuth[0].rol_id == 3
+                  "
                   vs-type="flex"
                   vs-justify="center"
                   vs-align="center"
@@ -405,6 +433,7 @@
                   <span class="material-icons"> file_upload </span>
                 </vs-col>
                 <vs-col
+                  v-if="showUserAuth[0].rol_id == 9"
                   class="ml-1"
                   vs-type="flex"
                   vs-justify="left"
@@ -414,6 +443,13 @@
                   <span class="material-icons"> local_shipping </span>
                 </vs-col>
                 <vs-col
+                  v-if="
+                    showUserAuth[0].rol_id == 6 ||
+                    showUserAuth[0].rol_id == 5 ||
+                    showUserAuth[0].rol_id == 2 ||
+                    showUserAuth[0].rol_id == 4 ||
+                    showUserAuth[0].rol_id == 3
+                  "
                   vs-type="flex"
                   vs-justify="center"
                   vs-align="center"
@@ -422,6 +458,7 @@
                   Exportación
                 </vs-col>
                 <vs-col
+                  v-if="showUserAuth[0].rol_id == 9"
                   vs-type="flex"
                   vs-justify="center"
                   vs-align="center"
@@ -430,6 +467,7 @@
                   Terretre
                 </vs-col>
                 <vs-col
+                  v-if="showUserAuth[0].rol_id == 9"
                   vs-type="flex"
                   vs-justify="center"
                   vs-align="center"
@@ -438,6 +476,13 @@
                   {{ shoRoEdnaInland }}
                 </vs-col>
                 <vs-col
+                  v-if="
+                    showUserAuth[0].rol_id == 6 ||
+                    showUserAuth[0].rol_id == 5 ||
+                    showUserAuth[0].rol_id == 2 ||
+                    showUserAuth[0].rol_id == 4 ||
+                    showUserAuth[0].rol_id == 3
+                  "
                   vs-type="flex"
                   vs-justify="center"
                   vs-align="center"
@@ -447,6 +492,7 @@
                 </vs-col>
               </vs-col>
               <vs-col
+                v-if="showUserAuth[0].rol_id == 9"
                 class="ml-1 mt-4"
                 vs-type="flex"
                 vs-justify="left"
@@ -456,6 +502,7 @@
                 <span class="material-icons"> local_airport </span>
               </vs-col>
               <vs-col
+                v-if="showUserAuth[0].rol_id == 9"
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
@@ -464,6 +511,7 @@
                 Aereo
               </vs-col>
               <vs-col
+                v-if="showUserAuth[0].rol_id == 9"
                 class="ml-4"
                 vs-type="flex"
                 vs-justify="right"
@@ -516,15 +564,15 @@
       </vs-col>
     </vs-row>
     <graphic
-      v-if="grafica1View && showUserAuth[0].permissions[4].name == 'VER GRAFICA REGISTROS'"
       class="mt-5 mb-3"
+      v-if="grafica1View && showUserAuth[0].permissions[4].name == 'VER GRAFICA REGISTROS'"
       titulo="Cantidad De Registros Últimos 6 Meses"
       :arrayData="dataValues"
       :labels="labels"
       type="line"
       :key="grafica1Key"
     />
-    <vs-row class="mt-5" vs-justify="center" v-if="showUserAuth[0].permissions[5].name == 'VER RO ABIERTOS INICIO'">
+    <vs-row class="mt-5" vs-justify="center">
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
           <div slot="header">
@@ -545,7 +593,7 @@
                 <vs-th> Acción </vs-th>
               </template>
 
-              <template slot-scope="{ data }">
+              <template slot-scope="{ data }" v-if="showUserAuth[0].permissions[5].name == 'VER RO ABIERTOS INICIO'">
                 <vs-tr :key="indextr" v-for="(tr, indextr) in roOfUser">
                   <vs-td
                     :data="data[indextr].ro"
@@ -652,6 +700,7 @@
     </vs-row>
   </div>
 </template>
+
 <script>
 import Graphic from "./Graphic.vue";
 import { dominio } from "../dominio.js";

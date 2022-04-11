@@ -6,9 +6,7 @@
       type="relief"
       icon="people"
       @click="openModal()"
-      v-if="
-        this.$store.state.user.permissions.includes('BOTON CREAR DEPENDENCIA')
-      "
+      v-if="showUserAuth[0].permissions[34].name == 'BOTON CREAR DEPENDENCIA'"
       >Crear Dependencia</vs-button
     >
     <vs-row vs-justify="center" class="mt-5">
@@ -43,11 +41,7 @@
                       >
                         <router-link
                           :to="'/panel/update-dependency/' + item.id"
-                          v-if="
-                            this.$store.state.user.permissions.includes(
-                              'BOTON EDITAR DEPENDENCIA'
-                            )
-                          "
+                          v-if="showUserAuth[0].permissions[35].name == 'BOTON EDITAR DEPENDENCIA'"
                         >
                           <vs-button
                             class="mr-1 ml-1"
@@ -63,10 +57,7 @@
                           color="danger"
                           type="border"
                           icon="delete_outline"
-                          v-if="
-                            this.$store.state.user.permissions.includes(
-                              'BOTON ELIMINAR DEPENDENCIA'
-                            )"
+                          v-if="showUserAuth[0].permissions[36].name == 'BOTON ELIMINAR DEPENDENCIA'"
                           @click="deleteDependency(item.id)"
                         ></vs-button>
                       </vs-col>
@@ -183,6 +174,7 @@ export default {
       branchOffices: {},
       charges: {},
       showDependencies: {},
+      showUserAuth: []
     };
   },
   created() {
@@ -190,6 +182,7 @@ export default {
     this.showBranchOffices();
     this.showCharges();
     this.showDependency();
+    this.showUserAuthentificated();
   },
   methods: {
     openModal() {
@@ -265,6 +258,12 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+     showUserAuthentificated() {
+      let url = dominio.url + "/api/mostar-usuario-autentificado";
+      axios.get(url).then((res) => {
+        this.showUserAuth = res.data.showUserAuth;
+      });
     },
   },
 };
