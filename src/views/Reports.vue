@@ -16,53 +16,153 @@
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
           <div slot="header">
-            <h6 class="card-title text-center">Reportes Seguimiento Modo De Transporte</h6>
+            <h6 class="card-title text-center">
+              Reporte Trazabilidad R.O
+            </h6>
           </div>
           <div>
-            <vs-row>
-              <vs-col
-                class="mt-3"
-                vs-type="flex"
-                vs-justify="right"
-                vs-align="center"
-                vs-w="6"
-              >
-                <vs-select
-                  class="selectExample ml-0 mr-5 mt-0 mb-3"
-                  label="Modo De Transporte"
-                  v-model="formTypeTransport.type_of_transport_id"
+            <form
+              action="http://backend-masterline.test/api/descargar-excel-ro"
+              method="post"
+            >
+              <input type="hidden" :value="csrf" />
+              <vs-row>
+                <vs-col
+                  class="mt-3"
+                  vs-type="flex"
+                  vs-justify="right"
+                  vs-align="center"
+                  vs-w="6"
+                  style="margin-left: -72px !important;"
                 >
-                  <vs-select-item :value="''" :text="'Seleccione'" />
-                  <vs-select-item
-                    :key="index"
-                    :value="item.id"
-                    :text="item.name"
-                    v-for="(item, index) in typeOfTransport"
-                  />
-                </vs-select>
-              </vs-col>
-              <vs-col
-                class="mt-3"
-                vs-type="flex"
-                vs-justify="left"
-                vs-align="left"
-                vs-w="6"
-              >
-                <vs-input
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Numero De R.O"
-                  v-model="formTypeTransport.ro"
-                />
-                <vs-button
-                  class="buttonColor mt-4"
-                  color="primary"
-                  type="relief"
-                  icon="search"
-                  v-if="formTypeTransport.type_of_transport_id && formTypeTransport.ro && showUserAuth[0].permissions[52].name == 'BOTON GENERAR REPORTE'"
-                  @click="downloadRo()"
-                ></vs-button>
-              </vs-col>
-            </vs-row>
+                  <select name="type_of_transport_id" class="seleccionablesssss ml-5">
+                    <option value="">Seleccione</option>
+                    <option
+                      :key="index"
+                      :value="item.id"
+                      v-for="(item, index) in typeOfTransport"
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
+                </vs-col>
+                <vs-col
+                  class="mt-3"
+                  vs-type="flex"
+                  vs-justify="left"
+                  vs-align="left"
+                  vs-w="6"
+                >
+                  <input class="ml-3" type="text" name="ro"  style="border-radius:5px; border: 1px solid transparent;"/>
+                  <button type="submit" class="boton_reporte">
+                    <span class="material-icons"> file_download </span>
+                  </button>
+                </vs-col>
+              </vs-row>
+            </form>
+          </div>
+        </vs-card>
+      </vs-col>
+    </vs-row>
+    <vs-row class="mt-5" vs-justify="center">
+      <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
+        <vs-card class="con-vs-cards">
+          <div slot="header">
+            <h6 class="card-title text-center">
+              Reporte R.O Por Tipo De Embarque
+            </h6>
+          </div>
+          <div>
+            <form
+              action="http://backend-masterline.test/api/descargar-excel-tipo-embarque"
+              method="post"
+            >
+              <input type="hidden" :value="csrf" />
+              <input type="hidden" name="user_id" :value="showUserAuth[0].id">
+              <vs-row>
+                <vs-col
+                  class="mt-3"
+                  vs-type="flex"
+                  vs-justify="right"
+                  vs-align="center"
+                  vs-w="6"
+                >
+                  <select name="type_of_transport_id" class="seleccionablesssss ml-5">
+                    <option value="">Seleccione</option>
+                    <option
+                      :key="index"
+                      :value="item.id"
+                      v-for="(item, index) in typeOfTransport"
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
+                </vs-col>
+                <vs-col
+                  class="mt-3"
+                  vs-type="flex"
+                  vs-justify="left"
+                  vs-align="left"
+                  vs-w="6"
+                >
+                  <button type="submit" class="boton_reporte">
+                    <span class="material-icons"> file_download </span>
+                  </button>
+                </vs-col>
+              </vs-row>
+            </form>
+          </div>
+        </vs-card>
+      </vs-col>
+    </vs-row>
+      <vs-row class="mt-5" vs-justify="center">
+      <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
+        <vs-card class="con-vs-cards">
+          <div slot="header">
+            <h6 class="card-title text-center">
+              Reporte Correos Enviados R.O
+            </h6>
+          </div>
+          <div>
+            <form
+              action="http://backend-masterline.test/api/descargar-excel-email-ro"
+              method="post"
+            >
+              <input type="hidden" :value="csrf" />
+              <vs-row>
+                <vs-col
+                  class="mt-3"
+                  vs-type="flex"
+                  vs-justify="right"
+                  vs-align="center"
+                  vs-w="6"
+                  style="margin-left: -72px !important;"
+                >
+                  <select name="type_of_transport_id" class="seleccionablesssss ml-5">
+                    <option value="">Seleccione</option>
+                    <option
+                      :key="index"
+                      :value="item.id"
+                      v-for="(item, index) in typeOfTransport"
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
+                </vs-col>
+                <vs-col
+                  class="mt-3"
+                  vs-type="flex"
+                  vs-justify="left"
+                  vs-align="left"
+                  vs-w="6"
+                >
+                  <input class="ml-3" type="text" name="ro"  style="border-radius:5px; border: 1px solid transparent;"/>
+                  <button type="submit" class="boton_reporte">
+                    <span class="material-icons"> file_download </span>
+                  </button>
+                </vs-col>
+              </vs-row>
+            </form>
           </div>
         </vs-card>
       </vs-col>
@@ -74,13 +174,9 @@ import { dominio } from "../dominio.js";
 export default {
   data() {
     return {
-      formTypeTransport: {
-        type_of_transport_id: "",
-        ro: "",
-      },
       showUserAuth: [],
-      typeOfTransport: {},
-      popupActivo4: false,
+      typeOfTransport: [],
+      csrf: "Bearer " + this.$store.state.token,
     };
   },
   created() {
@@ -96,22 +192,6 @@ export default {
       axios.get(url).then((res) => {
         this.typeOfTransport = res.data.typeOfTransport;
       });
-    },
-     downloadRo() {
-      let url = dominio.url + "/api/descargar-excel-ro";
-      axios
-        .get(url)
-        .then((res) => {
-          if (res.data.code == 200) {
-            toastr.success(res.data.message);
-          }
-          if (res.data.code == 500) {
-            toastr.error(res.data.message);
-          }
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-        });
     },
     showUser() {
       let url = dominio.url + "/api/mostar-usuario-autentificado";
@@ -148,5 +228,23 @@ export default {
   text-align: left;
   font-size: 17px;
   font-weight: 700;
+}
+.seleccionablesssss {
+  background: #10163a;
+  color: white;
+  width: 200px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+}
+.boton_reporte {
+  background: #ff5000 !important;
+  color: white;
+  border: 1px solid transparent;
+  width: 100px;
+  border-radius: 5px;
+  margin-left: 20px;
 }
 </style>

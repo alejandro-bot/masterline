@@ -23,32 +23,40 @@
                 vs-w="12"
               >
                 <div class="centerx colors-example">
-                  <vs-select
-                    class="mt-0 mb-1 mr-1 ml-1"
-                    label="Sucursal"
+                  <h6 style="margin-bottom: -14px; margin-left: 20px">
+                    Sucursal
+                  </h6>
+                  <select
+                    class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                     v-model="showDependencyss.branch_id"
                   >
-                    <vs-select-item
+                    <option value="">Seleccione</option>
+                    <option
                       :key="index"
                       :value="item.id"
-                      :text="item.name"
                       v-for="(item, index) in branchOffices"
-                    />
-                  </vs-select>
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
                 </div>
                 <div class="centerx colors-example">
-                  <vs-select
-                    class="mt-0 mb-1 mr-1 ml-1"
-                    label="División"
+                  <h6 style="margin-bottom: -14px; margin-left: 20px">
+                    División
+                  </h6>
+                  <select
+                    class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                     v-model="showDependencyss.division_id"
                   >
-                    <vs-select-item
+                    <option value="">Seleccione</option>
+                    <option
                       :key="index"
                       :value="item.id"
-                      :text="item.name"
                       v-for="(item, index) in branchDivisions"
-                    />
-                  </vs-select>
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
                 </div>
               </vs-col>
             </vs-row>
@@ -60,32 +68,38 @@
                 vs-w="12"
               >
                 <div class="centerx colors-example">
-                  <vs-select
-                    class="mt-0 mb-1 mr-1 ml-1"
-                    label="Cargo"
+                  <h6 style="margin-bottom: -14px; margin-left: 20px">Cargo</h6>
+                  <select
+                    class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                     v-model="showDependencyss.charge_id"
                   >
-                    <vs-select-item
+                    <option value="">Seleccione</option>
+                    <option
                       :key="index"
                       :value="item.id"
-                      :text="item.name"
                       v-for="(item, index) in charges"
-                    />
-                  </vs-select>
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
                 </div>
                 <div class="centerx colors-example">
-                  <vs-select
-                    class="mt-0 mb-1 mr-1 ml-1"
-                    label="Cargo Supervisor"
+                  <h6 style="margin-bottom: -14px; margin-left: 20px">
+                    Cargo Supervisor
+                  </h6>
+                  <select
+                    class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                     v-model="showDependencyss.charge_dependence_id"
                   >
-                    <vs-select-item
+                    <option value="">Seleccione</option>
+                    <option
                       :key="index"
                       :value="item.id"
-                      :text="item.name"
                       v-for="(item, index) in charges"
-                    />
-                  </vs-select>
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
                 </div>
               </vs-col>
             </vs-row>
@@ -190,8 +204,8 @@ export default {
         });
     },
     returDependency() {
-      this.$router.push('/panel/job-dependencies');
-    }
+      this.$router.push("/panel/job-dependencies");
+    },
   },
 };
 </script>

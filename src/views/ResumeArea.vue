@@ -13,10 +13,9 @@
         @click="colorx = 'white'"
         icon="directions_boat"
         label=""
-        v-if="
-          showUserAuth[0].permissions[39].name == 'VER RESUMEN AREA MARITIMO'
-        "
-      >
+        >
+        <!-- v-if="showUserAuth[0].permissions[16].name == 'VER RESUMEN AREA MARITIMO' || showUserAuth[0].permissions[39].name == 'VER RESUMEN AREA MARITIMO'" -->
+
         <div class="con-tab-ejemplo">
           <vs-row vs-justify="center" class="mt-5">
             <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
@@ -336,14 +335,7 @@
                             type="bar"
                             :key="1"
                             style="width: 500px"
-                          >
-                          </graphic>
-                          <!-- <apexchart
-                            width="500"
-                            type="donut"
-                            :options="options1"
-                            :series="nose"
-                          ></apexchart> -->
+                          />
                         </vs-col>
                       </vs-row>
                     </div>
@@ -519,11 +511,8 @@
       <vs-tab
         @click="colorx = 'white'"
         icon="local_shipping"
-        label=""
-        v-if="
-          showUserAuth[0].permissions[40].name == 'VER RESUMEN AREA TERRESTRE'
-        "
-      >
+        label="">
+        <!-- v-if="showUserAuth[0].permissions[17].name == 'VER RESUMEN AREA TERRESTRE' || showUserAuth[0].permissions[40].name == 'VER RESUMEN AREA TERRESTRE'" -->
         <div class="con-tab-ejemplo">
           <vs-row vs-justify="center" class="mt-5">
             <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
@@ -846,10 +835,11 @@
       </vs-tab>
       <vs-tab
         @click="colorx = 'white'"
-        icon="flight_takeoff"
         label=""
-        v-if="showUserAuth[0].permissions[41].name == 'VER RESUMEN AREA AEREO'"
+        icon="flight_takeoff"
       >
+        <!-- v-if="showUserAuth[0].permissions[41].name == 'VER RESUMEN AREA AEREO'" -->
+
         <div class="con-tab-ejemplo">
           <vs-row vs-justify="center" class="mt-5">
             <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">

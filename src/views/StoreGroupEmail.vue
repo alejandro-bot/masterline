@@ -22,14 +22,14 @@
                 vs-align="center"
                 vs-w="12"
               >
-                <vs-select
-                  class="ml-0 mr-4 mt-1 mb-4"
-                  label="Tipo de Copia"
+                <select
+                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                   v-model="formGroupEmail.typeCopy"
                 >
-                  <vs-select-item :value="'CC'" :text="'CC'" />
-                  <vs-select-item :value="'CCO'" :text="'CCO'" />
-                </vs-select>
+                  <option value="">Seleccione </option>
+                  <option value="CC">CC</option>
+                  <option value="CCO">CCO</option>
+                </select>
                 <vs-input
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
@@ -141,9 +141,9 @@ export default {
         .then((res) => {
           if (res.data.code == 200) {
             toastr.success(res.data.message);
-            this.formGroupEmail.typeCopy = '';
-            this.formGroupEmail.name = '';
-            this.formGroupEmail.email = '';
+            this.formGroupEmail.typeCopy = "";
+            this.formGroupEmail.name = "";
+            this.formGroupEmail.email = "";
             this.showGroupEmails();
           }
           if (res.data.code == 500) {
@@ -155,8 +155,7 @@ export default {
         });
     },
     showGroupEmails() {
-      let url =
-        dominio.url + "/api/mostrar-grupo-correos/" + this.formGroupEmail.id;
+      let url = dominio.url + "/api/mostrar-grupo-correos/" + this.formGroupEmail.id;
       axios.get(url).then((res) => {
         this.showGroupEmail = res.data.showGroupEmail;
       });
@@ -207,5 +206,16 @@ export default {
   text-align: left;
   font-size: 17px;
   font-weight: 700;
+}
+.seleccionable {
+  background: #10163a;
+  color: white;
+  width: 200px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
 }
 </style>

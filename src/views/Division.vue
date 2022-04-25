@@ -16,16 +16,27 @@
             <h6 class="card-title text-center">Cargos</h6>
           </div>
           <div>
-            <vs-table>
-              <template slot="header"> </template>
+            <vs-table
+              search
+              pagination
+              :data="branchDivisions"
+              :max-items="tantos"
+            >
+              <template slot="header">
+                <select v-model="tantos" class="seleccionable">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select>
+              </template>
               <template slot="thead">
-                <vs-th> Nombre </vs-th>
+                <vs-th sort-key="name"> Nombre </vs-th>
                 <vs-th> Acción </vs-th>
               </template>
 
-              <template>
-                <vs-tr :key="index" v-for="(item, index) in branchDivisions">
-                  <vs-td> {{ item.name }} </vs-td>
+              <template slot-scope="{ data }">
+                <vs-tr v-for="(item, index) in data" :key="index">
+                  <vs-td :data="item.name"> {{ item.name }} </vs-td>
                   <vs-td>
                     <vs-row>
                       <vs-col
@@ -34,7 +45,13 @@
                         vs-align="left"
                         vs-w="12"
                       >
-                        <router-link :to="'/panel/update-division/' + item.id" v-if="showUserAuth[0].permissions[27].name == 'BOTON EDITAR DIVISION'">
+                        <router-link
+                          :to="'/panel/update-division/' + item.id"
+                          v-if="
+                            showUserAuth[0].permissions[27].name ==
+                            'BOTON EDITAR DIVISION'
+                          "
+                        >
                           <vs-button
                             class="mr-1 ml-1"
                             radius
@@ -49,7 +66,10 @@
                           color="danger"
                           type="border"
                           icon="delete_outline"
-                          v-if="showUserAuth[0].permissions[28].name == 'BOTON ELIMINAR DIVISION'"
+                          v-if="
+                            showUserAuth[0].permissions[28].name ==
+                            'BOTON ELIMINAR DIVISION'
+                          "
                           @click="deleteDivision(item.id)"
                         ></vs-button>
                       </vs-col>
@@ -104,6 +124,7 @@ export default {
       },
       branchDivisions: {},
       showUserAuth: [],
+      tantos: 5,
     };
   },
   created() {
@@ -205,5 +226,19 @@ export default {
 }
 .vs-dialog {
   max-width: 450px !important;
+}
+.seleccionable {
+  background: #10163a;
+  color: white;
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
+  margin-left: 10px;
+  margin-top: 0px;
+  border-radius: 20px;
 }
 </style>

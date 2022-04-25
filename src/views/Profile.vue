@@ -1,13 +1,30 @@
 <template>
   <div>
-    <vs-button
-      class="buttonColor"
-      color="primary"
-      type="relief"
-      icon="home"
-      @click="returnHome()"
-      >Volver a Inicio</vs-button
-    >
+    <vs-row>
+      <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
+        <vs-col vs-type="flex" vs-justify="left" vs-align="center" vs-w="6">
+          <vs-button
+            class="buttonColor"
+            color="primary"
+            type="relief"
+            icon="home"
+            @click="returnHome()"
+            >Volver a Inicio</vs-button
+          >
+        </vs-col>
+        <vs-col vs-type="flex" vs-justify="right" vs-align="center" vs-w="6">
+          <vs-button
+            class="buttonColor"
+            color="primary"
+            type="relief"
+            icon="settings"
+            @click="changeEmailAndPassword()"
+            >Cambiar Correo y Contraseña</vs-button
+          >
+        </vs-col>
+      </vs-col>
+    </vs-row>
+
     <vs-row class="mt-5" vs-justify="center">
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
@@ -364,7 +381,7 @@
 import { dominio } from "/src/dominio.js";
 import VueUploadMultipleImage from "vue-upload-multiple-image";
 export default {
-   components: {
+  components: {
     VueUploadMultipleImage,
   },
   data() {
@@ -409,7 +426,7 @@ export default {
     },
     editImage(formData, index, fileList) {
       toastr.success("Imagen Editada Con Éxito");
-      this. uploadImageSuccess(formData, index, fileList);
+      this.uploadImageSuccess(formData, index, fileList);
     },
     markIsPrimary(index, fileList) {
       console.log("markIs Primary", index, fileList);
@@ -418,6 +435,9 @@ export default {
       toastr.error("Excede El Limite De Imagenes");
       console.log("limitExeeded data", amount);
     },
+    changeEmailAndPassword(){
+      this.$router.push('/panel/changeEmailAndPassword');
+    }
   },
 };
 </script>

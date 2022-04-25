@@ -15,26 +15,37 @@
           <div slot="header">
             <h3 class="text-center mt-5 mb-5">Permisos De Este Perfil</h3>
           </div>
+          <vs-tabs position="left">
+            <vs-tab :key="index" v-for="(item, index) in showPermissions" :label="index">
+              <div class="con-tab-ejemplo">Home</div>
+            </vs-tab>
+          </vs-tabs>
+        </vs-card>
+      </vs-col>
+    </vs-row>
+
+    <vs-row class="mt-5" vs-justify="center">
+      <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
+        <vs-card class="con-vs-cards">
+          <div slot="header">
+            <h3 class="text-center mt-5 mb-5">Permisos De Este Perfil</h3>
+          </div>
           <ul class="centerx mt-3 mb-3">
             <li :key="index" v-for="(item, index) in showPermissions">
               <vs-col
-              style="width:33% !important;"
-                class="mt-3 mb-3 "
+                style="width: 50% !important"
+                class="mt-3 mb-3"
                 type="flex"
                 vs-justify="center"
                 vs-align="center"
                 vs-w="3"
               >
-                <h3 class="mt-2">{{ index }}</h3>
                 <vs-checkbox
-                  :key="index2"
-                  v-for="(item2, index2) in item"
-
                   class="mt-5 mb-2"
                   color="success"
-                  :id="'check' + index2"
+                  :id="'check' + index"
                   v-model="item.estado"
-                  >{{ item2.name }}</vs-checkbox
+                  >{{ item.name }}</vs-checkbox
                 >
               </vs-col>
             </li>
@@ -66,16 +77,17 @@ export default {
         rol: "",
         id: this.$route.params && this.$route.params.id,
       },
+      rol: {},
     };
   },
   created() {
     this.showRoles();
   },
   methods: {
-     showRoles() {
-      let url = dominio.url + "/api/mostrar-roles";
+    showRoles() {
+      let url = dominio.url + "/api/mostrar-permisos-rol";
       axios.get(url).then((res) => {
-        this.roles = res.data.roles;
+        this.rol = res.data.rol;
         this.showPermissions = res.data.showPermissions;
         this.userPermissions = res.data.userPermissions;
       });

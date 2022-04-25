@@ -22,7 +22,7 @@ export default [
   },
   {
     url: "/panel/perfiles-usuarios",
-    name: "Roles",
+    name: "Perfiles",
     slug: "roles",
     icon: "UserIcon",
     permiso: 'VER MENU ROLES',
@@ -67,14 +67,14 @@ export default [
     name: "Resumen Equipo",
     slug: "resumen-equipo",
     icon: "PowerIcon",
-    permiso: '',
+    permiso: 'VER MENU RESUMEN EQUIPO',
   },
   {
     url: "/panel/resume-area",
     name: "Resumen Area",
     slug: "resumen-area",
     icon: "LockIcon",
-    permiso: 'VER MENU RESUMEN EQUIPO',
+    permiso: 'VER MENU RESUMEN AREA',
   },
   {
     url: "/panel/typing-template",

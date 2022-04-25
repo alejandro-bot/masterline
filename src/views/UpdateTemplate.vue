@@ -24,32 +24,40 @@
               vs-w="12"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample ml-0 mr-5 mt-0 mb-3"
-                  label="Modo De Transporte"
+                <h6 style="margin-bottom: -14px; margin-left: 20px">
+                  Modo De Transporte
+                </h6>
+                <select
+                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                   v-model="listProcesId.type_of_transport_id"
                 >
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in typeOfTransport"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
               </div>
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample ml-0 mr-4 mt-0 mb-3"
-                  label="Tipo De Embarque"
+                <h6 style="margin-bottom: -14px; margin-left: 20px">
+                  Tipo De Embarque
+                </h6>
+                <select
+                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                   v-model="listProcesId.type_id"
                 >
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in showTypeSends"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
               </div>
               <div class="centerx colors-example">
                 <vs-input

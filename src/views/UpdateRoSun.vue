@@ -7,7 +7,7 @@
           color="primary"
           type="relief"
           icon="reply"
-          @click="backRo()"
+          @click="returRo()"
           >Regresar A R.O</vs-button
         >
       </vs-col>
@@ -17,7 +17,7 @@
         <vs-card class="con-vs-cards">
           <div slot="header">
             <strong>
-              <h1 class="text-center">SEGUIMIENTO DE R.O</h1>
+              <h1 class="text-center">SEGUIMIENTO DE R.O HIJO</h1>
             </strong>
           </div>
           <h6 class="card-title text-center">R.O. NÚMERO Y TIPO DE ENVÍO</h6>
@@ -34,12 +34,11 @@
                 </h6>
                 <select
                   class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showRoDisabled.type_of_transport_id"
+                  v-model="showSunId.type_of_transport_id"
                   @change="
-                    showIssue(showRoDisabled.type_of_transport_id);
-                    showTypeOfLoads(showRoDisabled.type_of_transport_id);
-                    showTypeSend(showRoDisabled.type_of_transport_id);
-                    errors.type_of_transport_id = '';
+                    showTypeSend(showSunId.type_of_transport_id);
+                    showIssue(showSunId.type_of_transport_id);
+                    showTypeOfLoads(showSunId.type_of_transport_id);
                   "
                 >
                   <option value="">Seleccione</option>
@@ -51,23 +50,14 @@
                     {{ item.name }}
                   </option>
                 </select>
-                <div class="mt-2 text-left" v-if="errors.type_of_transport_id">
-                  <span class="errors">{{
-                    errors.type_of_transport_id[0]
-                  }}</span>
-                </div>
               </div>
               <div class="centerx colors-example">
                 <vs-input
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
                   label-placeholder="RO-AAAA-/00-0000"
-                  v-model="showRoDisabled.ro"
-                  @keypress="errors.ro = ''"
+                  v-model="showSunId.ro"
                 />
-                <div class="mt-3 ml-1 text-left" v-if="errors.ro">
-                  <span class="errors">{{ errors.ro[0] }}</span>
-                </div>
               </div>
               <div class="centerx colors-example">
                 <h6 style="margin-bottom: -14px; margin-left: 10px">
@@ -75,8 +65,7 @@
                 </h6>
                 <select
                   class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showRoDisabled.type_id"
-                  @change="errors.type_id = ''"
+                  v-model="showSunId.type_id"
                 >
                   <option value="">Seleccione</option>
                   <option
@@ -87,16 +76,13 @@
                     {{ item.name }}
                   </option>
                 </select>
-                <div class="mt-1 text-left" v-if="errors.type_id">
-                  <span class="errors">{{ errors.type_id[0] }}</span>
-                </div>
               </div>
             </vs-col>
           </vs-row>
         </vs-card>
         <vs-card
           class="con-vs-cards"
-          v-if="showRoDisabled.type_of_transport_id == 3"
+          v-if="showSunId.type_of_transport_id == 3"
         >
           <h6 class="card-title text-center">DETALLES DEL TRANSPORTADOR</h6>
           <vs-row>
@@ -110,25 +96,25 @@
                 class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Transportadora"
-                v-model="showRoDisabled.carrier"
+                v-model="showSunId.carrier"
               />
               <vs-input
                 class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Típo de Vehículo"
-                v-model="showRoDisabled.vehicle"
+                v-model="showSunId.vehicle"
               />
               <vs-input
                 class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Conductor"
-                v-model="showRoDisabled.driver"
+                v-model="showSunId.driver"
               />
               <vs-input
                 class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Placa"
-                v-model="showRoDisabled.plaque"
+                v-model="showSunId.plaque"
               />
             </vs-col>
           </vs-row>
@@ -147,24 +133,16 @@
                   class="selectExample ml-0 mr-5 mt-3 mb-0"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Puerto De Origen"
-                  v-model="showRoDisabled.starting_place"
-                  @keypress="errors.starting_place = ''"
+                  v-model="showSunId.starting_place"
                 />
-                <div class="mt-1 mr-3 text-center" v-if="errors.starting_place">
-                  <span class="errors">{{ errors.starting_place[0] }}</span>
-                </div>
               </div>
               <div class="centerx colors-example">
                 <vs-input
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Puerto De Destino"
-                  v-model="showRoDisabled.destination_place"
-                  @keypress="errors.destination_place = ''"
+                  v-model="showSunId.destination_place"
                 />
-                <div class="mt-1 text-left" v-if="errors.destination_place">
-                  <span class="errors">{{ errors.destination_place[0] }}</span>
-                </div>
               </div>
               <div class="centerx colors-example">
                 <h6 style="margin-bottom: -14px; margin-left: 10px">
@@ -172,8 +150,7 @@
                 </h6>
                 <select
                   class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showRoDisabled.issue_id"
-                  @change="errors.issue_id = ''"
+                  v-model="showSunId.issue_id"
                 >
                   <option value="">Seleccione</option>
                   <option
@@ -184,9 +161,6 @@
                     {{ item.name }}
                   </option>
                 </select>
-                <div class="mt-1 ml-0 text-left" v-if="errors.issue_id">
-                  <span class="errors">{{ errors.issue_id[0] }}</span>
-                </div>
               </div>
             </vs-col>
             <vs-col
@@ -199,23 +173,23 @@
                 <vs-input
                   class="mt-0 mb-3"
                   label="ETD"
-                  v-model="showRoDisabled.etd"
                   type="date"
-                  style="margin-left: -35px; margin-right: 15px;"
+                  style="margin-left: -35px; margin-right: 15px"
+                  v-model="showSunId.etd"
                 />
               </div>
               <vs-input
                 class="ml-0 mr-5 mt-0 mb-3"
                 label="ETA"
-                v-model="showRoDisabled.eta"
+                v-model="showSunId.eta"
                 type="date"
               />
               <vs-input
                 class="mt-2 mb-0"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Número HBL"
-                v-model="showRoDisabled.num_hbl"
-                style="margin-left: 20px; margin-right: -20px;"
+                style="margin-left: 20px; margin-right: -20px"
+                v-model="showSunId.num_hbl"
               />
             </vs-col>
           </vs-row>
@@ -235,8 +209,8 @@
                 </h6>
                 <select
                   class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showRoDisabled.type_of_load_id"
-                  style="margin-left: 0px !important;"
+                  style="margin-left: 0px !important"
+                  v-model="showSunId.type_of_load_id"
                 >
                   <option value="">Seleccione</option>
                   <option
@@ -253,7 +227,7 @@
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Cantidad"
-                  v-model="showRoDisabled.quantity"
+                  v-model="showSunId.quantity"
                 />
               </div>
               <div class="centerx colors-example">
@@ -261,12 +235,12 @@
                   class="ml-0 mr-4 mt-2 mb-0"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Numero De Contenedor"
+                  v-model="showSunId.container_number"
                   v-if="
-                    showRoDisabled.type_of_transport_id == 1 ||
-                    showRoDisabled.type_of_transport_id == 3 ||
-                    showRoDisabled.type_of_transport_id == 0
+                    showSunId.type_of_transport_id == 0 ||
+                    showSunId.type_of_transport_id == 1 ||
+                    showSunId.type_of_transport_id == 3
                   "
-                  v-model="showRoDisabled.container_number"
                 />
               </div>
             </vs-col>
@@ -280,24 +254,24 @@
                 class="ml-0 mr-5 mt-5 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Tipo de Contenedor"
+                v-model="showSunId.kind_of_container"
                 v-if="
-                  showRoDisabled.type_of_transport_id == 1 ||
-                  showRoDisabled.type_of_transport_id == 3 ||
-                  showRoDisabled.type_of_transport_id == 0
+                  showSunId.type_of_transport_id == 0 ||
+                  showSunId.type_of_transport_id == 1 ||
+                  showSunId.type_of_transport_id == 3
                 "
-                v-model="showRoDisabled.kind_of_container"
               />
               <vs-input
                 class="ml-0 mr-5 mt-5 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Peso Bruto"
-                v-model="showRoDisabled.weight"
+                v-model="showSunId.weight"
               />
               <vs-input
                 class="ml-0 mr-4 mt-2 mb-0"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Volumen"
-                v-model="showRoDisabled.volume"
+                v-model="showSunId.volume"
               />
             </vs-col>
           </vs-row>
@@ -312,24 +286,13 @@
               vs-w="12"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="ml-0 mr-5 mt-2 mb-0"
-                  label="Sucursal"
-                  v-model="showRoDisabled.branch_office_id"
-                  @change="errors.branch_office_id = ''"
+                <vs-input
+                  color="rgb(213, 14, 151)"
+                  label-placeholder="Sucursal"
+                  v-model="showSunId.branch_office.name"
+                  style="margin-top: 22px; margin-left: -10px"
                   disabled
-                >
-                  <vs-select-item :value="''" :text="'Seleccione'" />
-                  <vs-select-item
-                    :key="index"
-                    :value="item.id"
-                    :text="item.name"
-                    v-for="(item, index) in branchOffices"
-                  />
-                </vs-select>
-                <div class="mt-1 ml-1 text-left" v-if="errors.branch_office_id">
-                  <span class="errors">{{ errors.branch_office_id[0] }}</span>
-                </div>
+                />
               </div>
               <div class="centerx colors-example">
                 <vs-input
@@ -337,9 +300,7 @@
                   color="rgb(213, 14, 151)"
                   label="Nombre Usuario"
                   :value="
-                    showRoDisabled.user.first_name +
-                    ' ' +
-                    showRoDisabled.user.last_name
+                    showSunId.user.first_name + ' ' + showSunId.user.last_name
                   "
                   disabled
                 />
@@ -350,7 +311,7 @@
                 </h6>
                 <select
                   class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showRoDisabled.groupEmails"
+                  v-model="showSunId.groupEmails"
                 >
                   <option value="">Seleccione</option>
                   <option
@@ -373,36 +334,33 @@
                 <vs-input
                   class="ml-0 mr-4 mt-5 mb-4"
                   color="rgb(213, 14, 151)"
-                  :value="
-                    userCommercial.first_name + ' ' + userCommercial.last_name
-                  "
+                  label="Comercial"
+                  :value="user.first_name + ' ' + user.last_name"
+                  style="width: 350px; margin-top: 4px !important"
                   disabled
                 />
-                <div class="mt-1 ml-1 text-left" v-if="errors.commercial">
-                  <span class="errors">{{ errors.commercial[0] }}</span>
-                </div>
               </div>
               <div class="centerx colors-example">
                 <vs-input
                   class="ml-0 mr-0 mt-2 mb-0"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Correos Electronicos Cliente"
-                  v-model="formRo.addEmails"
+                  v-model="showSunId.addEmails"
                 />
               </div>
               <vs-button
                 class="ml-0 mr-2 mt-2 mb-0"
-                @click="addEmail()"
                 color="primary"
                 type="border"
                 icon="add"
+                @click="addEmail()"
               ></vs-button>
               <div class="centerx colors-example">
                 <vs-input
                   class="ml-0 mr-4 mt-2 mb-0"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Codigo Seguimiento Cliente"
-                  v-model="showRoDisabled.customer_tracking_code"
+                  v-model="showSunId.customer_tracking_code"
                 />
               </div>
             </vs-col>
@@ -424,7 +382,7 @@
                 </template>
                 <template>
                   <vs-tr
-                    v-for="(item, index) in showRoDisabled.email_clients"
+                    v-for="(item, index) in showSunId.email_clients"
                     :key="index"
                   >
                     <vs-td :data="item">
@@ -459,8 +417,8 @@
             >
               <select
                 class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                v-model="test_procesess_id"
                 style="width: 60%"
+                v-model="test_procesess_id"
               >
                 <option value="">Seleccione</option>
                 <option
@@ -471,16 +429,12 @@
                   {{ item.process_name }}
                 </option>
               </select>
-              <div class="mt-1 ml-1 text-left" v-if="errors.commercial">
-                <span class="errors">{{ errors.commercial[0] }}</span>
-              </div>
               <vs-input
                 class="mt-5 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Asunto Correo"
-                v-model="showRoDisabled.subjet"
                 style="width: 60%"
-                @keypress="errors.subjet = ''"
+                v-model="showSunId.subjet"
               />
             </vs-col>
             <vs-col
@@ -489,9 +443,6 @@
               vs-align="center"
               vs-w="12"
             >
-              <div class="mt-0" v-if="errors.subjet" style="margin-left: 210px">
-                <span class="errors">{{ errors.subjet[0] }}</span>
-              </div>
             </vs-col>
             <vs-col
               vs-type="flex"
@@ -501,8 +452,8 @@
             >
               <wysiwyg
                 class="mt-3 mb-3 ml-4 mr-1"
-                v-model="showRoDisabled.tracing"
                 style="background: white; color: black; height: auto"
+                v-model="showSunId.tracing"
               />
             </vs-col>
             <vs-col
@@ -514,10 +465,10 @@
             >
               <vs-row vs-justify="center" class="mt-0 mb-5">
                 <vs-button
-                  @click="updateTemplate(showRoDisabled.id)"
                   color="#ff5000"
                   type="relief"
                   icon="autorenew"
+                  @click="updateTemplate(showSunId.id)"
                   >Actualizar Seguimiento De R.O</vs-button
                 >
               </vs-row>
@@ -538,10 +489,14 @@
                   <template>
                     <vs-tr
                       :key="index"
-                      v-for="(item, index) in showRoDisabled.processes_ro_pivot"
+                      v-for="(item, index) in showSunId.processes_ro_pivot"
                     >
-                      <vs-td> {{ item.procesess.create_date }} </vs-td>
-                      <vs-td> {{ item.procesess.process_name }} </vs-td>
+                      <vs-td style="width: 300px !important">
+                        {{ item.procesess.create_date }}
+                      </vs-td>
+                      <vs-td style="width: 600px !important">
+                        {{ item.procesess.process_name }}
+                      </vs-td>
                       <vs-td style="width: 50%">
                         <html
                           class="mt-3 mb-3 ml-5 mr-5"
@@ -565,8 +520,8 @@
               vs-w="12"
             >
               <wysiwyg
-                v-model="showRoDisabled.imageHtml"
                 style="background: white; color: black; height: auto"
+                v-model="showSunId.imageHtml"
               />
             </vs-col>
             <vs-col
@@ -621,8 +576,8 @@
                 <vs-image
                   class="images"
                   :key="index"
-                  :src="'http://backend-masterline.test/storage/images_ro_email/' + image.images"
-                  v-for="(image, index) in showRoDisabled.images_email"
+                  :src="image.images"
+                  v-for="(image, index) in showSunId.images_email"
                 />
               </vs-images>
             </vs-col>
@@ -630,12 +585,12 @@
           <h6 class="card-title text-center">Historico De Recortes</h6>
           <vs-row>
             <vs-col
-              v-for="(image, index) in showCutImage"
-              :key="index"
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
               vs-w="12"
+              v-for="(image, index) in showSunId.cut_images"
+              :key="index"
             >
               <html
                 class="mt-3 mb-3 ml-5 mr-5"
@@ -651,10 +606,10 @@
             >
               <vs-row vs-justify="center" class="mt-0 mb-5">
                 <vs-button
-                  @click="updateRo(showRoDisabled.id)"
                   color="#ff5000"
                   type="relief"
                   icon="add"
+                  @click="updateRoSun(showSunId.id)"
                   >Actualizar R.O</vs-button
                 >
               </vs-row>
@@ -663,7 +618,7 @@
         </vs-card>
       </vs-col>
     </vs-row>
-    <vs-input v-model="showRoDisabled.id" type="hidden" />
+    <vs-input type="hidden" />
   </div>
 </template>
 <script>
@@ -677,110 +632,30 @@ export default {
   data() {
     return {
       test_procesess_id: null,
-      errors: {},
+      id: this.$route.params && this.$route.params.id,
+      typeOfTransport: {},
       showTypeSends: {},
       showIssues: {},
-      branchOffices: {},
-      typeOfTransport: {},
-      roles: {},
-      userName: {},
       showTypeOfLoad: {},
-      users: {},
-      formTracking: {
-        procesess_id: "",
-        subjet: "",
-        tracing: "",
-      },
-      arrayTemplate: [],
-      showRoDisabled: {
-        ro_id: this.$route.params && this.$route.params.id,
-        type_id: "",
-        carrier: "",
-        vehicle: "",
-        driver: "",
-        plaque: "",
-        starting_place: "",
-        destination_place: "",
-        issue_id: "",
-        etd: "",
-        eta: "",
-        num_hbl: "",
-        type_of_load_id: "",
-        quantity: "",
-        container_number: "",
-        kind_of_container: "",
-        weight: "",
-        volume: "",
-        branch_office_id: "",
-        rol_id: "",
-        commercial: "",
-        client_emails_id: "",
-        customer_tracking_code: "",
-        process_id: 1,
-        subjet: "",
-        tracing: "",
-        type_of_transport_id: "",
-        procesess_id: null, // no use "" use null luego los "" traen problemas
-        subjet: "",
-        tracing: "",
-        imageHtml: "",
-        groupEmails: [],
-      },
-      id: this.$route.params && this.$route.params.id,
-      formRo: {
-        ro: this.$route.params && this.$route.params.id,
-        type_id: "",
-        carrier: "",
-        vehicle: "",
-        driver: "",
-        plaque: "",
-        starting_place: "",
-        destination_place: "",
-        issue_id: "",
-        etd: "",
-        eta: "",
-        num_hbl: "",
-        type_of_load_id: "",
-        quantity: "",
-        container_number: "",
-        kind_of_container: "",
-        weight: "",
-        volume: "",
-        branch_office_id: "",
-        rol_id: "",
-        commercial: "",
-        client_emails_id: "",
-        customer_tracking_code: "",
-        process_id: "",
-        subjet: "",
-        message: "",
-        type_of_transport_id: "",
-        addEmails: "",
-        process_id: 1,
-        subjet: "",
-        tracing: "",
-      },
-      showRo: {},
-      counterDanger: false,
-      emails: [],
-      archivos: [],
-      listProces: {},
+      branchOffices: {},
       listNameGroups: {},
+      listProces: {},
       showImagesAttachedId: {},
       showCutImage: {},
-      userCommercial: {},
+      user: {},
+      archivos: [],
+      showSunId: {
+        typeOfTransport: "",
+        addEmails: "",
+      },
     };
   },
   created() {
-    this.showTypeSend();
-    this.showBranchOffices();
-    this.showRoles();
     this.showTypeOfTransport();
-    this.showRoId();
-    this.showIssue();
-    this.listProcess();
+    this.showRoSun();
+    this.showBranchOffices();
     this.showMails();
-    this.showUser();
+    this.listProcess();
     this.showAttachedImages();
     this.showCutImages();
   },
@@ -790,17 +665,125 @@ export default {
     },
   },
   methods: {
-    showUser() {
-      let url = dominio.url + "/api/mostrar-usuarios";
+    showTypeOfTransport() {
+      let url = dominio.url + "/api/mostrar-tipo-transporte";
       axios.get(url).then((res) => {
-        this.users = res.data.users;
-        this.userName = res.data.userName;
+        this.typeOfTransport = res.data.typeOfTransport;
       });
+    },
+    showRoSun() {
+      let url = dominio.url + "/api/mostrar-ro-hijo/" + this.id;
+      axios.get(url).then((res) => {
+        this.showSunId = res.data.showSunId;
+        this.user = res.data.user;
+      });
+    },
+    showTypeSend() {
+      let url =
+        dominio.url +
+        "/api/mostrar-tipos-envio/" +
+        this.showSunId.type_of_transport_id;
+      axios.get(url).then((res) => {
+        this.showTypeSends = res.data.showTypeSends;
+      });
+    },
+    showIssue(id) {
+      let url = dominio.url + "/api/mostrar-emisiones/" + id;
+      axios.get(url).then((res) => {
+        this.showIssues = res.data.showIssues;
+      });
+    },
+    showTypeOfLoads(id) {
+      let url = dominio.url + "/api/mostrar-tipos-carga/" + id;
+      axios.get(url).then((res) => {
+        this.showTypeOfLoad = res.data.showTypeOfLoad;
+      });
+    },
+    showBranchOffices() {
+      let url = dominio.url + "/api/mostrar-sucursales";
+      axios.get(url).then((res) => {
+        this.branchOffices = res.data.branchOffices;
+      });
+    },
+    showMails() {
+      let url = dominio.url + "/api/listar-grupo-correos";
+      axios.get(url).then((res) => {
+        this.listNameGroups = res.data.listNameGroups;
+      });
+    },
+    addEmail() {
+      let url = dominio.url + "/api/crear-correo-ro-hijo-seguimiento";
+      axios
+        .post(url, this.showSunId)
+        .then((res) => {
+          if (res.data.code == 200) {
+            toastr.success(res.data.message);
+            this.showRoSun();
+            this.showSunId.addEmails = "";
+          }
+          if (res.data.code == 500) {
+            toastr.error(res.data.message);
+          }
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
+    removeEmail(index) {
+      let url = dominio.url + "/api/eliminar-correo-ro-hijo/" + index;
+      this.showSunId.email_clients.id = this.emails;
+      axios
+        .post(url, this.showSunId)
+        .then((res) => {
+          if (res.data.code == 200) {
+            toastr.success(res.data.message);
+            this.showRoSun();
+          }
+          if (res.data.code == 500) {
+            toastr.error(res.data.message);
+          }
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
+    addArrayTemplate() {
+      this.showSunId.tracing = "";
+      if (this.test_procesess_id) {
+        var data = this.listProces.find(
+          (ele) => ele.id == this.test_procesess_id
+        );
+        this.showSunId.tracing = data.tracing;
+      }
+    },
+    listProcess() {
+      let url = dominio.url + "/api/mostrar-procesos-ro-hijo/" + this.id;
+      axios.get(url).then((res) => {
+        this.listProces = res.data.listProces;
+      });
+    },
+    updateTemplate(id) {
+      let url = dominio.url + "/api/actualizar-seguimiento-hijo/" + id;
+      this.showSunId.procesess_id = this.test_procesess_id;
+      axios
+        .post(url, this.showSunId)
+        .then((res) => {
+          $("#loading-bg").fadeOut("slow");
+          if (res.data.code == 200) {
+            this.showRoSun();
+            toastr.success(res.data.message);
+          }
+          if (res.data.code == 500) {
+            toastr.error(res.data.message);
+          }
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
     uploadImageSuccess(formData, index, fileList) {
       this.archivos = [];
       this.archivos = fileList;
-      console.log('archivos',archivos);
     },
     beforeRemove(index, removeCallBack) {
       toastr.error("Imagen Eliminada Con Éxito");
@@ -816,157 +799,8 @@ export default {
       toastr.error("Excede El Limite De Imagenes");
       console.log("limitExeeded data", amount);
     },
-    backRo() {
-      this.$router.push("/panel/show-ro");
-    },
-    successUpload() {
-      this.$vs.notify({
-        color: "success",
-        title: "Upload Success",
-        text: "Lorem ipsum dolor sit amet, consectetur",
-      });
-    },
-    addEmail() {
-      let url = dominio.url + "/api/crear-correo-ro-seguimiento";
-      axios
-        .post(url, this.formRo)
-        .then((res) => {
-          if (res.data.code == 200) {
-            toastr.success(res.data.message);
-            this.showRoId();
-            this.formRo.addEmails = "";
-          }
-          if (res.data.code == 500) {
-            toastr.error(res.data.message);
-          }
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-        });
-    },
-    listProcess() {
-      let url = dominio.url + "/api/mostrar-procesos/" + this.id;
-      axios.get(url).then((res) => {
-        this.listProces = res.data.listProces;
-      });
-    },
-    removeEmail(index) {
-      let url = dominio.url + "/api/eliminar-correo-ro/" + index;
-      this.showRoDisabled.email_clients.id = this.emails;
-      axios
-        .post(url, this.showRoDisabled)
-        .then((res) => {
-          if (res.data.code == 200) {
-            toastr.success(res.data.message);
-            this.showRoId();
-          }
-          if (res.data.code == 500) {
-            toastr.error(res.data.message);
-          }
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-        });
-    },
-    showIssue(id) {
-      let url = dominio.url + "/api/mostrar-emisiones/" + id;
-      axios.get(url).then((res) => {
-        this.showIssues = res.data.showIssues;
-      });
-    },
-    updateRo(id) {
-      $("#loading-bg").css("display", "block");
-      let url = dominio.url + "/api/actualizar-ro/" + id;
-      this.showRoDisabled.archivos = this.archivos;
-      axios
-        .post(url, this.showRoDisabled)
-        .then((res) => {
-          $("#loading-bg").fadeOut("slow");
-          if (res.data.code == 200) {
-            this.$router.push("/panel/show-ro");
-            toastr.success(res.data.message);
-          }
-          if (res.data.code == 500) {
-            toastr.error(res.data.message);
-          }
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-        });
-    },
-    updateTemplate(id) {
-      let url = dominio.url + "/api/actualizar-seguimiento/" + id;
-      this.showRoDisabled.procesess_id = this.test_procesess_id;
-      axios
-        .post(url, this.showRoDisabled)
-        .then((res) => {
-          if (res.data.code == 200) {
-            toastr.success(res.data.message);
-            this.showRoId();
-          }
-          if (res.data.code == 500) {
-            toastr.error(res.data.message);
-          }
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-        });
-    },
-    showTypeSend(id) {
-      let url = dominio.url + "/api/mostrar-tipos-envio/" + id;
-      axios.get(url).then((res) => {
-        this.showTypeSends = res.data.showTypeSends;
-      });
-    },
-    showBranchOffices() {
-      let url = dominio.url + "/api/mostrar-sucursales";
-      axios.get(url).then((res) => {
-        this.branchOffices = res.data.branchOffices;
-      });
-    },
-    showTypeOfLoads(id) {
-      let url = dominio.url + "/api/mostrar-tipos-carga/" + id;
-      axios.get(url).then((res) => {
-        this.showTypeOfLoad = res.data.showTypeOfLoad;
-      });
-    },
-    showRoles() {
-      let url = dominio.url + "/api/mostrar-roles";
-      axios.get(url).then((res) => {
-        this.roles = res.data.roles;
-      });
-    },
-    showTypeOfTransport() {
-      let url = dominio.url + "/api/mostrar-tipo-transporte";
-      axios.get(url).then((res) => {
-        this.typeOfTransport = res.data.typeOfTransport;
-      });
-    },
-    showRoId() {
-      let url = dominio.url + "/api/mostrar-ro/" + this.id;
-      axios.get(url).then((res) => {
-        this.showRoDisabled = res.data.showRoDisabled;
-        this.userCommercial = res.data.userCommercial;
-        this.showRoDisabled.procesess_id = res.data.showRoDisabled.procesess_id;
-      });
-    },
-    addArrayTemplate() {
-      this.showRoDisabled.tracing = "";
-      if (this.test_procesess_id) {
-        var data = this.listProces.find(
-          (ele) => ele.id == this.test_procesess_id
-        );
-        this.showRoDisabled.tracing = data.tracing; // si quiere hagamos un change normal no tengo lio
-      }
-    },
-    showMails() {
-      let url = dominio.url + "/api/listar-grupo-correos";
-      axios.get(url).then((res) => {
-        this.listNameGroups = res.data.listNameGroups;
-      });
-    },
     showAttachedImages() {
-      let url = dominio.url + "/api/mostrar-imagenes-adjuntas/" + this.id;
+      let url = dominio.url + "/api/mostrar-imagenes-adjuntas-hijos/" + this.id;
       axios.get(url).then((res) => {
         this.showImagesAttachedId = res.data.showImagesAttachedId;
       });
@@ -976,6 +810,29 @@ export default {
       axios.get(url).then((res) => {
         this.showCutImage = res.data.showCutImage;
       });
+    },
+    updateRoSun(id) {
+      $("#loading-bg").css("display", "block");
+      let url = dominio.url + "/api/actualizar-ro-hijo/" + id;
+      this.showSunId.archivos = this.archivos;
+      axios
+        .post(url, this.showSunId)
+        .then((res) => {
+          $("#loading-bg").fadeOut("slow");
+          if (res.data.code == 200) {
+            toastr.success(res.data.message);
+            this.$router.push("/panel/show-ro");
+          }
+          if (res.data.code == 500) {
+            toastr.error(res.data.message);
+          }
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
+    returRo() {
+      this.$router.push("/panel/show-ro");
     },
   },
 };

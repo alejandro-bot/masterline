@@ -16,7 +16,7 @@ const themeConfig = {
   mainLayoutType    : "vertical",  // options[String]  : vertical(default) / horizontal
   navbarColor       : "#fff",      // options[String]  : HEX color / rgb / rgba / Valid HTML Color name - (default: #fff)
   navbarType        : "sticky",  // options[String]  : floating(default) / static / sticky / hidden
-  routerTransition  : "slide-fade", // options[String]  : zoom-fade / slide-fade / fade-bottom / fade / zoom-out / none(default)
+  routerTransition  : "fade-bottom", // options[String]  : zoom-fade / slide-fade / fade-bottom / fade / zoom-out / none(default)
   rtl               : false,       // options[Boolean] : true, false(default)
   sidebarCollapsed  : false,       // options[Boolean] : true, false(default)
   theme             : "dark",     // options[String]  : "light"(default), "dark", "semi-dark"

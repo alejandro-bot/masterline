@@ -16,21 +16,41 @@
             <h6 class="card-title text-center">Dependencia</h6>
           </div>
           <div>
-            <vs-table>
-              <template slot="header"> </template>
+            <vs-table
+              search
+              pagination
+              :data="showDependencies"
+              :max-items="tantos"
+            >
+              <template slot="header">
+                <select v-model="tantos" class="seleccionableBuscador">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select>
+              </template>
               <template slot="thead">
-                <vs-th> Sucursal </vs-th>
-                <vs-th> División </vs-th>
-                <vs-th> Cargo </vs-th>
-                <vs-th> Cargo Supervisor</vs-th>
+                <vs-th sort-key="name"> Sucursal </vs-th>
+                <vs-th sort-key="name"> División </vs-th>
+                <vs-th sort-key="name"> Cargo </vs-th>
+                <vs-th sort-key="name"> Cargo Supervisor</vs-th>
                 <vs-th> Acciones </vs-th>
               </template>
-              <template>
-                <vs-tr :key="index" v-for="(item, index) in showDependencies">
-                  <vs-td> {{ item.nameBranchOffices[0].name }} </vs-td>
-                  <vs-td> {{ item.nameBranchDivision[0].name }} </vs-td>
-                  <vs-td> {{ item.nameCharge[0].name }} </vs-td>
-                  <vs-td> {{ item.nameChargeDepency[0].name }} </vs-td>
+
+              <template slot-scope="{ data }">
+                <vs-tr v-for="(item, index) in data" :key="index">
+                  <vs-td :data="item.name">
+                    {{ item.nameBranchOffices[0].name }}
+                  </vs-td>
+                  <vs-td :data="item.name">
+                    {{ item.nameBranchDivision[0].name }}
+                  </vs-td>
+                  <vs-td :data="item.name">
+                    {{ item.nameCharge[0].name }}
+                  </vs-td>
+                  <vs-td :data="item.name">
+                    {{ item.nameChargeDepency[0].name }}
+                  </vs-td>
                   <vs-td>
                     <vs-row>
                       <vs-col
@@ -41,7 +61,10 @@
                       >
                         <router-link
                           :to="'/panel/update-dependency/' + item.id"
-                          v-if="showUserAuth[0].permissions[35].name == 'BOTON EDITAR DEPENDENCIA'"
+                          v-if="
+                            showUserAuth[0].permissions[35].name ==
+                            'BOTON EDITAR DEPENDENCIA'
+                          "
                         >
                           <vs-button
                             class="mr-1 ml-1"
@@ -57,7 +80,10 @@
                           color="danger"
                           type="border"
                           icon="delete_outline"
-                          v-if="showUserAuth[0].permissions[36].name == 'BOTON ELIMINAR DEPENDENCIA'"
+                          v-if="
+                            showUserAuth[0].permissions[36].name ==
+                            'BOTON ELIMINAR DEPENDENCIA'
+                          "
                           @click="deleteDependency(item.id)"
                         ></vs-button>
                       </vs-col>
@@ -88,32 +114,36 @@
             vs-w="12"
           >
             <div class="centerx colors-example">
-              <vs-select
-                class="mt-0 mb-1 mr-1 ml-1"
-                label="Sucursal"
+              <h6 style="margin-bottom: -14px; margin-left: 20px">Sucursal</h6>
+              <select
+                class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                 v-model="formCharge.branch_id"
               >
-                <vs-select-item
+                <option value="">Seleccione</option>
+                <option
                   :key="index"
                   :value="item.id"
-                  :text="item.name"
                   v-for="(item, index) in branchOffices"
-                />
-              </vs-select>
+                >
+                  {{ item.name }}
+                </option>
+              </select>
             </div>
             <div class="centerx colors-example">
-              <vs-select
-                class="mt-0 mb-1 mr-1 ml-1"
-                label="División"
+              <h6 style="margin-bottom: -14px; margin-left: 20px">División</h6>
+              <select
+                class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                 v-model="formCharge.division_id"
               >
-                <vs-select-item
+                <option value="">Seleccione</option>
+                <option
                   :key="index"
                   :value="item.id"
-                  :text="item.name"
                   v-for="(item, index) in branchDivisions"
-                />
-              </vs-select>
+                >
+                  {{ item.name }}
+                </option>
+              </select>
             </div>
           </vs-col>
         </vs-row>
@@ -125,32 +155,38 @@
             vs-w="12"
           >
             <div class="centerx colors-example">
-              <vs-select
-                class="mt-0 mb-1 mr-1 ml-1"
-                label="Cargo"
+              <h6 style="margin-bottom: -14px; margin-left: 20px">Cargo</h6>
+              <select
+                class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                 v-model="formCharge.charge_id"
               >
-                <vs-select-item
+                <option value="">Seleccione</option>
+                <option
                   :key="index"
                   :value="item.id"
-                  :text="item.name"
                   v-for="(item, index) in charges"
-                />
-              </vs-select>
+                >
+                  {{ item.name }}
+                </option>
+              </select>
             </div>
             <div class="centerx colors-example">
-              <vs-select
-                class="mt-0 mb-1 mr-1 ml-1"
-                label="Cargo Supervisor"
+              <h6 style="margin-bottom: -14px; margin-left: 20px">
+                Cargo Supervisor
+              </h6>
+              <select
+                class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                 v-model="formCharge.charge_dependence_id"
               >
-                <vs-select-item
+                <option value="">Seleccione</option>
+                <option
                   :key="index"
                   :value="item.id"
-                  :text="item.name"
                   v-for="(item, index) in charges"
-                />
-              </vs-select>
+                >
+                  {{ item.name }}
+                </option>
+              </select>
             </div>
           </vs-col>
         </vs-row>
@@ -174,7 +210,8 @@ export default {
       branchOffices: {},
       charges: {},
       showDependencies: {},
-      showUserAuth: []
+      showUserAuth: [],
+      tantos: 5,
     };
   },
   created() {
@@ -259,7 +296,7 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
-     showUserAuthentificated() {
+    showUserAuthentificated() {
       let url = dominio.url + "/api/mostar-usuario-autentificado";
       axios.get(url).then((res) => {
         this.showUserAuth = res.data.showUserAuth;
@@ -297,5 +334,30 @@ export default {
 }
 .vs-dialog {
   max-width: 450px !important;
+}
+.seleccionable {
+  background: #10163a;
+  color: white;
+  width: 200px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
+}
+.seleccionableBuscador {
+  background: #10163a;
+  color: white;
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
+  margin-left: 10px;
+  margin-top: 0px;
+  border-radius: 20px;
 }
 </style>

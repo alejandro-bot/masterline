@@ -42,19 +42,19 @@
                     vs-align="center"
                     vs-w="6"
                   >
-                    <vs-select
-                      class="mb-3 ml-5"
-                      label="División"
+                    <select
+                      class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                       v-model="showChargeId.division_id"
                     >
-                      <vs-select-item :value="''" :text="'Seleccione'" />
-                      <vs-select-item
+                      <option value="">Seleccione</option>
+                      <option
                         :key="index"
                         :value="item.id"
-                        :text="item.name"
                         v-for="(item, index) in branchDivisions"
-                      />
-                    </vs-select>
+                      >
+                        {{ item.name }}
+                      </option>
+                    </select>
                   </vs-col>
                 </vs-row>
               </vs-col>
@@ -164,5 +164,16 @@ export default {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   border: 1px solid #ff6600;
+}
+.seleccionable {
+  background: #10163a;
+  color: white;
+  width: 200px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
 }
 </style>

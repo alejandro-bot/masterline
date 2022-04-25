@@ -20,7 +20,9 @@
             color="primary"
             type="relief"
             icon="person_add"
-            v-if="showUserAuth[0].permissions[20].name == 'BOTON USUARIOS ACTIVOS'"
+            v-if="
+              showUserAuth[0].permissions[20].name == 'BOTON USUARIOS ACTIVOS'
+            "
             >Usuarios Activos</vs-button
           >
         </vs-col>
@@ -37,23 +39,29 @@
       >
         <vs-card class="con-vs-cards">
           <div slot="header" class=""></div>
-          <vs-table>
+          <vs-table search pagination :data="users" :max-items="tantos">
             <template slot="header">
-              <h3 class="mb-5">Usuarios</h3>
+              <h3>Usuarios</h3>
+              <select v-model="tantos" class="seleccionable">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+              </select>
             </template>
             <template slot="thead">
-              <vs-th> Cedula </vs-th>
-              <vs-th> Nombre Completo </vs-th>
-              <vs-th> Cargo </vs-th>
-              <vs-th> Area </vs-th>
+              <vs-th sort-key="identification"> Cedula </vs-th>
+              <vs-th sort-key="last_name"> Nombre Completo </vs-th>
+              <vs-th sort-key="chargeName"> Cargo </vs-th>
+              <vs-th sort-key="operationName"> Area </vs-th>
               <vs-th> Acciones </vs-th>
             </template>
-            <template>
-              <vs-tr :key="index" v-for="(item, index) in users">
-                <vs-td :data="item.id">
+
+            <template slot-scope="{ data }">
+              <vs-tr v-for="(item, index) in data" :key="index">
+                <vs-td :data="item.identification">
                   {{ item.identification }}
                 </vs-td>
-                <vs-td :data="item.id">
+                <vs-td :data="item.last_name">
                   {{ item.first_name }} {{ item.last_name }}
                 </vs-td>
                 <vs-td :data="item.id">
@@ -62,6 +70,7 @@
                 <vs-td :data="item.id">
                   {{ item.operationName }}
                 </vs-td>
+
                 <vs-td :data="item.id">
                   <vs-row>
                     <vs-col
@@ -76,7 +85,11 @@
                         color="warning"
                         type="border"
                         icon="lock_open"
-                        v-if="item.status_id == 1 && showUserAuth[0].permissions[21].name == 'BOTON INACTIVAR USUARIO'"
+                        v-if="
+                          item.status_id == 1 &&
+                          showUserAuth[0].permissions[21].name ==
+                            'BOTON INACTIVAR USUARIO'
+                        "
                         @click="inactiveUser(item.id)"
                       ></vs-button>
                       <vs-button
@@ -85,10 +98,20 @@
                         color="danger"
                         type="gradient"
                         icon="lock"
-                        v-if="item.status_id == 2 && showUserAuth[0].permissions[21].name == 'BOTON INACTIVAR USUARIO'"
+                        v-if="
+                          item.status_id == 2 &&
+                          showUserAuth[0].permissions[21].name ==
+                            'BOTON INACTIVAR USUARIO'
+                        "
                         @click="activeUser(item.id)"
                       ></vs-button>
-                      <router-link :to="'/panel/edit-user/' + item.id"  v-if="showUserAuth[0].permissions[22].name == 'BOTON EDITAR USUARIO'">
+                      <router-link
+                        :to="'/panel/edit-user/' + item.id"
+                        v-if="
+                          showUserAuth[0].permissions[22].name ==
+                          'BOTON EDITAR USUARIO'
+                        "
+                      >
                         <vs-button
                           class="mr-1 ml-1"
                           radius
@@ -98,7 +121,10 @@
                         ></vs-button>
                       </router-link>
                       <vs-button
-                        v-if="showUserAuth[0].permissions[23].name == 'BOTON VER USUARIO'"
+                        v-if="
+                          showUserAuth[0].permissions[23].name ==
+                          'BOTON VER USUARIO'
+                        "
                         class="mr-1 ml-1"
                         @click="openModal(item)"
                         radius
@@ -313,6 +339,7 @@ export default {
     return {
       descriptionItems: [3, 5, 15],
       users: {},
+      tantos: 5,
       data: {},
       formInactive: {
         status_id: 2,
@@ -337,6 +364,7 @@ export default {
       let url = dominio.url + "/api/mostrar-usuarios";
       axios.get(url).then((res) => {
         this.users = res.data.users;
+        console.log("ssdsd", this.data);
       });
     },
     activeUser(id) {
@@ -380,7 +408,7 @@ export default {
         text: "Cerrado",
       });
     },
-     showUserAuthentificated() {
+    showUserAuthentificated() {
       let url = dominio.url + "/api/mostar-usuario-autentificado";
       axios.get(url).then((res) => {
         this.showUserAuth = res.data.showUserAuth;
@@ -407,6 +435,18 @@ export default {
   box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  border: #ff5000;
+  border: 1px solid #ff5000;
+}
+.seleccionable {
+  background: #10163a;
+  color: white;
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
+  margin-left: 10px;
 }
 </style>

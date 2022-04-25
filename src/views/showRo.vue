@@ -4,7 +4,10 @@
       <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-col vs-type="flex" vs-justify="left" vs-align="left" vs-w="12">
           <vs-button
-            v-if="showUserAuth[0].permissions[6].name == 'CREAR RO'"
+            v-if="
+              showUserAuth[0].permissions[5].name == 'CREAR RO' ||
+              showUserAuth[0].permissions[6].name == 'CREAR RO'
+            "
             class="buttonColor"
             color="primary"
             type="relief"
@@ -37,32 +40,41 @@
       >
         <vs-card class="con-vs-cards">
           <div slot="header" class=""></div>
-          <vs-table max-items="12" pagination :data="total">
+          <vs-table search pagination :data="showRo" :max-items="tantos">
             <template slot="header">
-              <h3 class="mb-5">R.O Creados Por: {{ showUserAuth[0].first_name }} {{ showUserAuth[0].last_name }}</h3>
+              <h3 class="mb-5">
+                R.O Creados Por: {{ showUserAuth[0].first_name }}
+                {{ showUserAuth[0].last_name }}
+              </h3>
+              <select v-model="tantos" class="seleccionableBuscador">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+              </select>
             </template>
             <template slot="thead">
-              <vs-th> R.O </vs-th>
-              <vs-th> Ultima Tipificación </vs-th>
-              <vs-th> Origen </vs-th>
-              <vs-th> Destino </vs-th>
-              <vs-th> Proceso </vs-th>
+              <vs-th sort-key="ro"> R.O </vs-th>
+              <vs-th sort-key="create_date"> Ultima Tipificación </vs-th>
+              <vs-th sort-key="starting_place"> Origen </vs-th>
+              <vs-th sort-key="destination_place"> Destino </vs-th>
+              <vs-th sort-key="process_name"> Proceso </vs-th>
               <vs-th class="justify-content-center"> Acciones </vs-th>
             </template>
-            <template>
-              <vs-tr :key="index" v-for="(item, index) in showRo">
+
+            <template slot-scope="{ data }">
+              <vs-tr v-for="(item, index) in data" :key="index">
                 <vs-td
                   :data="item.ro"
                   v-if="
-                    item.process[0].process_name != 'CIERRE DE LA OPERACION'
+                    item.process[0].process_name != 'CIERRE DE LA OPERACIÓN'
                   "
                 >
                   {{ item.ro }}
                 </vs-td>
                 <vs-td
-                  :data="item.process"
+                  :data="item.create_date"
                   v-if="
-                    item.process[0].process_name != 'CIERRE DE LA OPERACION'
+                    item.process[0].process_name != 'CIERRE DE LA OPERACIÓN'
                   "
                 >
                   {{ item.process[0].create_date }}
@@ -70,7 +82,7 @@
                 <vs-td
                   :data="item.starting_place"
                   v-if="
-                    item.process[0].process_name != 'CIERRE DE LA OPERACION'
+                    item.process[0].process_name != 'CIERRE DE LA OPERACIÓN'
                   "
                 >
                   {{ item.starting_place }}
@@ -78,23 +90,22 @@
                 <vs-td
                   :data="item.destination_place"
                   v-if="
-                    item.process[0].process_name != 'CIERRE DE LA OPERACION'
+                    item.process[0].process_name != 'CIERRE DE LA OPERACIÓN'
                   "
                 >
                   {{ item.destination_place }}
                 </vs-td>
                 <vs-td
-                  :data="item.destination_place"
+                  :data="item.process_name"
                   v-if="
-                    item.process[0].process_name != 'CIERRE DE LA OPERACION'
+                    item.process[0].process_name != 'CIERRE DE LA OPERACIÓN'
                   "
                 >
                   {{ item.process[0].process_name }}
                 </vs-td>
                 <vs-td
-                  :data="item.id"
                   v-if="
-                    item.process[0].process_name != 'CIERRE DE LA OPERACION'
+                    item.process[0].process_name != 'CIERRE DE LA OPERACIÓN'
                   "
                 >
                   <vs-row>
@@ -104,7 +115,14 @@
                       vs-align="center"
                       vs-w="12"
                     >
-                      <router-link :to="'/panel/show-ro/' + item.id" v-if="showUserAuth[0].permissions[8].name == 'BOTON VER RO'">
+                      <router-link
+                        :to="'/panel/show-ro/' + item.id"
+                        v-if="
+                          showUserAuth[0].permissions[7].name ==
+                            'BOTON VER RO' ||
+                          showUserAuth[0].permissions[8].name == 'BOTON VER RO'
+                        "
+                      >
                         <vs-button
                           class="mr-1 ml-1"
                           radius
@@ -113,7 +131,17 @@
                           icon="visibility"
                         ></vs-button>
                       </router-link>
-                      <router-link :to="'/panel/update-ro/' + item.id" v-if="showUserAuth[0].permissions[9].name == 'BOTON EDITAR RO'">
+                      <router-link
+                        :to="'/panel/update-ro/' + item.id"
+                        v-if="
+                          showUserAuth[0].permissions[7].name ==
+                            'BOTON EDITAR RO' ||
+                          showUserAuth[0].permissions[8].name ==
+                            'BOTON EDITAR RO' ||
+                          showUserAuth[0].permissions[9].name ==
+                            'BOTON EDITAR RO'
+                        "
+                      >
                         <vs-button
                           class="mr-1 ml-1"
                           radius
@@ -122,7 +150,13 @@
                           icon="edit"
                         ></vs-button>
                       </router-link>
-                      <router-link :to="'/panel/assign-ro/' + item.id" v-if="showUserAuth[0].permissions[10].name == 'BOTON ASIGNAR RO'">
+                      <router-link
+                        :to="'/panel/assign-ro/' + item.id"
+                        v-if="
+                          showUserAuth[0].permissions[10].name ==
+                          'BOTON ASIGNAR RO'
+                        "
+                      >
                         <vs-button
                           class="mr-1 ml-1"
                           radius
@@ -132,7 +166,10 @@
                         ></vs-button>
                       </router-link>
                       <vs-button
-                        v-if="showUserAuth[0].permissions[11].name == 'BOTON ELIMINAR RO'"
+                        v-if="
+                          showUserAuth[0].permissions[11].name ==
+                          'BOTON ELIMINAR RO'
+                        "
                         class="mr-1 ml-1"
                         radius
                         color="danger"
@@ -140,57 +177,29 @@
                         icon="delete_outline"
                         @click="deleteRo(item.id)"
                       ></vs-button>
+                      <vs-button
+                        v-if="item.is_parent == 1"
+                        class="mr-1 ml-1"
+                        radius
+                        color="dark"
+                        type="border"
+                        icon="add"
+                        @click="createRoSun(item.id)"
+                      ></vs-button>
+                      <router-link :to="'/panel/list-ro-sun/' + item.id">
+                        <vs-button
+                          v-if="item.is_parent == 1"
+                          class="mr-1 ml-1"
+                          radius
+                          color="#ff5000"
+                          type="border"
+                          icon="child_care"
+                          @click="listRosuns(item.id)"
+                        ></vs-button>
+                      </router-link>
                     </vs-col>
                   </vs-row>
                 </vs-td>
-                <template
-                  class="expand-showRo"
-                  slot="expand"
-                  v-if="item.is_parent == 1"
-                >
-                  <div class="con-expand-showRo">
-                    <vs-tr :key="index" v-for="(item, index) in showRo">
-                      <vs-td> 1 </vs-td>
-                      <vs-td> xczxczx </vs-td>
-                      <vs-td> 17-03-2022 03:03 pm </vs-td>
-                      <vs-td> zxcz </vs-td>
-                      <vs-td> xczxc </vs-td>
-                      <vs-td> Finalizacion de lo que sea</vs-td>
-                      <vs-td :data="item.id">
-                        <vs-row>
-                          <vs-col
-                            vs-type="flex"
-                            vs-justify="center"
-                            vs-align="center"
-                            vs-w="12"
-                          >
-                            <vs-button
-                              class="mr-1 ml-1"
-                              radius
-                              color="primary"
-                              type="border"
-                              icon="visibility"
-                            ></vs-button>
-                            <vs-button
-                              class="mr-1 ml-1"
-                              radius
-                              color="success"
-                              type="border"
-                              icon="edit"
-                            ></vs-button>
-                            <vs-button
-                              class="mr-1 ml-1"
-                              radius
-                              color="danger"
-                              type="border"
-                              icon="delete_outline"
-                            ></vs-button>
-                          </vs-col>
-                        </vs-row>
-                      </vs-td>
-                    </vs-tr>
-                  </div>
-                </template>
               </vs-tr>
             </template>
           </vs-table>
@@ -200,15 +209,14 @@
   </div>
 </template>
 <script>
-
 import { dominio } from "../dominio.js";
 export default {
   data() {
     return {
       showRo: {},
-      total: 0,
       roClosed: [],
       showUserAuth: [],
+      tantos: 5,
     };
   },
 
@@ -249,6 +257,18 @@ export default {
     showRoDelete() {
       this.$router.push("/panel/deletes-ro");
     },
+    createRoSun(id) {
+      let url = dominio.url + "/api/crear-ro-hijo/" + id;
+      axios.post(url).then((res) => {
+        if (res.data.code == 200) {
+          toastr.success(res.data.message);
+          this.showRos();
+        }
+        if (res.data.code == 500) {
+          toastr.error(res.data.message);
+        }
+      });
+    },
   },
 };
 </script>
@@ -271,5 +291,19 @@ export default {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   border: 1px solid #ff5000;
+}
+.seleccionableBuscador {
+  background: #10163a;
+  color: white;
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
+  margin-left: 10px;
+  margin-top: -13px;
+  border-radius: 20px;
 }
 </style>

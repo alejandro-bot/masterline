@@ -7,13 +7,13 @@
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
           <div slot="header">
-            <h3>Creación de Roles</h3>
+            <h3>Creación de Perfiles</h3>
           </div>
           <div>
             <vs-row vs-justify="center" class="mt-5">
               <vs-input
                 icon="add"
-                label-placeholder="Crear Rol"
+                label-placeholder="Crear Perfil"
                 v-model="name"
                 @keypress="errors.name = ''"
               />
@@ -23,7 +23,7 @@
             </div>
             <vs-row vs-justify="center" class="mt-5 mb-3">
               <vs-button @click="CreateRol()" color="#ff5000" type="relief" icon="person_add"
-                >Crear Rol</vs-button
+                >Crear Perfil</vs-button
               >
             </vs-row>
           </div>
@@ -90,6 +90,10 @@ export default {
     box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
+    border: 1px solid #ff5000;
+}
+.buttonColor {
+  background: #ff5000 !important;
 }
 </style>
 

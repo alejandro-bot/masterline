@@ -24,32 +24,40 @@
               vs-w="12"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample ml-0 mr-5 mt-0 mb-3"
-                  label="Modo De Transporte"
+                <h6 style="margin-bottom: -14px; margin-left: 20px">
+                  Modo De Transporte
+                </h6>
+                <select
+                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                   v-model="formTemplate.type_of_transport_id"
                 >
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in typeOfTransport"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
               </div>
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample ml-0 mr-4 mt-0 mb-3"
-                  label="Tipo De Embarque"
+                <h6 style="margin-bottom: -14px; margin-left: 20px">
+                  Tipo De Embarque
+                </h6>
+                <select
+                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                   v-model="formTemplate.type_id"
                 >
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in showTypeSends"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
               </div>
               <div class="centerx colors-example">
                 <vs-input
@@ -70,8 +78,8 @@
               vs-sm="12"
               vs-xs="12"
             >
-             <wysiwyg
-             class="mt-5 mb-5 ml-5 mr-5"
+              <wysiwyg
+                class="mt-5 mb-5 ml-5 mr-5"
                 v-model="formTemplate.tracing"
                 style="background: white; color: black; height: auto"
               />
@@ -86,9 +94,12 @@
               vs-sm="12"
               vs-xs="12"
             >
-              <vs-button color="#ff5000" type="relief" icon="send"
-              @click="CreateTemplate()"
-              >Crear Plantilla</vs-button
+              <vs-button
+                color="#ff5000"
+                type="relief"
+                icon="send"
+                @click="CreateTemplate()"
+                >Crear Plantilla</vs-button
               >
             </vs-col>
           </vs-row>

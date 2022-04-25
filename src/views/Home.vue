@@ -9,7 +9,11 @@
         vs-w="12"
       >
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
-          <vs-card class="con-vs-cards mr-5" style="height: 350px !important" v-if="showUserAuth[0].permissions[0].name == 'VER GESTIÓN DIARIA '">
+          <vs-card
+            class="con-vs-cards mr-5"
+            style="height: 350px !important"
+            v-if="showUserAuth[0].permissions[0].name == 'VER GESTIÓN DIARIA'"
+          >
             <div slot="header">
               <vs-images>
                 <vs-image
@@ -114,7 +118,11 @@
           </vs-card>
         </vs-col>
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
-          <vs-card class="con-vs-cards mr-2" style="height: 350px !important" v-if="showUserAuth[0].permissions[1].name == 'VER RESUMEN GENERAL'">
+          <vs-card
+            class="con-vs-cards mr-2"
+            style="height: 350px !important"
+            v-if="showUserAuth[0].permissions[1].name == 'VER RESUMEN GENERAL'"
+          >
             <div slot="header">
               <vs-images>
                 <vs-image
@@ -219,7 +227,11 @@
           </vs-card>
         </vs-col>
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
-          <vs-card class="con-vs-cards" style="height: 350px !important" v-if="showUserAuth[0].permissions[2].name == 'VER SIN SEGUIMIENTO'">
+          <vs-card
+            class="con-vs-cards"
+            style="height: 350px !important"
+            v-if="showUserAuth[0].permissions[2].name == 'VER SIN SEGUIMIENTO'"
+          >
             <div slot="header">
               <vs-images>
                 <vs-image
@@ -298,7 +310,11 @@
           </vs-card>
         </vs-col>
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
-          <vs-card class="con-vs-cards ml-2" style="height: 350px !important" v-if="showUserAuth[0].permissions[3].name == 'VER TIPO DE EMBARQUE'">
+          <vs-card
+            class="con-vs-cards ml-2"
+            style="height: 350px !important"
+            v-if="showUserAuth[0].permissions[3].name == 'VER TIPO DE EMBARQUE'"
+          >
             <div slot="header">
               <vs-images>
                 <vs-image
@@ -352,7 +368,9 @@
                 </vs-col>
                 <vs-col
                   class="ml-1"
-                  v-if="showUserAuth[0].rol_id == 9"
+                  v-if="
+                    showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
+                  "
                   vs-type="flex"
                   vs-justify="left"
                   vs-align="center"
@@ -376,7 +394,9 @@
                   Importación
                 </vs-col>
                 <vs-col
-                  v-if="showUserAuth[0].rol_id == 9"
+                  v-if="
+                    showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
+                  "
                   vs-type="flex"
                   vs-justify="center"
                   vs-align="center"
@@ -400,7 +420,9 @@
                   {{ imports }}
                 </vs-col>
                 <vs-col
-                  v-if="showUserAuth[0].rol_id == 9"
+                  v-if="
+                    showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
+                  "
                   vs-type="flex"
                   vs-justify="center"
                   vs-align="center"
@@ -433,7 +455,9 @@
                   <span class="material-icons"> file_upload </span>
                 </vs-col>
                 <vs-col
-                  v-if="showUserAuth[0].rol_id == 9"
+                  v-if="
+                    showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
+                  "
                   class="ml-1"
                   vs-type="flex"
                   vs-justify="left"
@@ -458,7 +482,9 @@
                   Exportación
                 </vs-col>
                 <vs-col
-                  v-if="showUserAuth[0].rol_id == 9"
+                  v-if="
+                    showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
+                  "
                   vs-type="flex"
                   vs-justify="center"
                   vs-align="center"
@@ -467,7 +493,9 @@
                   Terretre
                 </vs-col>
                 <vs-col
-                  v-if="showUserAuth[0].rol_id == 9"
+                  v-if="
+                    showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
+                  "
                   vs-type="flex"
                   vs-justify="center"
                   vs-align="center"
@@ -492,7 +520,9 @@
                 </vs-col>
               </vs-col>
               <vs-col
-                v-if="showUserAuth[0].rol_id == 9"
+                v-if="
+                  showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
+                "
                 class="ml-1 mt-4"
                 vs-type="flex"
                 vs-justify="left"
@@ -502,7 +532,9 @@
                 <span class="material-icons"> local_airport </span>
               </vs-col>
               <vs-col
-                v-if="showUserAuth[0].rol_id == 9"
+                v-if="
+                  showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
+                "
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
@@ -511,7 +543,9 @@
                 Aereo
               </vs-col>
               <vs-col
-                v-if="showUserAuth[0].rol_id == 9"
+                v-if="
+                  showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
+                "
                 class="ml-4"
                 vs-type="flex"
                 vs-justify="right"
@@ -565,7 +599,10 @@
     </vs-row>
     <graphic
       class="mt-5 mb-3"
-      v-if="grafica1View && showUserAuth[0].permissions[4].name == 'VER GRAFICA REGISTROS'"
+      v-if="
+        grafica1View &&
+        showUserAuth[0].permissions[4].name == 'VER GRAFICA REGISTROS'
+      "
       titulo="Cantidad De Registros Últimos 6 Meses"
       :arrayData="dataValues"
       :labels="labels"
@@ -579,109 +616,116 @@
             <h6 class="card-title text-center">R.O ABIERTOS ASIGNADOS</h6>
           </div>
           <div>
-            <vs-table :data="roOfUser">
-              <template slot="header"> </template>
+            <vs-table search pagination :data="roOfUser" :max-items="tantos">
+              <template slot="header">
+                <h3>Usuarios</h3>
+                <select v-model="tantos" class="seleccionableBuscador">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select>
+              </template>
               <template slot="thead">
-                <vs-th> R.O </vs-th>
-                <vs-th> Ultíma Gestión </vs-th>
-                <vs-th> Puerto Origen </vs-th>
-                <vs-th> Puerto Destino </vs-th>
-                <vs-th> ETD </vs-th>
-                <vs-th> ETA </vs-th>
-                <vs-th> Proceso </vs-th>
-                <vs-th> Tipo </vs-th>
+                <vs-th sort-key="ro"> R.O </vs-th>
+                <vs-th sort-key="create_date"> Ultíma Gestión </vs-th>
+                <vs-th sort-key="starting_place"> Puerto Origen </vs-th>
+                <vs-th sort-key="destination_place"> Puerto Destino </vs-th>
+                <vs-th sort-key="etd"> ETD </vs-th>
+                <vs-th sort-key="eta"> ETA </vs-th>
+                <vs-th sort-key="process_name"> Proceso </vs-th>
+                <vs-th sort-key="name"> Tipo </vs-th>
                 <vs-th> Acción </vs-th>
               </template>
 
-              <template slot-scope="{ data }" v-if="showUserAuth[0].permissions[5].name == 'VER RO ABIERTOS INICIO'">
-                <vs-tr :key="indextr" v-for="(tr, indextr) in roOfUser">
+              <template slot-scope="{ data }">
+                <vs-tr v-for="(item, index) in data" :key="index">
                   <vs-td
-                    :data="data[indextr].ro"
+                    :data="item.ro"
                     v-if="
-                      data[indextr].processes_ro_pivot[0].procesess
-                        .process_name != 'CIERRE DE LA OPERACION'
+                      item.processes_ro_pivot[0].procesess.process_name !=
+                      'CIERRE DE LA OPERACIÓN'
                     "
                   >
-                    {{ data[indextr].ro }}
-                  </vs-td>
-
-                  <vs-td
-                    :data="data[indextr].created_at"
-                    v-if="
-                      data[indextr].processes_ro_pivot[0].procesess
-                        .process_name != 'CIERRE DE LA OPERACION'
-                    "
-                  >
-                    {{
-                      data[indextr].processes_ro_pivot[0].procesess.create_date
-                    }}
+                    {{ item.ro }}
                   </vs-td>
                   <vs-td
-                    :data="data[indextr].starting_place"
+                    :data="item.created_at"
                     v-if="
-                      data[indextr].processes_ro_pivot[0].procesess
-                        .process_name != 'CIERRE DE LA OPERACION'
+                      item.processes_ro_pivot[0].procesess.process_name !=
+                      'CIERRE DE LA OPERACIÓN'
                     "
                   >
-                    {{ data[indextr].starting_place }}
+                    {{ item.processes_ro_pivot[0].procesess.create_date }}
                   </vs-td>
                   <vs-td
-                    :data="data[indextr].destination_place"
+                    :data="item.starting_place"
                     v-if="
-                      data[indextr].processes_ro_pivot[0].procesess
-                        .process_name != 'CIERRE DE LA OPERACION'
+                      item.processes_ro_pivot[0].procesess.process_name !=
+                      'CIERRE DE LA OPERACIÓN'
                     "
                   >
-                    {{ data[indextr].destination_place }}
+                    {{ item.starting_place }}
                   </vs-td>
                   <vs-td
-                    :data="data[indextr].etd"
+                    :data="item.destination_place"
                     v-if="
-                      data[indextr].processes_ro_pivot[0].procesess
-                        .process_name != 'CIERRE DE LA OPERACION'
+                      item.processes_ro_pivot[0].procesess.process_name !=
+                      'CIERRE DE LA OPERACIÓN'
                     "
                   >
-                    {{ data[indextr].etd }}
+                    {{ item.destination_place }}
                   </vs-td>
                   <vs-td
-                    :data="data[indextr].eta"
+                    :data="item.etd"
                     v-if="
-                      data[indextr].processes_ro_pivot[0].procesess
-                        .process_name != 'CIERRE DE LA OPERACION'
+                      item.processes_ro_pivot[0].procesess.process_name !=
+                      'CIERRE DE LA OPERACIÓN'
                     "
                   >
-                    {{ data[indextr].eta }}
+                    {{ item.etd }}
+                  </vs-td>
+                  <vs-td
+                    :data="item.eta"
+                    v-if="
+                      item.processes_ro_pivot[0].procesess.process_name !=
+                      'CIERRE DE LA OPERACIÓN'
+                    "
+                  >
+                    {{ item.eta }}
                   </vs-td>
                   <vs-td
                     v-if="
-                      data[indextr].processes_ro_pivot[0].procesess
-                        .process_name != 'CIERRE DE LA OPERACION'
+                      item.processes_ro_pivot[0].procesess.process_name !=
+                      'CIERRE DE LA OPERACIÓN'
                     "
-                    :data="
-                      data[indextr].processes_ro_pivot[0].procesess.process_name
-                    "
+                    :data="item.processes_ro_pivot[0].procesess.process_name"
                   >
-                    {{
-                      data[indextr].processes_ro_pivot[0].procesess.process_name
-                    }}
+                    {{ item.processes_ro_pivot[0].procesess.process_name }}
                   </vs-td>
                   <vs-td
-                    :data="data[indextr].type_send.name"
+                    :data="item.type_send.name"
                     v-if="
-                      data[indextr].processes_ro_pivot[0].procesess
-                        .process_name != 'CIERRE DE LA OPERACION'
+                      item.processes_ro_pivot[0].procesess.process_name !=
+                      'CIERRE DE LA OPERACIÓN'
                     "
                   >
-                    {{ data[indextr].type_send.name }}
+                    {{ item.type_send.name }}
                   </vs-td>
                   <vs-td
-                    :data="data[indextr].type_send.name"
+                    :data="item.type_send.name"
                     v-if="
-                      data[indextr].processes_ro_pivot[0].procesess
-                        .process_name != 'CIERRE DE LA OPERACION'
+                      item.processes_ro_pivot[0].procesess.process_name !=
+                      'CIERRE DE LA OPERACIÓN'
                     "
                   >
-                    <router-link :to="'/panel/update-ro/' + data[indextr].id" v-if="showUserAuth[0].permissions[9].name == 'BOTON EDITAR RO'">
+                    <router-link
+                      :to="'/panel/update-ro/' + item.id"
+                      v-if="
+                        showUserAuth[0].permissions[9].name ==
+                          'BOTON EDITAR RO' ||
+                        showUserAuth[0].permissions[8].name == 'BOTON EDITAR RO'
+                      "
+                    >
                       <vs-button
                         class="mr-1 ml-1"
                         radius
@@ -727,6 +771,7 @@ export default {
       shoRoEdnaMaritime: [],
       shoRoEdnaAir: [],
       shoRoEdnaInland: [],
+      tantos: 5,
     };
   },
   created() {
@@ -818,5 +863,19 @@ export default {
 }
 .buttonColor {
   background: #ff5000 !important;
+}
+.seleccionableBuscador {
+  background: #10163a;
+  color: white;
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
+  margin-left: 10px;
+  margin-top: 0px;
+  border-radius: 20px;
 }
 </style>

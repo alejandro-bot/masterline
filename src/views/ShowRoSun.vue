@@ -8,7 +8,7 @@
             color="primary"
             type="relief"
             icon="home"
-            @click="backRos()"
+            @click="backRosSun()"
             >Regresar</vs-button
           >
         </vs-col>
@@ -19,7 +19,7 @@
         <vs-card class="con-vs-cards">
           <div slot="header">
             <strong>
-              <h1 class="text-center">VISTA DE R.O</h1>
+              <h1 class="text-center">VISTA DE R.O HIJO</h1>
             </strong>
           </div>
           <h6 class="card-title text-center">R.O. NÚMERO Y TIPO DE ENVÍO</h6>
@@ -35,7 +35,7 @@
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Modo De Transporte"
-                  :value="showRoDisabled.type_of_transport.name"
+                  :value="showSunId.type_of_transport.name"
                   disabled
                 />
               </div>
@@ -44,7 +44,7 @@
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
                   label-placeholder="R.O"
-                  v-model="showRoDisabled.ro"
+                  :value="showSunId.ro"
                   disabled
                 />
               </div>
@@ -53,7 +53,7 @@
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Tipo De Embarque"
-                  v-model="showRoDisabled.type_send.name"
+                  :value="showSunId.type_send.name"
                   disabled
                 />
               </div>
@@ -62,11 +62,11 @@
         </vs-card>
         <vs-card
           class="con-vs-cards"
-          v-if="
-            showRoDisabled.carrier ||
-            showRoDisabled.vehicle ||
-            showRoDisabled.driver ||
-            showRoDisabled.plaque
+           v-if="
+            showSunId.carrier ||
+            showSunId.vehicle ||
+            showSunId.driver ||
+            showSunId.plaque
           "
         >
           <h6 class="card-title text-center">DETALLES DEL TRANSPORTADOR</h6>
@@ -81,32 +81,28 @@
                 class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Transportadora"
-                v-model="showRoDisabled.carrier"
-                v-if="showRoDisabled.carrier"
+                :value="showSunId.carrier"
                 disabled
               />
               <vs-input
                 class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Típo de Vehículo"
-                v-model="showRoDisabled.vehicle"
-                v-if="showRoDisabled.vehicle"
+                :value="showSunId.vehicle"
                 disabled
               />
               <vs-input
                 class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Conductor"
-                v-model="showRoDisabled.driver"
-                v-if="showRoDisabled.driver"
+                :value="showSunId.driver"
                 disabled
               />
               <vs-input
                 class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Placa"
-                v-model="showRoDisabled.plaque"
-                v-if="showRoDisabled.plaque"
+                :value="showSunId.plaque"
                 disabled
               />
             </vs-col>
@@ -126,7 +122,7 @@
                   class="selectExample ml-0 mr-5 mt-3 mb-0"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Puerto De Origen"
-                  v-model="showRoDisabled.starting_place"
+                  :value="showSunId.starting_place"
                   disabled
                 />
               </div>
@@ -135,7 +131,7 @@
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Puerto De Destino"
-                  v-model="showRoDisabled.destination_place"
+                  :value="showSunId.destination_place"
                   disabled
                 />
               </div>
@@ -144,7 +140,7 @@
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Emisión HBL"
-                  v-model="showRoDisabled.issue.name"
+                  :value="showSunId.issue.name"
                   disabled
                 />
               </div>
@@ -159,21 +155,21 @@
                 <vs-input
                   class="ml-0 mr-5 mt-0 mb-3"
                   label="ETD"
-                  v-model="showRoDisabled.etd"
+                  :value="showSunId.etd"
                   disabled
                 />
               </div>
               <vs-input
                 class="ml-0 mr-5 mt-0 mb-3"
                 label="ETA"
-                v-model="showRoDisabled.eta"
+                :value="showSunId.eta"
                 disabled
               />
               <vs-input
                 class="ml-0 mr-4 mt-2 mb-0"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Número HBL"
-                v-model="showRoDisabled.num_hbl"
+                :value="showSunId.num_hbl"
                 disabled
               />
             </vs-col>
@@ -193,7 +189,7 @@
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Tipo Carga"
-                  v-model="showRoDisabled.type_of_load.name"
+                  :value="showSunId.type_of_load.name"
                   disabled
                 />
               </div>
@@ -202,7 +198,7 @@
                   class="ml-0 mr-5 mt-5 mb-3"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Cantidad"
-                  v-model="showRoDisabled.quantity"
+                  :value="showSunId.quantity"
                   disabled
                 />
               </div>
@@ -211,7 +207,7 @@
                   class="ml-0 mr-4 mt-2 mb-0"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Numero De Contenedor"
-                  v-model="showRoDisabled.container_number"
+                  :value="showSunId.container_number"
                   disabled
                 />
               </div>
@@ -226,21 +222,21 @@
                 class="ml-0 mr-5 mt-5 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Tipo de Contenedor"
-                v-model="showRoDisabled.kind_of_container"
+                :value="showSunId.kind_of_container"
                 disabled
               />
               <vs-input
                 class="ml-0 mr-5 mt-5 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Peso Bruto"
-                v-model="showRoDisabled.weight"
+                :value="showSunId.weight"
                 disabled
               />
               <vs-input
                 class="ml-0 mr-4 mt-2 mb-0"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Volumen"
-                v-model="showRoDisabled.volume"
+                :value="showSunId.volume"
                 disabled
               />
             </vs-col>
@@ -260,7 +256,7 @@
                   class="ml-0 mr-4 mt-2 mb-0"
                   color="rgb(213, 14, 151)"
                   label="Nombre Sucursal"
-                  v-model="showRoDisabled.branch_office.name"
+                  :value="showSunId.branch_office.name"
                   disabled
                 />
               </div>
@@ -269,8 +265,8 @@
                   class="ml-0 mr-4 mt-2 mb-0"
                   color="rgb(213, 14, 151)"
                   label="Nombre Usuario"
+                  :value="showSunId.user.first_name + ' ' + showSunId.user.last_name"
                   disabled
-                  :value="showRoDisabled.user.first_name + ' ' + showRoDisabled.user.last_name"
                 />
               </div>
             </vs-col>
@@ -285,7 +281,8 @@
                   class="ml-0 mr-4 mt-2 mb-0"
                   color="rgb(213, 14, 151)"
                   label="Comercial"
-                  v-model="showRoDisabled.commercial"
+                  :value="user.first_name + ' ' + user.last_name"
+                  style="width: 330px;"
                   disabled
                 />
               </div>
@@ -294,8 +291,8 @@
                   class="ml-0 mr-4 mt-2 mb-0"
                   color="rgb(213, 14, 151)"
                   label="Codigo Seguimiento Cliente"
+                  :value="showSunId.customer_tracking_code"
                   disabled
-                  v-model="showRoDisabled.customer_tracking_code"
                 />
               </div>
             </vs-col>
@@ -315,7 +312,7 @@
                   <vs-th> Correo Electronico </vs-th>
                 </template>
                 <template>
-                  <vs-tr v-for="(item, index) in showRoDisabled.email_clients" :key="index">
+                  <vs-tr v-for="(item, index) in showSunId.email_clients" :key="index">
                     <vs-td :data="item">
                       {{ item.name }}
                     </vs-td>
@@ -339,14 +336,13 @@
                 color="rgb(213, 14, 151)"
                 label-placeholder="ASIGNACIÓN DE LA OPERACIÓN"
                 style="width: 50%"
-                v-model="showRoDisabled.process"
                 disabled
               />
               <vs-input
                 class="mt-5 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Asunto Correo"
-                v-model="showRoDisabled.subjet"
+                :value="showSunId.subjet"
                 style="width: 50%"
                 disabled
               />
@@ -362,8 +358,6 @@
                 counter="100"
                 label="¡Gracias por tu confianza!¡Esta nueva asignación es importante para nosotros!"
                 width="1140px"
-                :counter-danger.sync="counterDanger"
-                v-model="showRoDisabled.message"
                 disabled
               />
             </vs-col>
@@ -379,22 +373,24 @@ export default {
   data() {
     return {
       id: this.$route.params && this.$route.params.id,
-      showRoDisabled: {},
+      showSunId: {},
+      user: {}
     };
   },
   created() {
-    this.showRoId();
+    this.showRosunId();
   },
   methods: {
-    backRos() {
-      this.$router.push("/panel/show-ro");
-    },
-    showRoId() {
-      let url = dominio.url + "/api/mostrar-ro/" + this.id;
+    showRosunId() {
+      let url = dominio.url + "/api/mostrar-ro-hijo/" + this.id;
       axios.get(url).then((res) => {
-        this.showRoDisabled = res.data.showRoDisabled;
+        this.showSunId = res.data.showSunId;
+        this.user = res.data.user;
       });
     },
+    backRosSun() {
+      this.$router.push('/panel/show-ro');
+    }
   },
 };
 </script>

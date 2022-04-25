@@ -103,18 +103,20 @@
               vs-w="3"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample"
-                  label="Divisón"
+                <h6 style="margin-bottom: -14px; margin-left: 10px">Divisón</h6>
+                <select
+                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
                   v-model="formUser.branch_division_id"
                 >
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in branchDivisions"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
                 <div class="mt-2" v-if="errors.branch_division_id">
                   <span class="errors">{{ errors.branch_division_id[0] }}</span>
                 </div>
@@ -128,19 +130,21 @@
               vs-w="3"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample"
-                  label="Cargo"
+                <h6 style="margin-bottom: -14px; margin-left: 10px">Cargo</h6>
+                <select
+                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
                   v-model="formUser.position_id"
                   @change="errors.position_id = ''"
                 >
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="item.id"
                     :value="item.id"
-                    :text="item.name"
                     v-for="item in charges"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
                 <div class="mt-2" v-if="errors.position_id">
                   <span class="errors">{{ errors.position_id[0] }}</span>
                 </div>
@@ -154,22 +158,26 @@
               vs-w="3"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample"
-                  label="Sucursal"
+                <h6 style="margin-bottom: -14px; margin-left: 10px">
+                  Sucursal
+                </h6>
+                <select
+                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
                   v-model="formUser.branch_office_id"
                   @change="
                     errors.branch_office_id = '';
                     supervisor();
                   "
                 >
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in branchOffices"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
                 <div class="mt-2" v-if="errors.branch_office_id">
                   <span class="errors">{{ errors.branch_office_id[0] }}</span>
                 </div>
@@ -183,19 +191,23 @@
               vs-w="3"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample"
-                  label="Nombre jefe"
+                <h6 style="margin-bottom: -14px; margin-left: 10px">
+                  Nombre jefe
+                </h6>
+                <select
+                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
                   v-model="formUser.supervisor_id"
                   @change="errors.supervisor_id = ''"
                 >
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.first_name + ' ' + item.last_name"
                     v-for="(item, index) in user"
-                  />
-                </vs-select>
+                  >
+                    {{ item.first_name }} {{ item.last_name }}
+                  </option>
+                </select>
                 <div class="mt-2" v-if="errors.supervisor_id">
                   <span class="errors">{{ errors.supervisor_id[0] }}</span>
                 </div>
@@ -209,19 +221,21 @@
               vs-w="3"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample"
-                  label="Genero"
+                <h6 style="margin-bottom: -14px; margin-left: 10px">Genero</h6>
+                <select
+                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
                   v-model="formUser.gender_id"
                   @change="errors.gender_id = ''"
                 >
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="item.id"
                     :value="item.id"
-                    :text="item.name"
                     v-for="item in genders"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
                 <div class="mt-2" v-if="errors.gender_id">
                   <span class="errors">{{ errors.gender_id[0] }}</span>
                 </div>
@@ -335,19 +349,21 @@
               vs-w="3"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample"
-                  label="Estado"
+                <h6 style="margin-bottom: -14px; margin-left: 10px">Estado</h6>
+                <select
+                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
                   v-model="formUser.status_id"
                   @change="errors.status_id = ''"
                 >
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in status"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
                 <div class="mt-2" v-if="errors.status_id">
                   <span class="errors">{{ errors.status_id[0] }}</span>
                 </div>
@@ -361,19 +377,23 @@
               vs-w="3"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample"
-                  label="Operación"
+                <h6 style="margin-bottom: -14px; margin-left: 10px">
+                  Operación
+                </h6>
+                <select
+                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
                   v-model="formUser.operation_id"
                   @change="errors.operation_id = ''"
                 >
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in operations"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
                 <div class="mt-2" v-if="errors.operation_id">
                   <span class="errors">{{ errors.operation_id[0] }}</span>
                 </div>
@@ -555,5 +575,17 @@ export default {
   box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  border: 1px solid #ff5000;
+}
+.seleccionable {
+  background: #10163a;
+  color: white;
+  width: 200px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
 }
 </style>

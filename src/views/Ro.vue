@@ -29,8 +29,9 @@
               vs-w="12"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample ml-0 mr-5 mt-0 mb-3"
+                <h6 style="margin-bottom: -14px">Tipo De Transporte</h6>
+                <select
+                  class="ml-0 mr-5 mt-5 mb-3 seleccionable"
                   label="Modo De Transporte*"
                   v-model="formRo.type_of_transport_id"
                   @change="
@@ -40,14 +41,15 @@
                     errors.type_of_transport_id = '';
                   "
                 >
-                  <vs-select-item :value="''" :text="'Seleccione'" />
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in typeOfTransport"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
                 <div class="mt-2 text-left" v-if="errors.type_of_transport_id">
                   <span class="errors">{{
                     errors.type_of_transport_id[0]
@@ -67,20 +69,22 @@
                 </div>
               </div>
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample ml-0 mr-4 mt-0 mb-3"
+                <h6 style="margin-bottom: -14px">Tipo De Envio</h6>
+                <select
+                  class="selectExample ml-0 mr-5 mt-5 mb-3 seleccionable"
                   label="Tipo De Embarque *"
                   v-model="formRo.type_id"
                   @change="errors.type_id = ''"
                 >
-                  <vs-select-item :value="''" :text="'Seleccione'" disabled />
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in showTypeSends"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
                 <div class="mt-1 text-left" v-if="errors.type_id">
                   <span class="errors">{{ errors.type_id[0] }}</span>
                 </div>
@@ -88,6 +92,46 @@
             </vs-col>
           </vs-row>
         </vs-card>
+
+
+
+
+
+
+
+
+        <vs-card class="con-vs-cards">
+          <div slot="header">
+          </div>
+          <h6 class="card-title text-center">¿ R.O. PADRE ?</h6>
+          <vs-row>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <div class="centerx colors-example">
+                <select
+                  class="seleccionable"
+                  label="Modo De Transporte*"
+                  v-model="formRo.is_parent"
+                  style="margin-left: 10px !important;"
+                >
+                  <option value="">Seleccione</option>
+                  <option value="1">Si</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+            </vs-col>
+          </vs-row>
+        </vs-card>
+
+
+
+
+
+
         <vs-card class="con-vs-cards" v-if="formRo.type_of_transport_id == 3">
           <h6 class="card-title text-center">DETALLES DEL TRANSPORTADOR</h6>
           <vs-row>
@@ -158,20 +202,22 @@
                 </div>
               </div>
               <div class="centerx colors-example">
-                <vs-select
-                  class="selectExample ml-0 mr-4 mt-0 mb-3"
-                  label="Emisión HBL *"
+                <h6 style="margin-bottom: -14px">Emisión HBL *</h6>
+                <select
+                  class="selectExample ml-0 mr-5 mt-5 mb-3 seleccionable"
+                  label="Tipo De Embarque *"
                   v-model="formRo.issue_id"
                   @change="errors.issue_id = ''"
                 >
-                  <vs-select-item :value="''" :text="'Seleccione'" disabled />
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in showIssues"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
                 <div class="mt-1 ml-0 text-left" v-if="errors.issue_id">
                   <span class="errors">{{ errors.issue_id[0] }}</span>
                 </div>
@@ -216,19 +262,20 @@
               vs-w="12"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="ml-0 mr-5 mt-0 mb-3"
-                  label="Tipo Carga"
+                <h6 style="margin-bottom: -14px">Tipo Carga</h6>
+                <select
+                  class="selectExample ml-0 mr-5 mt-5 mb-3 seleccionable"
                   v-model="formRo.type_of_load_id"
                 >
-                  <vs-select-item :value="''" :text="'Seleccione'" disabled />
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in showTypeOfLoad"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
               </div>
               <div class="centerx colors-example">
                 <vs-input
@@ -294,27 +341,28 @@
               vs-w="12"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="ml-2 mr-5 mt-2 mb-0"
-                  label="Sucursal *"
+                <h6 style="margin-bottom: -14px">Sucursal *</h6>
+                <select
+                  class="ml-0 mr-3 mt-5 mb-3 seleccionable"
                   v-model="formRo.branch_office_id"
                   @change="errors.branch_office_id = ''"
                 >
-                  <vs-select-item :value="''" :text="'Seleccione'" />
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in branchOffices"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
                 <div class="mt-1 ml-1 text-left" v-if="errors.branch_office_id">
                   <span class="errors">{{ errors.branch_office_id[0] }}</span>
                 </div>
               </div>
               <div class="centerx colors-example">
                 <vs-input
-                  class="ml-2 mr-5 mt-2 mb-0"
+                  class="ml-2 mr-5 mt-0 mb-0"
                   color="rgb(213, 14, 151)"
                   label="Nombre Usuario"
                   disabled
@@ -322,19 +370,20 @@
                 />
               </div>
               <div class="centerx colors-example">
-                <vs-select
-                  class="ml-4 mr-5 mt-2 mb-0"
-                  label="Grupo De Correos"
+                <h6 style="margin-bottom: -14px">Grupo De Correos</h6>
+                <select
+                  class="selectExample ml-0 mr-5 mt-5 mb-3 seleccionable"
                   v-model="formRo.groupEmails"
                 >
-                  <vs-select-item :value="''" :text="'Seleccione'" />
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.name"
                     v-for="(item, index) in listNameGroups"
-                  />
-                </vs-select>
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
               </div>
             </vs-col>
             <vs-col
@@ -344,20 +393,21 @@
               vs-w="12"
             >
               <div class="centerx colors-example">
-                <vs-select
-                  class="ml-0 mr-4 mt-1 mb-4"
-                  label="Comercial *"
+                <h6 style="margin-bottom: -14px">Comercial *</h6>
+                <select
+                  class="ml-0 mr-3 mt-5 mb-3 seleccionable"
                   v-model="formRo.commercial"
                   @change="errors.commercial = ''"
                 >
-                  <vs-select-item :value="''" :text="'Seleccione'" />
-                  <vs-select-item
+                  <option value="">Seleccione</option>
+                  <option
                     :key="index"
                     :value="item.id"
-                    :text="item.first_name + ' ' + item.last_name"
                     v-for="(item, index) in users"
-                  />
-                </vs-select>
+                  >
+                    {{ item.first_name }} {{ item.last_name }}
+                  </option>
+                </select>
                 <div class="mt-1 ml-1 text-left" v-if="errors.commercial">
                   <span class="errors">{{ errors.commercial[0] }}</span>
                 </div>
@@ -542,7 +592,7 @@ export default {
         message: "",
         type_of_transport_id: "",
         groupEmails: "",
-        is_partent: 1,
+        is_parent: '',
       },
       counterDanger: false,
       emails: [],
@@ -681,5 +731,16 @@ export default {
 }
 .buttonColor {
   background: #ff5000 !important;
+}
+.seleccionable {
+  background: #10163a;
+  color: white;
+  width: 200px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
 }
 </style>

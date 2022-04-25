@@ -74,7 +74,7 @@ export default {
     return {
       email: "",
       password: "",
-      checkbox_remember_me: false,
+      checkbox_remember_me: true,
     };
   },
   methods: {
@@ -85,9 +85,8 @@ export default {
           password: this.password,
         })
         .then((response) => {
-          console.log(response.data);
           if (response.data.ok) {
-            this.$router.push("/panel/");
+           window.location.href = "/panel/"
           } else {
             var errors = response.data.data;
             $.each(errors, function (i) {

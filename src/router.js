@@ -33,7 +33,7 @@ const router = new Router({
           name: 'perfiles-usuarios',
           component: () => import('./views/PerfilesUsuarios.vue'),
           meta: {
-            rol_id: 1
+            home: true,
           }
         },
         {
@@ -41,7 +41,7 @@ const router = new Router({
           name: 'create-rol',
           component: () => import('./views/Rol.vue'),
           meta: {
-            rol_id: 'create-rol'
+            home: true,
           }
         },
         {
@@ -49,7 +49,7 @@ const router = new Router({
           name: 'users',
           component: () => import('./views/Users.vue'),
           meta: {
-            rol_id: 'users'
+            home: true,
           }
         },
         {
@@ -57,7 +57,7 @@ const router = new Router({
           name: 'create-user',
           component: () => import('./views/CreateUser.vue'),
           meta: {
-            rol_id: 'create-user'
+            home: true,
           }
         },
         {
@@ -65,7 +65,7 @@ const router = new Router({
           name: 'edit-user',
           component: () => import('./views/EditUser.vue'),
           meta: {
-            rol_id: 'edit-user'
+            home: true,
           }
         },
         {
@@ -73,7 +73,7 @@ const router = new Router({
           name: 'active-user',
           component: () => import('./views/ActiveUser.vue'),
           meta: {
-            rol_id: 'active-user'
+            home: true,
           }
         },
         {
@@ -82,7 +82,6 @@ const router = new Router({
           component: () => import('./views/Ro.vue'),
           meta: {
             home: true,
-            rol_id: 'ro'
           }
         },
         {
@@ -99,7 +98,6 @@ const router = new Router({
           component: () => import('./views/showRo.vue'),
           meta: {
             home: true,
-            rol_id: 'showRo'
           }
         },
         {
@@ -108,7 +106,6 @@ const router = new Router({
           component: () => import('./views/ShowRoDisabled.vue'),
           meta: {
             home: true,
-            rol_id: 'show-disabled'
           }
         },
         {
@@ -117,7 +114,6 @@ const router = new Router({
           component: () => import('./views/UpdateRo.vue'),
           meta: {
             home: true,
-            rol_id: 'update-ro'
           }
         },
         {
@@ -125,7 +121,15 @@ const router = new Router({
           name: 'assign-ro',
           component: () => import('./views/AssignRo.vue'),
           meta: {
-            rol_id: 'assign-ro'
+            home: true,
+          }
+        },
+        {
+          path: 'assign-ro-sun//:id',
+          name: 'assign-ro-sun',
+          component: () => import('./views/AssignRoSun.vue'),
+          meta: {
+            home: true,
           }
         },
         {
@@ -133,7 +137,7 @@ const router = new Router({
           name: 'typing-template',
           component: () => import('./views/TypingTemplate.vue'),
           meta: {
-            rol_id: 9
+            home: true,
           }
         },
         {
@@ -141,7 +145,7 @@ const router = new Router({
           name: 'create-template',
           component: () => import('./views/CreateTemplate.vue'),
           meta: {
-            rol_id: 9
+            home: true,
           }
         },
         {
@@ -149,7 +153,7 @@ const router = new Router({
           name: 'update-template',
           component: () => import('./views/UpdateTemplate.vue'),
           meta: {
-            rol_id: 9
+            home: true,
           }
         },
         {
@@ -158,7 +162,6 @@ const router = new Router({
           component: () => import('./views/CreateGroupEmail.vue'),
           meta: {
             home: true,
-            rol_id: 'create-group-email'
           }
         },
         {
@@ -166,7 +169,7 @@ const router = new Router({
           name: 'store-group-email',
           component: () => import('./views/StoreGroupEmail.vue'),
           meta: {
-            rol_id: 'store-group-email'
+            home: true,
           }
         },
         {
@@ -174,7 +177,23 @@ const router = new Router({
           name: 'show-group-email',
           component: () => import('./views/ShowGroupEmail.vue'),
           meta: {
-            rol_id: 'show-group-email'
+            home: true,
+          }
+        },
+        {
+          path: 'list-ro-sun//:id',
+          name: 'list-ro-sun',
+          component: () => import('./views/ListRoSun.vue'),
+          meta: {
+            home: true,
+          }
+        },
+        {
+          path: 'show-ro-sun//:id',
+          name: 'show-ro-sun',
+          component: () => import('./views/ShowRoSun.vue'),
+          meta: {
+            home: true,
           }
         },
         {
@@ -182,7 +201,7 @@ const router = new Router({
           name: 'deletes-ro',
           component: () => import('./views/ShowRoDelete.vue'),
           meta: {
-            rol_id: 'deletes-ro'
+            home: true,
           }
         },
         {
@@ -190,9 +209,7 @@ const router = new Router({
           name: 'resume-team',
           component: () => import('./views/ResumeTeam.vue'),
           meta: {
-            rol_id: 9,
-            rol_id2: 2,
-            rol_id3: 3,
+            home: true,
           }
         },
         {
@@ -200,7 +217,7 @@ const router = new Router({
           name: 'show-detail-operation',
           component: () => import('./views/ShowDeatilOperation.vue'),
           meta: {
-            rol_id: 'show-detail-operation'
+            home: true,
           }
         },
         {
@@ -208,7 +225,7 @@ const router = new Router({
           name: 'charge',
           component: () => import('./views/Charge.vue'),
           meta: {
-            rol_id: 'charge'
+            home: true,
           }
         },
         {
@@ -216,7 +233,7 @@ const router = new Router({
           name: 'update-charge',
           component: () => import('./views/UpdateCharge.vue'),
           meta: {
-            rol_id: 'update-charge'
+            home: true,
           }
         },
         {
@@ -224,7 +241,7 @@ const router = new Router({
           name: 'division',
           component: () => import('./views/Division.vue'),
           meta: {
-            rol_id: 'division'
+            home: true,
           }
         },
         {
@@ -232,7 +249,7 @@ const router = new Router({
           name: 'reports',
           component: () => import('./views/Reports.vue'),
           meta: {
-            rol_id: 9,
+            home: true,
           }
         },
         {
@@ -240,7 +257,7 @@ const router = new Router({
           name: 'update-division',
           component: () => import('./views/UpdateDivision.vue'),
           meta: {
-            rol_id: 'update-division'
+            home: true,
           }
         },
         {
@@ -248,7 +265,7 @@ const router = new Router({
           name: 'job-dependencies',
           component: () => import('./views/JobDependencies.vue'),
           meta: {
-            rol_id: 'job-dependencies'
+            home: true,
           }
         },
         {
@@ -256,7 +273,15 @@ const router = new Router({
           name: 'update-dependency',
           component: () => import('./views/UpdateDependency.vue'),
           meta: {
-            rol_id: 'update-dependency'
+            home: true,
+          }
+        },
+        {
+          path: 'update-ro-sun//:id',
+          name: 'update-ro-sun',
+          component: () => import('./views/UpdateRoSun.vue'),
+          meta: {
+            home: true,
           }
         },
         {
@@ -264,7 +289,7 @@ const router = new Router({
           name: 'edit-permissions-rol',
           component: () => import('./views/EditPermissionsRol.vue'),
           meta: {
-            rol_id: 'update-dependency'
+            home: true,
           }
         },
         {
@@ -281,9 +306,15 @@ const router = new Router({
           name: 'resume-area',
           component: () => import('./views/ResumeArea.vue'),
           meta: {
-            rol_id: 9,
-            rol_id2: 2,
-            rol_id3: 3
+            home: true,
+          }
+        },
+        {
+          path: 'changeEmailAndPassword',
+          name: 'changeEmailAndPassword',
+          component: () => import('./views/changeEmailAndPassword.vue'),
+          meta: {
+            home: true,
           }
         },
       ],
@@ -321,7 +352,7 @@ const router = new Router({
 
 router.afterEach(() => {
   // Remove initial loading
-  $("#loading-bg").fadeOut("slow");
+  $("#loading-bg").fadeIn( 300 ).delay( 300 ).fadeOut();
 })
 
 // ADMINISTRATOR == 1

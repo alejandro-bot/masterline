@@ -14,7 +14,7 @@
           <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
             <vs-card class="con-vs-cards">
               <div slot="header">
-                <h3 class="text-center mb-3 mt-5">Asignar R.O</h3>
+                <h3 class="text-center mb-3 mt-5">Asignar R.O Hijo</h3>
               </div>
               <div>
                 <vs-row>
@@ -130,7 +130,7 @@ export default {
       });
     },
     assignRo() {
-      let url = dominio.url + "/api/assignar-ro/" + this.id;
+      let url = dominio.url + "/api/assignar-ro-hijo/" + this.id;
       axios
         .post(url, this.formAssign)
         .then((res) => {

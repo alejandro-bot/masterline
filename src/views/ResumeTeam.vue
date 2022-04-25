@@ -1,25 +1,27 @@
 <template>
   <div>
     <vs-row>
-      <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-        <vs-col vs-type="flex" vs-justify="left" vs-align="right" vs-w="12">
-          <!-- <vs-button
+      <vs-col vs-type="flex" vs-justify="left" vs-align="right" vs-w="12">
+        <!-- <vs-col vs-type="flex" vs-justify="left" vs-align="right" vs-w="6">
+          <vs-button
             class="buttonColor"
             color="primary"
             type="relief"
             icon="zoom_out"
             @click="deatilOperation()"
             >Detalle</vs-button
-          > pendiente realiozar filtro -->
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="home"
-            @click="returnHome()"
-            >Volver Inicio</vs-button
           >
-        </vs-col>
+        </vs-col> -->
+        <!-- <vs-col vs-type="flex" vs-justify="right" vs-align="right" vs-w="12"> -->
+        <vs-button
+          class="buttonColor"
+          color="primary"
+          type="relief"
+          icon="home"
+          @click="returnHome()"
+          >Volver Inicio</vs-button
+        >
+        <!-- </vs-col> -->
       </vs-col>
     </vs-row>
     <vs-row class="mt-5" vs-justify="center">
@@ -296,58 +298,66 @@
             <vs-tabs :color="colorx">
               <vs-tab label="Primera Linea" v-if="showUserAuth[0].rol_id == 1">
                 <div class="con-tab-ejemplo">
-                  <vs-table :data="userFirstLine">
-                    <template slot="header"> </template>
+                  <vs-table
+                    :data="userFirstLine"
+                    search
+                    pagination
+                    :max-items="tantos"
+                  >
+                    <template slot="header">
+                      <select v-model="tantos" class="seleccionableBuscador">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                      </select>
+                    </template>
                     <template slot="thead">
-                      <vs-th> # </vs-th>
-                      <vs-th> División </vs-th>
-                      <vs-th> Sucursal </vs-th>
-                      <vs-th> Estado </vs-th>
-                      <vs-th> Perfil </vs-th>
-                      <vs-th> Nombres </vs-th>
-                      <vs-th> Apellidos </vs-th>
-                      <vs-th> Correo </vs-th>
-                      <vs-th> Operación </vs-th>
-                      <vs-th> R.O Abiertos </vs-th>
-                      <vs-th> R.O Cerrados </vs-th>
+                      <vs-th sort-key="id"> # </vs-th>
+                      <vs-th sort-key="nameDivision"> División </vs-th>
+                      <vs-th sort-key="nameBranchOffice"> Sucursal </vs-th>
+                      <vs-th sort-key="nameStatus"> Estado </vs-th>
+                      <vs-th sort-key="nameRol"> Perfil </vs-th>
+                      <vs-th sort-key="first_name"> Nombres </vs-th>
+                      <vs-th sort-key="last_name"> Apellidos </vs-th>
+                      <vs-th sort-key="email"> Correo </vs-th>
+                      <vs-th sort-key="nameOperation"> Operación </vs-th>
+                      <vs-th sort-key="ro"> R.O Abiertos </vs-th>
+                      <vs-th sort-key="roClose"> R.O Cerrados </vs-th>
                     </template>
                     <template slot-scope="{ data }">
-                      <vs-tr
-                        :key="indextr"
-                        v-for="(tr, indextr) in userFirstLine"
-                      >
-                        <vs-td :data="data[indextr].id">
-                          {{ data[indextr].id }}
+                      <vs-tr v-for="(item, index) in data" :key="index">
+                        <vs-td :data="item.id">
+                          {{ item.id }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameDivision">
-                          {{ data[indextr].nameDivision }}
+                        <vs-td :data="item.nameDivision">
+                          {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameBranchOffice">
-                          {{ data[indextr].nameBranchOffice }}
+                        <vs-td :data="item.nameBranchOffice">
+                          {{ item.nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameStatus">
-                          {{ data[indextr].nameStatus }}
+                        <vs-td :data="item.nameStatus">
+                          {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameRol">
-                          {{ data[indextr].nameRol }}
+                        <vs-td :data="item.nameRol">
+                          {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="data[indextr].first_name">
-                          {{ data[indextr].first_name }}
+                        <vs-td :data="item.first_name">
+                          {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].last_name">
-                          {{ data[indextr].last_name }}
+                        <vs-td :data="item.last_name">
+                          {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].email">
-                          {{ data[indextr].email }}
+                        <vs-td :data="item.email">
+                          {{ item.email }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameOperation">
-                          {{ data[indextr].nameOperation }}
+                        <vs-td :data="item.nameOperation">
+                          {{ item.nameOperation }}
                         </vs-td>
                         <vs-td>
-                          {{ data[indextr].ro }}
+                          {{ item.ro }}
                         </vs-td>
                         <vs-td>
-                          {{ data[indextr].roClose }}
+                          {{ item.roClose }}
                         </vs-td>
                       </vs-tr>
                     </template>
@@ -364,124 +374,136 @@
                   <vs-table
                     :data="userSecondLine"
                     v-if="showUserAuth[0].rol_id == 1"
+                    search
+                    pagination
+                    :max-items="tantos"
                   >
-                    <template slot="header"> </template>
+                    <template slot="header">
+                      <select v-model="tantos" class="seleccionableBuscador">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                      </select>
+                    </template>
                     <template slot="thead">
-                      <vs-th> # </vs-th>
-                      <vs-th> División </vs-th>
-                      <vs-th> Sucursal </vs-th>
-                      <vs-th> Estado </vs-th>
-                      <vs-th> Perfil </vs-th>
-                      <vs-th> Nombres </vs-th>
-                      <vs-th> Apellidos </vs-th>
-                      <vs-th> Correo </vs-th>
-                      <vs-th> Operación </vs-th>
-                      <vs-th> R.O Abiertos </vs-th>
-                      <vs-th> R.O Cerrados </vs-th>
+                      <vs-th sort-key="id"> # </vs-th>
+                      <vs-th sort-key="nameDivision"> División </vs-th>
+                      <vs-th sort-key="nameBranchOffice"> Sucursal </vs-th>
+                      <vs-th sort-key="nameStatus"> Estado </vs-th>
+                      <vs-th sort-key="nameRol"> Perfil </vs-th>
+                      <vs-th sort-key="first_name"> Nombres </vs-th>
+                      <vs-th sort-key="last_name"> Apellidos </vs-th>
+                      <vs-th sort-key="email"> Correo </vs-th>
+                      <vs-th sort-key="nameOperation"> Operación </vs-th>
+                      <vs-th sort-key="ro"> R.O Abiertos </vs-th>
+                      <vs-th sort-key="roClose"> R.O Cerrados </vs-th>
                     </template>
                     <template
                       slot-scope="{ data }"
                       v-if="showUserAuth[0].rol_id == 1"
                     >
-                      <vs-tr
-                        :key="indextr"
-                        v-for="(tr, indextr) in userSecondLine"
-                      >
-                        <vs-td :data="data[indextr].id">
-                          {{ data[indextr].id }}
+                      <vs-tr v-for="(item, index) in data" :key="index">
+                        <vs-td :data="item.id">
+                          {{ item.id }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameDivision">
-                          {{ data[indextr].nameDivision }}
+                        <vs-td :data="item.nameDivision">
+                          {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameBranchOffice">
-                          {{ data[indextr].nameBranchOffice }}
+                        <vs-td :data="item.nameBranchOffice">
+                          {{ item.nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameStatus">
-                          {{ data[indextr].nameStatus }}
+                        <vs-td :data="item.nameStatus">
+                          {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameRol">
-                          {{ data[indextr].nameRol }}
+                        <vs-td :data="item.nameRol">
+                          {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="data[indextr].first_name">
-                          {{ data[indextr].first_name }}
+                        <vs-td :data="item.first_name">
+                          {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].last_name">
-                          {{ data[indextr].last_name }}
+                        <vs-td :data="item.last_name">
+                          {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].email">
-                          {{ data[indextr].email }}
+                        <vs-td :data="item.email">
+                          {{ item.email }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameOperation">
-                          {{ data[indextr].nameOperation }}
-                        </vs-td>
-                       <vs-td>
-                          {{ data[indextr].ro }}
+                        <vs-td :data="item.nameOperation">
+                          {{ item.nameOperation }}
                         </vs-td>
                         <vs-td>
-                          {{ data[indextr].roClose }}
+                          {{ item.ro }}
+                        </vs-td>
+                        <vs-td>
+                          {{ item.roClose }}
                         </vs-td>
                       </vs-tr>
                     </template>
                   </vs-table>
                   <vs-table
-                    :data="userSecondLines"
+                    :data="userSecondLine"
+                    pagination
+                    search
+                    :max-items="tantos"
                     v-if="showUserAuth[0].rol_id == 9"
                   >
-                    <template slot="header"> </template>
+                    <template slot="header">
+                      <select v-model="tantos" class="seleccionableBuscador">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                      </select>
+                    </template>
                     <template slot="thead">
-                      <vs-th> # </vs-th>
-                      <vs-th> División </vs-th>
-                      <vs-th> Sucursal </vs-th>
-                      <vs-th> Estado </vs-th>
-                      <vs-th> Perfil </vs-th>
-                      <vs-th> Nombres </vs-th>
-                      <vs-th> Apellidos </vs-th>
-                      <vs-th> Correo </vs-th>
-                      <vs-th> Operación </vs-th>
-                      <vs-th> R.O Abiertos </vs-th>
-                      <vs-th> R.O Cerrados </vs-th>
+                      <vs-th sort-key="id"> # </vs-th>
+                      <vs-th sort-key="nameDivision"> División </vs-th>
+                      <vs-th sort-key="nameBranchOffice"> Sucursal </vs-th>
+                      <vs-th sort-key="nameStatus"> Estado </vs-th>
+                      <vs-th sort-key="nameRol"> Perfil </vs-th>
+                      <vs-th sort-key="first_name"> Nombres </vs-th>
+                      <vs-th sort-key="last_name"> Apellidos </vs-th>
+                      <vs-th sort-key="email"> Correo </vs-th>
+                      <vs-th sort-key="nameOperation"> Operación </vs-th>
+                      <vs-th sort-key="ro"> R.O Abiertos </vs-th>
+                      <vs-th sort-key="roClose"> R.O Cerrados </vs-th>
                     </template>
 
                     <template
                       slot-scope="{ data }"
                       v-if="showUserAuth[0].rol_id == 9"
                     >
-                      <vs-tr
-                        :key="indextr"
-                        v-for="(tr, indextr) in userSecondLines"
-                      >
-                        <vs-td :data="data[indextr].id">
-                          {{ data[indextr].id }}
+                      <vs-tr v-for="(item, index) in data" :key="index">
+                        <vs-td :data="item.id">
+                          {{ item.id }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameDivision">
-                          {{ data[indextr].nameDivision }}
+                        <vs-td :data="item.nameDivision">
+                          {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameBranchOffice">
-                          {{ data[indextr].nameBranchOffice }}
+                        <vs-td :data="item.nameBranchOffice">
+                          {{ item.nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameStatus">
-                          {{ data[indextr].nameStatus }}
+                        <vs-td :data="item.nameStatus">
+                          {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameRol">
-                          {{ data[indextr].nameRol }}
+                        <vs-td :data="item.nameRol">
+                          {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="data[indextr].first_name">
-                          {{ data[indextr].first_name }}
+                        <vs-td :data="item.first_name">
+                          {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].last_name">
-                          {{ data[indextr].last_name }}
+                        <vs-td :data="item.last_name">
+                          {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].email">
-                          {{ data[indextr].email }}
+                        <vs-td :data="item.email">
+                          {{ item.email }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameOperation">
-                          {{ data[indextr].nameOperation }}
+                        <vs-td :data="item.nameOperation">
+                          {{ item.nameOperation }}
                         </vs-td>
                         <vs-td>
-                          {{ data[indextr].ro }}
+                          {{ item.ro }}
                         </vs-td>
                         <vs-td>
-                          {{ data[indextr].roClose }}
+                          {{ item.roClose }}
                         </vs-td>
                       </vs-tr>
                     </template>
@@ -490,58 +512,66 @@
               </vs-tab>
               <vs-tab label="Tercera Linea" v-if="showUserAuth[0].rol_id == 1">
                 <div class="con-tab-ejemplo">
-                  <vs-table :data="userThirdLine">
-                    <template slot="header"> </template>
+                  <vs-table
+                    :data="userThirdLine"
+                    pagination
+                    search
+                    :max-items="tantos"
+                  >
+                    <template slot="header">
+                      <select v-model="tantos" class="seleccionableBuscador">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                      </select>
+                    </template>
                     <template slot="thead">
-                      <vs-th> # </vs-th>
-                      <vs-th> División </vs-th>
-                      <vs-th> Sucursal </vs-th>
-                      <vs-th> Estado </vs-th>
-                      <vs-th> Perfil </vs-th>
-                      <vs-th> Nombres </vs-th>
-                      <vs-th> Apellidos </vs-th>
-                      <vs-th> Correo </vs-th>
-                      <vs-th> Operación </vs-th>
-                      <vs-th> R.O Abiertos </vs-th>
-                      <vs-th> R.O Cerrados </vs-th>
+                      <vs-th sort-key="id"> # </vs-th>
+                      <vs-th sort-key="nameDivision"> División </vs-th>
+                      <vs-th sort-key="nameBranchOffice"> Sucursal </vs-th>
+                      <vs-th sort-key="nameStatus"> Estado </vs-th>
+                      <vs-th sort-key="nameRol"> Perfil </vs-th>
+                      <vs-th sort-key="first_name"> Nombres </vs-th>
+                      <vs-th sort-key="last_name"> Apellidos </vs-th>
+                      <vs-th sort-key="email"> Correo </vs-th>
+                      <vs-th sort-key="nameOperation"> Operación </vs-th>
+                      <vs-th sort-key="ro"> R.O Abiertos </vs-th>
+                      <vs-th sort-key="roClose"> R.O Cerrados </vs-th>
                     </template>
                     <template slot-scope="{ data }">
-                      <vs-tr
-                        :key="indextr"
-                        v-for="(tr, indextr) in userThirdLine"
-                      >
-                        <vs-td :data="data[indextr].id">
-                          {{ data[indextr].id }}
+                      <vs-tr v-for="(item, index) in data" :key="index">
+                        <vs-td :data="item.id">
+                          {{ item.id }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameDivision">
-                          {{ data[indextr].nameDivision }}
+                        <vs-td :data="item.nameDivision">
+                          {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameBranchOffice">
-                          {{ data[indextr].nameBranchOffice }}
+                        <vs-td :data="item.nameBranchOffice">
+                          {{ item.nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameStatus">
-                          {{ data[indextr].nameStatus }}
+                        <vs-td :data="item.nameStatus">
+                          {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameRol">
-                          {{ data[indextr].nameRol }}
+                        <vs-td :data="item.nameRol">
+                          {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="data[indextr].first_name">
-                          {{ data[indextr].first_name }}
+                        <vs-td :data="item.first_name">
+                          {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].last_name">
-                          {{ data[indextr].last_name }}
+                        <vs-td :data="item.last_name">
+                          {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].email">
-                          {{ data[indextr].email }}
+                        <vs-td :data="item.email">
+                          {{ item.email }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameOperation">
-                          {{ data[indextr].nameOperation }}
-                        </vs-td>
-                       <vs-td>
-                          {{ data[indextr].ro }}
+                        <vs-td :data="item.nameOperation">
+                          {{ item.nameOperation }}
                         </vs-td>
                         <vs-td>
-                          {{ data[indextr].roClose }}
+                          {{ item.ro }}
+                        </vs-td>
+                        <vs-td>
+                          {{ item.roClose }}
                         </vs-td>
                       </vs-tr>
                     </template>
@@ -550,58 +580,61 @@
               </vs-tab>
               <vs-tab label="Tercera Linea" v-if="showUserAuth[0].rol_id == 9">
                 <div class="con-tab-ejemplo">
-                  <vs-table :data="userThirdLines">
-                    <template slot="header"> </template>
+                  <vs-table :data="userThirdLines" pagination search>
+                    <template slot="header">
+                      <select v-model="tantos" class="seleccionableBuscador">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                      </select>
+                    </template>
                     <template slot="thead">
-                      <vs-th> # </vs-th>
-                      <vs-th> División </vs-th>
-                      <vs-th> Sucursal </vs-th>
-                      <vs-th> Estado </vs-th>
-                      <vs-th> Perfil </vs-th>
-                      <vs-th> Nombres </vs-th>
-                      <vs-th> Apellidos </vs-th>
-                      <vs-th> Correo </vs-th>
-                      <vs-th> Operación </vs-th>
-                      <vs-th> R.O Abiertos </vs-th>
-                      <vs-th> R.O Cerrados </vs-th>
+                      <vs-th sort-key="id"> # </vs-th>
+                      <vs-th sort-key="nameDivision"> División </vs-th>
+                      <vs-th sort-key="nameBranchOffice"> Sucursal </vs-th>
+                      <vs-th sort-key="nameStatus"> Estado </vs-th>
+                      <vs-th sort-key="nameRol"> Perfil </vs-th>
+                      <vs-th sort-key="first_name"> Nombres </vs-th>
+                      <vs-th sort-key="last_name"> Apellidos </vs-th>
+                      <vs-th sort-key="email"> Correo </vs-th>
+                      <vs-th sort-key="nameOperation"> Operación </vs-th>
+                      <vs-th sort-key="ro"> R.O Abiertos </vs-th>
+                      <vs-th sort-key="roClose"> R.O Cerrados </vs-th>
                     </template>
                     <template slot-scope="{ data }">
-                      <vs-tr
-                        :key="indextr"
-                        v-for="(tr, indextr) in userThirdLines"
-                      >
-                        <vs-td :data="data[indextr].id">
-                          {{ data[indextr].id }}
+                      <vs-tr v-for="(item, index) in data" :key="index">
+                        <vs-td :data="item.id">
+                          {{ item.id }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameDivision">
-                          {{ data[indextr].nameDivision }}
+                        <vs-td :data="item.nameDivision">
+                          {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameBranchOffice">
-                          {{ data[indextr].nameBranchOffice }}
+                        <vs-td :data="item.nameBranchOffice">
+                          {{ item.nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameStatus">
-                          {{ data[indextr].nameStatus }}
+                        <vs-td :data="item.nameStatus">
+                          {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameRol">
-                          {{ data[indextr].nameRol }}
+                        <vs-td :data="item.nameRol">
+                          {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="data[indextr].first_name">
-                          {{ data[indextr].first_name }}
+                        <vs-td :data="item.first_name">
+                          {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].last_name">
-                          {{ data[indextr].last_name }}
+                        <vs-td :data="item.last_name">
+                          {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].email">
-                          {{ data[indextr].email }}
+                        <vs-td :data="item.email">
+                          {{ item.email }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameOperation">
-                          {{ data[indextr].nameOperation }}
+                        <vs-td :data="item.nameOperation">
+                          {{ item.nameOperation }}
                         </vs-td>
                         <vs-td>
-                          {{ data[indextr].ro }}
+                          {{ item.ro }}
                         </vs-td>
                         <vs-td>
-                          {{ data[indextr].roClose }}
+                          {{ item.roClose }}
                         </vs-td>
                       </vs-tr>
                     </template>
@@ -610,58 +643,65 @@
               </vs-tab>
               <vs-tab label="Tercera Linea" v-if="showUserAuth[0].rol_id == 2">
                 <div class="con-tab-ejemplo">
-                  <vs-table :data="userThirdLinesAreaMaritime">
-                    <template slot="header"> </template>
+                  <vs-table
+                    :data="userThirdLinesAreaMaritime"
+                    pagination
+                    search
+                  >
+                    <template slot="header">
+                      <select v-model="tantos" class="seleccionableBuscador">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                      </select>
+                    </template>
                     <template slot="thead">
-                      <vs-th> # </vs-th>
-                      <vs-th> División </vs-th>
-                      <vs-th> Sucursal </vs-th>
-                      <vs-th> Estado </vs-th>
-                      <vs-th> Perfil </vs-th>
-                      <vs-th> Nombres </vs-th>
-                      <vs-th> Apellidos </vs-th>
-                      <vs-th> Correo </vs-th>
-                      <vs-th> Operación </vs-th>
-                      <vs-th> R.O Abiertos </vs-th>
-                      <vs-th> R.O Cerrados </vs-th>
+                      <vs-th sort-key="id"> # </vs-th>
+                      <vs-th sort-key="nameDivision"> División </vs-th>
+                      <vs-th sort-key="nameBranchOffice"> Sucursal </vs-th>
+                      <vs-th sort-key="nameStatus"> Estado </vs-th>
+                      <vs-th sort-key="nameRol"> Perfil </vs-th>
+                      <vs-th sort-key="first_name"> Nombres </vs-th>
+                      <vs-th sort-key="last_name"> Apellidos </vs-th>
+                      <vs-th sort-key="email"> Correo </vs-th>
+                      <vs-th sort-key="nameOperation"> Operación </vs-th>
+                      <vs-th sort-key="ro"> R.O Abiertos </vs-th>
+                      <vs-th sort-key="roClose"> R.O Cerrados </vs-th>
                     </template>
                     <template slot-scope="{ data }">
-                      <vs-tr
-                        :key="indextr"
-                        v-for="(tr, indextr) in userThirdLinesAreaMaritime"
-                      >
-                        <vs-td :data="data[indextr].id">
-                          {{ data[indextr].id }}
+                      <vs-tr v-for="(item, index) in data" :key="index">
+                        <vs-td :data="item.id">
+                          {{ item.id }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameDivision">
-                          {{ data[indextr].nameDivision }}
+                        <vs-td :data="item.nameDivision">
+                          {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameBranchOffice">
-                          {{ data[indextr].nameBranchOffice }}
+                        <vs-td :data="item.nameBranchOffice">
+                          {{ item.nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameStatus">
-                          {{ data[indextr].nameStatus }}
+                        <vs-td :data="item.nameStatus">
+                          {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameRol">
-                          {{ data[indextr].nameRol }}
+                        <vs-td :data="item.nameRol">
+                          {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="data[indextr].first_name">
-                          {{ data[indextr].first_name }}
+                        <vs-td :data="item.first_name">
+                          {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].last_name">
-                          {{ data[indextr].last_name }}
+                        <vs-td :data="item.last_name">
+                          {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].email">
-                          {{ data[indextr].email }}
+                        <vs-td :data="item.email">
+                          {{ item.email }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameOperation">
-                          {{ data[indextr].nameOperation }}
+                        <vs-td :data="item.nameOperation">
+                          {{ item.nameOperation }}
                         </vs-td>
                         <vs-td>
-                          {{ data[indextr].ro }}
+                          {{ item.ro }}
                         </vs-td>
                         <vs-td>
-                          {{ data[indextr].roClose }}
+                          {{ item.roClose }}
                         </vs-td>
                       </vs-tr>
                     </template>
@@ -670,60 +710,61 @@
               </vs-tab>
               <vs-tab label="Tercera Linea" v-if="showUserAuth[0].rol_id == 3">
                 <div class="con-tab-ejemplo">
-                  <vs-table :data="userThirdLinesAreaAir">
-                    <template slot="header"> </template>
+                  <vs-table :data="userThirdLinesAreaAir" pagination search>
+                    <template slot="header">
+                      <select v-model="tantos" class="seleccionableBuscador">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                      </select>
+                    </template>
                     <template slot="thead">
-                      <vs-th> # </vs-th>
-                      <vs-th> División </vs-th>
-                      <vs-th> Sucursal </vs-th>
-                      <vs-th> Estado </vs-th>
-                      <vs-th> Perfil </vs-th>
-                      <vs-th> Nombres </vs-th>
-                      <vs-th> Apellidos </vs-th>
-                      <vs-th> Correo </vs-th>
-                      <vs-th> Operación </vs-th>
-                      <vs-th> R.O Abiertos </vs-th>
-                      <vs-th> R.O Cerrados </vs-th>
+                      <vs-th sort-key="id"> # </vs-th>
+                      <vs-th sort-key="nameDivision"> División </vs-th>
+                      <vs-th sort-key="nameBranchOffice"> Sucursal </vs-th>
+                      <vs-th sort-key="nameStatus"> Estado </vs-th>
+                      <vs-th sort-key="nameRol"> Perfil </vs-th>
+                      <vs-th sort-key="first_name"> Nombres </vs-th>
+                      <vs-th sort-key="last_name"> Apellidos </vs-th>
+                      <vs-th sort-key="email"> Correo </vs-th>
+                      <vs-th sort-key="nameOperation"> Operación </vs-th>
+                      <vs-th sort-key="ro"> R.O Abiertos </vs-th>
+                      <vs-th sort-key="roClose"> R.O Cerrados </vs-th>
                     </template>
                     <template slot-scope="{ data }">
-                      <vs-tr
-                        :key="indextr"
-                        v-for="(tr, indextr) in userThirdLinesAreaAir"
-                      >
-                        <vs-td :data="data[indextr].id">
-                          {{ data[indextr].id }}
+                      <vs-tr v-for="(item, index) in data" :key="index">
+                        <vs-td :data="item.id">
+                          {{ item.id }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameDivision">
-                          {{ data[indextr].nameDivision }}
+                        <vs-td :data="item.nameDivision">
+                          {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameBranchOffice">
-                          {{ data[indextr].nameBranchOffice }}
+                        <vs-td :data="item.nameBranchOffice">
+                          {{ item.nameBranchOffice }}
                         </vs-td>
-
-                        <vs-td :data="data[indextr].nameStatus">
-                          {{ data[indextr].nameStatus }}
+                        <vs-td :data="item.nameStatus">
+                          {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="data[indextr].nameRol">
-                          {{ data[indextr].nameRol }}
+                        <vs-td :data="item.nameRol">
+                          {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="data[indextr].first_name">
-                          {{ data[indextr].first_name }}
+                        <vs-td :data="item.first_name">
+                          {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].last_name">
-                          {{ data[indextr].last_name }}
+                        <vs-td :data="item.last_name">
+                          {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="data[indextr].email">
-                          {{ data[indextr].email }}
+                        <vs-td :data="item.email">
+                          {{ item.email }}
                         </vs-td>
-
-                        <vs-td :data="data[indextr].nameOperation">
-                          {{ data[indextr].nameOperation }}
+                        <vs-td :data="item.nameOperation">
+                          {{ item.nameOperation }}
                         </vs-td>
                         <vs-td>
-                          {{ data[indextr].ro }}
+                          {{ item.ro }}
                         </vs-td>
                         <vs-td>
-                          {{ data[indextr].roClose }}
+                          {{ item.roClose }}
                         </vs-td>
                       </vs-tr>
                     </template>
@@ -788,6 +829,7 @@ export default {
       closeRoMaritimeOperation: [],
       closeRoSalesEx: [],
       closeRoSalesM: [],
+      tantos: 5,
     };
   },
   methods: {
@@ -881,5 +923,19 @@ export default {
   text-align: left;
   font-size: 17px;
   font-weight: 700;
+}
+.seleccionableBuscador {
+  background: #10163a;
+  color: white;
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
+  margin-left: 10px;
+  margin-top: 0px;
+  border-radius: 20px;
 }
 </style>

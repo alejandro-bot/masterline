@@ -10,10 +10,10 @@
             type="relief"
             icon="person_add"
             v-if="showUserAuth[0].permissions[17].name == 'BOTON CREAR ROL'"
-            >Crear Rol</vs-button
+            >Crear Perfil</vs-button
           >
         </vs-col>
-        <vs-col vs-type="flex" vs-justify="right" vs-align="right" vs-w="12">
+        <!-- <vs-col vs-type="flex" vs-justify="right" vs-align="right" vs-w="12">
           <vs-button
             class="buttonColor"
             @click="createPermission(openModalPermission())"
@@ -23,7 +23,7 @@
             v-if="showUserAuth[0].permissions[49].name == 'BOTON CREAR PERMISO'"
             >Crear Permisos</vs-button
           >
-        </vs-col>
+        </vs-col> -->
       </vs-col>
     </vs-row>
 
@@ -31,48 +31,32 @@
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
           <div slot="header">
-            <h3>Roles</h3>
           </div>
           <div>
-            <vs-table>
+            <vs-table :data="data">
               <template slot="header"> </template>
               <template slot="thead">
-                <vs-th> Nombre Rol</vs-th>
-                <vs-th> Acciones</vs-th>
+                <vs-th> Perfil </vs-th>
+                <vs-th :key="index" v-for="(item, index) in showPermissions" class="text-center"> {{ item.name }}</vs-th>
               </template>
-
               <template>
-                <vs-tr :key="index" v-for="(item, index) in roles">
-                  <vs-td :data="item.name">
-                    {{ item.name }}
+                <vs-tr :key="index" v-for="(item, index) in data">
+                  <vs-td style="display: block; width: 340px">
+                    {{ index }}
                   </vs-td>
-                  <vs-td>
-                    <vs-col
-                      vs-type="flex"
-                      vs-justify="left"
-                      vs-align="center"
-                      vs-w="12"
-                    >
-                      <router-link :to="'/panel/edit-permissions-rol/' + item.id" v-if="showUserAuth[0].permissions[50].name == 'BOTON VER PERMISOS'">
-                        <vs-button
-                          class="mr-3"
-                          radius
-                          color="success"
-                          type="border"
-                          icon="visibility"
-                        ></vs-button>
-                      </router-link>
-                      <router-link :to="'/panel/permissions-user/' + item.id" v-if="showUserAuth[0].permissions[51].name == 'BOTON ASGINAR PERMISOS'">
-                        <vs-button
-                          class="ml-1"
-                          radius
-                          color="primary"
-                          type="border"
-                          icon="add"
-                        ></vs-button>
-                      </router-link>
-                    </vs-col>
+                  <vs-td :key="index2" v-for="(item2, index2) in item" style="padding: 10px 70px;">
+                    <vs-button
+                      radius
+                      :color="item2 == 'check' ? 'success' : 'danger'"
+                      type="filled"
+                      :icon="item2"
+                      @click="assignPermissions(index,index2,item2)"
+                    ></vs-button>
                   </vs-td>
+                </vs-tr>
+                <vs-tr>
+                  <vs-th>  </vs-th>
+                  <vs-th :key="index" v-for="(item, index) in showPermissions" class="text-center"> {{ item.name }}</vs-th>
                 </vs-tr>
               </template>
             </vs-table>
@@ -126,7 +110,7 @@ export default {
     return {
       activePromptPermission: false,
       activePrompt: false,
-      roles: {},
+      roles: [],
       checkBox1: true,
       showPermissions: [],
       userPermissions: [],
@@ -138,6 +122,7 @@ export default {
         name: "",
       },
       showUserAuth: [],
+      data: [],
     };
   },
   created() {
@@ -149,11 +134,10 @@ export default {
       this.$router.push("/panel/create-rol");
     },
     showRoles() {
-      let url = dominio.url + "/api/mostrar-roles";
+      let url = dominio.url + "/api/mostrar-roles-permisos";
       axios.get(url).then((res) => {
-        this.roles = res.data.roles;
+        this.data = res.data.data;
         this.showPermissions = res.data.showPermissions;
-        this.userPermissions = res.data.userPermissions;
       });
     },
     openModal(id) {
@@ -198,6 +182,23 @@ export default {
         title: "Dialogo",
         text: "Cerrado",
       });
+    },
+    assignPermissions(rol,permiso,valor){
+      let url = dominio.url + "/api/asignar-permisos-rol";
+      axios
+        .post(url, {rol:rol,permiso:permiso,valor:valor})
+        .then((res) => {
+          if (res.data.code == 200) {
+            this.data[rol][permiso] = valor=='check' ? 'cancel' : 'check';
+            toastr.success(res.data.message);
+          }
+          if (res.data.code == 500) {
+            toastr.error(res.data.message);
+          }
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
     acceptAlertPermission() {
       let url = dominio.url + "/api/crear-permiso";
@@ -247,7 +248,7 @@ export default {
   box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  border: 1px solid #ff5000;
 }
-
 </style>
 

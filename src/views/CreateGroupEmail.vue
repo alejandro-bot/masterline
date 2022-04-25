@@ -6,7 +6,10 @@
       type="relief"
       icon="email"
       @click="openModal()"
-      v-if="showUserAuth[0].permissions[12].name == 'CREAR GRUPO DE CORREOS'"
+      v-if="
+        showUserAuth[0].permissions[12].name == 'CREAR GRUPO DE CORREOS' ||
+        showUserAuth[0].permissions[9].name == 'CREAR GRUPO DE CORREOS'
+      "
       >Crear Grupo De Correos</vs-button
     >
     <vs-row class="mt-5" vs-justify="center">
@@ -15,18 +18,31 @@
           <div slot="header">
             <h6 class="card-title text-center">Grupos De Correos</h6>
           </div>
-          <vs-table>
-            <template slot="header"> </template>
+
+          <vs-table
+            search
+            pagination
+            :data="listNameGroups"
+            :max-items="tantos"
+          >
+            <template slot="header">
+              <select v-model="tantos" class="seleccionable">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+              </select>
+            </template>
             <template slot="thead">
-              <vs-th> Nombre </vs-th>
+              <vs-th sort-key="name"> Nombre </vs-th>
               <vs-th> Acciones </vs-th>
             </template>
-            <template>
-              <vs-tr :key="index" v-for="(item, index) in listNameGroups">
-                <vs-td :data="item.id">
+
+            <template slot-scope="{ data }">
+              <vs-tr v-for="(item, index) in data" :key="index">
+                <vs-td :data="item.name">
                   {{ item.name }}
                 </vs-td>
-                <vs-td :data="item.id" class="text-center">
+                <vs-td class="text-center">
                   <vs-row>
                     <vs-col
                       vs-type="flex"
@@ -37,7 +53,12 @@
                     </vs-col>
                     <router-link
                       :to="'/panel/store-group-email/' + item.id"
-                      v-if="showUserAuth[0].permissions[13].name == 'BOTON AGREGAR CORREOS'"
+                      v-if="
+                        showUserAuth[0].permissions[13].name ==
+                          'BOTON AGREGAR CORREOS' ||
+                        showUserAuth[0].permissions[10].name ==
+                          'BOTON AGREGAR CORREOS'
+                      "
                     >
                       <vs-button
                         class="mr-1 ml-1"
@@ -49,7 +70,12 @@
                     </router-link>
                     <router-link
                       :to="'/panel/show-group-email/' + item.id"
-                      v-if="showUserAuth[0].permissions[14].name == 'BOTON VER CORREOS'"
+                      v-if="
+                        showUserAuth[0].permissions[14].name ==
+                          'BOTON VER CORREOS' ||
+                        showUserAuth[0].permissions[11].name ==
+                          'BOTON VER CORREOS'
+                      "
                     >
                       <vs-button
                         class="mr-1 ml-1"
@@ -66,7 +92,11 @@
                       type="border"
                       icon="delete_outline"
                       v-if="
-                        showUserAuth[0].permissions[15].name == 'BOTON ELIMINAR CORREOS'"
+                        showUserAuth[0].permissions[15].name ==
+                          'BOTON ELIMINAR CORREOS' ||
+                        showUserAuth[0].permissions[12].name ==
+                          'BOTON ELIMINAR CORREOS'
+                      "
                       @click="deleteGroupEmail(item.id)"
                     ></vs-button>
                   </vs-row>
@@ -117,6 +147,7 @@ export default {
       },
       listNameGroups: {},
       showUserAuth: [],
+      tantos: 5,
     };
   },
   created() {
@@ -203,5 +234,19 @@ export default {
   text-align: left;
   font-size: 17px;
   font-weight: 700;
+}
+.seleccionable {
+  background: #10163a;
+  color: white;
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
+  margin-left: 10px;
+  margin-top: 0px;
+  border-radius: 20px;
 }
 </style>

@@ -18,21 +18,31 @@
               <h1 class="card-title text-center">PLANTILLAS CARGADAS</h1>
             </strong>
           </div>
-          <vs-table>
+
+          <vs-table search pagination :data="listProces" :max-items="tantos">
             <template slot="header">
-              <h3 class="mb-5">PLANTILLAS DE TIPIFICACIÓN</h3>
+              <select v-model="tantos" class="seleccionableBuscador">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+              </select>
             </template>
             <template slot="thead">
-              <vs-th> Proceso </vs-th>
-              <vs-th> Operación </vs-th>
-              <vs-th> Tipo </vs-th>
+              <vs-th sort-key="process_name"> Proceso </vs-th>
+              <vs-th sort-key="name"> Operación </vs-th>
+              <vs-th sort-key="name"> Tipo </vs-th>
               <vs-th> Acciones </vs-th>
             </template>
-            <template>
-              <vs-tr :key="index" v-for="(item, index) in listProces">
-                <vs-td> {{ item.process_name }} </vs-td>
-                <vs-td> {{ item.type_of_transport.name }} </vs-td>
-                <vs-td> {{ item.type_of_load.name }} </vs-td>
+
+            <template slot-scope="{ data }">
+              <vs-tr v-for="(item, index) in data" :key="index">
+                <vs-td :data="item.process_name">
+                  {{ item.process_name }}
+                </vs-td>
+                <vs-td :data="item.name">
+                  {{ item.type_of_transport.name }}
+                </vs-td>
+                <vs-td :data="item.name"> {{ item.type_of_load.name }} </vs-td>
                 <vs-td>
                   <vs-row>
                     <vs-col
@@ -43,7 +53,10 @@
                     >
                       <router-link
                         :to="'/panel/update-template/' + item.id"
-                        v-if="showUserAuth[0].permissions[44].name == 'BOTON EDITAR PLANTILLA'"
+                        v-if="
+                          showUserAuth[0].permissions[44].name ==
+                          'BOTON EDITAR PLANTILLA'
+                        "
                       >
                         <vs-button
                           class="mr-1 ml-1"
@@ -54,7 +67,10 @@
                         ></vs-button>
                       </router-link>
                       <vs-button
-                        v-if="showUserAuth[0].permissions[45].name == 'BOTON ELIMINAR PLANTILLAS'"
+                        v-if="
+                          showUserAuth[0].permissions[45].name ==
+                          'BOTON ELIMINAR PLANTILLAS'
+                        "
                         class="mr-1 ml-1"
                         radius
                         color="danger"
@@ -80,6 +96,7 @@ export default {
     return {
       listProces: {},
       showUserAuth: [],
+      tantos: 5,
     };
   },
   created() {
@@ -149,5 +166,19 @@ export default {
 }
 .buttonColor {
   background: #ff5000 !important;
+}
+.seleccionableBuscador {
+  background: #10163a;
+  color: white;
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
+  margin-left: 10px;
+  margin-top: 0px;
+  border-radius: 20px;
 }
 </style>

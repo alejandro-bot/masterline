@@ -16,18 +16,26 @@
             <h6 class="card-title text-center">Cargos</h6>
           </div>
           <div>
-            <vs-table>
-              <template slot="header"> </template>
+            <vs-table search pagination :data="charges" :max-items="tantos">
+              <template slot="header">
+                <select v-model="tantos" class="seleccionableBuscador">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select>
+              </template>
               <template slot="thead">
-                <vs-th> Nombre </vs-th>
-                <vs-th> Division </vs-th>
+                <vs-th sort-key="name"> Nombre </vs-th>
+                <vs-th sort-key="nameDivision"> Division </vs-th>
                 <vs-th> Acción </vs-th>
               </template>
 
-              <template>
-                <vs-tr :key="index" v-for="(item, index) in charges">
-                  <vs-td> {{ item.name }} </vs-td>
-                  <vs-td> {{ item.nameDivision }} </vs-td>
+              <template slot-scope="{ data }">
+                <vs-tr v-for="(item, index) in data" :key="index">
+                  <vs-td :data="item.name"> {{ item.name }} </vs-td>
+                  <vs-td :data="item.nameDivision">
+                    {{ item.nameDivision }}
+                  </vs-td>
                   <vs-td>
                     <vs-row>
                       <vs-col
@@ -38,7 +46,11 @@
                       >
                         <router-link
                           :to="'/panel/update-charge/' + item.id"
-                          v-if="showUserAuth[0].permissions[31].name == 'BOTON EDITAR CARGOS'">
+                          v-if="
+                            showUserAuth[0].permissions[31].name ==
+                            'BOTON EDITAR CARGOS'
+                          "
+                        >
                           <vs-button
                             class="mr-1 ml-1"
                             radius
@@ -54,7 +66,9 @@
                           type="border"
                           icon="delete_outline"
                           v-if="
-                            showUserAuth[0].permissions[32].name == 'BOTON ELIMINAR CARGOS'"
+                            showUserAuth[0].permissions[32].name ==
+                            'BOTON ELIMINAR CARGOS'
+                          "
                           @click="deleteCharge(item.id)"
                         ></vs-button>
                       </vs-col>
@@ -102,18 +116,28 @@
             vs-w="12"
           >
             <div class="centerx colors-example">
-              <vs-select
-                class="mt-0 mb-1 mr-1 ml-1"
-                label="División"
+              <h6
+                style="
+                  margin-bottom: -10px;
+                  margin-top: 10px;
+                  margin-left: 20px;
+                "
+              >
+                División
+              </h6>
+              <select
+                class="ml-5 mr-5 mt-5 mb-3 seleccionable"
                 v-model="formCharge.division_id"
               >
-                <vs-select-item
+                <option value="">Seleccione</option>
+                <option
                   :key="index"
                   :value="item.id"
-                  :text="item.name"
                   v-for="(item, index) in branchDivisions"
-                />
-              </vs-select>
+                >
+                  {{ item.name }}
+                </option>
+              </select>
             </div>
           </vs-col>
         </vs-row>
@@ -134,6 +158,7 @@ export default {
       },
       charges: {},
       showUserAuth: [],
+      tantos: 5,
     };
   },
   created() {
@@ -246,5 +271,30 @@ export default {
 }
 .vs-button-primary.vs-button-filled {
   background: #ff5000 !important;
+}
+.seleccionable {
+  background: #10163a;
+  color: white;
+  width: 200px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
+}
+.seleccionableBuscador {
+  background: #10163a;
+  color: white;
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
+  margin-left: 10px;
+  margin-top: 0px;
+  border-radius: 20px;
 }
 </style>
