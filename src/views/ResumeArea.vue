@@ -1146,11 +1146,7 @@
                     </div>
                     <div>
                       <span
-                        >Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex
-                        ea commodo consequat.</span
+                        >{{ openRoUsers[0].rol_2 }}</span
                       >
                     </div>
                   </vs-card>
@@ -1161,6 +1157,7 @@
         </div>
       </vs-tab>
     </vs-tabs>
+
   </div>
 </template>
 <script>
@@ -1179,13 +1176,13 @@ export default {
           id: "vuechart-example",
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+          categories: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
         },
       },
       series: [
         {
-          name: "series-1",
-          data: [30, 40, 45, 50, 49, 60, 70, 91],
+          name: "aqui va otro array de los nombres",
+          data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
         },
       ],
       options1: {},
@@ -1500,11 +1497,13 @@ export default {
           website: "hildegard.org",
         },
       ],
+      openRoUsers: [],
     };
   },
   created() {
     this.graphifTypeSend();
     this.showUserAuthentificated();
+    this.graphicOpenRegisters();
   },
   methods: {
     returnHome() {
@@ -1536,6 +1535,12 @@ export default {
       let url = dominio.url + "/api/mostar-usuario-autentificado";
       axios.get(url).then((res) => {
         this.showUserAuth = res.data.showUserAuth;
+      });
+    },
+    graphicOpenRegisters() {
+      let url = dominio.url + "/api/consultar-tipos-envio-grafica-registros-abiertos";
+      axios.get(url).then((res) => {
+        this.openRoUsers = res.data.openRoUsers;
       });
     },
   },
