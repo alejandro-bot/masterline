@@ -92,18 +92,10 @@
             </vs-col>
           </vs-row>
         </vs-card>
-
-
-
-
-
-
-
-
         <vs-card class="con-vs-cards">
           <div slot="header">
           </div>
-          <h6 class="card-title text-center">¿ R.O. PADRE ?</h6>
+          <h6 class="card-title text-center">¿ R.O. CON MAS DE UN HBL ?</h6>
           <vs-row>
             <vs-col
               vs-type="flex"
