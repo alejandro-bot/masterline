@@ -13,7 +13,7 @@
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
           <div slot="header">
-            <h6 class="card-title text-center">Cargos</h6>
+            <h6 class="card-title text-center">Divisiones</h6>
           </div>
           <div>
             <vs-table
@@ -90,6 +90,7 @@
       @accept="acceptAlert"
       @close="close"
       :active.sync="activePrompt"
+      color="#ff5000"
     >
       <div class="con-exemple-prompt">
         <vs-row>

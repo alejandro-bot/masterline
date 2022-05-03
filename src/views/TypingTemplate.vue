@@ -1,7 +1,10 @@
 <template>
   <div>
     <vs-button
-      v-if="showUserAuth[0].permissions[43].name == 'BOTON CREAR PLANTILLA'"
+      v-if="
+      showUserAuth[0].permissions[29].name == 'BOTON CREAR PLANTILLA' ||
+      showUserAuth[0].permissions[43].name == 'BOTON CREAR PLANTILLA'
+      "
       class="buttonColor"
       color="primary"
       type="relief"
@@ -54,8 +57,8 @@
                       <router-link
                         :to="'/panel/update-template/' + item.id"
                         v-if="
-                          showUserAuth[0].permissions[44].name ==
-                          'BOTON EDITAR PLANTILLA'
+                          showUserAuth[0].permissions[30].name == 'BOTON EDITAR PLANTILLA' ||
+                          showUserAuth[0].permissions[44].name == 'BOTON EDITAR PLANTILLA'
                         "
                       >
                         <vs-button
@@ -68,8 +71,8 @@
                       </router-link>
                       <vs-button
                         v-if="
-                          showUserAuth[0].permissions[45].name ==
-                          'BOTON ELIMINAR PLANTILLAS'
+                          showUserAuth[0].permissions[31].name == 'BOTON ELIMINAR PLANTILLAS' ||
+                          showUserAuth[0].permissions[45].name == 'BOTON ELIMINAR PLANTILLAS'
                         "
                         class="mr-1 ml-1"
                         radius

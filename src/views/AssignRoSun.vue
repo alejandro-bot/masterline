@@ -17,20 +17,12 @@
                 <h3 class="text-center mb-3 mt-5">Asignar R.O Hijo</h3>
               </div>
               <div>
-                <vs-row>
-                  <vs-col
-                    vs-type="flex"
-                    vs-justify="right"
-                    vs-align="center"
-                    vs-w="6"
-                  >
-                    <div class="centerx colors-example">
-                      <h6 style="margin-bottom: -14px; margin-left: 10px">
-                        Comercial
-                      </h6>
-                      <select
-                        class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                <vs-row vs-w="12">
+                  <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-lg="6" vs-sm="6" vs-xs="12" >
+                     <select
+                        class="seleccionable ml-1"
                         v-model="formAssign.user_id"
+                        style="width: 100%; margin-top: 10px; padding: 15px; margin-bottom: 20px;"
                       >
                         <option value="">Seleccione</option>
                         <option
@@ -41,21 +33,12 @@
                           {{ item.first_name }} {{ item.last_name }}
                         </option>
                       </select>
-                    </div>
                   </vs-col>
-                  <vs-col
-                    vs-type="flex"
-                    vs-justify="left"
-                    vs-align="center"
-                    vs-w="6"
-                  >
-                    <div class="centerx colors-example">
-                      <h6 style="margin-bottom: -14px; margin-left: 10px">
-                        Sucursal
-                      </h6>
+                  <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-lg="6" vs-sm="6" vs-xs="12">
                       <select
-                        class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                        class="seleccionable ml-1"
                         v-model="formAssign.branch_office_id"
+                        style="width: 100%; margin-top: 10px; padding: 15px; margin-bottom: 20px;"
                       >
                         <option value="">Seleccione</option>
                         <option
@@ -66,27 +49,26 @@
                           {{ item.name }}
                         </option>
                       </select>
-                    </div>
                   </vs-col>
-                </vs-row>
-                <vs-row class="mt-5 mb-3">
-                  <vs-col
-                    vs-type="flex"
-                    vs-justify="center"
-                    vs-align="center"
-                    vs-w="12"
-                  >
-                    <div class="centerx colors-example">
-                      <vs-button
+                  <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-lg="12" vs-sm="12" vs-xs="12">
+                     <vs-button
                         @click="assignRo()"
                         color="#ff5000"
                         type="relief"
                         icon="add"
                         >Asignar R.O</vs-button
                       >
-                    </div>
                   </vs-col>
                 </vs-row>
+
+
+
+
+
+
+
+
+
               </div>
             </vs-card>
           </vs-col>

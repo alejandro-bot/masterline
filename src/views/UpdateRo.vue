@@ -17,7 +17,9 @@
         <vs-card class="con-vs-cards">
           <div slot="header">
             <strong>
-              <h1 class="text-center">SEGUIMIENTO DE R.O</h1>
+              <h1 class="text-center" style="font-size: 18px; font-weight: 700">
+                SEGUIMIENTO DE R.O
+              </h1>
             </strong>
           </div>
           <h6 class="card-title text-center">R.O. NÚMERO Y TIPO DE ENVÍO</h6>
@@ -28,69 +30,102 @@
               vs-align="center"
               vs-w="12"
             >
-              <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 10px">
-                  Modo De Transporte
-                </h6>
-                <select
-                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showRoDisabled.type_of_transport_id"
-                  @change="
-                    showIssue(showRoDisabled.type_of_transport_id);
-                    showTypeOfLoads(showRoDisabled.type_of_transport_id);
-                    showTypeSend(showRoDisabled.type_of_transport_id);
-                    errors.type_of_transport_id = '';
+              <vs-row vs-w="12">
+                <h6
+                  class="desaparecer"
+                  style="
+                    margin-bottom: -14px;
+                    margin-left: 10px;
+                    position: absolute;
                   "
                 >
-                  <option value="">Seleccione</option>
-                  <option
-                    :key="index"
-                    :value="item.id"
-                    v-for="(item, index) in typeOfTransport"
-                  >
-                    {{ item.name }}
-                  </option>
-                </select>
-                <div class="mt-2 text-left" v-if="errors.type_of_transport_id">
-                  <span class="errors">{{
-                    errors.type_of_transport_id[0]
-                  }}</span>
-                </div>
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="RO-AAAA-/00-0000"
-                  v-model="showRoDisabled.ro"
-                  @keypress="errors.ro = ''"
-                />
-                <div class="mt-3 ml-1 text-left" v-if="errors.ro">
-                  <span class="errors">{{ errors.ro[0] }}</span>
-                </div>
-              </div>
-              <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 10px">
-                  Tipo De Embarque
+                  Modo De Transporte
                 </h6>
-                <select
-                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showRoDisabled.type_id"
-                  @change="errors.type_id = ''"
+                <vs-col
+                  vs-type="flex"
+                  vs-justify="center"
+                  vs-align="center"
+                  vs-lg="4"
+                  vs-sm="4"
+                  vs-xs="12"
                 >
-                  <option value="">Seleccione</option>
-                  <option
-                    :key="index"
-                    :value="item.id"
-                    v-for="(item, index) in showTypeSends"
+                  <select
+                    class="mt-5 mb-3 seleccionable mr-1"
+                    v-model="showRoDisabled.type_of_transport_id"
+                    @change="
+                      showIssue(showRoDisabled.type_of_transport_id);
+                      showTypeOfLoads(showRoDisabled.type_of_transport_id);
+                      showTypeSend(showRoDisabled.type_of_transport_id);
+                      errors.type_of_transport_id = '';
+                    "
+                    style="width: 100%; height: 40px"
                   >
-                    {{ item.name }}
-                  </option>
-                </select>
-                <div class="mt-1 text-left" v-if="errors.type_id">
-                  <span class="errors">{{ errors.type_id[0] }}</span>
-                </div>
-              </div>
+                    <option value="">Seleccione</option>
+                    <option
+                      :key="index"
+                      :value="item.id"
+                      v-for="(item, index) in typeOfTransport"
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
+                  <div
+                    class="mt-2 text-left"
+                    v-if="errors.type_of_transport_id"
+                  >
+                    <span class="errors">{{
+                      errors.type_of_transport_id[0]
+                    }}</span>
+                  </div>
+                </vs-col>
+                <vs-col
+                  vs-type="flex"
+                  vs-justify="center"
+                  vs-align="center"
+                  vs-lg="4"
+                  vs-sm="4"
+                  vs-xs="12"
+                >
+                  <vs-input
+                    class="mt-5 mb-3"
+                    color="rgb(213, 14, 151)"
+                    label-placeholder="RO-AAAA-/00-0000"
+                    v-model="showRoDisabled.ro"
+                    @keypress="errors.ro = ''"
+                    style="width: 100%"
+                  />
+                  <div class="mt-3 ml-1 text-left" v-if="errors.ro">
+                    <span class="errors">{{ errors.ro[0] }}</span>
+                  </div>
+                </vs-col>
+                <vs-col
+                  vs-type="flex"
+                  vs-justify="center"
+                  vs-align="center"
+                  vs-lg="4"
+                  vs-sm="4"
+                  vs-xs="12"
+                >
+                  <select
+                    class="mt-5 mb-3 ml-1 seleccionable"
+                    v-model="showRoDisabled.type_id"
+                    @change="errors.type_id = ''"
+                    style="width: 100%; height: 39px"
+                  >
+                    <option value="">Seleccione</option>
+                    <option
+                      :key="index"
+                      :value="item.id"
+                      v-for="(item, index) in showTypeSends"
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
+                  <div class="mt-1 text-left" v-if="errors.type_id">
+                    <span class="errors">{{ errors.type_id[0] }}</span>
+                  </div>
+                </vs-col>
+              </vs-row>
             </vs-col>
           </vs-row>
         </vs-card>
@@ -99,6 +134,74 @@
           v-if="showRoDisabled.type_of_transport_id == 3"
         >
           <h6 class="card-title text-center">DETALLES DEL TRANSPORTADOR</h6>
+
+          <vs-row vs-w="12">
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
+            >
+              <vs-input
+                class="mt-3 mb-3 ml-1"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Transportadora"
+                v-model="showRoDisabled.carrier"
+                style="width: 100%; margin-top: 20px !important"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
+            >
+              <vs-input
+                class="mt-3 mb-3 ml-1"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Típo de Vehículo"
+                v-model="showRoDisabled.vehicle"
+                style="width: 100%; margin-top: 20px !important"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
+            >
+              <vs-input
+                class="mt-3 mb-3 ml-1"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Conductor"
+                v-model="showRoDisabled.driver"
+                style="width: 100%; margin-top: 20px !important"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
+            >
+              <vs-input
+                class="mt-3 mb-3 ml-1"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Placa"
+                v-model="showRoDisabled.plaque"
+                style="width: 100%; margin-top: 20px !important"
+              />
+            </vs-col>
+          </vs-row>
+
           <vs-row>
             <vs-col
               vs-type="flex"
@@ -106,178 +209,203 @@
               vs-align="center"
               vs-w="12"
             >
-              <vs-input
-                class="ml-5 mr-5 mt-3 mb-3"
-                color="rgb(213, 14, 151)"
-                label-placeholder="Transportadora"
-                v-model="showRoDisabled.carrier"
-              />
-              <vs-input
-                class="ml-5 mr-5 mt-3 mb-3"
-                color="rgb(213, 14, 151)"
-                label-placeholder="Típo de Vehículo"
-                v-model="showRoDisabled.vehicle"
-              />
-              <vs-input
-                class="ml-5 mr-5 mt-3 mb-3"
-                color="rgb(213, 14, 151)"
-                label-placeholder="Conductor"
-                v-model="showRoDisabled.driver"
-              />
-              <vs-input
-                class="ml-5 mr-5 mt-3 mb-3"
-                color="rgb(213, 14, 151)"
-                label-placeholder="Placa"
-                v-model="showRoDisabled.plaque"
-              />
             </vs-col>
           </vs-row>
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">PLANIFICACIÓN DE EMBARQUE</h6>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  class="selectExample ml-0 mr-5 mt-3 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Puerto De Origen"
-                  v-model="showRoDisabled.starting_place"
-                  @keypress="errors.starting_place = ''"
-                />
-                <div class="mt-1 mr-3 text-center" v-if="errors.starting_place">
-                  <span class="errors">{{ errors.starting_place[0] }}</span>
-                </div>
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Puerto De Destino"
-                  v-model="showRoDisabled.destination_place"
-                  @keypress="errors.destination_place = ''"
-                />
-                <div class="mt-1 text-left" v-if="errors.destination_place">
-                  <span class="errors">{{ errors.destination_place[0] }}</span>
-                </div>
-              </div>
-              <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 10px">
-                  Emisión HBL
-                </h6>
-                <select
-                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showRoDisabled.issue_id"
-                  @change="errors.issue_id = ''"
-                >
-                  <option value="">Seleccione</option>
-                  <option
-                    :key="index"
-                    :value="item.id"
-                    v-for="(item, index) in showIssues"
-                  >
-                    {{ item.name }}
-                  </option>
-                </select>
-                <div class="mt-1 ml-0 text-left" v-if="errors.issue_id">
-                  <span class="errors">{{ errors.issue_id[0] }}</span>
-                </div>
+              <vs-input
+                class="selectExample mt-3 mb-0 escritorio movil"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Puerto De Origen"
+                v-model="showRoDisabled.starting_place"
+                @keypress="errors.starting_place = ''"
+              />
+              <div class="mt-1 mr-3 text-center" v-if="errors.starting_place">
+                <span class="errors">{{ errors.starting_place[0] }}</span>
               </div>
             </vs-col>
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  class="mt-0 mb-3"
-                  label="ETD"
-                  v-model="showRoDisabled.etd"
-                  type="date"
-                  style="margin-left: -35px; margin-right: 15px;"
-                />
-              </div>
               <vs-input
-                class="ml-0 mr-5 mt-0 mb-3"
+                class="mt-5 mb-3 escritorio movil"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Puerto De Destino"
+                v-model="showRoDisabled.destination_place"
+                @keypress="errors.destination_place = ''"
+                style="width: 97%; margin-top: 20px !important"
+              />
+              <div class="mt-1 text-left" v-if="errors.destination_place">
+                <span class="errors">{{ errors.destination_place[0] }}</span>
+              </div>
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <select
+                class="mt-5 mb-3 seleccionable escritorio"
+                v-model="showRoDisabled.issue_id"
+                @change="errors.issue_id = ''"
+                style="width: 100%; height: 38px; margin-top: 20px !important; padding: 10px !important;"
+              >
+                <option value="">Seleccione</option>
+                <option
+                  :key="index"
+                  :value="item.id"
+                  v-for="(item, index) in showIssues"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+              <div class="mt-1 ml-0 text-left" v-if="errors.issue_id">
+                <span class="errors">{{ errors.issue_id[0] }}</span>
+              </div>
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="mt-0 mb-3 escritorio"
+                label="ETD"
+                v-model="showRoDisabled.etd"
+                type="date"
+                style="width: 100%; margin-top: 20px !important"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="mt-0 mb-3 escritorio"
                 label="ETA"
                 v-model="showRoDisabled.eta"
                 type="date"
+                style="width: 100%; margin-top: 20px !important"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <vs-input
-                class="mt-2 mb-0"
+                class="escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Número HBL"
                 v-model="showRoDisabled.num_hbl"
-                style="margin-left: 20px; margin-right: -20px;"
+                style="width: 100%; margin-top: 25px !important"
               />
             </vs-col>
           </vs-row>
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">DETALLES DE LA CARGA</h6>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 10px">
-                  Tipo Carga
-                </h6>
-                <select
-                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showRoDisabled.type_of_load_id"
-                  style="margin-left: 0px !important;"
+              <select
+                class="seleccionable escritorio mb-1"
+                v-model="showRoDisabled.type_of_load_id"
+                style="width: 100%"
+              >
+                <option value="">Seleccione</option>
+                <option
+                  :key="index"
+                  :value="item.id"
+                  v-for="(item, index) in showTypeOfLoad"
                 >
-                  <option value="">Seleccione</option>
-                  <option
-                    :key="index"
-                    :value="item.id"
-                    v-for="(item, index) in showTypeOfLoad"
-                  >
-                    {{ item.name }}
-                  </option>
-                </select>
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Cantidad"
-                  v-model="showRoDisabled.quantity"
-                />
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-4 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Numero De Contenedor"
-                  v-if="
-                    showRoDisabled.type_of_transport_id == 1 ||
-                    showRoDisabled.type_of_transport_id == 3 ||
-                    showRoDisabled.type_of_transport_id == 0
-                  "
-                  v-model="showRoDisabled.container_number"
-                />
-              </div>
+                  {{ item.name }}
+                </option>
+              </select>
             </vs-col>
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
               <vs-input
-                class="ml-0 mr-5 mt-5 mb-3"
+                class="escritorio mb-1"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Cantidad"
+                v-model="showRoDisabled.quantity"
+                style="width: 100%"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="escritorio movil mb-1"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Numero De Contenedor"
+                v-if="
+                  showRoDisabled.type_of_transport_id == 1 ||
+                  showRoDisabled.type_of_transport_id == 3 ||
+                  showRoDisabled.type_of_transport_id == 0
+                "
+                v-model="showRoDisabled.container_number"
+
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="escritorio movil"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Tipo de Contenedor"
                 v-if="
@@ -287,23 +415,40 @@
                 "
                 v-model="showRoDisabled.kind_of_container"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <vs-input
-                class="ml-0 mr-5 mt-5 mb-3"
+                class="escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Peso Bruto"
                 v-model="showRoDisabled.weight"
+                style="width: 100%"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <vs-input
-                class="ml-0 mr-4 mt-2 mb-0"
+                class="mt-2 mb-0 escritorio movil"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Volumen"
                 v-model="showRoDisabled.volume"
               />
             </vs-col>
           </vs-row>
-        </vs-card>
-        <vs-card class="con-vs-cards">
-          <h6 class="card-title text-center">ASIGNACIONES</h6>
+
           <vs-row>
             <vs-col
               vs-type="flex"
@@ -311,57 +456,9 @@
               vs-align="center"
               vs-w="12"
             >
-              <div class="centerx colors-example">
-                <vs-select
-                  class="ml-0 mr-5 mt-2 mb-0"
-                  label="Sucursal"
-                  v-model="showRoDisabled.branch_office_id"
-                  @change="errors.branch_office_id = ''"
-                  disabled
-                >
-                  <vs-select-item :value="''" :text="'Seleccione'" />
-                  <vs-select-item
-                    :key="index"
-                    :value="item.id"
-                    :text="item.name"
-                    v-for="(item, index) in branchOffices"
-                  />
-                </vs-select>
-                <div class="mt-1 ml-1 text-left" v-if="errors.branch_office_id">
-                  <span class="errors">{{ errors.branch_office_id[0] }}</span>
-                </div>
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-5 mr-2 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label="Nombre Usuario"
-                  :value="
-                    showRoDisabled.user.first_name +
-                    ' ' +
-                    showRoDisabled.user.last_name
-                  "
-                  disabled
-                />
-              </div>
-              <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 10px">
-                  Grupo De Correos
-                </h6>
-                <select
-                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showRoDisabled.groupEmails"
-                >
-                  <option value="">Seleccione</option>
-                  <option
-                    :key="index"
-                    :value="item.id"
-                    v-for="(item, index) in listNameGroups"
-                  >
-                    {{ item.name }}
-                  </option>
-                </select>
-              </div>
+              <div class="centerx colors-example"></div>
+              <div class="centerx colors-example"></div>
+              <div class="centerx colors-example"></div>
             </vs-col>
             <vs-col
               vs-type="flex"
@@ -369,42 +466,142 @@
               vs-align="center"
               vs-w="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-4 mt-5 mb-4"
-                  color="rgb(213, 14, 151)"
-                  :value="
-                    userCommercial.first_name + ' ' + userCommercial.last_name
-                  "
-                  disabled
+            </vs-col>
+          </vs-row>
+        </vs-card>
+        <vs-card class="con-vs-cards">
+          <h6 class="card-title text-center">ASIGNACIONES</h6>
+
+          <vs-row vs-w="12">
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-select
+                class="mb-1 movil escritorio"
+                label="Sucursal"
+                v-model="showRoDisabled.branch_office_id"
+                @change="errors.branch_office_id = ''"
+                style="width: 100%"
+                disabled
+              >
+                <vs-select-item :value="''" :text="'Seleccione'" />
+                <vs-select-item
+                  :key="index"
+                  :value="item.id"
+                  :text="item.name"
+                  v-for="(item, index) in branchOffices"
                 />
-                <div class="mt-1 ml-1 text-left" v-if="errors.commercial">
-                  <span class="errors">{{ errors.commercial[0] }}</span>
-                </div>
+              </vs-select>
+              <div class="mt-1 ml-1 text-left" v-if="errors.branch_office_id">
+                <span class="errors">{{ errors.branch_office_id[0] }}</span>
               </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-0 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Correos Electronicos Cliente"
-                  v-model="formRo.addEmails"
-                />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="mb-1 movil escritorio"
+                color="rgb(213, 14, 151)"
+                label="Nombre Usuario"
+                :value="
+                  showRoDisabled.user.first_name +
+                  ' ' +
+                  showRoDisabled.user.last_name
+                "
+                style="width: 100%"
+                disabled
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <select
+                class="mb-1 seleccionable movil escritorioEspecial"
+                v-model="showRoDisabled.groupEmails"
+                style="width: 100%; margin: 22px 0px 0px 0px;"
+              >
+                <option value="">Seleccione</option>
+                <option
+                  :key="index"
+                  :value="item.id"
+                  v-for="(item, index) in listNameGroups"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="escritorio movil"
+                color="rgb(213, 14, 151)"
+                :value="
+                  userCommercial.first_name + ' ' + userCommercial.last_name
+                "
+                style="width: 100%"
+                disabled
+              />
+              <div class="mt-1 ml-1 text-left" v-if="errors.commercial">
+                <span class="errors">{{ errors.commercial[0] }}</span>
               </div>
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="11"
+            >
+              <vs-input
+                class="escritorioCorreo movilCorreo"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Correos Electronicos Cliente"
+                v-model="formRo.addEmails"
+              />
               <vs-button
-                class="ml-0 mr-2 mt-2 mb-0"
+                class="movilBoton botonEscritorio"
                 @click="addEmail()"
                 color="primary"
                 type="border"
                 icon="add"
               ></vs-button>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-4 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Codigo Seguimiento Cliente"
-                  v-model="showRoDisabled.customer_tracking_code"
-                />
-              </div>
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="escritorio movil"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Codigo Seguimiento Cliente"
+                v-model="showRoDisabled.customer_tracking_code"
+              />
             </vs-col>
           </vs-row>
         </vs-card>
@@ -447,20 +644,19 @@
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">HISTORICO INTERACCIONES</h6>
-          <vs-row>
-            <h6 style="margin-bottom: -14px; margin-left: 20px">
-              Proceso Actual
-            </h6>
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
             >
               <select
-                class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                class="movil escritorio seleccionable"
                 v-model="test_procesess_id"
-                style="width: 60%"
+                style="width: 100%"
               >
                 <option value="">Seleccione</option>
                 <option
@@ -474,21 +670,23 @@
               <div class="mt-1 ml-1 text-left" v-if="errors.commercial">
                 <span class="errors">{{ errors.commercial[0] }}</span>
               </div>
-              <vs-input
-                class="mt-5 mb-3"
-                color="rgb(213, 14, 151)"
-                label-placeholder="Asunto Correo"
-                v-model="showRoDisabled.subjet"
-                style="width: 60%"
-                @keypress="errors.subjet = ''"
-              />
             </vs-col>
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
             >
+              <vs-input
+                class="movil escritorio"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Asunto Correo"
+                v-model="showRoDisabled.subjet"
+                style="width: 100%"
+                @keypress="errors.subjet = ''"
+              />
               <div class="mt-0" v-if="errors.subjet" style="margin-left: 210px">
                 <span class="errors">{{ errors.subjet[0] }}</span>
               </div>
@@ -497,31 +695,36 @@
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="12"
+              vs-sm="12"
+              vs-xs="12"
             >
               <wysiwyg
-                class="mt-3 mb-3 ml-4 mr-1"
+                class="mt-3 mb-5"
                 v-model="showRoDisabled.tracing"
                 style="background: white; color: black; height: auto"
               />
             </vs-col>
             <vs-col
-              class="mt-3"
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="12"
+              vs-sm="12"
+              vs-xs="12"
             >
-              <vs-row vs-justify="center" class="mt-0 mb-5">
-                <vs-button
-                  @click="updateTemplate(showRoDisabled.id)"
-                  color="#ff5000"
-                  type="relief"
-                  icon="autorenew"
-                  >Actualizar Seguimiento De R.O</vs-button
-                >
-              </vs-row>
+              <vs-button
+                class="mb-3"
+                @click="updateTemplate(showRoDisabled.id)"
+                color="#ff5000"
+                type="relief"
+                icon="autorenew"
+                >Actualizar Seguimiento De R.O</vs-button
+              >
             </vs-col>
+          </vs-row>
+
+          <vs-row>
             <vs-row class="mt-5">
               <vs-col
                 vs-type="flex"
@@ -621,7 +824,10 @@
                 <vs-image
                   class="images"
                   :key="index"
-                  :src="'http://backend-masterline.test/storage/images_ro_email/' + image.images"
+                  :src="
+                    'http://backend-masterline.test/storage/images_ro_email/' +
+                    image.images
+                  "
                   v-for="(image, index) in showRoDisabled.images_email"
                 />
               </vs-images>
@@ -800,7 +1006,7 @@ export default {
     uploadImageSuccess(formData, index, fileList) {
       this.archivos = [];
       this.archivos = fileList;
-      console.log('archivos',archivos);
+      console.log("archivos", archivos);
     },
     beforeRemove(index, removeCallBack) {
       toastr.error("Imagen Eliminada Con Éxito");
@@ -1033,5 +1239,47 @@ export default {
   padding-left: 6px !important;
   font-size: 17px;
   border: 1px solid transparent;
+}
+@media only screen and (min-width : 901px) {
+  .escritorio
+ {
+   margin-top: 10px;
+   width: 100%;
+   padding:5px;
+ }
+ .escritorioEspecial
+ {
+   width: 95% !important;
+ }
+  .escritorioCorreo
+  {
+    width: 100%;
+    margin-top:10px !important;
+    padding: 2px !important;
+  }
+  .botonEscritorio
+  {
+    margin-top: 10px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .editr--toolbar
+  {
+    display: none;
+  }
+  .movil
+  {
+    width: 100%;
+    margin-top: 30px !important;
+  }
+  .movilCorreo
+  {
+     width: 100%;
+  }
+  .movilBoton
+  {
+    margin-top: 18px;
+    margin-right: -21px;
+  }
 }
 </style>

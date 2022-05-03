@@ -27,10 +27,10 @@
                     vs-type="flex"
                     vs-justify="right"
                     vs-align="center"
-                    vs-w="6"
+                    vs-lg="6" vs-sm="6" vs-xs="12"
                   >
                     <vs-input
-                      class="ml-5 mb-3"
+                      class="escritorio2 movil"
                       color="rgb(213, 14, 151)"
                       label-placeholder="Nombre Del Cargo"
                       v-model="showChargeId.name"
@@ -40,10 +40,10 @@
                     vs-type="flex"
                     vs-justify="left"
                     vs-align="center"
-                    vs-w="6"
+                   vs-lg="6" vs-sm="6" vs-xs="12"
                   >
                     <select
-                      class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                      class="escritorio2 movil seleccionable"
                       v-model="showChargeId.division_id"
                     >
                       <option value="">Seleccione</option>
@@ -67,6 +67,7 @@
               >
                 <vs-row vs-justify="center" class="mt-0 mb-5">
                   <vs-button
+                  class="botonCargo"
                     @click="editCharge(showChargeId.id)"
                     color="#ff5000"
                     type="relief"
@@ -175,5 +176,32 @@ export default {
   padding-left: 6px !important;
   font-size: 17px;
   border: 1px solid transparent;
+}
+@media only screen and (min-width: 901px) {
+  .escritorio2 {
+    margin-top: 10px;
+    width: 60%;
+    padding: 5px;
+  }
+  .mobil {
+    padding: 6px;
+  }
+
+
+}
+@media only screen and (max-width: 900px) {
+  .movil {
+    width: 100%;
+    margin-top: 30px !important;
+  }
+  .mobil {
+    margin-bottom: -10px;
+    margin-top: 10px;
+  }
+  .botonCargo {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 </style>

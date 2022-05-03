@@ -19,7 +19,7 @@
             type="relief"
             icon="home"
             @click="returnRO()"
-            >Regresar R.O</vs-button
+            >R.O</vs-button
           >
         </vs-col>
       </vs-col>
@@ -35,7 +35,7 @@
       >
         <vs-card class="con-vs-cards">
           <div slot="header" class=""></div>
-
+              <h3 class="mb-5 card-title text-center">Lista de R.O Hijos</h3>
           <vs-table
             search
             pagination
@@ -43,7 +43,6 @@
             :max-items="tantos"
           >
             <template slot="header">
-              <h3 class="mb-5 card-title text-center">R.O Padre</h3>
               <select v-model="tantos" class="seleccionableBuscador">
                 <option value="5">5</option>
                 <option value="10">10</option>

@@ -1,600 +1,654 @@
 <template>
   <div>
-    <vs-row>
+    <vs-row vs-w="12">
       <vs-col
-        class="mt-5 mb-3 ml-3 mr-1"
+       class="pl-1"
         vs-type="flex"
         vs-justify="center"
         vs-align="center"
-        vs-w="12"
+        vs-lg="3"
+        vs-sm="3"
+        vs-xs="12"
       >
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
-          <vs-card
-            class="con-vs-cards mr-5"
-            style="height: 350px !important"
-            v-if="showUserAuth[0].permissions[0].name == 'VER GESTIÓN DIARIA'"
-          >
-            <div slot="header">
-              <vs-images>
-                <vs-image
-                  class="con-example-images"
-                  src="http://31.220.21.104/_activos/dashboard/img01.jpg"
-                />
-              </vs-images>
-              <vs-row style="background: #ff6600; margin-top: -1px">
-                <vs-col
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="12"
-                >
-                  <h6>GESTIÓN DIARIA</h6>
-                  <span
-                    class="material-icons ml-5"
-                    style="
-                      width: 25px;
-                      height: 25px;
-                      display: block;
-                      color: white;
-                    "
-                  >
-                    signal_cellular_alt
-                  </span>
-                </vs-col>
-              </vs-row>
-            </div>
-            <vs-row>
+        <vs-card
+          class="con-vs-cards"
+          style="height: 350px !important"
+          v-if="showUserAuth[0].permissions[0].name == 'VER GESTIÓN DIARIA'"
+        >
+          <div slot="header">
+            <vs-images>
+              <vs-image
+                class="con-example-images"
+                src="http://31.220.21.104/_activos/dashboard/img01.jpg"
+              />
+            </vs-images>
+            <vs-row style="background: #ff6600; margin-top: -1px">
               <vs-col
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
                 vs-w="12"
               >
-                <vs-col
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
+                <h6>GESTIÓN DIARIA</h6>
+                <span
+                  class="material-icons ml-5"
+                  style="
+                    width: 25px;
+                    height: 25px;
+                    display: block;
+                    color: white;
+                  "
                 >
-                  <span class="material-icons"> event_available </span>
-                </vs-col>
-                <vs-col
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="6"
-                >
-                  R.O Gestionados
-                </vs-col>
-                <vs-col
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
-                >
-                  {{ dailyManagement }}
-                </vs-col>
+                  signal_cellular_alt
+                </span>
               </vs-col>
             </vs-row>
-            <vs-row class="mt-3">
+          </div>
+          <vs-row>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vs-col
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="3"
+              >
+                <span class="material-icons"> event_available </span>
+              </vs-col>
+              <vs-col
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="6"
+              >
+                R.O Gestionados
+              </vs-col>
+              <vs-col
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="3"
+              >
+                {{ dailyManagement }}
+              </vs-col>
+            </vs-col>
+          </vs-row>
+          <vs-row class="mt-3">
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vs-col
+                class="pl-5 ml-1"
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="3"
+              >
+                <span class="material-icons"> free_cancellation </span>
+              </vs-col>
+              <vs-col
+                class="pr-3"
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="6"
+              >
+                R.O Sin Gestión
+              </vs-col>
+              <vs-col
+                class=""
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="3"
+              >
+                {{ recordsWithoutManagement }}
+              </vs-col>
+            </vs-col>
+          </vs-row>
+          <div>
+            <div class="con-example-images"></div>
+          </div>
+        </vs-card>
+      </vs-col>
+      <vs-col
+       class="pl-1"
+        vs-type="flex"
+        vs-justify="center"
+        vs-align="center"
+        vs-lg="3"
+        vs-sm="3"
+        vs-xs="12"
+      >
+        <vs-card
+          class="con-vs-cards"
+          style="height: 350px !important"
+          v-if="showUserAuth[0].permissions[1].name == 'VER RESUMEN GENERAL'"
+        >
+          <div slot="header">
+            <vs-images>
+              <vs-image
+                class="con-example-images"
+                src="http://31.220.21.104/_activos/dashboard/img02.jpg"
+              />
+            </vs-images>
+            <vs-row style="background: #ff6600; margin-top: -1px">
               <vs-col
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
                 vs-w="12"
               >
-                <vs-col
-                  class="pl-5 ml-1"
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
+                <h6>RESUMEN GENERAL</h6>
+                <span
+                  class="material-icons ml-5"
+                  style="
+                    width: 25px;
+                    height: 25px;
+                    display: block;
+                    color: white;
+                  "
                 >
-                  <span class="material-icons"> free_cancellation </span>
-                </vs-col>
-                <vs-col
-                  class="pr-3"
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="6"
-                >
-                  R.O Sin Gestión
-                </vs-col>
-                <vs-col
-                  class=""
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
-                >
-                  {{ recordsWithoutManagement }}
-                </vs-col>
+                  add_chart
+                </span>
               </vs-col>
             </vs-row>
-            <div>
-              <div class="con-example-images"></div>
-            </div>
-          </vs-card>
-        </vs-col>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
-          <vs-card
-            class="con-vs-cards mr-2"
-            style="height: 350px !important"
-            v-if="showUserAuth[0].permissions[1].name == 'VER RESUMEN GENERAL'"
-          >
-            <div slot="header">
-              <vs-images>
-                <vs-image
-                  class="con-example-images"
-                  src="http://31.220.21.104/_activos/dashboard/img02.jpg"
-                />
-              </vs-images>
-              <vs-row style="background: #ff6600; margin-top: -1px">
-                <vs-col
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="12"
-                >
-                  <h6>RESUMEN GENERAL</h6>
-                  <span
-                    class="material-icons ml-5"
-                    style="
-                      width: 25px;
-                      height: 25px;
-                      display: block;
-                      color: white;
-                    "
-                  >
-                    add_chart
-                  </span>
-                </vs-col>
-              </vs-row>
-            </div>
-            <vs-row>
+          </div>
+          <vs-row>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vs-col
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="3"
+              >
+                <span class="material-icons"> takeout_dining </span>
+              </vs-col>
+              <vs-col
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="6"
+              >
+                R.O Abiertos
+              </vs-col>
+              <vs-col
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="3"
+              >
+                {{ OpenRecords }}
+              </vs-col>
+            </vs-col>
+          </vs-row>
+          <vs-row class="mt-3">
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vs-col
+                class="mr-3 ml-1"
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="3"
+              >
+                <span class="material-icons"> inventory </span>
+              </vs-col>
+              <vs-col
+                class="mr-2"
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="6"
+              >
+                R.O Cerrados
+              </vs-col>
+              <vs-col
+                class="mr-1"
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="3"
+              >
+                {{ closedRecords }}
+              </vs-col>
+            </vs-col>
+          </vs-row>
+          <div>
+            <div class="con-example-images"></div>
+          </div>
+        </vs-card>
+      </vs-col>
+      <vs-col
+       class="pl-1"
+        vs-type="flex"
+        vs-justify="center"
+        vs-align="center"
+        vs-lg="3"
+        vs-sm="3"
+        vs-xs="12"
+      >
+        <vs-card
+          class="con-vs-cards"
+          style="height: 350px !important"
+          v-if="showUserAuth[0].permissions[2].name == 'VER SIN SEGUIMIENTO'"
+        >
+          <div slot="header">
+            <vs-images>
+              <vs-image
+                class="con-example-images"
+                src="http://31.220.21.104/_activos/dashboard/img04.jpg"
+              />
+            </vs-images>
+            <vs-row style="background: #ff6600; margin-top: -1px">
               <vs-col
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
                 vs-w="12"
               >
-                <vs-col
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
+                <h6>SIN SEGUIMIENTO</h6>
+                <span
+                  class="material-icons ml-5"
+                  style="
+                    width: 25px;
+                    height: 25px;
+                    display: block;
+                    color: white;
+                  "
                 >
-                  <span class="material-icons"> takeout_dining </span>
-                </vs-col>
-                <vs-col
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="6"
-                >
-                  R.O Abiertos
-                </vs-col>
-                <vs-col
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
-                >
-                  {{ OpenRecords }}
-                </vs-col>
+                  equalizer
+                </span>
               </vs-col>
             </vs-row>
-            <vs-row class="mt-3">
+          </div>
+          <vs-row>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
               <vs-col
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
                 vs-w="12"
               >
-                <vs-col
-                  class="mr-3 ml-1"
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
+                <span class="material-icons"> error_outline </span>
+                <span style="margin-left: 20px">Registro más Antiguo</span>
+                <span style="margin-left: 5px">{{
+                  registerRoFirst[0].ro
+                }}</span>
+              </vs-col>
+            </vs-col>
+          </vs-row>
+          <vs-row class="mt-3">
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vs-col
+                class=""
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="12"
+              >
+                <span class="material-icons"> date_range </span>
+                <span style="margin-left: 20px"> Ultima Gestión </span>
+                <span style="margin-left: 5px">
+                  {{ registerRoLast[0].created_at }}
+                </span>
+              </vs-col>
+            </vs-col>
+          </vs-row>
+          <div>
+            <div class="con-example-images"></div>
+          </div>
+        </vs-card>
+      </vs-col>
+      <vs-col
+       class="pl-1"
+        vs-type="flex"
+        vs-justify="center"
+        vs-align="center"
+        vs-lg="3"
+        vs-sm="3"
+        vs-xs="12"
+      >
+        <vs-card
+          class="con-vs-cards"
+          style="height: 350px !important"
+          v-if="showUserAuth[0].permissions[3].name == 'VER TIPO DE EMBARQUE'"
+        >
+          <div slot="header">
+            <vs-images>
+              <vs-image
+                class="con-example-images"
+                src="http://31.220.21.104/_activos/dashboard/img03.jpg"
+              />
+            </vs-images>
+            <vs-row style="background: #ff6600; margin-top: -1px">
+              <vs-col
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="12"
+              >
+                <h6>TIPO DE EMBARQUE</h6>
+                <span
+                  class="material-icons ml-5"
+                  style="
+                    width: 25px;
+                    height: 25px;
+                    display: block;
+                    color: white;
+                  "
                 >
-                  <span class="material-icons"> inventory </span>
-                </vs-col>
-                <vs-col
-                  class="mr-2"
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="6"
-                >
-                  R.O Cerrados
-                </vs-col>
-                <vs-col
-                  class="mr-1"
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
-                >
-                  {{ closedRecords }}
-                </vs-col>
+                  donut_large
+                </span>
               </vs-col>
             </vs-row>
-            <div>
-              <div class="con-example-images"></div>
-            </div>
-          </vs-card>
-        </vs-col>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
-          <vs-card
-            class="con-vs-cards"
-            style="height: 350px !important"
-            v-if="showUserAuth[0].permissions[2].name == 'VER SIN SEGUIMIENTO'"
-          >
-            <div slot="header">
-              <vs-images>
-                <vs-image
-                  class="con-example-images"
-                  src="http://31.220.21.104/_activos/dashboard/img04.jpg"
-                />
-              </vs-images>
-              <vs-row style="background: #ff6600; margin-top: -1px">
-                <vs-col
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="12"
-                >
-                  <h6>SIN SEGUIMIENTO</h6>
-                  <span
-                    class="material-icons ml-5"
-                    style="
-                      width: 25px;
-                      height: 25px;
-                      display: block;
-                      color: white;
-                    "
-                  >
-                    equalizer
-                  </span>
-                </vs-col>
-              </vs-row>
-            </div>
-            <vs-row>
-              <vs-col
-                vs-type="flex"
-                vs-justify="center"
-                vs-align="center"
-                vs-w="12"
-              >
-                <vs-col
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="12"
-                >
-                  <span class="material-icons"> error_outline </span>
-                  <span style="margin-left: 20px">Registro más Antiguo</span>
-                  <span style="margin-left: 5px">{{
-                    registerRoFirst[0].ro
-                  }}</span>
-                </vs-col>
-              </vs-col>
-            </vs-row>
-            <vs-row class="mt-3">
-              <vs-col
-                vs-type="flex"
-                vs-justify="center"
-                vs-align="center"
-                vs-w="12"
-              >
-                <vs-col
-                  class=""
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="12"
-                >
-                  <span class="material-icons"> date_range </span>
-                  <span style="margin-left: 20px"> Ultima Gestión </span>
-                  <span style="margin-left: 5px">
-                    {{ registerRoLast[0].created_at }}
-                  </span>
-                </vs-col>
-              </vs-col>
-            </vs-row>
-            <div>
-              <div class="con-example-images"></div>
-            </div>
-          </vs-card>
-        </vs-col>
-        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
-          <vs-card
-            class="con-vs-cards ml-2"
-            style="height: 350px !important"
-            v-if="showUserAuth[0].permissions[3].name == 'VER TIPO DE EMBARQUE'"
-          >
-            <div slot="header">
-              <vs-images>
-                <vs-image
-                  class="con-example-images"
-                  src="http://31.220.21.104/_activos/dashboard/img03.jpg"
-                />
-              </vs-images>
-              <vs-row style="background: #ff6600; margin-top: -1px">
-                <vs-col
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="12"
-                >
-                  <h6>TIPO DE EMBARQUE</h6>
-                  <span
-                    class="material-icons ml-5"
-                    style="
-                      width: 25px;
-                      height: 25px;
-                      display: block;
-                      color: white;
-                    "
-                  >
-                    donut_large
-                  </span>
-                </vs-col>
-              </vs-row>
-            </div>
-            <vs-row>
-              <vs-col
-                vs-type="flex"
-                vs-justify="center"
-                vs-align="center"
-                vs-w="12"
-              >
-                <vs-col
-                  v-if="
-                    showUserAuth[0].rol_id == 6 ||
-                    showUserAuth[0].rol_id == 5 ||
-                    showUserAuth[0].rol_id == 2 ||
-                    showUserAuth[0].rol_id == 4 ||
-                    showUserAuth[0].rol_id == 3
-                  "
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
-                >
-                  <span class="material-icons"> file_download </span>
-                </vs-col>
-                <vs-col
-                  class="ml-1"
-                  v-if="
-                    showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
-                  "
-                  vs-type="flex"
-                  vs-justify="left"
-                  vs-align="center"
-                  vs-w="3"
-                >
-                  <span class="material-icons"> directions_boat_filled </span>
-                </vs-col>
-                <vs-col
-                  v-if="
-                    showUserAuth[0].rol_id == 6 ||
-                    showUserAuth[0].rol_id == 5 ||
-                    showUserAuth[0].rol_id == 2 ||
-                    showUserAuth[0].rol_id == 4 ||
-                    showUserAuth[0].rol_id == 3
-                  "
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="6"
-                >
-                  Importación
-                </vs-col>
-                <vs-col
-                  v-if="
-                    showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
-                  "
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="6"
-                >
-                  Maritimo
-                </vs-col>
-                <vs-col
-                  v-if="
-                    showUserAuth[0].rol_id == 6 ||
-                    showUserAuth[0].rol_id == 5 ||
-                    showUserAuth[0].rol_id == 2 ||
-                    showUserAuth[0].rol_id == 4 ||
-                    showUserAuth[0].rol_id == 3
-                  "
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
-                >
-                  {{ imports }}
-                </vs-col>
-                <vs-col
-                  v-if="
-                    showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
-                  "
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
-                >
-                  {{ shoRoEdnaMaritime }}
-                </vs-col>
-              </vs-col>
-            </vs-row>
-            <vs-row class="mt-3">
-              <vs-col
-                vs-type="flex"
-                vs-justify="center"
-                vs-align="center"
-                vs-w="12"
-              >
-                <vs-col
-                  v-if="
-                    showUserAuth[0].rol_id == 6 ||
-                    showUserAuth[0].rol_id == 5 ||
-                    showUserAuth[0].rol_id == 2 ||
-                    showUserAuth[0].rol_id == 4 ||
-                    showUserAuth[0].rol_id == 3
-                  "
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="4"
-                >
-                  <span class="material-icons"> file_upload </span>
-                </vs-col>
-                <vs-col
-                  v-if="
-                    showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
-                  "
-                  class="ml-1"
-                  vs-type="flex"
-                  vs-justify="left"
-                  vs-align="center"
-                  vs-w="3"
-                >
-                  <span class="material-icons"> local_shipping </span>
-                </vs-col>
-                <vs-col
-                  v-if="
-                    showUserAuth[0].rol_id == 6 ||
-                    showUserAuth[0].rol_id == 5 ||
-                    showUserAuth[0].rol_id == 2 ||
-                    showUserAuth[0].rol_id == 4 ||
-                    showUserAuth[0].rol_id == 3
-                  "
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="8"
-                >
-                  Exportación
-                </vs-col>
-                <vs-col
-                  v-if="
-                    showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
-                  "
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="6"
-                >
-                  Terretre
-                </vs-col>
-                <vs-col
-                  v-if="
-                    showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
-                  "
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
-                >
-                  {{ shoRoEdnaInland }}
-                </vs-col>
-                <vs-col
-                  v-if="
-                    showUserAuth[0].rol_id == 6 ||
-                    showUserAuth[0].rol_id == 5 ||
-                    showUserAuth[0].rol_id == 2 ||
-                    showUserAuth[0].rol_id == 4 ||
-                    showUserAuth[0].rol_id == 3
-                  "
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="4"
-                >
-                  {{ exports }}
-                </vs-col>
-              </vs-col>
+          </div>
+          <vs-row>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
               <vs-col
                 v-if="
-                  showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
+                  showUserAuth[0].rol_id == 6 ||
+                  showUserAuth[0].rol_id == 5 ||
+                  showUserAuth[0].rol_id == 2 ||
+                  showUserAuth[0].rol_id == 4 ||
+                  showUserAuth[0].rol_id == 8 ||
+                  showUserAuth[0].rol_id == 7 ||
+                  showUserAuth[0].rol_id == 3
                 "
-                class="ml-1 mt-4"
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="3"
+              >
+                <span class="material-icons"> file_download </span>
+              </vs-col>
+              <vs-col
+                class="ml-1"
+                v-if="
+                  showUserAuth[0].rol_id == 9 ||
+                  showUserAuth[0].rol_id == 1 ||
+                  showUserAuth[0].rol_id == 10
+                "
                 vs-type="flex"
                 vs-justify="left"
                 vs-align="center"
-                vs-w="4"
+                vs-w="3"
               >
-                <span class="material-icons"> local_airport </span>
+                <span class="material-icons"> directions_boat_filled </span>
               </vs-col>
               <vs-col
                 v-if="
-                  showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
+                  showUserAuth[0].rol_id == 6 ||
+                  showUserAuth[0].rol_id == 5 ||
+                  showUserAuth[0].rol_id == 2 ||
+                  showUserAuth[0].rol_id == 4 ||
+                  showUserAuth[0].rol_id == 8 ||
+                  showUserAuth[0].rol_id == 7 ||
+                  showUserAuth[0].rol_id == 3
+                "
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="6"
+              >
+                Importación
+              </vs-col>
+              <vs-col
+                v-if="
+                  showUserAuth[0].rol_id == 9 ||
+                  showUserAuth[0].rol_id == 1 ||
+                  showUserAuth[0].rol_id == 10
+                "
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="6"
+              >
+                Maritimo
+              </vs-col>
+              <vs-col
+                v-if="
+                  showUserAuth[0].rol_id == 6 ||
+                  showUserAuth[0].rol_id == 5 ||
+                  showUserAuth[0].rol_id == 2 ||
+                  showUserAuth[0].rol_id == 4 ||
+                  showUserAuth[0].rol_id == 8 ||
+                  showUserAuth[0].rol_id == 7 ||
+                  showUserAuth[0].rol_id == 3
+                "
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="3"
+              >
+                {{ imports }}
+              </vs-col>
+              <vs-col
+                v-if="
+                  showUserAuth[0].rol_id == 9 ||
+                  showUserAuth[0].rol_id == 1 ||
+                  showUserAuth[0].rol_id == 10
+                "
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="3"
+              >
+                {{ shoRoEdnaMaritime }}
+              </vs-col>
+            </vs-col>
+          </vs-row>
+          <vs-row class="mt-3">
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vs-col
+                v-if="
+                  showUserAuth[0].rol_id == 6 ||
+                  showUserAuth[0].rol_id == 5 ||
+                  showUserAuth[0].rol_id == 2 ||
+                  showUserAuth[0].rol_id == 4 ||
+                  showUserAuth[0].rol_id == 8 ||
+                  showUserAuth[0].rol_id == 7 ||
+                  showUserAuth[0].rol_id == 3
                 "
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
                 vs-w="4"
               >
-                Aereo
+                <span class="material-icons"> file_upload </span>
               </vs-col>
               <vs-col
                 v-if="
-                  showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
+                  showUserAuth[0].rol_id == 9 ||
+                  showUserAuth[0].rol_id == 1 ||
+                  showUserAuth[0].rol_id == 10
                 "
-                class="ml-4"
+                class="ml-1"
                 vs-type="flex"
-                vs-justify="right"
+                vs-justify="left"
                 vs-align="center"
-                vs-w="2"
+                vs-w="3"
               >
-                {{ shoRoEdnaAir }}
+                <span class="material-icons"> local_shipping </span>
               </vs-col>
-            </vs-row>
-            <vs-row class="mt-3" v-if="showUserAuth[0].rol_id == 4">
+              <vs-col
+                v-if="
+                  showUserAuth[0].rol_id == 6 ||
+                  showUserAuth[0].rol_id == 5 ||
+                  showUserAuth[0].rol_id == 2 ||
+                  showUserAuth[0].rol_id == 4 ||
+                  showUserAuth[0].rol_id == 8 ||
+                  showUserAuth[0].rol_id == 7 ||
+                  showUserAuth[0].rol_id == 3
+                "
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="8"
+              >
+                Exportación
+              </vs-col>
+              <vs-col
+                v-if="
+                  showUserAuth[0].rol_id == 9 ||
+                  showUserAuth[0].rol_id == 1 ||
+                  showUserAuth[0].rol_id == 10
+                "
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="6"
+              >
+                Terretre
+              </vs-col>
+              <vs-col
+                v-if="
+                  showUserAuth[0].rol_id == 9 ||
+                  showUserAuth[0].rol_id == 1 ||
+                  showUserAuth[0].rol_id == 10
+                "
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="3"
+              >
+                {{ shoRoEdnaInland }}
+              </vs-col>
+              <vs-col
+                v-if="
+                  showUserAuth[0].rol_id == 6 ||
+                  showUserAuth[0].rol_id == 5 ||
+                  showUserAuth[0].rol_id == 2 ||
+                  showUserAuth[0].rol_id == 4 ||
+                  showUserAuth[0].rol_id == 8 ||
+                  showUserAuth[0].rol_id == 7 ||
+                  showUserAuth[0].rol_id == 3
+                "
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="4"
+              >
+                {{ exports }}
+              </vs-col>
+            </vs-col>
+            <vs-col
+              v-if="
+                showUserAuth[0].rol_id == 9 ||
+                showUserAuth[0].rol_id == 1 ||
+                showUserAuth[0].rol_id == 10
+              "
+              class="ml-1 mt-4"
+              vs-type="flex"
+              vs-justify="left"
+              vs-align="center"
+              vs-w="4"
+            >
+              <span class="material-icons"> local_airport </span>
+            </vs-col>
+            <vs-col
+              v-if="
+                showUserAuth[0].rol_id == 9 ||
+                showUserAuth[0].rol_id == 1 ||
+                showUserAuth[0].rol_id == 10
+              "
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="4"
+            >
+              Aereo
+            </vs-col>
+            <vs-col
+              v-if="
+                showUserAuth[0].rol_id == 9 ||
+                showUserAuth[0].rol_id == 1 ||
+                showUserAuth[0].rol_id == 10
+              "
+              class="ml-4"
+              vs-type="flex"
+              vs-justify="right"
+              vs-align="center"
+              vs-w="2"
+            >
+              {{ shoRoEdnaAir }}
+            </vs-col>
+          </vs-row>
+          <vs-row class="mt-3" v-if="showUserAuth[0].rol_id == 4">
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+              <vs-col
+                class=""
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="3"
+              >
+                <span class="material-icons"> local_shipping </span>
+              </vs-col>
+              <vs-col
+                v-if="showUserAuth[0].rol_id == 4"
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-w="6"
+              >
+                Importacíon OTM
+              </vs-col>
               <vs-col
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
-                vs-w="12"
+                vs-w="3"
               >
-                <vs-col
-                  class=""
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
-                >
-                  <span class="material-icons"> local_shipping </span>
-                </vs-col>
-                <vs-col
-                  v-if="showUserAuth[0].rol_id == 4"
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="6"
-                >
-                  Importacíon OTM
-                </vs-col>
-                <vs-col
-                  vs-type="flex"
-                  vs-justify="center"
-                  vs-align="center"
-                  vs-w="3"
-                >
-                  {{ importsOtm }}
-                </vs-col>
+                {{ importsOtm }}
               </vs-col>
-            </vs-row>
-            <div>
-              <div class="con-example-images"></div>
-            </div>
-          </vs-card>
-        </vs-col>
+            </vs-col>
+          </vs-row>
+          <div>
+            <div class="con-example-images"></div>
+          </div>
+        </vs-card>
       </vs-col>
     </vs-row>
     <graphic
@@ -609,7 +663,11 @@
       type="line"
       :key="grafica1Key"
     />
-    <vs-row class="mt-5" vs-justify="center">
+    <vs-row
+      class="mt-5"
+      vs-justify="center"
+      v-if="showUserAuth[0].permissions[5].name == 'VER RO ABIERTOS INICIO'"
+    >
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
           <div slot="header">
@@ -618,7 +676,7 @@
           <div>
             <vs-table search pagination :data="roOfUser" :max-items="tantos">
               <template slot="header">
-                <h3>Usuarios</h3>
+                <h3 class="desaparecer-movil">R.O</h3>
                 <select v-model="tantos" class="seleccionableBuscador">
                   <option value="5">5</option>
                   <option value="10">10</option>
@@ -861,6 +919,13 @@ export default {
     width: 130px !important;
   }
 }
+@media only screen and (max-width : 900px) {
+ .desaparecer-movil
+ {
+   display: none;
+ }
+}
+
 .buttonColor {
   background: #ff5000 !important;
 }

@@ -13,23 +13,26 @@
         <vs-card class="con-vs-cards">
           <div slot="header" class="mt-3">
             <strong>
-              <h1 class="text-center mt-5">CREACIÓN DE USUARIO</h1>
+              <h1
+                class="text-center mt-5"
+                style="font-size: 20px; font-weight: 700"
+              >
+                CREACIÓN DE USUARIO
+              </h1>
             </strong>
           </div>
-          <vs-row
-            vs-align="flex-start"
-            vs-type="flex"
-            vs-justify="center"
-            vs-w="12"
-          >
+
+          <vs-row vs-w="12">
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
                 <vs-input
+                  class="escritorio movil"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Nombres"
                   v-model="formUser.first_name"
@@ -41,71 +44,75 @@
               </div>
             </vs-col>
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Apellidos"
-                  v-model="formUser.last_name"
-                  @keypress="errors.last_name = ''"
-                />
-                <div class="mt-2" v-if="errors.last_name">
-                  <span class="errors">{{ errors.last_name[0] }}</span>
-                </div>
+              <vs-input
+                class="escritorio movil"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Apellidos"
+                v-model="formUser.last_name"
+                @keypress="errors.last_name = ''"
+              />
+              <div class="mt-2" v-if="errors.last_name">
+                <span class="errors">{{ errors.last_name[0] }}</span>
               </div>
             </vs-col>
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Correo Electronico"
-                  v-model="formUser.email"
-                  @keypress="errors.email = ''"
-                />
-                <div class="mt-0" v-if="errors.email">
-                  <span class="errors">{{ errors.email[0] }}</span>
-                </div>
+              <vs-input
+                class="escritorio movil"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Correo Electronico"
+                v-model="formUser.email"
+                @keypress="errors.email = ''"
+              />
+              <div class="mt-0" v-if="errors.email">
+                <span class="errors">{{ errors.email[0] }}</span>
               </div>
             </vs-col>
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Cedula"
-                  v-model="formUser.identification"
-                  type="number"
-                  @keypress="errors.identification = ''"
-                />
-                <div class="mt-2" v-if="errors.identification">
-                  <span class="errors">{{ errors.identification[0] }}</span>
-                </div>
+              <vs-input
+                class="escritorio movil"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Cedula"
+                v-model="formUser.identification"
+                type="number"
+                @keypress="errors.identification = ''"
+              />
+              <div class="mt-2" v-if="errors.identification">
+                <span class="errors">{{ errors.identification[0] }}</span>
               </div>
             </vs-col>
+          </vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
-              class="mt-3"
-              vs-type="flex"
+              class="mobil"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
                 <h6 style="margin-bottom: -14px; margin-left: 10px">Divisón</h6>
                 <select
-                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
+                  class="mb-5 mt-5 escritorio movil seleccionable"
                   v-model="formUser.branch_division_id"
                 >
                   <option value="">Seleccione</option>
@@ -123,16 +130,17 @@
               </div>
             </vs-col>
             <vs-col
-              class="mt-3"
-              vs-type="flex"
+              class="mobil"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
                 <h6 style="margin-bottom: -14px; margin-left: 10px">Cargo</h6>
                 <select
-                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
+                  class="mb-5 mt-5 escritorio movil seleccionable"
                   v-model="formUser.position_id"
                   @change="errors.position_id = ''"
                 >
@@ -151,18 +159,19 @@
               </div>
             </vs-col>
             <vs-col
-              class="mt-3"
-              vs-type="flex"
+              class="mobil"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
                 <h6 style="margin-bottom: -14px; margin-left: 10px">
                   Sucursal
                 </h6>
                 <select
-                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
+                  class="mb-5 mt-5 escritorio movil seleccionable"
                   v-model="formUser.branch_office_id"
                   @change="
                     errors.branch_office_id = '';
@@ -184,18 +193,19 @@
               </div>
             </vs-col>
             <vs-col
-              class="mt-3"
-              vs-type="flex"
+              class="mobil"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
                 <h6 style="margin-bottom: -14px; margin-left: 10px">
                   Nombre jefe
                 </h6>
                 <select
-                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
+                  class="mb-5 mt-5 escritorio movil seleccionable"
                   v-model="formUser.supervisor_id"
                   @change="errors.supervisor_id = ''"
                 >
@@ -213,17 +223,29 @@
                 </div>
               </div>
             </vs-col>
+          </vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
-              class="mt-3"
-              vs-type="flex"
+              class="mobil"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 10px">Genero</h6>
+                <h6
+                  style="
+                    margin-bottom: -6px;
+                    margin-top: -10px;
+                    margin-left: 10px;
+                  "
+                >
+                  Genero
+                </h6>
                 <select
-                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
+                  class="movil escritorio seleccionable mt-5"
                   v-model="formUser.gender_id"
                   @change="errors.gender_id = ''"
                 >
@@ -242,15 +264,17 @@
               </div>
             </vs-col>
             <vs-col
-              class="mt-3"
-              vs-type="flex"
+              class="mobil"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
-                <label class="mt-3 mb-3">Fecha de Nacimiento</label>
+                <h6 class="tituloEscritorio">Fecha de Nacimiento</h6>
                 <vs-input
+                  class="movil escritorio"
                   color="rgb(213, 14, 151)"
                   v-model="formUser.date_of_birth"
                   type="date"
@@ -262,14 +286,16 @@
               </div>
             </vs-col>
             <vs-col
-              class="mt-3"
-              vs-type="flex"
+              class="mobil"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
                 <vs-input
+                  class="movil escritorio"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Celular de Contacto"
                   v-model="formUser.contact_cell_phone"
@@ -282,14 +308,16 @@
               </div>
             </vs-col>
             <vs-col
-              class="mt-3"
-              vs-type="flex"
+              class="mobil"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
                 <vs-input
+                  class="movil escritorio"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Contraseña Usuario"
                   v-model="formUser.password"
@@ -301,36 +329,40 @@
                 </div>
               </div>
             </vs-col>
+          </vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
-              class="mt-3"
-              vs-type="flex"
+              class="mobil"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Contraseña Correo Electronico"
-                  v-model="formUser.email_password"
-                  type="password"
-                  @keypress="errors.email_password = ''"
-                />
-                <div class="mt-2" v-if="errors.email_password">
-                  <span class="errors">{{ errors.email_password[0] }}</span>
-                </div>
+              <vs-input
+                class="movil escritorio"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Contraseña Correo Electronico"
+                v-model="formUser.email_password"
+                type="password"
+                @keypress="errors.email_password = ''"
+              />
+              <div class="mt-2" v-if="errors.email_password">
+                <span class="errors">{{ errors.email_password[0] }}</span>
               </div>
             </vs-col>
-
             <vs-col
-              class="mt-3"
-              vs-type="flex"
+              class="mobil"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
                 <vs-input
+                  class="movil escritorio"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Url Vcard"
                   v-model="formUser.url_vcard"
@@ -342,16 +374,17 @@
               </div>
             </vs-col>
             <vs-col
-              class="mt-3"
-              vs-type="flex"
+              class="mobil"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 10px">Estado</h6>
+                <h6 class="loMismo">Estado</h6>
                 <select
-                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
+                  class="movil escritorio seleccionable"
                   v-model="formUser.status_id"
                   @change="errors.status_id = ''"
                 >
@@ -370,18 +403,17 @@
               </div>
             </vs-col>
             <vs-col
-              class="mt-3"
-              vs-type="flex"
+              class="mobil mb-5"
               vs-justify="center"
               vs-align="center"
-              vs-w="3"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 10px">
-                  Operación
-                </h6>
+                <h6 class="loMismo">Operación</h6>
                 <select
-                  class="selectExample ml-0 mr-0 mt-5 mb-3 seleccionable"
+                  class="movil escritorio seleccionable"
                   v-model="formUser.operation_id"
                   @change="errors.operation_id = ''"
                 >
@@ -400,21 +432,21 @@
               </div>
             </vs-col>
             <vs-col
-              class="mt-3"
-              vs-type="flex"
+              class="mobil mt-5 mb-5"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="12"
+              vs-sm="12"
+              vs-xs="12"
+              style="text-align: -webkit-center"
             >
-              <vs-row vs-justify="center" class="mt-5 mb-5">
-                <vs-button
-                  @click="CreateUser()"
-                  color="#ff5000"
-                  type="relief"
-                  icon="person_add"
-                  >Crear Usuario</vs-button
-                >
-              </vs-row>
+              <vs-button
+                @click="CreateUser()"
+                color="#ff5000"
+                type="relief"
+                icon="person_add"
+                >Crear Usuario</vs-button
+              >
             </vs-col>
           </vs-row>
         </vs-card>
@@ -587,5 +619,47 @@ export default {
   padding-left: 6px !important;
   font-size: 17px;
   border: 1px solid transparent;
+}
+
+@media only screen and (min-width: 901px) {
+  .escritorio {
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px;
+  }
+  .mobil {
+    padding: 6px;
+  }
+  .tituloEscritorio {
+    margin-bottom: -6px;
+    margin-top: -10px;
+    margin-left: 10px;
+  }
+  .loMismo {
+    margin-top: -5px;
+    margin-bottom: -5px;
+    margin-left: 10px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .movil {
+    width: 100%;
+    margin-top: 30px !important;
+  }
+  .mobil {
+    margin-bottom: -10px;
+    margin-top: 10px;
+  }
+
+  .tituloEscritorio {
+    margin-top: 13px;
+    margin-left: 11px;
+    margin-bottom: -14px;
+  }
+  .loMismo {
+    margin-top: 15px;
+    margin-bottom: -13px;
+    margin-left: 10px;
+  }
 }
 </style>

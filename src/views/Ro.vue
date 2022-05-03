@@ -17,21 +17,28 @@
         <vs-card class="con-vs-cards">
           <div slot="header">
             <strong>
-              <h1 class="text-center mt-5">CREACION DE R.O</h1>
+              <h1
+                class="text-center mt-5"
+                style="font-size: 20px; font-weight: 700"
+              >
+                CREACION DE R.O
+              </h1>
             </strong>
           </div>
           <h6 class="card-title text-center">R.O. NÚMERO Y TIPO DE ENVÍO</h6>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px">Tipo De Transporte</h6>
+                <h6 style="margin-bottom: 0px">Tipo De Transporte</h6>
                 <select
-                  class="ml-0 mr-5 mt-5 mb-3 seleccionable"
+                  class="seleccionable escritorio movil mt-2"
                   label="Modo De Transporte*"
                   v-model="formRo.type_of_transport_id"
                   @change="
@@ -40,6 +47,7 @@
                     showTypeSend(formRo.type_of_transport_id);
                     errors.type_of_transport_id = '';
                   "
+                  style="width: 100%"
                 >
                   <option value="">Seleccione</option>
                   <option
@@ -56,9 +64,17 @@
                   }}</span>
                 </div>
               </div>
+            </vs-col>
+            <vs-col
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <div class="centerx colors-example">
                 <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
+                  class="escritorio movil mt-5"
                   color="rgb(213, 14, 151)"
                   label-placeholder="RO-AAAA-/00-0000 *"
                   v-model="formRo.ro"
@@ -68,13 +84,22 @@
                   <span class="errors">{{ errors.ro[0] }}</span>
                 </div>
               </div>
+            </vs-col>
+            <vs-col
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px">Tipo De Envio</h6>
+                <h6 style="margin-bottom: 0px">Tipo De Envio</h6>
                 <select
-                  class="selectExample ml-0 mr-5 mt-5 mb-3 seleccionable"
+                  class="movil escritorio seleccionable mt-2"
                   label="Tipo De Embarque *"
                   v-model="formRo.type_id"
                   @change="errors.type_id = ''"
+                  style="width: 100%"
                 >
                   <option value="">Seleccione</option>
                   <option
@@ -93,22 +118,19 @@
           </vs-row>
         </vs-card>
         <vs-card class="con-vs-cards">
-          <div slot="header">
-          </div>
+          <div slot="header"></div>
           <h6 class="card-title text-center">¿ R.O. CON MAS DE UN HBL ?</h6>
           <vs-row>
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
               vs-w="12"
             >
-              <div class="centerx colors-example">
+              <div class="centerx colors-example text-center">
                 <select
-                  class="seleccionable"
+                  class="seleccionable movil escritorio escritorioEspecial"
                   label="Modo De Transporte*"
                   v-model="formRo.is_parent"
-                  style="margin-left: 10px !important;"
                 >
                   <option value="">Seleccione</option>
                   <option value="1">Si</option>
@@ -118,41 +140,64 @@
             </vs-col>
           </vs-row>
         </vs-card>
-
-
-
-
-
-
         <vs-card class="con-vs-cards" v-if="formRo.type_of_transport_id == 3">
           <h6 class="card-title text-center">DETALLES DEL TRANSPORTADOR</h6>
-          <vs-row>
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
             >
               <vs-input
-                class="ml-5 mr-5 mt-3 mb-3"
+                class="movil escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Transportadora"
                 v-model="formRo.carrier"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
+            >
               <vs-input
-                class="ml-5 mr-5 mt-3 mb-3"
+                class="movil escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Típo de Vehículo"
                 v-model="formRo.vehicle"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
+            >
               <vs-input
-                class="ml-5 mr-5 mt-3 mb-3"
+                class="movil escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Conductor"
                 v-model="formRo.driver"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
+            >
               <vs-input
-                class="ml-5 mr-5 mt-3 mb-3"
+                class="movil escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Placa"
                 v-model="formRo.plaque"
@@ -162,16 +207,18 @@
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">PLANIFICACIÓN DE EMBARQUE</h6>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
                 <vs-input
-                  class="selectExample ml-0 mr-5 mt-3 mb-0"
+                  class="movil escritorio"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Puerto De Origen *"
                   v-model="formRo.starting_place"
@@ -181,9 +228,17 @@
                   <span class="errors">{{ errors.starting_place[0] }}</span>
                 </div>
               </div>
+            </vs-col>
+            <vs-col
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <div class="centerx colors-example">
                 <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
+                  class="movil escritorio"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Puerto De Destino *"
                   v-model="formRo.destination_place"
@@ -193,10 +248,18 @@
                   <span class="errors">{{ errors.destination_place[0] }}</span>
                 </div>
               </div>
+            </vs-col>
+            <vs-col
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px">Emisión HBL *</h6>
+                <h6 class="emsionMovil">Emisión HBL *</h6>
                 <select
-                  class="selectExample ml-0 mr-5 mt-5 mb-3 seleccionable"
+                  class="movil escritorio seleccionable"
                   label="Tipo De Embarque *"
                   v-model="formRo.issue_id"
                   @change="errors.issue_id = ''"
@@ -216,27 +279,45 @@
               </div>
             </vs-col>
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
                 <vs-input
-                  class="ml-0 mr-5 mt-0 mb-3"
+                  class="movil escritorio"
                   label="ETD"
                   v-model="formRo.etd"
                   type="date"
                 />
               </div>
+            </vs-col>
+            <vs-col
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <vs-input
-                class="ml-0 mr-5 mt-0 mb-3"
+                class="movil escritorio"
                 label="ETA"
                 v-model="formRo.eta"
                 type="date"
               />
+            </vs-col>
+            <vs-col
+              class="mt-3"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <vs-input
-                class="ml-0 mr-4 mt-2 mb-0"
+                class="movil escritorio mt-5"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Número HBL"
                 v-model="formRo.num_hbl"
@@ -246,17 +327,19 @@
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">DETALLES DE LA CARGA</h6>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px">Tipo Carga</h6>
+                <h6 style="margin-top: -10px">Tipo Carga</h6>
                 <select
-                  class="selectExample ml-0 mr-5 mt-5 mb-3 seleccionable"
+                  class="movil escritorio seleccionable acomodarEscritorio"
                   v-model="formRo.type_of_load_id"
                 >
                   <option value="">Seleccione</option>
@@ -269,17 +352,33 @@
                   </option>
                 </select>
               </div>
+            </vs-col>
+            <vs-col
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <div class="centerx colors-example">
                 <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
+                  class="movil escritorio"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Cantidad"
                   v-model="formRo.quantity"
                 />
               </div>
+            </vs-col>
+            <vs-col
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <div class="centerx colors-example">
                 <vs-input
-                  class="ml-0 mr-4 mt-2 mb-0"
+                  class="movil escritorio"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Numero De Contenedor"
                   v-if="
@@ -292,13 +391,14 @@
               </div>
             </vs-col>
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
               <vs-input
-                class="ml-0 mr-5 mt-5 mb-3"
+                class="movil escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Tipo de Contenedor"
                 v-if="
@@ -308,23 +408,37 @@
                 "
                 v-model="formRo.kind_of_container"
               />
+            </vs-col>
+            <vs-col
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <vs-input
-                class="ml-0 mr-5 mt-5 mb-3"
+                class="movil escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Peso Bruto"
                 v-model="formRo.weight"
               />
+            </vs-col>
+            <vs-col
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <vs-input
-                class="ml-0 mr-4 mt-2 mb-0"
+                class="movil escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Volumen"
                 v-model="formRo.volume"
               />
             </vs-col>
           </vs-row>
-        </vs-card>
-        <vs-card class="con-vs-cards">
-          <h6 class="card-title text-center">ASIGNACIONES</h6>
+
           <vs-row>
             <vs-col
               vs-type="flex"
@@ -332,10 +446,39 @@
               vs-align="center"
               vs-w="12"
             >
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="12"
+            >
+            </vs-col>
+          </vs-row>
+        </vs-card>
+        <vs-card class="con-vs-cards">
+          <h6 class="card-title text-center">ASIGNACIONES</h6>
+
+          <vs-row vs-w="12">
+            <vs-col
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px">Sucursal *</h6>
+                <h6
+                  style="
+                    margin-bottom: -10px;
+                    margin-top: 8px;
+                    margin-left: 5px;
+                  "
+                >
+                  Sucursal *
+                </h6>
                 <select
-                  class="ml-0 mr-3 mt-5 mb-3 seleccionable"
+                  class="escritorio movil seleccionable"
                   v-model="formRo.branch_office_id"
                   @change="errors.branch_office_id = ''"
                 >
@@ -352,19 +495,39 @@
                   <span class="errors">{{ errors.branch_office_id[0] }}</span>
                 </div>
               </div>
+            </vs-col>
+            <vs-col
+              class="mb-3"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <div class="centerx colors-example">
                 <vs-input
-                  class="ml-2 mr-5 mt-0 mb-0"
+                  class="escritorio movil mt-0 mb-3"
                   color="rgb(213, 14, 151)"
                   label="Nombre Usuario"
                   disabled
                   v-model="userName"
                 />
               </div>
+            </vs-col>
+            <vs-col
+              class="mt-1"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px">Grupo De Correos</h6>
+                <h6 style="margin-top: 0px; margin-bottom: -13px">
+                  Grupo De Correos
+                </h6>
                 <select
-                  class="selectExample ml-0 mr-5 mt-5 mb-3 seleccionable"
+                  class="escritorio movil seleccionable mt-5"
                   v-model="formRo.groupEmails"
                 >
                   <option value="">Seleccione</option>
@@ -379,15 +542,16 @@
               </div>
             </vs-col>
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px">Comercial *</h6>
+                <h6 style="margin-bottom: 0px">Comercial *</h6>
                 <select
-                  class="ml-0 mr-3 mt-5 mb-3 seleccionable"
+                  class="escritorio movil seleccionable"
                   v-model="formRo.commercial"
                   @change="errors.commercial = ''"
                 >
@@ -404,24 +568,40 @@
                   <span class="errors">{{ errors.commercial[0] }}</span>
                 </div>
               </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-0 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Correos Electronicos Cliente"
-                  v-model="formRo.client_emails_id"
-                />
-              </div>
+            </vs-col>
+            <vs-col
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="10"
+            >
+              <vs-input
+                class="escritorio movil mt-5 escritorioEmail"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Correos Electronicos Cliente"
+                v-model="formRo.client_emails_id"
+              />
+
               <vs-button
-                class="ml-0 mr-2 mt-2 mb-0"
+                class="mt-1 botonEmail"
                 @click="addEmail()"
                 color="primary"
                 type="border"
                 icon="add"
               ></vs-button>
+            </vs-col>
+
+            <vs-col
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <div class="centerx colors-example">
                 <vs-input
-                  class="ml-0 mr-4 mt-2 mb-0"
+                  class="movil escritorio mt-5"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Codigo Seguimiento Cliente"
                   v-model="formRo.customer_tracking_code"
@@ -466,75 +646,72 @@
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">PRIMERA INTERACCIÓN</h6>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
             >
               <vs-input
-                class="mr-5 ml-5 mt-5 mb-3"
+                class="movil escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Proceso Actual"
                 v-model="formRo.process_name"
-                style="width: 50%"
-                disabled
-              />
-
-              <vs-input
-                class="mr-5 ml-5 mt-5 mb-3"
-                color="rgb(213, 14, 151)"
-                label-placeholder="Asunto Correo *"
-                v-model="formRo.subjet"
-                style="width: 50%"
-                @keypress="errors.subjet = ''"
                 disabled
               />
             </vs-col>
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
             >
+              <vs-input
+                class="movil escritorio"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Asunto Correo *"
+                v-model="formRo.subjet"
+                @keypress="errors.subjet = ''"
+                disabled
+              />
               <div class="mt-0" v-if="errors.subjet" style="margin-left: 210px">
                 <span class="errors">{{ errors.subjet[0] }}</span>
               </div>
             </vs-col>
             <vs-col
-              vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="12"
+              vs-sm="12"
+              vs-xs="12"
             >
               <vs-textarea
-                class="mt-3 mb-3"
+                class="movil escritorio"
                 counter="100"
                 label="¡Hola!... ¡Es un gusto saludarte! Iniciamos el seguimiento de tu nuevo embarque... Estamos muy contentos de tenerte como cliente, te comparto mis datos para que puedas contactarme cuando lo necesites. ¡Muchas gracias por trabajar con Masterline!"
-                width="1140px"
                 :counter-danger.sync="counterDanger"
                 v-model="formRo.message"
                 disabled
               />
             </vs-col>
-            <vs-col
-              class="mt-3"
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="12"
-            >
-              <vs-row vs-justify="center" class="mt-0 mb-5">
-                <vs-button
-                  @click="createRo()"
-                  color="#ff5000"
-                  type="relief"
-                  icon="add"
-                  >Crear R.O</vs-button
-                >
-              </vs-row>
-            </vs-col>
+            <div class="container">
+              <div class="row" style="text-align: -webkit-center">
+                <div class="col-sm-12">
+                  <vs-button
+                    class="movil"
+                    @click="createRo()"
+                    color="#ff5000"
+                    type="relief"
+                    icon="add"
+                    >Crear R.O</vs-button
+                  >
+                </div>
+              </div>
+            </div>
           </vs-row>
         </vs-card>
       </vs-col>
@@ -584,7 +761,7 @@ export default {
         message: "",
         type_of_transport_id: "",
         groupEmails: "",
-        is_parent: '',
+        is_parent: "",
       },
       counterDanger: false,
       emails: [],
@@ -734,5 +911,49 @@ export default {
   padding-left: 6px !important;
   font-size: 17px;
   border: 1px solid transparent;
+}
+@media only screen and (min-width: 901px) {
+  .escritorio {
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px;
+  }
+  .emsionMovil {
+    margin-top: -10px;
+    margin-left: 4px;
+  }
+  .acomodarEscritorio {
+    margin-left: 5px;
+    width: 98% !important;
+  }
+  .escritorioEmail {
+    width: 90% !important;
+  }
+  .botonEmail {
+    margin-left: 89%;
+    margin-top: -43px !important;
+  }
+  .escritorioEspecial
+  {
+    width: 33%;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .movil {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .emsionMovil {
+    margin-top: 15px;
+    margin-left: 4px;
+  }
+  .escritorioEmail {
+    margin-top: 30px !important;
+    width: 293px;
+  }
+  .botonEmail {
+    margin-left: 105%;
+    margin-top: -39px !important;
+  }
 }
 </style>

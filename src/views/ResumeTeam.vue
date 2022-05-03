@@ -119,7 +119,8 @@
                         <span
                           v-if="
                             showUserAuth[0].rol_id == 1 ||
-                            showUserAuth[0].rol_id == 9
+                            showUserAuth[0].rol_id == 9 ||
+                            showUserAuth[0].rol_id == 10
                           "
                           class="ml-5 mt-5 mb-3"
                           style="
@@ -179,7 +180,8 @@
                         <span
                           v-if="
                             showUserAuth[0].rol_id == 1 ||
-                            showUserAuth[0].rol_id == 9
+                            showUserAuth[0].rol_id == 9 ||
+                            showUserAuth[0].rol_id == 10
                           "
                           class="ml-5 mb-3"
                           style="
@@ -248,7 +250,8 @@
                         <span
                           v-if="
                             showUserAuth[0].rol_id == 1 ||
-                            showUserAuth[0].rol_id == 9
+                            showUserAuth[0].rol_id == 9 ||
+                            showUserAuth[0].rol_id == 10
                           "
                           class="ml-5 mb-3"
                           style="
@@ -296,7 +299,7 @@
         <vs-card class="con-vs-cards">
           <div slot="header">
             <vs-tabs :color="colorx">
-              <vs-tab label="Primera Linea" v-if="showUserAuth[0].rol_id == 1">
+              <vs-tab label="Primera Linea" v-if="showUserAuth[0].rol_id == 1 || showUserAuth[0].rol_id == 10">
                 <div class="con-tab-ejemplo">
                   <vs-table
                     :data="userFirstLine"
@@ -367,13 +370,13 @@
               <vs-tab
                 label="Segunda Linea"
                 v-if="
-                  showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 1
+                  showUserAuth[0].rol_id == 1 || showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 10
                 "
               >
                 <div class="con-tab-ejemplo">
                   <vs-table
                     :data="userSecondLine"
-                    v-if="showUserAuth[0].rol_id == 1"
+                    v-if="showUserAuth[0].rol_id == 1 || showUserAuth[0].rol_id == 10"
                     search
                     pagination
                     :max-items="tantos"
@@ -400,7 +403,7 @@
                     </template>
                     <template
                       slot-scope="{ data }"
-                      v-if="showUserAuth[0].rol_id == 1"
+                      v-if="showUserAuth[0].rol_id == 1 || showUserAuth[0].rol_id == 10"
                     >
                       <vs-tr v-for="(item, index) in data" :key="index">
                         <vs-td :data="item.id">
@@ -510,7 +513,7 @@
                   </vs-table>
                 </div>
               </vs-tab>
-              <vs-tab label="Tercera Linea" v-if="showUserAuth[0].rol_id == 1">
+              <vs-tab label="Tercera Linea" v-if="showUserAuth[0].rol_id == 1 || showUserAuth[0].rol_id == 10">
                 <div class="con-tab-ejemplo">
                   <vs-table
                     :data="userThirdLine"

@@ -23,40 +23,57 @@
             </strong>
           </div>
           <h6 class="card-title text-center">R.O. NÚMERO Y TIPO DE ENVÍO</h6>
-          <vs-row>
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Modo De Transporte"
-                  :value="showRoDisabled.type_of_transport.name"
-                  disabled
-                />
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="R.O"
-                  v-model="showRoDisabled.ro"
-                  disabled
-                />
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Tipo De Embarque"
-                  v-model="showRoDisabled.type_send.name"
-                  disabled
-                />
-              </div>
+              <vs-input
+                class="ml-0 mr-5 mt-5 mb-3"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Modo De Transporte"
+                :value="showRoDisabled.type_of_transport.name"
+                style="width: 100%"
+                disabled
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="ml-0 mr-5 mt-5 mb-3"
+                color="rgb(213, 14, 151)"
+                label-placeholder="R.O"
+                v-model="showRoDisabled.ro"
+                style="width: 100%"
+                disabled
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="ml-0 mr-5 mt-5 mb-3"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Tipo De Embarque"
+                v-model="showRoDisabled.type_send.name"
+                style="width: 100%"
+                disabled
+              />
             </vs-col>
           </vs-row>
         </vs-card>
@@ -70,12 +87,15 @@
           "
         >
           <h6 class="card-title text-center">DETALLES DEL TRANSPORTADOR</h6>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="3"
+              vs-sm="6"
+              vs-xs="12"
             >
               <vs-input
                 class="ml-5 mr-5 mt-3 mb-3"
@@ -84,7 +104,17 @@
                 v-model="showRoDisabled.carrier"
                 v-if="showRoDisabled.carrier"
                 disabled
+                style="width: 100%"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="3"
+              vs-sm="6"
+              vs-xs="12"
+            >
               <vs-input
                 class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
@@ -92,7 +122,17 @@
                 v-model="showRoDisabled.vehicle"
                 v-if="showRoDisabled.vehicle"
                 disabled
+                style="width: 100%"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="3"
+              vs-sm="6"
+              vs-xs="12"
+            >
               <vs-input
                 class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
@@ -100,7 +140,17 @@
                 v-model="showRoDisabled.driver"
                 v-if="showRoDisabled.driver"
                 disabled
+                style="width: 100%"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="3"
+              vs-sm="6"
+              vs-xs="12"
+            >
               <vs-input
                 class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
@@ -108,119 +158,185 @@
                 v-model="showRoDisabled.plaque"
                 v-if="showRoDisabled.plaque"
                 disabled
+                style="width: 100%"
               />
             </vs-col>
           </vs-row>
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">PLANIFICACIÓN DE EMBARQUE</h6>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  class="selectExample ml-0 mr-5 mt-3 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Puerto De Origen"
-                  v-model="showRoDisabled.starting_place"
-                  disabled
-                />
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Puerto De Destino"
-                  v-model="showRoDisabled.destination_place"
-                  disabled
-                />
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Emisión HBL"
-                  v-model="showRoDisabled.issue.name"
-                  disabled
-                />
-              </div>
+              <vs-input
+                class="selectExample ml-0 mr-5 mt-3 mb-0"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Puerto De Origen"
+                v-model="showRoDisabled.starting_place"
+                disabled
+                style="width: 100%"
+              />
             </vs-col>
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-0 mb-3"
-                  label="ETD"
-                  v-model="showRoDisabled.etd"
-                  disabled
-                />
-              </div>
+              <vs-input
+                class="ml-0 mr-5 mt-5 mb-3"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Puerto De Destino"
+                v-model="showRoDisabled.destination_place"
+                disabled
+                style="width: 100%"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="ml-0 mr-5 mt-5 mb-3"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Emisión HBL"
+                v-model="showRoDisabled.issue.name"
+                disabled
+                style="width: 100%"
+              />
+            </vs-col>
+          </vs-row>
+
+          <vs-row vs-w="12">
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="ml-0 mr-5 mt-0 mb-3"
+                label="ETD"
+                v-model="showRoDisabled.etd"
+                disabled
+                style="width: 100%"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <vs-input
                 class="ml-0 mr-5 mt-0 mb-3"
                 label="ETA"
                 v-model="showRoDisabled.eta"
                 disabled
+                style="width: 100%"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <vs-input
-                class="ml-0 mr-4 mt-2 mb-0"
+                class=""
                 color="rgb(213, 14, 151)"
                 label-placeholder="Número HBL"
                 v-model="showRoDisabled.num_hbl"
                 disabled
+                style="width: 95%; margin-left: -20px"
               />
             </vs-col>
           </vs-row>
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">DETALLES DE LA CARGA</h6>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Tipo Carga"
-                  v-model="showRoDisabled.type_of_load.name"
-                  disabled
-                />
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Cantidad"
-                  v-model="showRoDisabled.quantity"
-                  disabled
-                />
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-4 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Numero De Contenedor"
-                  v-model="showRoDisabled.container_number"
-                  disabled
-                />
-              </div>
+              <vs-input
+                class="ml-0 mr-5 mt-5 mb-3"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Tipo Carga"
+                v-model="showRoDisabled.type_of_load.name"
+                disabled
+                style="width: 100%; margin-top: 20px !important"
+              />
             </vs-col>
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="ml-0 mr-5 mt-5 mb-3"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Cantidad"
+                v-model="showRoDisabled.quantity"
+                disabled
+                style="width: 100%; margin-top: 20px !important"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="ml-0 mr-4 mt-2 mb-0"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Numero De Contenedor"
+                v-model="showRoDisabled.container_number"
+                disabled
+                style="width: 100%; margin-top: 20px !important"
+              />
+            </vs-col>
+          </vs-row>
+
+          <vs-row vs-w="12">
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
               <vs-input
                 class="ml-0 mr-5 mt-5 mb-3"
@@ -228,76 +344,120 @@
                 label-placeholder="Tipo de Contenedor"
                 v-model="showRoDisabled.kind_of_container"
                 disabled
+                style="width: 100%; margin-top: 20px !important"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <vs-input
                 class="ml-0 mr-5 mt-5 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Peso Bruto"
                 v-model="showRoDisabled.weight"
                 disabled
+                style="width: 100%; margin-top: 20px !important"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <vs-input
                 class="ml-0 mr-4 mt-2 mb-0"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Volumen"
                 v-model="showRoDisabled.volume"
                 disabled
+                style="width: 100%; margin-top: 20px !important"
               />
             </vs-col>
           </vs-row>
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">ASIGNACIONES</h6>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-4 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label="Nombre Sucursal"
-                  v-model="showRoDisabled.branch_office.name"
-                  disabled
-                />
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-4 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label="Nombre Usuario"
-                  disabled
-                  :value="showRoDisabled.user.first_name + ' ' + showRoDisabled.user.last_name"
-                />
-              </div>
+              <vs-input
+                class="ml-0 mr-4 mt-2 mb-0"
+                color="rgb(213, 14, 151)"
+                label="Nombre Sucursal"
+                v-model="showRoDisabled.branch_office.name"
+                disabled
+                style="width: 100%"
+              />
             </vs-col>
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-4 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label="Comercial"
-                  v-model="showRoDisabled.commercial"
-                  disabled
-                />
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-4 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label="Codigo Seguimiento Cliente"
-                  disabled
-                  v-model="showRoDisabled.customer_tracking_code"
-                />
-              </div>
+              <vs-input
+                class="ml-0 mr-4 mt-2 mb-0"
+                color="rgb(213, 14, 151)"
+                label="Nombre Usuario"
+                disabled
+                style="width: 100%"
+                :value="
+                  showRoDisabled.user.first_name +
+                  ' ' +
+                  showRoDisabled.user.last_name
+                "
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
+            >
+              <vs-input
+                class="ml-0 mr-4 mt-2 mb-0"
+                color="rgb(213, 14, 151)"
+                label="Comercial"
+                v-model="showRoDisabled.commercial"
+                disabled
+                style="width: 100%"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="3"
+              vs-sm="3"
+              vs-xs="12"
+            >
+              <vs-input
+                class="ml-0 mr-4 mt-2 mb-0"
+                color="rgb(213, 14, 151)"
+                label="Codigo Seguimiento Cliente"
+                disabled
+                style="width: 100%"
+                v-model="showRoDisabled.customer_tracking_code"
+              />
             </vs-col>
           </vs-row>
         </vs-card>
@@ -315,7 +475,10 @@
                   <vs-th> Correo Electronico </vs-th>
                 </template>
                 <template>
-                  <vs-tr v-for="(item, index) in showRoDisabled.email_clients" :key="index">
+                  <vs-tr
+                    v-for="(item, index) in showRoDisabled.email_clients"
+                    :key="index"
+                  >
                     <vs-td :data="item">
                       {{ item.name }}
                     </vs-td>
@@ -327,27 +490,22 @@
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">PRIMERA INTERACCIÓN</h6>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
             >
-              <vs-input
-                class="ml-5 mr-5 mt-5 mb-3"
-                color="rgb(213, 14, 151)"
-                label-placeholder="ASIGNACIÓN DE LA OPERACIÓN"
-                style="width: 50%"
-                v-model="showRoDisabled.process"
-                disabled
-              />
               <vs-input
                 class="mt-5 mb-3"
                 color="rgb(213, 14, 151)"
-                label-placeholder="Asunto Correo"
-                v-model="showRoDisabled.subjet"
-                style="width: 50%"
+                label-placeholder="ASIGNACIÓN DE LA OPERACIÓN"
+                style="width: 98%"
+                v-model="showRoDisabled.process"
                 disabled
               />
             </vs-col>
@@ -355,7 +513,26 @@
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
+            >
+              <vs-input
+                class="mt-5 mb-3"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Asunto Correo"
+                v-model="showRoDisabled.subjet"
+                style="width: 98%"
+                disabled
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="12"
+              vs-sm="12"
+              vs-xs="12"
             >
               <vs-textarea
                 class="mt-3 mb-3"
@@ -365,6 +542,7 @@
                 :counter-danger.sync="counterDanger"
                 v-model="showRoDisabled.message"
                 disabled
+                style="width: 100%"
               />
             </vs-col>
           </vs-row>

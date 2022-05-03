@@ -17,74 +17,69 @@
                 <h3 class="text-center mb-3 mt-5">Asignar R.O</h3>
               </div>
               <div>
-                <vs-row>
-                  <vs-col
-                    vs-type="flex"
-                    vs-justify="right"
-                    vs-align="center"
-                    vs-w="6"
-                  >
-                    <div class="centerx colors-example">
-                      <h6 style="margin-bottom: -14px; margin-left: 10px">
-                        Comercial
-                      </h6>
-                      <select
-                        class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                        v-model="formAssign.user_id"
-                      >
-                        <option value="">Seleccione</option>
-                        <option
-                          :key="index"
-                          :value="item.id"
-                          v-for="(item, index) in users"
-                        >
-                          {{ item.first_name }} {{ item.last_name }}
-                        </option>
-                      </select>
-                    </div>
-                  </vs-col>
-                  <vs-col
-                    vs-type="flex"
-                    vs-justify="left"
-                    vs-align="center"
-                    vs-w="6"
-                  >
-                    <div class="centerx colors-example">
-                      <h6 style="margin-bottom: -14px; margin-left: 10px">
-                        Sucursal
-                      </h6>
-                      <select
-                        class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                        v-model="formAssign.branch_office_id"
-                      >
-                        <option value="">Seleccione</option>
-                        <option
-                          :key="index"
-                          :value="item.id"
-                          v-for="(item, index) in branchOffices"
-                        >
-                          {{ item.name }}
-                        </option>
-                      </select>
-                    </div>
-                  </vs-col>
-                </vs-row>
-                <vs-row class="mt-5 mb-3">
+                <vs-row vs-w="12">
                   <vs-col
                     vs-type="flex"
                     vs-justify="center"
                     vs-align="center"
-                    vs-w="12"
+                    vs-lg="6"
+                    vs-sm="6"
+                    vs-xs="12"
                   >
-                    <div class="centerx colors-example">
-                      <vs-button
-                        @click="assignRo()"
-                        color="#ff5000"
-                        type="relief"
-                        icon="add"
-                        >Asignar R.O</vs-button
+                    <select
+                      class="mt-5 mb-5 seleccionable ml-1 mr-1"
+                      v-model="formAssign.user_id"
+                      style="width: 100%"
+                    >
+                      <option value="">Comercial</option>
+                      <option
+                        :key="index"
+                        :value="item.id"
+                        v-for="(item, index) in users"
                       >
-                    </div>
+                        {{ item.first_name }} {{ item.last_name }}
+                      </option>
+                    </select>
+                  </vs-col>
+
+                  <vs-col
+                    vs-type="flex"
+                    vs-justify="center"
+                    vs-align="center"
+                    vs-lg="6"
+                    vs-sm="6"
+                    vs-xs="12"
+                  >
+                    <select
+                      class="mt-5 mb-5 seleccionable ml-1 mr-1"
+                      v-model="formAssign.branch_office_id"
+                      style="width: 100%"
+                    >
+                      <option value="">Sucursal</option>
+                      <option
+                        :key="index"
+                        :value="item.id"
+                        v-for="(item, index) in branchOffices"
+                      >
+                        {{ item.name }}
+                      </option>
+                    </select>
+                  </vs-col>
+                  <vs-col
+                    vs-type="flex"
+                    vs-justify="center"
+                    vs-align="center"
+                    vs-lg="12"
+                    vs-sm="12"
+                    vs-xs="12"
+                  >
+                    <vs-button
+                      @click="assignRo()"
+                      color="#ff5000"
+                      type="relief"
+                      icon="add"
+                      >Asignar R.O</vs-button
+                    >
                   </vs-col>
                 </vs-row>
               </div>

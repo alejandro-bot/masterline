@@ -7,8 +7,8 @@
       icon="email"
       @click="openModal()"
       v-if="
-        showUserAuth[0].permissions[12].name == 'CREAR GRUPO DE CORREOS' ||
-        showUserAuth[0].permissions[9].name == 'CREAR GRUPO DE CORREOS'
+        showUserAuth[0].permissions[9].name == 'CREAR GRUPO DE CORREOS' ||
+        showUserAuth[0].permissions[12].name == 'CREAR GRUPO DE CORREOS'
       "
       >Crear Grupo De Correos</vs-button
     >
@@ -26,7 +26,7 @@
             :max-items="tantos"
           >
             <template slot="header">
-              <select v-model="tantos" class="seleccionable">
+              <select v-model="tantos" class="seleccionableasas">
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -43,62 +43,61 @@
                   {{ item.name }}
                 </vs-td>
                 <vs-td class="text-center">
-                  <vs-row>
+                  <vs-row vs-w="12">
                     <vs-col
                       vs-type="flex"
-                      vs-justify="right"
-                      vs-align="right"
-                      vs-w="12"
+                      vs-justify="center"
+                      vs-align="center"
+                      vs-lg="12"
+                      vs-sm="12"
+                      vs-xs="12"
                     >
+                      <router-link
+                        :to="'/panel/store-group-email/' + item.id"
+                        v-if="
+                          showUserAuth[0].permissions[10].name ==
+                            'BOTON AGREGAR CORREOS' ||
+                          showUserAuth[0].permissions[13].name ==
+                            'BOTON AGREGAR CORREOS'
+                        "
+                      >
+                        <vs-button
+                          radius
+                          color="success"
+                          type="border"
+                          icon="add"
+                        ></vs-button>
+                      </router-link>
+                      <router-link
+                        :to="'/panel/show-group-email/' + item.id"
+                        v-if="
+                          showUserAuth[0].permissions[11].name ==
+                            'BOTON VER CORREOS' ||
+                          showUserAuth[0].permissions[14].name ==
+                            'BOTON VER CORREOS'
+                        "
+                      >
+                        <vs-button
+                          radius
+                          color="primary"
+                          type="border"
+                          icon="visibility"
+                        ></vs-button>
+                      </router-link>
+                      <vs-button
+                        radius
+                        color="danger"
+                        type="border"
+                        icon="delete_outline"
+                        v-if="
+                          showUserAuth[0].permissions[12].name ==
+                            'BOTON ELIMINAR CORREOS' ||
+                          showUserAuth[0].permissions[15].name ==
+                            'BOTON ELIMINAR CORREOS'
+                        "
+                        @click="deleteGroupEmail(item.id)"
+                      ></vs-button>
                     </vs-col>
-                    <router-link
-                      :to="'/panel/store-group-email/' + item.id"
-                      v-if="
-                        showUserAuth[0].permissions[13].name ==
-                          'BOTON AGREGAR CORREOS' ||
-                        showUserAuth[0].permissions[10].name ==
-                          'BOTON AGREGAR CORREOS'
-                      "
-                    >
-                      <vs-button
-                        class="mr-1 ml-1"
-                        radius
-                        color="success"
-                        type="border"
-                        icon="add"
-                      ></vs-button>
-                    </router-link>
-                    <router-link
-                      :to="'/panel/show-group-email/' + item.id"
-                      v-if="
-                        showUserAuth[0].permissions[14].name ==
-                          'BOTON VER CORREOS' ||
-                        showUserAuth[0].permissions[11].name ==
-                          'BOTON VER CORREOS'
-                      "
-                    >
-                      <vs-button
-                        class="mr-1 ml-1"
-                        radius
-                        color="primary"
-                        type="border"
-                        icon="visibility"
-                      ></vs-button>
-                    </router-link>
-                    <vs-button
-                      class="mr-1 ml-1"
-                      radius
-                      color="danger"
-                      type="border"
-                      icon="delete_outline"
-                      v-if="
-                        showUserAuth[0].permissions[15].name ==
-                          'BOTON ELIMINAR CORREOS' ||
-                        showUserAuth[0].permissions[12].name ==
-                          'BOTON ELIMINAR CORREOS'
-                      "
-                      @click="deleteGroupEmail(item.id)"
-                    ></vs-button>
                   </vs-row>
                 </vs-td>
               </vs-tr>
@@ -115,6 +114,7 @@
       @accept="acceptAlert"
       @close="close"
       :active.sync="activePrompt"
+      color="#ff5000"
     >
       <div class="con-exemple-prompt">
         <vs-row>
@@ -235,7 +235,7 @@ export default {
   font-size: 17px;
   font-weight: 700;
 }
-.seleccionable {
+.seleccionableasas {
   background: #10163a;
   color: white;
   width: 70px;

@@ -9,7 +9,10 @@
             color="primary"
             type="relief"
             icon="person_add"
-            v-if="showUserAuth[0].permissions[19].name == 'BOTON CREAR USUARIO'"
+            v-if="
+              showUserAuth[0].permissions[17].name == 'BOTON CREAR USUARIO' ||
+              showUserAuth[0].permissions[19].name == 'BOTON CREAR USUARIO'
+            "
             >Crear Usuario</vs-button
           >
         </vs-col>
@@ -21,9 +24,11 @@
             type="relief"
             icon="person_add"
             v-if="
+              showUserAuth[0].permissions[18].name ==
+                'BOTON USUARIOS ACTIVOS' ||
               showUserAuth[0].permissions[20].name == 'BOTON USUARIOS ACTIVOS'
             "
-            >Usuarios Activos</vs-button
+            >Activos</vs-button
           >
         </vs-col>
       </vs-col>
@@ -39,10 +44,10 @@
       >
         <vs-card class="con-vs-cards">
           <div slot="header" class=""></div>
+          <h3>Usuarios</h3>
           <vs-table search pagination :data="users" :max-items="tantos">
             <template slot="header">
-              <h3>Usuarios</h3>
-              <select v-model="tantos" class="seleccionable">
+              <select v-model="tantos" class="seleccionablessss">
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -85,11 +90,7 @@
                         color="warning"
                         type="border"
                         icon="lock_open"
-                        v-if="
-                          item.status_id == 1 &&
-                          showUserAuth[0].permissions[21].name ==
-                            'BOTON INACTIVAR USUARIO'
-                        "
+                        v-if="item.status_id === 1"
                         @click="inactiveUser(item.id)"
                       ></vs-button>
                       <vs-button
@@ -98,18 +99,16 @@
                         color="danger"
                         type="gradient"
                         icon="lock"
-                        v-if="
-                          item.status_id == 2 &&
-                          showUserAuth[0].permissions[21].name ==
-                            'BOTON INACTIVAR USUARIO'
-                        "
+                        v-if="item.status_id === 2"
                         @click="activeUser(item.id)"
                       ></vs-button>
                       <router-link
                         :to="'/panel/edit-user/' + item.id"
                         v-if="
+                          showUserAuth[0].permissions[20].name ==
+                            'BOTON EDITAR USUARIO' ||
                           showUserAuth[0].permissions[22].name ==
-                          'BOTON EDITAR USUARIO'
+                            'BOTON EDITAR USUARIO'
                         "
                       >
                         <vs-button
@@ -122,8 +121,10 @@
                       </router-link>
                       <vs-button
                         v-if="
+                          showUserAuth[0].permissions[21].name ==
+                            'BOTON VER USUARIO' ||
                           showUserAuth[0].permissions[23].name ==
-                          'BOTON VER USUARIO'
+                            'BOTON VER USUARIO'
                         "
                         class="mr-1 ml-1"
                         @click="openModal(item)"
@@ -141,25 +142,25 @@
         </vs-card>
       </vs-col>
     </vs-row>
-    <!-- campos del modal ver usuarios -->
     <vs-prompt
-      :title="
-        'Nombre de usuario' + ' ' + data.first_name + ' ' + data.last_name
-      "
+      :title="'Información de usuario'"
       accept-text="Aceptar"
       cancel-text="Cancelar"
       @cancel="val = ''"
       @accept="acceptAlert"
       @close="close"
       :active.sync="activePrompt"
+      color="#ff5000"
     >
       <div class="con-exemple-prompt mt-5">
-        <vs-row>
+        <vs-row vs-w="12">
           <vs-col
             vs-type="flex"
             vs-justify="center"
             vs-align="center"
-            vs-w="12"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
           >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
@@ -168,6 +169,15 @@
               :value="data.first_name"
               disabled
             />
+          </vs-col>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
+          >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
               color="rgb(213, 14, 151)"
@@ -177,12 +187,15 @@
             />
           </vs-col>
         </vs-row>
-        <vs-row>
+
+        <vs-row vs-w="12">
           <vs-col
             vs-type="flex"
             vs-justify="center"
             vs-align="center"
-            vs-w="12"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
           >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
@@ -191,6 +204,15 @@
               v-model="data.identification"
               disabled
             />
+          </vs-col>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
+          >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
               color="rgb(213, 14, 151)"
@@ -198,6 +220,18 @@
               v-model="data.chargeName"
               disabled
             />
+          </vs-col>
+        </vs-row>
+
+        <vs-row vs-w="12">
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
+          >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
               color="rgb(213, 14, 151)"
@@ -206,13 +240,13 @@
               disabled
             />
           </vs-col>
-        </vs-row>
-        <vs-row>
           <vs-col
             vs-type="flex"
             vs-justify="center"
             vs-align="center"
-            vs-w="12"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
           >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
@@ -221,6 +255,18 @@
               v-model="data.genderName"
               disabled
             />
+          </vs-col>
+        </vs-row>
+
+        <vs-row vs-w="12">
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
+          >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
               color="rgb(213, 14, 151)"
@@ -228,6 +274,15 @@
               v-model="data.date_of_birth"
               disabled
             />
+          </vs-col>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
+          >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
               color="rgb(213, 14, 151)"
@@ -237,12 +292,15 @@
             />
           </vs-col>
         </vs-row>
-        <vs-row>
+
+        <vs-row vs-w="12">
           <vs-col
             vs-type="flex"
             vs-justify="center"
             vs-align="center"
-            vs-w="12"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
           >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
@@ -251,6 +309,15 @@
               v-model="data.password"
               disabled
             />
+          </vs-col>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
+          >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
               color="rgb(213, 14, 151)"
@@ -258,6 +325,18 @@
               v-model="data.email_password"
               disabled
             />
+          </vs-col>
+        </vs-row>
+
+        <vs-row vs-w="12">
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
+          >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
               color="rgb(213, 14, 151)"
@@ -266,13 +345,13 @@
               disabled
             />
           </vs-col>
-        </vs-row>
-        <vs-row>
           <vs-col
             vs-type="flex"
             vs-justify="center"
             vs-align="center"
-            vs-w="12"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
           >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
@@ -281,6 +360,18 @@
               v-model="data.statusName"
               disabled
             />
+          </vs-col>
+        </vs-row>
+
+        <vs-row vs-w="12">
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
+          >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
               color="rgb(213, 14, 151)"
@@ -288,6 +379,15 @@
               v-model="data.supervisor_id"
               disabled
             />
+          </vs-col>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="6"
+          >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
               color="rgb(213, 14, 151)"
@@ -297,12 +397,15 @@
             />
           </vs-col>
         </vs-row>
-        <vs-row>
+
+        <vs-row vs-w="12">
           <vs-col
             vs-type="flex"
             vs-justify="center"
             vs-align="center"
-            vs-w="12"
+            vs-lg="4"
+            vs-sm="4"
+            vs-xs="4"
           >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
@@ -311,6 +414,15 @@
               v-model="data.branchOfficeName"
               disabled
             />
+          </vs-col>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-lg="4"
+            vs-sm="4"
+            vs-xs="4"
+          >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
               color="rgb(213, 14, 151)"
@@ -318,6 +430,15 @@
               v-model="data.rolName"
               disabled
             />
+          </vs-col>
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-lg="4"
+            vs-sm="4"
+            vs-xs="4"
+          >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
               color="rgb(213, 14, 151)"
@@ -329,7 +450,6 @@
         </vs-row>
       </div>
     </vs-prompt>
-    <!-- campos del modal ver usuarios -->
   </div>
 </template>
 <script>
@@ -437,16 +557,24 @@ export default {
   transition: all 0.3s ease;
   border: 1px solid #ff5000;
 }
-.seleccionable {
+.seleccionablessss {
   background: #10163a;
   color: white;
   width: 70px;
   height: 35px;
-  border-radius: 5px;
+  border-radius: 20px;
   padding: 0.3rem !important;
   padding-left: 6px !important;
   font-size: 17px;
   border: 1px solid transparent;
   margin-left: 10px;
+  margin-top: 2px;
+}
+
+@media only screen and (max-width: 900px) {
+  [dir] .vs-pagination--ul {
+    padding: 0;
+    margin-right: -12px !important;
+  }
 }
 </style>

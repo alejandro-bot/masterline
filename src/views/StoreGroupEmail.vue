@@ -15,51 +15,75 @@
             <h6 class="card-title text-center">Creación Grupo De Correos</h6>
           </div>
           <div>
-            <vs-row>
+            <vs-row vs-w="12">
               <vs-col
+                class="mt-5 p-1"
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
-                vs-w="12"
+                vs-lg="4"
+                vs-sm="4"
+                vs-xs="12"
               >
                 <select
-                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                  class="seleccionable"
                   v-model="formGroupEmail.typeCopy"
+                  style="width: 100%"
                 >
-                  <option value="">Seleccione </option>
+                  <option value="">Seleccione</option>
                   <option value="CC">CC</option>
                   <option value="CCO">CCO</option>
                 </select>
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Nombre Del Contacto"
-                  v-model="formGroupEmail.name"
-                />
-                <vs-input
-                  class="ml-0 mr-4 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Correo Electronico"
-                  v-model="formGroupEmail.email"
-                />
               </vs-col>
               <vs-col
-                class="mt-3"
+                class="p-1"
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
-                vs-w="12"
+                vs-lg="4"
+                vs-sm="4"
+                vs-xs="12"
               >
-                <vs-row vs-justify="center" class="mt-5 mb-5">
-                  <vs-button
-                    class="buttonColor"
-                    color="success"
-                    type="relief"
-                    icon="add"
-                    @click="createGroupEmails()"
-                    >Agregar Al Grupo</vs-button
-                  >
-                </vs-row>
+                <vs-input
+                  color="rgb(213, 14, 151)"
+                  label-placeholder="Nombre Del Contacto"
+                  v-model="formGroupEmail.name"
+                  style="width: 100%"
+                />
+              </vs-col>
+              <vs-col
+                class="p-1"
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-lg="4"
+                vs-sm="4"
+                vs-xs="12"
+              >
+                <vs-input
+                  color="rgb(213, 14, 151)"
+                  label-placeholder="Correo Electronico"
+                  v-model="formGroupEmail.email"
+                  style="width: 100%"
+                />
+              </vs-col>
+              <vs-col
+                class="mt-5 mb-5 p-1"
+                vs-type="flex"
+                vs-justify="center"
+                vs-align="center"
+                vs-lg="12"
+                vs-sm="12"
+                vs-xs="12"
+              >
+                <vs-button
+                  class="buttonColor"
+                  color="success"
+                  type="relief"
+                  icon="add"
+                  @click="createGroupEmails()"
+                  >Agregar Al Grupo</vs-button
+                >
               </vs-col>
             </vs-row>
           </div>
@@ -70,7 +94,7 @@
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
           <div slot="header">
-            <h6 class="card-title text-center">Correos De Este Grupo</h6>
+            <h6 class="card-title text-center">Correos de Grupo</h6>
           </div>
           <div>
             <vs-table>
@@ -155,7 +179,8 @@ export default {
         });
     },
     showGroupEmails() {
-      let url = dominio.url + "/api/mostrar-grupo-correos/" + this.formGroupEmail.id;
+      let url =
+        dominio.url + "/api/mostrar-grupo-correos/" + this.formGroupEmail.id;
       axios.get(url).then((res) => {
         this.showGroupEmail = res.data.showGroupEmail;
       });

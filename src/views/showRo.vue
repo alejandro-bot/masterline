@@ -22,9 +22,9 @@
             class="buttonColor"
             color="primary"
             type="relief"
-            icon="dangerous"
+            icon="delete"
             @click="showRoDelete()"
-            >R.O Eliminados</vs-button
+            >Eliminados</vs-button
           >
         </vs-col>
       </vs-col>
@@ -40,13 +40,13 @@
       >
         <vs-card class="con-vs-cards">
           <div slot="header" class=""></div>
-          <vs-table search pagination :data="showRo" :max-items="tantos">
-            <template slot="header">
-              <h3 class="mb-5">
-                R.O Creados Por: {{ showUserAuth[0].first_name }}
+              <h3 class="mb-5 mt-3" style="font-size:15px;">
+                R.O Creados Por: <br><br> {{ showUserAuth[0].first_name }}
                 {{ showUserAuth[0].last_name }}
               </h3>
-              <select v-model="tantos" class="seleccionableBuscador">
+          <vs-table search pagination :data="showRo" :max-items="tantos">
+            <template slot="header">
+              <select v-model="tantos" class="seleccionableBuscador mt-1">
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -60,7 +60,6 @@
               <vs-th sort-key="process_name"> Proceso </vs-th>
               <vs-th class="justify-content-center"> Acciones </vs-th>
             </template>
-
             <template slot-scope="{ data }">
               <vs-tr v-for="(item, index) in data" :key="index">
                 <vs-td
@@ -118,8 +117,7 @@
                       <router-link
                         :to="'/panel/show-ro/' + item.id"
                         v-if="
-                          showUserAuth[0].permissions[7].name ==
-                            'BOTON VER RO' ||
+                          showUserAuth[0].permissions[7].name == 'BOTON VER RO' ||
                           showUserAuth[0].permissions[8].name == 'BOTON VER RO'
                         "
                       >
@@ -134,12 +132,9 @@
                       <router-link
                         :to="'/panel/update-ro/' + item.id"
                         v-if="
-                          showUserAuth[0].permissions[7].name ==
-                            'BOTON EDITAR RO' ||
-                          showUserAuth[0].permissions[8].name ==
-                            'BOTON EDITAR RO' ||
-                          showUserAuth[0].permissions[9].name ==
-                            'BOTON EDITAR RO'
+                          showUserAuth[0].permissions[7].name == 'BOTON EDITAR RO' ||
+                          showUserAuth[0].permissions[8].name == 'BOTON EDITAR RO' ||
+                          showUserAuth[0].permissions[9].name == 'BOTON EDITAR RO'
                         "
                       >
                         <vs-button
@@ -153,9 +148,7 @@
                       <router-link
                         :to="'/panel/assign-ro/' + item.id"
                         v-if="
-                          showUserAuth[0].permissions[10].name ==
-                          'BOTON ASIGNAR RO'
-                        "
+                          showUserAuth[0].permissions[10].name == 'BOTON ASIGNAR RO'"
                       >
                         <vs-button
                           class="mr-1 ml-1"
@@ -167,9 +160,7 @@
                       </router-link>
                       <vs-button
                         v-if="
-                          showUserAuth[0].permissions[11].name ==
-                          'BOTON ELIMINAR RO'
-                        "
+                          showUserAuth[0].permissions[11].name == 'BOTON ELIMINAR RO'"
                         class="mr-1 ml-1"
                         radius
                         color="danger"

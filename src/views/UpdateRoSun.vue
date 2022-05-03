@@ -17,66 +17,77 @@
         <vs-card class="con-vs-cards">
           <div slot="header">
             <strong>
-              <h1 class="text-center">SEGUIMIENTO DE R.O HIJO</h1>
+              <h1 class="text-center" style="font-size: 17px; font-weight: 700">
+                SEGUIMIENTO DE R.O HIJO
+              </h1>
             </strong>
           </div>
           <h6 class="card-title text-center">R.O. NÚMERO Y TIPO DE ENVÍO</h6>
-          <vs-row>
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 10px">
-                  Modo De Transporte
-                </h6>
-                <select
-                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showSunId.type_of_transport_id"
-                  @change="
-                    showTypeSend(showSunId.type_of_transport_id);
-                    showIssue(showSunId.type_of_transport_id);
-                    showTypeOfLoads(showSunId.type_of_transport_id);
-                  "
+              <select
+                class="seleccionable escritorio"
+                v-model="showSunId.type_of_transport_id"
+                @change="
+                  showTypeSend(showSunId.type_of_transport_id);
+                  showIssue(showSunId.type_of_transport_id);
+                  showTypeOfLoads(showSunId.type_of_transport_id);
+                "
+                style="width: 100%; margin-top: 10px; paddign: 5px"
+              >
+                <option value="">Seleccione</option>
+                <option
+                  :key="index"
+                  :value="item.id"
+                  v-for="(item, index) in typeOfTransport"
                 >
-                  <option value="">Seleccione</option>
-                  <option
-                    :key="index"
-                    :value="item.id"
-                    v-for="(item, index) in typeOfTransport"
-                  >
-                    {{ item.name }}
-                  </option>
-                </select>
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="RO-AAAA-/00-0000"
-                  v-model="showSunId.ro"
-                />
-              </div>
-              <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 10px">
-                  Tipo De Embarque
-                </h6>
-                <select
-                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showSunId.type_id"
+                  {{ item.name }}
+                </option>
+              </select>
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+              class="escritorio movil"
+                color="rgb(213, 14, 151)"
+                label-placeholder="RO-AAAA-/00-0000"
+                v-model="showSunId.ro"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <select
+                class="seleccionable escritorio movil"
+                v-model="showSunId.type_id"
+              >
+                <option value="">Seleccione</option>
+                <option
+                  :key="index"
+                  :value="item.id"
+                  v-for="(item, index) in showTypeSends"
                 >
-                  <option value="">Seleccione</option>
-                  <option
-                    :key="index"
-                    :value="item.id"
-                    v-for="(item, index) in showTypeSends"
-                  >
-                    {{ item.name }}
-                  </option>
-                </select>
-              </div>
+                  {{ item.name }}
+                </option>
+              </select>
             </vs-col>
           </vs-row>
         </vs-card>
@@ -85,110 +96,169 @@
           v-if="showSunId.type_of_transport_id == 3"
         >
           <h6 class="card-title text-center">DETALLES DEL TRANSPORTADOR</h6>
-          <vs-row>
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
             >
               <vs-input
-                class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Transportadora"
                 v-model="showSunId.carrier"
+                style="width: 100%; margin-top: 15px; padding: 5px"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
+            >
               <vs-input
-                class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Típo de Vehículo"
                 v-model="showSunId.vehicle"
+                style="width: 100%; margin-top: 15px; padding: 5px"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
+            >
               <vs-input
-                class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Conductor"
                 v-model="showSunId.driver"
+                style="width: 100%; margin-top: 15px; padding: 5px"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
+            >
               <vs-input
-                class="ml-5 mr-5 mt-3 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Placa"
                 v-model="showSunId.plaque"
+                style="width: 100%; margin-top: 15px; padding: 5px"
               />
             </vs-col>
           </vs-row>
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">PLANIFICACIÓN DE EMBARQUE</h6>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  class="selectExample ml-0 mr-5 mt-3 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Puerto De Origen"
-                  v-model="showSunId.starting_place"
-                />
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Puerto De Destino"
-                  v-model="showSunId.destination_place"
-                />
-              </div>
-              <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 10px">
-                  Emisión HBL
-                </h6>
-                <select
-                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showSunId.issue_id"
-                >
-                  <option value="">Seleccione</option>
-                  <option
-                    :key="index"
-                    :value="item.id"
-                    v-for="(item, index) in showIssues"
-                  >
-                    {{ item.name }}
-                  </option>
-                </select>
-              </div>
+              <vs-input
+                class="movil escritorio"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Puerto De Origen"
+                v-model="showSunId.starting_place"
+              />
             </vs-col>
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  class="mt-0 mb-3"
-                  label="ETD"
-                  type="date"
-                  style="margin-left: -35px; margin-right: 15px"
-                  v-model="showSunId.etd"
-                />
-              </div>
               <vs-input
-                class="ml-0 mr-5 mt-0 mb-3"
+                class="movil escritorio"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Puerto De Destino"
+                v-model="showSunId.destination_place"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <select
+                class="seleccionable escritorio movil"
+                v-model="showSunId.issue_id"
+                style="width: 97%;"
+              >
+                <option value="">Seleccione</option>
+                <option
+                  :key="index"
+                  :value="item.id"
+                  v-for="(item, index) in showIssues"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+              class="movil escritorio"
+                label="ETD"
+                type="date"
+                v-model="showSunId.etd"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="movil escritorio"
                 label="ETA"
                 v-model="showSunId.eta"
                 type="date"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+              class="mt-5"
+            >
               <vs-input
-                class="mt-2 mb-0"
+                class="movil escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Número HBL"
-                style="margin-left: 20px; margin-right: -20px"
                 v-model="showSunId.num_hbl"
               />
             </vs-col>
@@ -196,62 +266,77 @@
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">DETALLES DE LA CARGA</h6>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 10px">
-                  Tipo Carga
-                </h6>
-                <select
-                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  style="margin-left: 0px !important"
-                  v-model="showSunId.type_of_load_id"
+              <select
+                class="seleccionable movil escritorio"
+                v-model="showSunId.type_of_load_id"
+                style="width: 97%;"
+              >
+                <option value="">Seleccione</option>
+                <option
+                  :key="index"
+                  :value="item.id"
+                  v-for="(item, index) in showTypeOfLoad"
                 >
-                  <option value="">Seleccione</option>
-                  <option
-                    :key="index"
-                    :value="item.id"
-                    v-for="(item, index) in showTypeOfLoad"
-                  >
-                    {{ item.name }}
-                  </option>
-                </select>
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Cantidad"
-                  v-model="showSunId.quantity"
-                />
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-4 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Numero De Contenedor"
-                  v-model="showSunId.container_number"
-                  v-if="
-                    showSunId.type_of_transport_id == 0 ||
-                    showSunId.type_of_transport_id == 1 ||
-                    showSunId.type_of_transport_id == 3
-                  "
-                />
-              </div>
+                  {{ item.name }}
+                </option>
+              </select>
             </vs-col>
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
               <vs-input
-                class="ml-0 mr-5 mt-5 mb-3"
+                class="movil escritorio"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Cantidad"
+                v-model="showSunId.quantity"
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="movil escritorio"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Numero De Contenedor"
+                v-model="showSunId.container_number"
+                v-if="
+                  showSunId.type_of_transport_id == 0 ||
+                  showSunId.type_of_transport_id == 1 ||
+                  showSunId.type_of_transport_id == 3
+                "
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+              class="mt-3"
+            >
+              <vs-input
+                class="movil escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Tipo de Contenedor"
                 v-model="showSunId.kind_of_container"
@@ -261,14 +346,34 @@
                   showSunId.type_of_transport_id == 3
                 "
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+              class="mt-3"
+            >
               <vs-input
-                class="ml-0 mr-5 mt-5 mb-3"
+                class="movil escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Peso Bruto"
                 v-model="showSunId.weight"
               />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+              class="mt-3"
+            >
               <vs-input
-                class="ml-0 mr-4 mt-2 mb-0"
+                class="movil escritorio"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Volumen"
                 v-model="showSunId.volume"
@@ -278,91 +383,121 @@
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">ASIGNACIONES</h6>
-          <vs-row>
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+              class="mt-5"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Sucursal"
-                  v-model="showSunId.branch_office.name"
-                  style="margin-top: 22px; margin-left: -10px"
-                  disabled
-                />
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-5 mr-2 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label="Nombre Usuario"
-                  :value="
-                    showSunId.user.first_name + ' ' + showSunId.user.last_name
-                  "
-                  disabled
-                />
-              </div>
-              <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 10px">
-                  Grupo De Correos
-                </h6>
-                <select
-                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                  v-model="showSunId.groupEmails"
-                >
-                  <option value="">Seleccione</option>
-                  <option
-                    :key="index"
-                    :value="item.id"
-                    v-for="(item, index) in listNameGroups"
-                  >
-                    {{ item.name }}
-                  </option>
-                </select>
-              </div>
+              <vs-input
+                class="movil escritorio"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Sucursal"
+                v-model="showSunId.branch_office.name"
+                disabled
+              />
             </vs-col>
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-4 mt-5 mb-4"
-                  color="rgb(213, 14, 151)"
-                  label="Comercial"
-                  :value="user.first_name + ' ' + user.last_name"
-                  style="width: 350px; margin-top: 4px !important"
-                  disabled
-                />
-              </div>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-0 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Correos Electronicos Cliente"
-                  v-model="showSunId.addEmails"
-                />
-              </div>
+              <vs-input
+                class="movil escritorio"
+                color="rgb(213, 14, 151)"
+                label="Nombre Usuario"
+                :value="
+                  showSunId.user.first_name + ' ' + showSunId.user.last_name
+                "
+                disabled
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+              class="mt-5"
+            >
+              <select
+                class="seleccionable movil escritorio"
+                v-model="showSunId.groupEmails"
+                style="width: 100%;"
+              >
+                <option value="">Seleccione</option>
+                <option
+                  :key="index"
+                  :value="item.id"
+                  v-for="(item, index) in listNameGroups"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
+              <vs-input
+                class="movil escritorio"
+                color="rgb(213, 14, 151)"
+                label="Comercial"
+                :value="user.first_name + ' ' + user.last_name"
+                disabled
+              />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+              class="mt-5"
+            >
+              <vs-input
+                class="movil escritorio"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Correos Electronicos Cliente"
+                v-model="showSunId.addEmails"
+              />
               <vs-button
-                class="ml-0 mr-2 mt-2 mb-0"
+                class="movil escritorio"
                 color="primary"
                 type="border"
                 icon="add"
                 @click="addEmail()"
               ></vs-button>
-              <div class="centerx colors-example">
-                <vs-input
-                  class="ml-0 mr-4 mt-2 mb-0"
-                  color="rgb(213, 14, 151)"
-                  label-placeholder="Codigo Seguimiento Cliente"
-                  v-model="showSunId.customer_tracking_code"
-                />
-              </div>
+            </vs-col>
+
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+              class="mt-5"
+            >
+              <vs-input
+                class="movil escritorio"
+                color="rgb(213, 14, 151)"
+                label-placeholder="Codigo Seguimiento Cliente"
+                v-model="showSunId.customer_tracking_code"
+              />
             </vs-col>
           </vs-row>
         </vs-card>
@@ -405,20 +540,20 @@
         </vs-card>
         <vs-card class="con-vs-cards">
           <h6 class="card-title text-center">HISTORICO INTERACCIONES</h6>
-          <vs-row>
-            <h6 style="margin-bottom: -14px; margin-left: 20px">
-              Proceso Actual
-            </h6>
+
+          <vs-row vs-w="12">
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
             >
               <select
-                class="ml-5 mr-5 mt-5 mb-3 seleccionable"
-                style="width: 60%"
+                class="seleccionable"
                 v-model="test_procesess_id"
+                style="width: 97%; margin-top: 15px; padding: 5px"
               >
                 <option value="">Seleccione</option>
                 <option
@@ -429,85 +564,94 @@
                   {{ item.process_name }}
                 </option>
               </select>
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="6"
+              vs-sm="6"
+              vs-xs="12"
+            >
               <vs-input
-                class="mt-5 mb-3"
                 color="rgb(213, 14, 151)"
                 label-placeholder="Asunto Correo"
-                style="width: 60%"
                 v-model="showSunId.subjet"
+                style="width: 100%; margin-top: 20px; padding: 5px"
               />
             </vs-col>
             <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
-            >
-            </vs-col>
-            <vs-col
-              vs-type="flex"
-              vs-justify="center"
-              vs-align="center"
-              vs-w="12"
+              vs-lg="12"
+              vs-sm="12"
+              vs-xs="12"
             >
               <wysiwyg
-                class="mt-3 mb-3 ml-4 mr-1"
-                style="background: white; color: black; height: auto"
+                style="
+                  background: white;
+                  color: black;
+                  height: auto;
+                  with: 100%;
+                  margin-top: 15px;
+                  margin-bottom: 15px;
+                "
                 v-model="showSunId.tracing"
               />
             </vs-col>
             <vs-col
-              class="mt-3"
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="12"
+              vs-sm="12"
+              vs-xs="12"
+            >
+              <vs-button
+                color="#ff5000"
+                type="relief"
+                icon="autorenew"
+                @click="updateTemplate(showSunId.id)"
+                >Actualizar Seguimiento De R.O</vs-button
+              >
+            </vs-col>
+          </vs-row>
+
+          <vs-row class="mt-5">
+            <vs-col
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
               vs-w="12"
             >
-              <vs-row vs-justify="center" class="mt-0 mb-5">
-                <vs-button
-                  color="#ff5000"
-                  type="relief"
-                  icon="autorenew"
-                  @click="updateTemplate(showSunId.id)"
-                  >Actualizar Seguimiento De R.O</vs-button
-                >
-              </vs-row>
+              <vs-table style="width: 96%">
+                <template slot="thead">
+                  <vs-th> Fecha </vs-th>
+                  <vs-th> Proceso </vs-th>
+                  <vs-th> Seguimiento </vs-th>
+                </template>
+                <template>
+                  <vs-tr
+                    :key="index"
+                    v-for="(item, index) in showSunId.processes_ro_pivot"
+                  >
+                    <vs-td style="width: 300px !important">
+                      {{ item.procesess.create_date }}
+                    </vs-td>
+                    <vs-td style="width: 600px !important">
+                      {{ item.procesess.process_name }}
+                    </vs-td>
+                    <vs-td style="width: 50%">
+                      <html
+                        class="mt-3 mb-3 ml-5 mr-5"
+                        v-html="item.tracing"
+                      ></html>
+                    </vs-td>
+                  </vs-tr>
+                </template>
+              </vs-table>
             </vs-col>
-            <vs-row class="mt-5">
-              <vs-col
-                vs-type="flex"
-                vs-justify="center"
-                vs-align="center"
-                vs-w="12"
-              >
-                <vs-table style="width: 96%">
-                  <template slot="thead">
-                    <vs-th> Fecha </vs-th>
-                    <vs-th> Proceso </vs-th>
-                    <vs-th> Seguimiento </vs-th>
-                  </template>
-                  <template>
-                    <vs-tr
-                      :key="index"
-                      v-for="(item, index) in showSunId.processes_ro_pivot"
-                    >
-                      <vs-td style="width: 300px !important">
-                        {{ item.procesess.create_date }}
-                      </vs-td>
-                      <vs-td style="width: 600px !important">
-                        {{ item.procesess.process_name }}
-                      </vs-td>
-                      <vs-td style="width: 50%">
-                        <html
-                          class="mt-3 mb-3 ml-5 mr-5"
-                          v-html="item.tracing"
-                        ></html>
-                      </vs-td>
-                    </vs-tr>
-                  </template>
-                </vs-table>
-              </vs-col>
-            </vs-row>
           </vs-row>
         </vs-card>
         <vs-card class="con-vs-cards">
@@ -891,4 +1035,27 @@ export default {
   font-size: 17px;
   border: 1px solid transparent;
 }
+/********************************************************************* movil ****************************************************/
+@media only screen and (max-width: 900px) {
+  .editr--toolbar {
+    display: none;
+  }
+  .movil
+  {
+    width: 100%;
+    margin-top: 30px;
+    padding: 5px
+  }
+}
+/********************************************************************* movil ****************************************************/
+/***************************************************************** escritorio ***************************************************/
+@media only screen and (min-width: 901px) {
+  .escritorio
+  {
+    padding: 5px !important;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+/***************************************************************** escritorio ***************************************************/
 </style>
