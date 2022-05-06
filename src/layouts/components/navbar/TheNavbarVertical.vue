@@ -1,20 +1,9 @@
-<!-- =========================================================================================
-  File Name: TheNavbar.vue
-  Description: Navbar component
-  Component Name: TheNavbar
-  ----------------------------------------------------------------------------------------
-  Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-  Author: Pixinvent
-  Author URL: http://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
-
 <template>
   <div class="relative">
 
-    <div class="vx-navbar-wrapper" :class="classObj">
+    <div class="vx-navbar-wrapper" :class="classObj" style="height: auto;">
 
-      <vs-navbar class="vx-navbar navbar-custom navbar-skelton" :color="navbarColorLocal" :class="textColor">
+      <vs-navbar class="vx-navbar navbar-custom navbar-skelton" :color="navbarColorLocal" :class="textColor" style="background: black !important; height: 75px !important">
 
         <!-- SM - OPEN SIDEBAR BUTTON -->
         <feather-icon class="sm:inline-flex xl:hidden cursor-pointer p-2" icon="MenuIcon" @click.stop="showSidebar" />

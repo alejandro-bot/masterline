@@ -69,7 +69,7 @@
                   <vs-button
                   class="botonCargo"
                     @click="editCharge(showChargeId.id)"
-                    color="#ff5000"
+                    color="#ff6600"
                     type="relief"
                     icon="autorenew"
                     >Actualizar Cargo</vs-button
@@ -141,7 +141,7 @@ export default {
 </script>
 <style>
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .card-title {
   margin-bottom: 15px;

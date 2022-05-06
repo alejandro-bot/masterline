@@ -2,8 +2,8 @@
   <div>
     <vs-button
       v-if="
-      showUserAuth[0].permissions[29].name == 'BOTON CREAR PLANTILLA' ||
-      showUserAuth[0].permissions[43].name == 'BOTON CREAR PLANTILLA'
+        showUserAuth[0].permissions[29].name == 'BOTON CREAR PLANTILLA' ||
+        showUserAuth[0].permissions[43].name == 'BOTON CREAR PLANTILLA'
       "
       class="buttonColor"
       color="primary"
@@ -57,8 +57,10 @@
                       <router-link
                         :to="'/panel/update-template/' + item.id"
                         v-if="
-                          showUserAuth[0].permissions[30].name == 'BOTON EDITAR PLANTILLA' ||
-                          showUserAuth[0].permissions[44].name == 'BOTON EDITAR PLANTILLA'
+                          showUserAuth[0].permissions[30].name ==
+                            'BOTON EDITAR PLANTILLA' ||
+                          showUserAuth[0].permissions[44].name ==
+                            'BOTON EDITAR PLANTILLA'
                         "
                       >
                         <vs-button
@@ -71,8 +73,10 @@
                       </router-link>
                       <vs-button
                         v-if="
-                          showUserAuth[0].permissions[31].name == 'BOTON ELIMINAR PLANTILLAS' ||
-                          showUserAuth[0].permissions[45].name == 'BOTON ELIMINAR PLANTILLAS'
+                          showUserAuth[0].permissions[31].name ==
+                            'BOTON ELIMINAR PLANTILLAS' ||
+                          showUserAuth[0].permissions[45].name ==
+                            'BOTON ELIMINAR PLANTILLAS'
                         "
                         class="mr-1 ml-1"
                         radius
@@ -168,7 +172,7 @@ export default {
   font-weight: 700;
 }
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .seleccionableBuscador {
   background: #10163a;
@@ -183,5 +187,12 @@ export default {
   margin-left: 10px;
   margin-top: 0px;
   border-radius: 20px;
+}
+
+@media only screen and (max-width: 900px) {
+  [dir] .vs-con-table .vs-table--pagination {
+    margin-top: 1rem;
+    margin-left: 11px;
+  }
 }
 </style>

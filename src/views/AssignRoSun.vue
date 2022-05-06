@@ -53,7 +53,7 @@
                   <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-lg="12" vs-sm="12" vs-xs="12">
                      <vs-button
                         @click="assignRo()"
-                        color="#ff5000"
+                        color="#ff6600"
                         type="relief"
                         icon="add"
                         >Asignar R.O</vs-button
@@ -146,7 +146,7 @@ export default {
   border: 1px solid #ff6600;
 }
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .seleccionable {
   background: #10163a;

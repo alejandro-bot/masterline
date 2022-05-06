@@ -74,3 +74,8 @@ export default {
 }
 
 </script>
+<style>
+[dir] .theme-dark .vx-navbar-wrapper .vs-navbar .search-full-container {
+    background-color: #2c2c2c !important;
+}
+</style>

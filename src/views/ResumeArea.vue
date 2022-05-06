@@ -47,7 +47,7 @@
                                 class="material-icons"
                                 style="
                                   font-size: 70px;
-                                  color: #ff5000;
+                                  color: #ff6600;
                                   border-radius: 10px;
                                 "
                               >
@@ -92,7 +92,7 @@
                                 class="material-icons"
                                 style="
                                   font-size: 70px;
-                                  color: #ff5000;
+                                  color: #ff6600;
                                   border-radius: 10px;
                                 "
                               >
@@ -137,7 +137,7 @@
                                 class="material-icons"
                                 style="
                                   font-size: 70px;
-                                  color: #ff5000;
+                                  color: #ff6600;
                                   border-radius: 10px;
                                 "
                               >
@@ -182,7 +182,7 @@
                                 class="material-icons"
                                 style="
                                   font-size: 70px;
-                                  color: #ff5000;
+                                  color: #ff6600;
                                   border-radius: 10px;
                                 "
                               >
@@ -544,7 +544,7 @@
                                 class="material-icons"
                                 style="
                                   font-size: 70px;
-                                  color: #ff5000;
+                                  color: #ff6600;
                                   border-radius: 10px;
                                 "
                               >
@@ -589,7 +589,7 @@
                                 class="material-icons"
                                 style="
                                   font-size: 70px;
-                                  color: #ff5000;
+                                  color: #ff6600;
                                   border-radius: 10px;
                                 "
                               >
@@ -634,7 +634,7 @@
                                 class="material-icons"
                                 style="
                                   font-size: 70px;
-                                  color: #ff5000;
+                                  color: #ff6600;
                                   border-radius: 10px;
                                 "
                               >
@@ -679,7 +679,7 @@
                                 class="material-icons"
                                 style="
                                   font-size: 70px;
-                                  color: #ff5000;
+                                  color: #ff6600;
                                   border-radius: 10px;
                                 "
                               >
@@ -871,7 +871,7 @@
                                 class="material-icons"
                                 style="
                                   font-size: 70px;
-                                  color: #ff5000;
+                                  color: #ff6600;
                                   border-radius: 10px;
                                 "
                               >
@@ -916,7 +916,7 @@
                                 class="material-icons"
                                 style="
                                   font-size: 70px;
-                                  color: #ff5000;
+                                  color: #ff6600;
                                   border-radius: 10px;
                                 "
                               >
@@ -961,7 +961,7 @@
                                 class="material-icons"
                                 style="
                                   font-size: 70px;
-                                  color: #ff5000;
+                                  color: #ff6600;
                                   border-radius: 10px;
                                 "
                               >
@@ -1006,7 +1006,7 @@
                                 class="material-icons"
                                 style="
                                   font-size: 70px;
-                                  color: #ff5000;
+                                  color: #ff6600;
                                   border-radius: 10px;
                                 "
                               >
@@ -1455,7 +1455,7 @@ export default {
             },
           },
         },
-        colors: ["#ff5000", "#ffffff", "rgb(0, 143, 251)", "#0077B5"],
+        colors: ["#ff6600", "#ffffff", "rgb(0, 143, 251)", "#0077B5"],
         labels: ["Vimeo", "Messenger", "Facebook", "LinkedIn"],
         legend: {
           show: true,
@@ -1548,7 +1548,7 @@ export default {
 </script>
 <style>
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .con-vs-cards {
   width: 100%;

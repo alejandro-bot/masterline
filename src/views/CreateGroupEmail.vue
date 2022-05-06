@@ -114,7 +114,7 @@
       @accept="acceptAlert"
       @close="close"
       :active.sync="activePrompt"
-      color="#ff5000"
+      color="#ff6600"
     >
       <div class="con-exemple-prompt">
         <vs-row>
@@ -126,7 +126,7 @@
           >
             <vs-input
               class="ml-2 mr-2 mb-5 mt-5"
-              color="rgb(213, 14, 151)"
+              color="#2c2c2c"
               label-placeholder="Nombre Del Grupo"
               v-model="formCreateGroupEmail.name"
             />
@@ -210,7 +210,7 @@ export default {
 </script>
 <style>
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .con-vs-cards {
   width: 100%;
@@ -248,5 +248,19 @@ export default {
   margin-left: 10px;
   margin-top: 0px;
   border-radius: 20px;
+}
+[dir] .theme-dark .con-vs-dialog .vs-dialog header {
+    background: black;
+}
+.vs-dialog-text
+{
+  background: #0f0f0f;
+}
+footer
+{
+  background: #0f0f0f;
+}
+[dir] .theme-dark .con-vs-dialog .vs-dialog header .vs-dialog-cancel, [dir] .theme-dark .con-vs-dialog .vs-dialog header .vs-icon {
+    background: #ff6600;
 }
 </style>

@@ -22,7 +22,7 @@
               <span class="errors">{{ errors.name[0] }}</span>
             </div>
             <vs-row vs-justify="center" class="mt-5 mb-3">
-              <vs-button @click="CreateRol()" color="#ff5000" type="relief" icon="person_add"
+              <vs-button @click="CreateRol()" color="#ff6600" type="relief" icon="person_add"
                 >Crear Perfil</vs-button
               >
             </vs-row>
@@ -90,10 +90,10 @@ export default {
     box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
-    border: 1px solid #ff5000;
+    border: 1px solid #ff6600;
 }
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 </style>
 

@@ -239,4 +239,7 @@ export default{
 
 <style lang="scss">
 @import "@/assets/scss/vuexy/components/vxAutoSuggest.scss";
+[dir] .theme-dark .vx-navbar-wrapper .vs-navbar .vx-auto-suggest .auto-suggest-suggestions-list .auto-suggest__suggestion-group__suggestion.vx-auto-suggest__current-selected {
+    background: #2c2c2c;
+}
 </style>

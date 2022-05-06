@@ -13,22 +13,25 @@
         <vs-card class="con-vs-cards">
           <div slot="header" class="mt-3">
             <strong>
-              <h1 class="text-center">CREACION DE PLANTILLA</h1>
+              <h1 class="text-center" style="font-size: 18px; font-weight: 700">
+                CREACION DE PLANTILLA
+              </h1>
             </strong>
           </div>
-          <vs-row>
+
+          <vs-row vs-w="12">
             <vs-col
-              vs-type="flex"
+              class="p-2"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
             >
               <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 20px">
-                  Modo De Transporte
-                </h6>
+                <h6 class="tituloSelect">Modo De Transporte</h6>
                 <select
-                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                  class="escritorio movil seleccionable"
                   v-model="formTemplate.type_of_transport_id"
                 >
                   <option value="">Seleccione</option>
@@ -41,12 +44,19 @@
                   </option>
                 </select>
               </div>
+            </vs-col>
+            <vs-col
+              class="p-2"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <div class="centerx colors-example">
-                <h6 style="margin-bottom: -14px; margin-left: 20px">
-                  Tipo De Embarque
-                </h6>
+                <h6 class="tituloSelect">Tipo De Embarque</h6>
                 <select
-                  class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                  class="escritorio movil seleccionable"
                   v-model="formTemplate.type_id"
                 >
                   <option value="">Seleccione</option>
@@ -59,19 +69,26 @@
                   </option>
                 </select>
               </div>
+            </vs-col>
+            <vs-col
+              class="p-2"
+              vs-justify="center"
+              vs-align="center"
+              vs-lg="4"
+              vs-sm="4"
+              vs-xs="12"
+            >
               <div class="centerx colors-example">
                 <vs-input
-                  class="ml-0 mr-5 mt-5 mb-3"
+                  class="escritorio movil inputRE"
                   color="rgb(213, 14, 151)"
                   label-placeholder="Proceso"
                   v-model="formTemplate.process_name"
                 />
               </div>
             </vs-col>
-          </vs-row>
-          <vs-row vs-w="12">
             <vs-col
-              vs-type="flex"
+              class="p-2"
               vs-justify="center"
               vs-align="center"
               vs-lg="12"
@@ -79,23 +96,23 @@
               vs-xs="12"
             >
               <wysiwyg
-                class="mt-5 mb-5 ml-5 mr-5"
+                class="escritorio movil"
                 v-model="formTemplate.tracing"
                 style="background: white; color: black; height: auto"
               />
             </vs-col>
-          </vs-row>
-          <vs-row vs-w="12">
             <vs-col
-              vs-type="flex"
+              class="p-2 mt-5"
               vs-justify="center"
               vs-align="center"
               vs-lg="12"
               vs-sm="12"
               vs-xs="12"
+              style="text-align: -webkit-center"
             >
               <vs-button
-                color="#ff5000"
+                class="buttonColor botonMovil"
+                color="#ff6600"
                 type="relief"
                 icon="send"
                 @click="CreateTemplate()"
@@ -168,7 +185,7 @@ export default {
 </script>
 <style>
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .card-title {
   margin-bottom: 15px;
@@ -192,5 +209,56 @@ export default {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   border: 1px solid #ff6600;
+}
+.seleccionable {
+  background: #10163a;
+  color: white;
+  width: 200px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
+}
+@media only screen and (min-width: 901px) {
+  .escritorio {
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px;
+  }
+  .tituloSelect {
+    margin-bottom: -5px;
+  }
+  .inputRE {
+    margin-bottom: -20px;
+    margin-top: 14px !important;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .movil {
+    width: 100%;
+    margin-top: 30px !important;
+  }
+  .tituloSelect {
+    margin-bottom: -20px;
+  }
+  .botonMovil {
+    width: 96%;
+    margin-left: 6px;
+  }
+  .tituloSelect {
+    margin-bottom: -21px;
+  }
+  .inputRE {
+    margin-bottom: -20px;
+    margin-top: 9px !important;
+  }
+  .botonMovil {
+    width: 98%;
+  }
+  [dir] .editr--toolbar {
+    display: none;
+  }
 }
 </style>

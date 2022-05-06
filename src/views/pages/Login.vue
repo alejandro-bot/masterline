@@ -24,7 +24,7 @@
               />
             </div>
 
-            <div class="vx-col sm:w-full md:w-full lg:w-1/2 d-theme-dark-bg" style="border-radius: 0px 10px 10px 0px;">
+            <div class="vx-col sm:w-full md:w-full lg:w-1/2 d-theme-dark-bg" style="border-radius: 0px 10px 10px 0px; background: #0f0f0f;">
               <div class="p-8 login-tabs-container">
                 <div class="vx-card__title mb-4">
                   <h4 class="mb-4">Iniciar Sesión</h4>
@@ -118,6 +118,6 @@ export default {
 }
 .buttonColor
 {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 </style>

@@ -182,7 +182,7 @@
                           v-if="item.is_parent == 1"
                           class="mr-1 ml-1"
                           radius
-                          color="#ff5000"
+                          color="#ff6600"
                           type="border"
                           icon="child_care"
                           @click="listRosuns(item.id)"
@@ -268,7 +268,7 @@ export default {
   max-width: 850px !important;
 }
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .con-vs-cards {
   width: 100%;
@@ -281,7 +281,7 @@ export default {
   box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  border: 1px solid #ff5000;
+  border: 1px solid #ff6600;
 }
 .seleccionableBuscador {
   background: #10163a;

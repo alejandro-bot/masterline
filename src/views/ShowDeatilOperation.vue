@@ -179,7 +179,7 @@ export default {
   max-width: 850px !important;
 }
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .con-vs-cards {
   width: 100%;
@@ -192,7 +192,7 @@ export default {
   box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  border: 1px solid#ff5000;
+  border: 1px solid#ff6600;
 }
 .card-title {
   margin-bottom: 15px;

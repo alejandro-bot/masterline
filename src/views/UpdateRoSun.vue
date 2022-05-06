@@ -609,7 +609,7 @@
               vs-xs="12"
             >
               <vs-button
-                color="#ff5000"
+                color="#ff6600"
                 type="relief"
                 icon="autorenew"
                 @click="updateTemplate(showSunId.id)"
@@ -714,16 +714,12 @@
               vs-type="flex"
               vs-justify="center"
               vs-align="center"
-              vs-w="12"
+              vs-w="3"
+              v-for="(image, index) in showSunId.images_email" :key="index"
             >
-              <vs-images>
-                <vs-image
-                  class="images"
-                  :key="index"
-                  :src="image.images"
-                  v-for="(image, index) in showSunId.images_email"
-                />
-              </vs-images>
+
+              <img  :src="'http://backend-masterline.test/storage/images_ro_email/' + image.images" style="width:200px; height:200px;">
+
             </vs-col>
           </vs-row>
           <h6 class="card-title text-center">Historico De Recortes</h6>
@@ -750,7 +746,7 @@
             >
               <vs-row vs-justify="center" class="mt-0 mb-5">
                 <vs-button
-                  color="#ff5000"
+                  color="#ff6600"
                   type="relief"
                   icon="add"
                   @click="updateRoSun(showSunId.id)"
@@ -1011,7 +1007,7 @@ export default {
   text-align: right;
 }
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 
 .images {

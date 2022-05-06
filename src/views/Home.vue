@@ -2,7 +2,7 @@
   <div>
     <vs-row vs-w="12">
       <vs-col
-       class="pl-1"
+       class="p-2"
         vs-type="flex"
         vs-justify="center"
         vs-align="center"
@@ -12,16 +12,11 @@
       >
         <vs-card
           class="con-vs-cards"
-          style="height: 350px !important"
+          style="height: 430px !important"
           v-if="showUserAuth[0].permissions[0].name == 'VER GESTIÓN DIARIA'"
         >
           <div slot="header">
-            <vs-images>
-              <vs-image
-                class="con-example-images"
-                src="http://31.220.21.104/_activos/dashboard/img01.jpg"
-              />
-            </vs-images>
+            <img src="http://backend-masterline.test/images/Terrestre.png" alt="" style="width: -webkit-fill-available; border-radius: 10px;">
             <vs-row style="background: #ff6600; margin-top: -1px">
               <vs-col
                 vs-type="flex"
@@ -29,7 +24,6 @@
                 vs-align="center"
                 vs-w="12"
               >
-                <h6>GESTIÓN DIARIA</h6>
                 <span
                   class="material-icons ml-5"
                   style="
@@ -41,6 +35,7 @@
                 >
                   signal_cellular_alt
                 </span>
+                <h6>GESTIÓN DIARIA</h6>
               </vs-col>
             </vs-row>
           </div>
@@ -119,7 +114,7 @@
         </vs-card>
       </vs-col>
       <vs-col
-       class="pl-1"
+       class="p-2"
         vs-type="flex"
         vs-justify="center"
         vs-align="center"
@@ -129,16 +124,11 @@
       >
         <vs-card
           class="con-vs-cards"
-          style="height: 350px !important"
+          style="height: 430px !important"
           v-if="showUserAuth[0].permissions[1].name == 'VER RESUMEN GENERAL'"
         >
           <div slot="header">
-            <vs-images>
-              <vs-image
-                class="con-example-images"
-                src="http://31.220.21.104/_activos/dashboard/img02.jpg"
-              />
-            </vs-images>
+            <img src="http://backend-masterline.test/images/avion.jpeg" alt="" style="width: -webkit-fill-available; border-radius: 10px;">
             <vs-row style="background: #ff6600; margin-top: -1px">
               <vs-col
                 vs-type="flex"
@@ -146,7 +136,6 @@
                 vs-align="center"
                 vs-w="12"
               >
-                <h6>RESUMEN GENERAL</h6>
                 <span
                   class="material-icons ml-5"
                   style="
@@ -158,6 +147,7 @@
                 >
                   add_chart
                 </span>
+                <h6>RESUMEN GENERAL</h6>
               </vs-col>
             </vs-row>
           </div>
@@ -236,7 +226,7 @@
         </vs-card>
       </vs-col>
       <vs-col
-       class="pl-1"
+       class="p-2"
         vs-type="flex"
         vs-justify="center"
         vs-align="center"
@@ -246,16 +236,11 @@
       >
         <vs-card
           class="con-vs-cards"
-          style="height: 350px !important"
+          style="height: 430px !important"
           v-if="showUserAuth[0].permissions[2].name == 'VER SIN SEGUIMIENTO'"
         >
           <div slot="header">
-            <vs-images>
-              <vs-image
-                class="con-example-images"
-                src="http://31.220.21.104/_activos/dashboard/img04.jpg"
-              />
-            </vs-images>
+            <img src="http://backend-masterline.test/images/maritimo.png" alt="" style="width: -webkit-fill-available; border-radius: 10px;">
             <vs-row style="background: #ff6600; margin-top: -1px">
               <vs-col
                 vs-type="flex"
@@ -263,7 +248,6 @@
                 vs-align="center"
                 vs-w="12"
               >
-                <h6>SIN SEGUIMIENTO</h6>
                 <span
                   class="material-icons ml-5"
                   style="
@@ -275,6 +259,7 @@
                 >
                   equalizer
                 </span>
+                <h6>SIN SEGUIMIENTO</h6>
               </vs-col>
             </vs-row>
           </div>
@@ -313,21 +298,21 @@
                 vs-align="center"
                 vs-w="12"
               >
-                <span class="material-icons"> date_range </span>
-                <span style="margin-left: 20px"> Ultima Gestión </span>
-                <span style="margin-left: 5px">
-                  {{ registerRoLast[0].created_at }}
-                </span>
+                <span class="material-icons" style="margin-left: -230px;"> date_range </span>
               </vs-col>
             </vs-col>
           </vs-row>
+                <p class="nose"> Ultima Gestión </p>
+                <p class="moviles">
+                  {{ registerRoLast[0].created_at }}
+                </p>
           <div>
             <div class="con-example-images"></div>
           </div>
         </vs-card>
       </vs-col>
       <vs-col
-       class="pl-1"
+       class="p-2"
         vs-type="flex"
         vs-justify="center"
         vs-align="center"
@@ -337,16 +322,11 @@
       >
         <vs-card
           class="con-vs-cards"
-          style="height: 350px !important"
+          style="height: 430px !important"
           v-if="showUserAuth[0].permissions[3].name == 'VER TIPO DE EMBARQUE'"
         >
           <div slot="header">
-            <vs-images>
-              <vs-image
-                class="con-example-images"
-                src="http://31.220.21.104/_activos/dashboard/img03.jpg"
-              />
-            </vs-images>
+            <img src="http://backend-masterline.test/images/Conteiner.png" alt="" style="width: -webkit-fill-available; border-radius: 10px;">
             <vs-row style="background: #ff6600; margin-top: -1px">
               <vs-col
                 vs-type="flex"
@@ -354,7 +334,6 @@
                 vs-align="center"
                 vs-w="12"
               >
-                <h6>TIPO DE EMBARQUE</h6>
                 <span
                   class="material-icons ml-5"
                   style="
@@ -366,6 +345,7 @@
                 >
                   donut_large
                 </span>
+                <h6>TIPO DE EMBARQUE</h6>
               </vs-col>
             </vs-row>
           </div>
@@ -676,7 +656,6 @@
           <div>
             <vs-table search pagination :data="roOfUser" :max-items="tantos">
               <template slot="header">
-                <h3 class="desaparecer-movil">R.O</h3>
                 <select v-model="tantos" class="seleccionableBuscador">
                   <option value="5">5</option>
                   <option value="10">10</option>
@@ -903,12 +882,22 @@ export default {
 }
 .vs-image--img {
   background-repeat: no-repeat;
-  padding-bottom: 57% !important;
+  padding-bottom: 110px !important;
 }
 .vs-images--ul {
   width: auto !important;
 }
+.moviles
+ {
 
+    margin-left: 246px;
+    margin-top: -17px !important;
+ }
+ .nose
+ {
+   margin-top: -20px !important;
+   margin-left:97px;
+ }
 @media only screen and (max-width: 3600px) and (min-width: 1201px) {
   .botones {
     width: 170px !important;
@@ -924,13 +913,23 @@ export default {
  {
    display: none;
  }
+ .moviles
+ {
+    margin-left: 228px !important;
+    margin-top: -17px !important;
+ }
+ .nose
+ {
+   margin-top: -20px !important;
+  margin-left:77px;
+ }
 }
 
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .seleccionableBuscador {
-  background: #10163a;
+  background: #2c2c2c;
   color: white;
   width: 70px;
   height: 35px;
@@ -942,5 +941,7 @@ export default {
   margin-left: 10px;
   margin-top: 0px;
   border-radius: 20px;
+  margin-top: 0px !important;
 }
+
 </style>

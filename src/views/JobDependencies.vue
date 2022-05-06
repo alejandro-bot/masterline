@@ -104,19 +104,22 @@
       @accept="acceptAlert"
       @close="close"
       :active.sync="activePrompt"
+      color="#ff6600"
     >
       <div class="con-exemple-prompt">
-        <vs-row>
+        <vs-row vs-w="12">
           <vs-col
-            vs-type="flex"
+            class="p-2"
             vs-justify="center"
             vs-align="center"
-            vs-w="12"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="12"
           >
             <div class="centerx colors-example">
-              <h6 style="margin-bottom: -14px; margin-left: 20px">Sucursal</h6>
+              <h6 class="titulosSelects">Sucursal</h6>
               <select
-                class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                class="escritorio movil seleccionable"
                 v-model="formCharge.branch_id"
               >
                 <option value="">Seleccione</option>
@@ -129,10 +132,19 @@
                 </option>
               </select>
             </div>
+          </vs-col>
+          <vs-col
+            class="p-2"
+            vs-justify="center"
+            vs-align="center"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="12"
+          >
             <div class="centerx colors-example">
-              <h6 style="margin-bottom: -14px; margin-left: 20px">División</h6>
+              <h6 class="titulosSelects">División</h6>
               <select
-                class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                class="escritorio movil seleccionable"
                 v-model="formCharge.division_id"
               >
                 <option value="">Seleccione</option>
@@ -146,18 +158,19 @@
               </select>
             </div>
           </vs-col>
-        </vs-row>
-        <vs-row>
           <vs-col
+            class="p-2"
             vs-type="flex"
             vs-justify="center"
             vs-align="center"
-            vs-w="12"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="12"
           >
             <div class="centerx colors-example">
-              <h6 style="margin-bottom: -14px; margin-left: 20px">Cargo</h6>
+              <h6 class="titulosSelects">Cargo</h6>
               <select
-                class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                class="escritorio movil seleccionable"
                 v-model="formCharge.charge_id"
               >
                 <option value="">Seleccione</option>
@@ -170,12 +183,20 @@
                 </option>
               </select>
             </div>
+          </vs-col>
+          <vs-col
+            class="p-2"
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-lg="6"
+            vs-sm="6"
+            vs-xs="12"
+          >
             <div class="centerx colors-example">
-              <h6 style="margin-bottom: -14px; margin-left: 20px">
-                Cargo Supervisor
-              </h6>
+              <h6 class="titulosSelects">Cargo Supervisor</h6>
               <select
-                class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                class="escritorio movil seleccionable"
                 v-model="formCharge.charge_dependence_id"
               >
                 <option value="">Seleccione</option>
@@ -307,7 +328,7 @@ export default {
 </script>
 <style>
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .con-vs-cards {
   width: 100%;
@@ -359,5 +380,21 @@ export default {
   margin-left: 10px;
   margin-top: 0px;
   border-radius: 20px;
+}
+@media only screen and (min-width: 901px) {
+  .escritorio {
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .movil {
+    width: 100%;
+    margin-top: 30px !important;
+  }
+  .titulosSelects {
+    margin-bottom: -18px;
+  }
 }
 </style>

@@ -170,7 +170,6 @@ export default {
   }),
   computed: {
     activeUserInfo() {
-      console.log('holas', this.$store.state.user);
       var permision = [];
       this.$store.state.user.permissions.forEach(element => {
         permision.push(element.name);

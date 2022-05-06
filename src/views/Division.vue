@@ -90,7 +90,7 @@
       @accept="acceptAlert"
       @close="close"
       :active.sync="activePrompt"
-      color="#ff5000"
+      color="#ff6600"
     >
       <div class="con-exemple-prompt">
         <vs-row>
@@ -200,7 +200,7 @@ export default {
 </script>
 <style>
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .con-vs-cards {
   width: 100%;

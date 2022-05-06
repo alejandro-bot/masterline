@@ -54,10 +54,7 @@
                     ></vs-button>
                   </vs-td>
                 </vs-tr>
-                <vs-tr>
-                  <vs-th>  </vs-th>
-                  <vs-th :key="index" v-for="(item, index) in showPermissions" class="text-center"> {{ item.name }}</vs-th>
-                </vs-tr>
+
               </template>
             </vs-table>
           </div>
@@ -235,7 +232,7 @@ export default {
 
 <style>
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .con-vs-cards {
   width: 100%;
@@ -248,7 +245,16 @@ export default {
   box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  border: 1px solid #ff5000;
+  border: 1px solid #ff6600;
+}
+.vs-button-success, .vs-radius
+{
+  width: 30px !important;
+  height: 30px !important;
+}
+.vs-table-text
+{
+  width: 200px !important;
 }
 </style>
 

@@ -683,6 +683,7 @@
               </div>
             </vs-col>
             <vs-col
+            class="p-2"
               vs-justify="center"
               vs-align="center"
               vs-lg="12"
@@ -704,7 +705,7 @@
                   <vs-button
                     class="movil"
                     @click="createRo()"
-                    color="#ff5000"
+                    color="#ff6600"
                     type="relief"
                     icon="add"
                     >Crear R.O</vs-button
@@ -899,7 +900,7 @@ export default {
   text-align: right;
 }
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .seleccionable {
   background: #10163a;
@@ -911,6 +912,9 @@ export default {
   padding-left: 6px !important;
   font-size: 17px;
   border: 1px solid transparent;
+}
+[dir] .theme-dark .vs-con-textarea {
+    background: #2c2c2c;
 }
 @media only screen and (min-width: 901px) {
   .escritorio {

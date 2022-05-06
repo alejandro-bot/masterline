@@ -27,7 +27,7 @@
   width: 100%;
   height: 100%;
   border: 3px solid transparent;
-  border-left: 3px solid #ff5000;
+  border-left: 3px solid #ff6600;
   border-radius: 50%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -45,18 +45,39 @@
   width: 100%;
   height: 100%;
   border: 3px solid transparent;
-  border-left: 3px solid #ff5000;
+  border-left: 3px solid #ff6600;
   -webkit-animation: rotateOpacity 1s ease infinite .2s;
   animation: rotateOpacity 1s ease infinite .2s;
   border-radius: 50%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-
+input
+{
+  background: #2c2c2c !important;
+}
+.seleccionableBuscador
+{
+  background: #2c2c2c !important;
+}
+.seleccionableasas
+{
+  background: #2c2c2c !important;
+}
+.seleccionablessss
+{
+  background: #2c2c2c !important;
+}
+.seleccionable
+{
+  background: #2c2c2c !important;
+}
 .loading .effects{
   transition: all .3s ease;
 }
-
+.vs-pagination-primary .effect {
+  background: #2c2c2c !important;
+}
 @keyframes rotate{
   0% {
     -webkit-transform: rotate(0deg);

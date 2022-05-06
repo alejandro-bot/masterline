@@ -69,13 +69,13 @@ export default [
     icon: "PowerIcon",
     permiso: 'VER MENU RESUMEN EQUIPO',
   },
-  {
-    url: "/panel/resume-area",
-    name: "Resumen Area",
-    slug: "resumen-area",
-    icon: "LockIcon",
-    permiso: 'VER MENU RESUMEN AREA',
-  },
+  // {
+  //   url: "/panel/resume-area",
+  //   name: "Resumen Area",
+  //   slug: "resumen-area",
+  //   icon: "LockIcon",
+  //   permiso: 'VER MENU RESUMEN AREA',
+  // },
   {
     url: "/panel/typing-template",
     name: "Plantillas",

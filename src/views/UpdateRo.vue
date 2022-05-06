@@ -88,7 +88,7 @@
                 >
                   <vs-input
                     class="mt-5 mb-3"
-                    color="rgb(213, 14, 151)"
+                    color="#2c2c2"
                     label-placeholder="RO-AAAA-/00-0000"
                     v-model="showRoDisabled.ro"
                     @keypress="errors.ro = ''"
@@ -146,7 +146,7 @@
             >
               <vs-input
                 class="mt-3 mb-3 ml-1"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Transportadora"
                 v-model="showRoDisabled.carrier"
                 style="width: 100%; margin-top: 20px !important"
@@ -162,7 +162,7 @@
             >
               <vs-input
                 class="mt-3 mb-3 ml-1"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Típo de Vehículo"
                 v-model="showRoDisabled.vehicle"
                 style="width: 100%; margin-top: 20px !important"
@@ -178,7 +178,7 @@
             >
               <vs-input
                 class="mt-3 mb-3 ml-1"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Conductor"
                 v-model="showRoDisabled.driver"
                 style="width: 100%; margin-top: 20px !important"
@@ -194,7 +194,7 @@
             >
               <vs-input
                 class="mt-3 mb-3 ml-1"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Placa"
                 v-model="showRoDisabled.plaque"
                 style="width: 100%; margin-top: 20px !important"
@@ -226,7 +226,7 @@
             >
               <vs-input
                 class="selectExample mt-3 mb-0 escritorio movil"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Puerto De Origen"
                 v-model="showRoDisabled.starting_place"
                 @keypress="errors.starting_place = ''"
@@ -245,7 +245,7 @@
             >
               <vs-input
                 class="mt-5 mb-3 escritorio movil"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Puerto De Destino"
                 v-model="showRoDisabled.destination_place"
                 @keypress="errors.destination_place = ''"
@@ -324,7 +324,7 @@
             >
               <vs-input
                 class="escritorio"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Número HBL"
                 v-model="showRoDisabled.num_hbl"
                 style="width: 100%; margin-top: 25px !important"
@@ -369,7 +369,7 @@
             >
               <vs-input
                 class="escritorio mb-1"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Cantidad"
                 v-model="showRoDisabled.quantity"
                 style="width: 100%"
@@ -385,7 +385,7 @@
             >
               <vs-input
                 class="escritorio movil mb-1"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Numero De Contenedor"
                 v-if="
                   showRoDisabled.type_of_transport_id == 1 ||
@@ -406,7 +406,7 @@
             >
               <vs-input
                 class="escritorio movil"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Tipo de Contenedor"
                 v-if="
                   showRoDisabled.type_of_transport_id == 1 ||
@@ -426,7 +426,7 @@
             >
               <vs-input
                 class="escritorio"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Peso Bruto"
                 v-model="showRoDisabled.weight"
                 style="width: 100%"
@@ -442,7 +442,7 @@
             >
               <vs-input
                 class="mt-2 mb-0 escritorio movil"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Volumen"
                 v-model="showRoDisabled.volume"
               />
@@ -511,7 +511,7 @@
             >
               <vs-input
                 class="mb-1 movil escritorio"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label="Nombre Usuario"
                 :value="
                   showRoDisabled.user.first_name +
@@ -555,7 +555,7 @@
             >
               <vs-input
                 class="escritorio movil"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 :value="
                   userCommercial.first_name + ' ' + userCommercial.last_name
                 "
@@ -576,7 +576,7 @@
             >
               <vs-input
                 class="escritorioCorreo movilCorreo"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Correos Electronicos Cliente"
                 v-model="formRo.addEmails"
               />
@@ -598,7 +598,7 @@
             >
               <vs-input
                 class="escritorio movil"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Codigo Seguimiento Cliente"
                 v-model="showRoDisabled.customer_tracking_code"
               />
@@ -681,7 +681,7 @@
             >
               <vs-input
                 class="movil escritorio"
-                color="rgb(213, 14, 151)"
+                color="#2c2c2"
                 label-placeholder="Asunto Correo"
                 v-model="showRoDisabled.subjet"
                 style="width: 100%"
@@ -716,7 +716,7 @@
               <vs-button
                 class="mb-3"
                 @click="updateTemplate(showRoDisabled.id)"
-                color="#ff5000"
+                color="#ff6600"
                 type="relief"
                 icon="autorenew"
                 >Actualizar Seguimiento De R.O</vs-button
@@ -858,7 +858,7 @@
               <vs-row vs-justify="center" class="mt-0 mb-5">
                 <vs-button
                   @click="updateRo(showRoDisabled.id)"
-                  color="#ff5000"
+                  color="#ff6600"
                   type="relief"
                   icon="add"
                   >Actualizar R.O</vs-button
@@ -1216,7 +1216,7 @@ export default {
   text-align: right;
 }
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 
 .images {

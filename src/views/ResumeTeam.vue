@@ -2,17 +2,6 @@
   <div>
     <vs-row>
       <vs-col vs-type="flex" vs-justify="left" vs-align="right" vs-w="12">
-        <!-- <vs-col vs-type="flex" vs-justify="left" vs-align="right" vs-w="6">
-          <vs-button
-            class="buttonColor"
-            color="primary"
-            type="relief"
-            icon="zoom_out"
-            @click="deatilOperation()"
-            >Detalle</vs-button
-          >
-        </vs-col> -->
-        <!-- <vs-col vs-type="flex" vs-justify="right" vs-align="right" vs-w="12"> -->
         <vs-button
           class="buttonColor"
           color="primary"
@@ -21,9 +10,9 @@
           @click="returnHome()"
           >Volver Inicio</vs-button
         >
-        <!-- </vs-col> -->
       </vs-col>
     </vs-row>
+
     <vs-row class="mt-5" vs-justify="center">
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
@@ -31,263 +20,256 @@
             <h6 class="card-title text-center">Contador De Procesos</h6>
           </div>
           <div>
-            <vs-row>
+            <vs-row vs-w="12">
               <vs-col
+                class="p-2"
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
-                vs-w="3"
+                vs-lg="3"
+                vs-sm="3"
+                vs-xs="12"
               >
-                <vs-row vs-justify="center">
-                  <vs-col
-                    type="flex"
-                    vs-justify="center"
-                    vs-align="center"
-                    vs-w="11"
-                  >
-                    <vs-card class="con-vs-cards">
-                      <div slot="header">
-                        <h6 class="card-title text-center">
-                          Colaboradores Asignados
-                        </h6>
-                      </div>
-                      <div>
-                        <span
-                          class="material-icons mb-0 mt-5"
-                          style="
-                            font-size: 70px;
-                            color: #ff5000;
-                            border-radius: 10px;
-                          "
-                        >
-                          people</span
-                        >
-                        <span
-                          class="ml-5 mb-3"
-                          style="
-                            margin-top: -50px !important;
-                            display: block;
-                            margin-left: 150px !important;
-                            font-size: 20px;
-                          "
-                          >{{ user }}</span
-                        >
-                      </div>
-                    </vs-card>
-                  </vs-col>
-                </vs-row>
+                <vs-card class="con-vs-cards3">
+                  <div slot="header">
+                    <h6 class="card-title text-center">
+                      Colaboradores Asignados
+                    </h6>
+                  </div>
+                  <div>
+                    <span
+                      class="material-icons mb-0 mt-5"
+                      style="
+                        font-size: 70px;
+                        color: #ffffff;
+                        border-radius: 10px;
+                        margin-left: 175px;
+                        margin-top: 18px !important;
+                      "
+                    >
+                      people</span
+                    >
+                    <span
+                      class="ml-5 mb-3"
+                      style="
+                        margin-top: -69px !important;
+                        display: block;
+                        margin-left: 100px !important;
+                        font-size: 45px;
+                        font-weight: 400;
+                        color: #ffffff;
+                      "
+                      >{{ user }}</span
+                    >
+                  </div>
+                </vs-card>
               </vs-col>
               <vs-col
+                class="p-2"
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
-                vs-w="3"
+                vs-lg="3"
+                vs-sm="3"
+                vs-xs="12"
               >
-                <vs-row vs-justify="center">
-                  <vs-col
-                    type="flex"
-                    vs-justify="center"
-                    vs-align="center"
-                    vs-w="11"
-                  >
-                    <vs-card class="con-vs-cards">
-                      <div slot="header">
-                        <h6 class="card-title text-center">R.O. Abiertos</h6>
-                      </div>
-                      <div>
-                        <span
-                          class="material-icons mt-5"
-                          style="
-                            font-size: 70px;
-                            color: #ff5000;
-                            border-radius: 10px;
-                          "
-                        >
-                          inventory
-                        </span>
-                        <span
-                          v-if="showUserAuth[0].rol_id == 2"
-                          class="ml-5 mt-5 mb-3"
-                          style="
-                            margin-top: -50px !important;
-                            display: block;
-                            margin-left: 150px !important;
-                            font-size: 20px;
-                          "
-                          >{{ roOpenMaritimeAndInlad }}</span
-                        >
-                        <span
-                          v-if="
-                            showUserAuth[0].rol_id == 1 ||
-                            showUserAuth[0].rol_id == 9 ||
-                            showUserAuth[0].rol_id == 10
-                          "
-                          class="ml-5 mt-5 mb-3"
-                          style="
-                            margin-top: -50px !important;
-                            display: block;
-                            margin-left: 150px !important;
-                            font-size: 20px;
-                          "
-                          >{{ countRoAdmin }}</span
-                        >
-                        <span
-                          v-if="showUserAuth[0].rol_id == 3"
-                          class="ml-5 mt-5 mb-3"
-                          style="
-                            margin-top: -50px !important;
-                            display: block;
-                            margin-left: 150px !important;
-                            font-size: 20px;
-                          "
-                          >{{ roOpenAir }}</span
-                        >
-                      </div>
-                    </vs-card>
-                  </vs-col>
-                </vs-row>
+                <vs-card class="con-vs-cards3">
+                  <div slot="header">
+                    <h6 class="card-title text-center">R.O. Abiertos</h6>
+                  </div>
+                  <div>
+                    <span
+                      class="material-icons mt-5"
+                      style="
+                        font-size: 60px;
+                        color: #ffffff;
+                        border-radius: 10px;
+                        margin-left: 175px;
+                      "
+                    >
+                      inventory
+                    </span>
+                    <span
+                      v-if="showUserAuth[0].rol_id == 2"
+                      class="ml-5 mt-5 mb-3"
+                      style="
+                        margin-top: -66px !important;
+                        display: block;
+                        margin-left: 100px !important;
+                        font-size: 45px;
+                        font-weight: 400;
+                        color: white;
+                      "
+                      >{{ roOpenMaritimeAndInlad }}</span
+                    >
+                    <span
+                      v-if="
+                        showUserAuth[0].rol_id == 1 ||
+                        showUserAuth[0].rol_id == 9 ||
+                        showUserAuth[0].rol_id == 10
+                      "
+                      class="ml-5 mt-5 mb-3"
+                      style="
+                        margin-top: -66px !important;
+                        display: block;
+                        margin-left: 100px !important;
+                        font-size: 45px;
+                        font-weight: 400;
+                        color: white;
+                      "
+                      >{{ countRoAdmin }}</span
+                    >
+                    <span
+                      v-if="showUserAuth[0].rol_id == 3"
+                      class="ml-5 mt-5 mb-3"
+                      style="
+                        margin-top: -50px !important;
+                        display: block;
+                        margin-left: 150px !important;
+                        font-size: 20px;
+                      "
+                      >{{ roOpenAir }}</span
+                    >
+                  </div>
+                </vs-card>
               </vs-col>
               <vs-col
+                class="p-2"
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
-                vs-w="3"
+                vs-lg="3"
+                vs-sm="3"
+                vs-xs="12"
               >
-                <vs-row vs-justify="center">
-                  <vs-col
-                    type="flex"
-                    vs-justify="center"
-                    vs-align="center"
-                    vs-w="11"
-                  >
-                    <vs-card class="con-vs-cards">
-                      <div slot="header">
-                        <h6 class="card-title text-center">
-                          R.O. Pendientes Hoy
-                        </h6>
-                      </div>
-                      <div>
-                        <span
-                          class="material-icons mt-5"
-                          style="
-                            font-size: 70px;
-                            color: #ff5000;
-                            border-radius: 10px;
-                          "
-                        >
-                          watch_later
-                        </span>
-                        <span
-                          v-if="
-                            showUserAuth[0].rol_id == 1 ||
-                            showUserAuth[0].rol_id == 9 ||
-                            showUserAuth[0].rol_id == 10
-                          "
-                          class="ml-5 mb-3"
-                          style="
-                            margin-top: -50px !important;
-                            display: block;
-                            margin-left: 150px !important;
-                            font-size: 20px;
-                          "
-                          >{{ roPendingAdmin }}</span
-                        >
-                        <span
-                          v-if="showUserAuth[0].rol_id == 2"
-                          class="ml-5 mb-3"
-                          style="
-                            margin-top: -50px !important;
-                            display: block;
-                            margin-left: 150px !important;
-                            font-size: 20px;
-                          "
-                          >{{ roPendingMaritimeAndInlad }}</span
-                        >
-                        <span
-                          v-if="showUserAuth[0].rol_id == 3"
-                          class="ml-5 mb-3"
-                          style="
-                            margin-top: -50px !important;
-                            display: block;
-                            margin-left: 150px !important;
-                            font-size: 20px;
-                          "
-                          >{{ roPendingAir }}</span
-                        >
-                      </div>
-                    </vs-card>
-                  </vs-col>
-                </vs-row>
+                <vs-card class="con-vs-cards3">
+                  <div slot="header">
+                    <h6 class="card-title text-center">R.O. Pendientes Hoy</h6>
+                  </div>
+                  <div>
+                    <span
+                      class="material-icons mt-5"
+                      style="
+                        font-size: 60px;
+                        color: #ffffff;
+                        border-radius: 10px;
+                        margin-left: 175px;
+                      "
+                    >
+                      watch_later
+                    </span>
+                    <span
+                      v-if="
+                        showUserAuth[0].rol_id == 1 ||
+                        showUserAuth[0].rol_id == 9 ||
+                        showUserAuth[0].rol_id == 10
+                      "
+                      class="ml-5 mb-3"
+                      style="
+                        margin-top: -66px !important;
+                        display: block;
+                        margin-left: 100px !important;
+                        font-size: 45px;
+                        font-weight: 400;
+                        color: white;
+                      "
+                      >{{ roPendingAdmin }}</span
+                    >
+                    <span
+                      v-if="showUserAuth[0].rol_id == 2"
+                      class="ml-5 mb-3"
+                      style="
+                        margin-top: -66px !important;
+                        display: block;
+                        margin-left: 100px !important;
+                        font-size: 45px;
+                        font-weight: 400;
+                        color: white;
+                      "
+                      >{{ roPendingMaritimeAndInlad }}</span
+                    >
+                    <span
+                      v-if="showUserAuth[0].rol_id == 3"
+                      class="ml-5 mb-3"
+                      style="
+                        margin-top: -66px !important;
+                        display: block;
+                        margin-left: 100px !important;
+                        font-size: 45px;
+                        font-weight: 400;
+                        color: white;
+                      "
+                      >{{ roPendingAir }}</span
+                    >
+                  </div>
+                </vs-card>
               </vs-col>
               <vs-col
+                class="p-2"
                 vs-type="flex"
                 vs-justify="center"
                 vs-align="center"
-                vs-w="3"
+                vs-lg="3"
+                vs-sm="3"
+                vs-xs="12"
               >
-                <vs-row vs-justify="center">
-                  <vs-col
-                    type="flex"
-                    vs-justify="center"
-                    vs-align="center"
-                    vs-w="11"
-                  >
-                    <vs-card class="con-vs-cards">
-                      <div slot="header">
-                        <h6 class="card-title text-center">R.O. Cerrados</h6>
-                      </div>
-                      <div>
-                        <span
-                          class="material-icons mt-5"
-                          style="
-                            font-size: 70px;
-                            color: #ff5000;
-                            border-radius: 10px;
-                          "
-                        >
-                          archive
-                        </span>
-                        <span
-                          v-if="
-                            showUserAuth[0].rol_id == 1 ||
-                            showUserAuth[0].rol_id == 9 ||
-                            showUserAuth[0].rol_id == 10
-                          "
-                          class="ml-5 mb-3"
-                          style="
-                            margin-top: -50px !important;
-                            display: block;
-                            margin-left: 150px !important;
-                            font-size: 20px;
-                          "
-                          >{{ roCloseAdmin }}</span
-                        >
-                        <span
-                          v-if="showUserAuth[0].rol_id == 2"
-                          class="ml-5 mb-3"
-                          style="
-                            margin-top: -50px !important;
-                            display: block;
-                            margin-left: 150px !important;
-                            font-size: 20px;
-                          "
-                          >{{ roClosedMaritimeAndInlad }}</span
-                        >
-                        <span
-                          v-if="showUserAuth[0].rol_id == 3"
-                          class="ml-5 mb-3"
-                          style="
-                            margin-top: -50px !important;
-                            display: block;
-                            margin-left: 150px !important;
-                            font-size: 20px;
-                          "
-                          >{{ roClosedAir }}</span
-                        >
-                      </div>
-                    </vs-card>
-                  </vs-col>
-                </vs-row>
+                <vs-card class="con-vs-cards3">
+                  <div slot="header">
+                    <h6 class="card-title text-center">R.O. Cerrados</h6>
+                  </div>
+                  <div>
+                    <span
+                      class="material-icons mt-5"
+                      style="
+                        font-size: 60px;
+                        color: rgb(255, 255, 255);
+                        border-radius: 10px;
+                        margin-left: 175px;
+                      "
+                    >
+                      archive
+                    </span>
+                    <span
+                      v-if="
+                        showUserAuth[0].rol_id == 1 ||
+                        showUserAuth[0].rol_id == 9 ||
+                        showUserAuth[0].rol_id == 10
+                      "
+                      class="ml-5 mb-3"
+                      style="
+                        margin-top: -66px !important;
+                        display: block;
+                        margin-left: 100px !important;
+                        font-size: 45px;
+                        font-weight: 400;
+                        color: white;
+                      "
+                      >{{ roCloseAdmin }}</span
+                    >
+                    <span
+                      v-if="showUserAuth[0].rol_id == 2"
+                      class="ml-5 mb-3"
+                      style="
+                        margin-top: -50px !important;
+                        display: block;
+                        margin-left: 150px !important;
+                        font-size: 20px;
+                      "
+                      >{{ roClosedMaritimeAndInlad }}</span
+                    >
+                    <span
+                      v-if="showUserAuth[0].rol_id == 3"
+                      class="ml-5 mb-3"
+                      style="
+                        margin-top: -50px !important;
+                        display: block;
+                        margin-left: 150px !important;
+                        font-size: 20px;
+                      "
+                      >{{ roClosedAir }}</span
+                    >
+                  </div>
+                </vs-card>
               </vs-col>
             </vs-row>
           </div>
@@ -299,7 +281,12 @@
         <vs-card class="con-vs-cards">
           <div slot="header">
             <vs-tabs :color="colorx">
-              <vs-tab label="Primera Linea" v-if="showUserAuth[0].rol_id == 1 || showUserAuth[0].rol_id == 10">
+              <vs-tab
+                label="Primera Linea"
+                v-if="
+                  showUserAuth[0].rol_id == 1 || showUserAuth[0].rol_id == 10
+                "
+              >
                 <div class="con-tab-ejemplo">
                   <vs-table
                     :data="userFirstLine"
@@ -329,31 +316,31 @@
                     </template>
                     <template slot-scope="{ data }">
                       <vs-tr v-for="(item, index) in data" :key="index">
-                        <vs-td :data="item.id">
+                        <vs-td :data="item.id" style="max-width: 200px;">
                           {{ item.id }}
                         </vs-td>
-                        <vs-td :data="item.nameDivision">
+                        <vs-td :data="item.nameDivision" style="max-width: 200px;">
                           {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="item.nameBranchOffice">
+                        <vs-td :data="item.nameBranchOffice" style="max-width: 200px;">
                           {{ item.nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="item.nameStatus">
+                        <vs-td :data="item.nameStatus" style="max-width: 200px;">
                           {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="item.nameRol">
+                        <vs-td :data="item.nameRol" style="max-width: 200px;">
                           {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="item.first_name">
+                        <vs-td :data="item.first_name" style="max-width: 200px;">
                           {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="item.last_name">
+                        <vs-td :data="item.last_name" style="max-width: 200px;">
                           {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="item.email">
+                        <vs-td :data="item.email" style="max-width: 200px;">
                           {{ item.email }}
                         </vs-td>
-                        <vs-td :data="item.nameOperation">
+                        <vs-td :data="item.nameOperation" style="max-width: 200px;">
                           {{ item.nameOperation }}
                         </vs-td>
                         <vs-td>
@@ -370,13 +357,18 @@
               <vs-tab
                 label="Segunda Linea"
                 v-if="
-                  showUserAuth[0].rol_id == 1 || showUserAuth[0].rol_id == 9 || showUserAuth[0].rol_id == 10
+                  showUserAuth[0].rol_id == 1 ||
+                  showUserAuth[0].rol_id == 9 ||
+                  showUserAuth[0].rol_id == 10
                 "
               >
                 <div class="con-tab-ejemplo">
                   <vs-table
                     :data="userSecondLine"
-                    v-if="showUserAuth[0].rol_id == 1 || showUserAuth[0].rol_id == 10"
+                    v-if="
+                      showUserAuth[0].rol_id == 1 ||
+                      showUserAuth[0].rol_id == 10
+                    "
                     search
                     pagination
                     :max-items="tantos"
@@ -403,34 +395,37 @@
                     </template>
                     <template
                       slot-scope="{ data }"
-                      v-if="showUserAuth[0].rol_id == 1 || showUserAuth[0].rol_id == 10"
+                      v-if="
+                        showUserAuth[0].rol_id == 1 ||
+                        showUserAuth[0].rol_id == 10
+                      "
                     >
                       <vs-tr v-for="(item, index) in data" :key="index">
-                        <vs-td :data="item.id">
+                        <vs-td :data="item.id" style="width: 100px;">
                           {{ item.id }}
                         </vs-td>
-                        <vs-td :data="item.nameDivision">
+                        <vs-td :data="item.nameDivision" style="width: 300px;">
                           {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="item.nameBranchOffice">
+                        <vs-td :data="item.nameBranchOffice" style="width: 300px;">
                           {{ item.nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="item.nameStatus">
+                        <vs-td :data="item.nameStatus" style="width: 300px;">
                           {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="item.nameRol">
+                        <vs-td :data="item.nameRol" style="width: 300px;">
                           {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="item.first_name">
+                        <vs-td :data="item.first_name" style="width: 300px;">
                           {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="item.last_name">
+                        <vs-td :data="item.last_name" style="width: 300px;">
                           {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="item.email">
+                        <vs-td :data="item.email" style="width: 300px;">
                           {{ item.email }}
                         </vs-td>
-                        <vs-td :data="item.nameOperation">
+                        <vs-td :data="item.nameOperation" style="width: 300px;">
                           {{ item.nameOperation }}
                         </vs-td>
                         <vs-td>
@@ -475,37 +470,37 @@
                       v-if="showUserAuth[0].rol_id == 9"
                     >
                       <vs-tr v-for="(item, index) in data" :key="index">
-                        <vs-td :data="item.id">
+                        <vs-td :data="item.id" style="width: 200px;">
                           {{ item.id }}
                         </vs-td>
-                        <vs-td :data="item.nameDivision">
+                        <vs-td :data="item.nameDivision" style="width: 200px;">
                           {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="item.nameBranchOffice">
+                        <vs-td :data="item.nameBranchOffice" style="width: 200px;">
                           {{ item.nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="item.nameStatus">
+                        <vs-td :data="item.nameStatus" style="width: 200px;">
                           {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="item.nameRol">
+                        <vs-td :data="item.nameRol" style="width: 200px;">
                           {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="item.first_name">
+                        <vs-td :data="item.first_name" style="width: 200px;">
                           {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="item.last_name">
+                        <vs-td :data="item.last_name" style="width: 200px;">
                           {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="item.email">
+                        <vs-td :data="item.email" style="width: 200px;">
                           {{ item.email }}
                         </vs-td>
-                        <vs-td :data="item.nameOperation">
+                        <vs-td :data="item.nameOperation" style="width: 200px;">
                           {{ item.nameOperation }}
                         </vs-td>
-                        <vs-td>
+                        <vs-td style="width: 200px;">
                           {{ item.ro }}
                         </vs-td>
-                        <vs-td>
+                        <vs-td style="width: 200px;">
                           {{ item.roClose }}
                         </vs-td>
                       </vs-tr>
@@ -513,7 +508,12 @@
                   </vs-table>
                 </div>
               </vs-tab>
-              <vs-tab label="Tercera Linea" v-if="showUserAuth[0].rol_id == 1 || showUserAuth[0].rol_id == 10">
+              <vs-tab
+                label="Tercera Linea"
+                v-if="
+                  showUserAuth[0].rol_id == 1 || showUserAuth[0].rol_id == 10
+                "
+              >
                 <div class="con-tab-ejemplo">
                   <vs-table
                     :data="userThirdLine"
@@ -543,37 +543,37 @@
                     </template>
                     <template slot-scope="{ data }">
                       <vs-tr v-for="(item, index) in data" :key="index">
-                        <vs-td :data="item.id">
+                        <vs-td :data="item.id" style="width: 200px;">
                           {{ item.id }}
                         </vs-td>
-                        <vs-td :data="item.nameDivision">
+                        <vs-td :data="item.nameDivision" style="width: 200px;">
                           {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="item.nameBranchOffice">
+                        <vs-td :data="item.nameBranchOffice" style="width: 200px;">
                           {{ item.nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="item.nameStatus">
+                        <vs-td :data="item.nameStatus" style="width: 200px;">
                           {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="item.nameRol">
+                        <vs-td :data="item.nameRol" style="width: 200px;">
                           {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="item.first_name">
+                        <vs-td :data="item.first_name" style="width: 200px;">
                           {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="item.last_name">
+                        <vs-td :data="item.last_name" style="width: 200px;">
                           {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="item.email">
+                        <vs-td :data="item.email" style="width: 200px;">
                           {{ item.email }}
                         </vs-td>
-                        <vs-td :data="item.nameOperation">
+                        <vs-td :data="item.nameOperation" style="width: 200px;">
                           {{ item.nameOperation }}
                         </vs-td>
-                        <vs-td>
+                        <vs-td style="width: 200px;">
                           {{ item.ro }}
                         </vs-td>
-                        <vs-td>
+                        <vs-td style="width: 200px;">
                           {{ item.roClose }}
                         </vs-td>
                       </vs-tr>
@@ -606,37 +606,37 @@
                     </template>
                     <template slot-scope="{ data }">
                       <vs-tr v-for="(item, index) in data" :key="index">
-                        <vs-td :data="item.id">
+                        <vs-td :data="item.id" style="width: 200px;">
                           {{ item.id }}
                         </vs-td>
-                        <vs-td :data="item.nameDivision">
+                        <vs-td :data="item.nameDivision" style="width: 200px;">
                           {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="item.nameBranchOffice">
+                        <vs-td :data="item.nameBranchOffice" style="width: 200px;">
                           {{ item.nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="item.nameStatus">
+                        <vs-td :data="item.nameStatus" style="width: 200px;">
                           {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="item.nameRol">
+                        <vs-td :data="item.nameRol" style="width: 200px;">
                           {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="item.first_name">
+                        <vs-td :data="item.first_name" style="width: 200px;">
                           {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="item.last_name">
+                        <vs-td :data="item.last_name" style="width: 200px;">
                           {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="item.email">
+                        <vs-td :data="item.email" style="width: 200px;">
                           {{ item.email }}
                         </vs-td>
-                        <vs-td :data="item.nameOperation">
+                        <vs-td :data="item.nameOperation" style="width: 200px;">
                           {{ item.nameOperation }}
                         </vs-td>
-                        <vs-td>
+                        <vs-td style="width: 200px;">
                           {{ item.ro }}
                         </vs-td>
-                        <vs-td>
+                        <vs-td style="width: 200px;">
                           {{ item.roClose }}
                         </vs-td>
                       </vs-tr>
@@ -673,37 +673,37 @@
                     </template>
                     <template slot-scope="{ data }">
                       <vs-tr v-for="(item, index) in data" :key="index">
-                        <vs-td :data="item.id">
+                        <vs-td :data="item.id" style="width: 200px;">
                           {{ item.id }}
                         </vs-td>
-                        <vs-td :data="item.nameDivision">
+                        <vs-td :data="item.nameDivision" style="width: 200px;">
                           {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="item.nameBranchOffice">
+                        <vs-td :data="item.nameBranchOffice" style="width: 200px;">
                           {{ item.nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="item.nameStatus">
+                        <vs-td :data="item.nameStatus" style="width: 200px;">
                           {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="item.nameRol">
+                        <vs-td :data="item.nameRol" style="width: 200px;">
                           {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="item.first_name">
+                        <vs-td :data="item.first_name" style="width: 200px;">
                           {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="item.last_name">
+                        <vs-td :data="item.last_name" style="width: 200px;">
                           {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="item.email">
+                        <vs-td :data="item.email" style="width: 200px;">
                           {{ item.email }}
                         </vs-td>
-                        <vs-td :data="item.nameOperation">
+                        <vs-td :data="item.nameOperation" style="width: 200px;">
                           {{ item.nameOperation }}
                         </vs-td>
-                        <vs-td>
+                        <vs-td style="width: 200px;">
                           {{ item.ro }}
                         </vs-td>
-                        <vs-td>
+                        <vs-td style="width: 200px;">
                           {{ item.roClose }}
                         </vs-td>
                       </vs-tr>
@@ -736,31 +736,31 @@
                     </template>
                     <template slot-scope="{ data }">
                       <vs-tr v-for="(item, index) in data" :key="index">
-                        <vs-td :data="item.id">
+                        <vs-td :data="item.id" style="width: 200px;">
                           {{ item.id }}
                         </vs-td>
-                        <vs-td :data="item.nameDivision">
+                        <vs-td :data="item.nameDivision" style="width: 200px;">
                           {{ item.nameDivision }}
                         </vs-td>
-                        <vs-td :data="item.nameBranchOffice">
+                        <vs-td :data="item.nameBranchOffice" style="width: 200px;">
                           {{ item.nameBranchOffice }}
                         </vs-td>
-                        <vs-td :data="item.nameStatus">
+                        <vs-td :data="item.nameStatus" style="width: 200px;">
                           {{ item.nameStatus }}
                         </vs-td>
-                        <vs-td :data="item.nameRol">
+                        <vs-td :data="item.nameRol" style="width: 200px;">
                           {{ item.nameRol }}
                         </vs-td>
-                        <vs-td :data="item.first_name">
+                        <vs-td :data="item.first_name" style="width: 200px;">
                           {{ item.first_name }}
                         </vs-td>
-                        <vs-td :data="item.last_name">
+                        <vs-td :data="item.last_name" style="width: 200px;">
                           {{ item.last_name }}
                         </vs-td>
-                        <vs-td :data="item.email">
+                        <vs-td :data="item.email" style="width: 200px;">
                           {{ item.email }}
                         </vs-td>
-                        <vs-td :data="item.nameOperation">
+                        <vs-td :data="item.nameOperation" style="width: 200px;">
                           {{ item.nameOperation }}
                         </vs-td>
                         <vs-td>
@@ -790,7 +790,7 @@ export default {
   },
   data() {
     return {
-      colorx: "#ff5000",
+      colorx: "#ff6600",
       userFirstLine: {},
       userSecondLine: {},
       userSecondLines: {},
@@ -902,7 +902,7 @@ export default {
   max-width: 850px !important;
 }
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .con-vs-cards {
   width: 100%;
@@ -915,10 +915,23 @@ export default {
   box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  border: 1px solid#ff5000;
+  border: 1px solid#ff6600;
+}
+.con-vs-cards3 {
+  width: 100%;
+  height: auto;
+  background: transparent !important;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: block;
+  -webkit-box-shadow: 0 4px 25px 0 rgb(0 0 0 / 10%);
+  box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border: 1px solid #2c2c2c;
 }
 .card-title {
-  margin-bottom: 15px;
+  margin-bottom: -14px;
   margin-top: 15px;
   color: white;
   padding-top: 5px;

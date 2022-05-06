@@ -44,7 +44,7 @@
                     <vs-avatar
                       size="150px"
                       :src="showUserAuth[0].url_vcard"
-                      style="border: 2px solid #ff5000"
+                      style="border: 2px solid #ff6600"
                     />
                   </h6>
                 </div>
@@ -443,7 +443,7 @@ export default {
 </script>
 <style>
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .card-title {
   margin-bottom: 15px;

@@ -241,7 +241,7 @@ export default {
 </script>
 <style>
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .con-vs-cards {
   width: 100%;
@@ -270,7 +270,7 @@ export default {
   max-width: 450px !important;
 }
 .vs-button-primary.vs-button-filled {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .seleccionable {
   background: #10163a;

@@ -45,7 +45,7 @@
                 vs-xs="12"
               >
                 <vs-input
-                  color="rgb(213, 14, 151)"
+                  color="#5e5e5e"
                   label-placeholder="Nombre Del Contacto"
                   v-model="formGroupEmail.name"
                   style="width: 100%"
@@ -61,7 +61,7 @@
                 vs-xs="12"
               >
                 <vs-input
-                  color="rgb(213, 14, 151)"
+                  color="#5e5e5e"
                   label-placeholder="Correo Electronico"
                   v-model="formGroupEmail.email"
                   style="width: 100%"
@@ -94,7 +94,7 @@
       <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
         <vs-card class="con-vs-cards">
           <div slot="header">
-            <h6 class="card-title text-center">Correos de Grupo</h6>
+            <h6 class="card-title text-center" style="margin-bottom: 40px;">Correos de Grupo</h6>
           </div>
           <div>
             <vs-table>
@@ -207,7 +207,7 @@ export default {
 </script>
 <style>
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .con-vs-cards {
   width: 100%;

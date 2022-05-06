@@ -9,9 +9,25 @@
     <title>Masterline</title>
   </head>
   <body>
-    <div id="loading-bg" style="background: #262c49;">
+    <style>
+      @media only screen and (min-width : 901px) {
+        .logoChevere
+        {
+          width: 50%;
+          margin-left: -80px;
+        }
+      }
+      @media only screen and (max-width: 900px) {
+        .logoChevere
+        {
+          width: 100%;
+          margin-left: -80px;
+        }
+      }
+    </style>
+    <div id="loading-bg" style="background: #0f0f0f;">
       <div class="loading-logo">
-        <img src="http://backend-masterline.test/images/logo.png" alt="Logo" style="width: 50%; margin-left: -80px;">
+        <img class="logoChevere" src="http://backend-masterline.test/images/logo.png" alt="Logo">
       </div>
       <div class="loading">
         <div class="effect-1 effects"></div>
@@ -22,6 +38,5 @@
     <div id="app">
 
     </div>
-    <!-- built files will be auto injected -->
   </body>
 </html>

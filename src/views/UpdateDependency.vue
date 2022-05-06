@@ -15,19 +15,19 @@
             <h6 class="card-title text-center">Editar Dependencia</h6>
           </div>
           <div>
-            <vs-row>
+            <vs-row vs-w="12">
               <vs-col
-                vs-type="flex"
+                class="p-2"
                 vs-justify="center"
                 vs-align="center"
-                vs-w="12"
+                vs-lg="6"
+                vs-sm="6"
+                vs-xs="12"
               >
                 <div class="centerx colors-example">
-                  <h6 style="margin-bottom: -14px; margin-left: 20px">
-                    Sucursal
-                  </h6>
+                  <h6 class="tituloSelect">Sucursal</h6>
                   <select
-                    class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                    class="escritorio movil seleccionable"
                     v-model="showDependencyss.branch_id"
                   >
                     <option value="">Seleccione</option>
@@ -40,12 +40,19 @@
                     </option>
                   </select>
                 </div>
+              </vs-col>
+              <vs-col
+                class="p-2"
+                vs-justify="center"
+                vs-align="center"
+                vs-lg="6"
+                vs-sm="6"
+                vs-xs="12"
+              >
                 <div class="centerx colors-example">
-                  <h6 style="margin-bottom: -14px; margin-left: 20px">
-                    División
-                  </h6>
+                  <h6 class="tituloSelect">División</h6>
                   <select
-                    class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                    class="escritorio movil seleccionable"
                     v-model="showDependencyss.division_id"
                   >
                     <option value="">Seleccione</option>
@@ -59,18 +66,18 @@
                   </select>
                 </div>
               </vs-col>
-            </vs-row>
-            <vs-row>
               <vs-col
-                vs-type="flex"
+                class="p-2"
                 vs-justify="center"
                 vs-align="center"
-                vs-w="12"
+                vs-lg="6"
+                vs-sm="6"
+                vs-xs="12"
               >
                 <div class="centerx colors-example">
-                  <h6 style="margin-bottom: -14px; margin-left: 20px">Cargo</h6>
+                  <h6 class="tituloSelect">Cargo</h6>
                   <select
-                    class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                    class="escritorio movil seleccionable"
                     v-model="showDependencyss.charge_id"
                   >
                     <option value="">Seleccione</option>
@@ -83,12 +90,19 @@
                     </option>
                   </select>
                 </div>
+              </vs-col>
+              <vs-col
+                class="p-2"
+                vs-justify="center"
+                vs-align="center"
+                vs-lg="6"
+                vs-sm="6"
+                vs-xs="12"
+              >
                 <div class="centerx colors-example">
-                  <h6 style="margin-bottom: -14px; margin-left: 20px">
-                    Cargo Supervisor
-                  </h6>
+                  <h6 class="tituloSelect">Cargo Supervisor</h6>
                   <select
-                    class="ml-5 mr-5 mt-5 mb-3 seleccionable"
+                    class="escritorio movil seleccionable"
                     v-model="showDependencyss.charge_dependence_id"
                   >
                     <option value="">Seleccione</option>
@@ -102,18 +116,18 @@
                   </select>
                 </div>
               </vs-col>
-            </vs-row>
-            <vs-row>
               <vs-col
-                class="mt-5 mb-3"
-                vs-type="flex"
+                class="mt-5 mb-5"
                 vs-justify="center"
                 vs-align="center"
-                vs-w="12"
+                vs-lg="12"
+                vs-sm="12"
+                vs-xs="12"
+                style="text-align: -webkit-center"
               >
                 <div class="centerx colors-example">
                   <vs-button
-                    class="buttonColor"
+                    class="buttonColor botonMovil"
                     color="primary"
                     type="relief"
                     icon="update"
@@ -211,7 +225,7 @@ export default {
 </script>
 <style>
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .con-vs-cards {
   width: 100%;
@@ -224,7 +238,7 @@ export default {
   box-shadow: 0 4px 25px 0 rgb(0 0 0) !important;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  border: 1px solid#ff5000;
+  border: 1px solid#ff6600;
 }
 .card-title {
   margin-bottom: 15px;
@@ -235,5 +249,39 @@ export default {
   text-align: left;
   font-size: 17px;
   font-weight: 700;
+}
+.seleccionable {
+  background: #10163a;
+  color: white;
+  width: 200px;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0.3rem !important;
+  padding-left: 6px !important;
+  font-size: 17px;
+  border: 1px solid transparent;
+}
+@media only screen and (min-width: 901px) {
+  .escritorio {
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px;
+  }
+  .tituloSelect {
+    margin-bottom: -5px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .movil {
+    width: 100%;
+    margin-top: 30px !important;
+  }
+  .tituloSelect {
+    margin-bottom: -20px;
+  }
+  .botonMovil {
+    width: 96%;
+    margin-left: 6px;
+  }
 }
 </style>

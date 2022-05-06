@@ -43,7 +43,7 @@
                 <div class="centerx colors-example">
                   <vs-button
                     @click="updateDivision()"
-                    color="#ff5000"
+                    color="#ff6600"
                     type="relief"
                     icon="autorenew"
                     >Actualizar Division</vs-button
@@ -103,7 +103,7 @@ export default {
 </script>
 <style>
 .buttonColor {
-  background: #ff5000 !important;
+  background: #ff6600 !important;
 }
 .con-vs-cards {
   width: 100%;
